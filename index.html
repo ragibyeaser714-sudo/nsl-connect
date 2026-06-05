@@ -12,53 +12,57 @@
        SECTION 1 — CSS CUSTOM PROPERTIES (THEME VARIABLES)
     ============================================================ */
     [data-theme="dark"] {
-      --bg:        #0b111e;
+      --bg:        #0b111e;      
       --bg2:       #101726;
-      --bg3:       #151f32;
-      --panel:     #121b2d;
-      --panel2:    #1a263f;
-      --border:    #1f2f4a;
+      --bg3:       #151f32;      
+      --panel:     #121b2d;      
+      --panel2:    #1a263f;      
+      --border:    #1f2f4a;      
       --border2:   #2d4368;
-      --accent:    #38bdf8;
-      --accent2:   #0284c7;
-      --accent3:   #34d399;
-      --warn:      #f87171;
+      --accent:    #38bdf8;      
+      --accent2:   #0284c7;      
+      --accent3:   #34d399;      
+      --warn:      #f87171;      
       --warn2:     rgba(248, 113, 113, 0.08);
-      --text:      #e2e8f0;
-      --text2:     #94a3b8;
-      --text3:     #64748b;
-      --shadow:    0 12px 32px rgba(3,7,18,0.5);
-      --glow:      0 0 20px rgba(56,189,248,0.12);
-      --grid-line: rgba(56,189,248,0.015);
-      --header-bg: rgba(11,17,30,0.92);
+      --text:      #e2e8f0;      
+      --text2:     #94a3b8;      
+      --text3:     #64748b;      
+      --shadow:    0 12px 32px rgba(3, 7, 18, 0.5);
+      --glow:      0 0 20px rgba(56, 189, 248, 0.12);
+      --grid-line: rgba(56, 189, 248, 0.015);
+      --header-bg: rgba(11, 17, 30, 0.92);
     }
 
     [data-theme="light"] {
-      --bg:        #f4f7fa;
+      --bg:        #f4f7fa;      
       --bg2:       #e9eff5;
-      --bg3:       #ffffff;
-      --panel:     #ffffff;
-      --panel2:    #f0f4f8;
-      --border:    #d0dbe7;
+      --bg3:       #ffffff;      
+      --panel:     #ffffff;      
+      --panel2:    #f0f4f8;      
+      --border:    #d0dbe7;      
       --border2:   #a1b5cc;
-      --accent:    #0369a1;
+      --accent:    #0369a1;      
       --accent2:   #0c4a6e;
-      --accent3:   #15803d;
-      --warn:      #b91c1c;
+      --accent3:   #15803d;      
+      --warn:      #b91c1c;      
       --warn2:     rgba(185, 28, 28, 0.06);
       --text:      #0f172a;
       --text2:     #475569;
       --text3:     #64748b;
-      --shadow:    0 6px 20px rgba(15,23,42,0.05);
-      --glow:      0 0 14px rgba(3,105,161,0.08);
-      --grid-line: rgba(3,105,161,0.025);
-      --header-bg: rgba(244,247,250,0.94);
+      --shadow:    0 6px 20px rgba(15, 23, 42, 0.05);
+      --glow:      0 0 14px rgba(3, 105, 161, 0.08);
+      --grid-line: rgba(3, 105, 161, 0.025);
+      --header-bg: rgba(244, 247, 250, 0.94);
     }
 
     /* ============================================================
-       SECTION 2 — RESET & BASE STYLES
+       SECTION 2 — GLOBAL RESET & BASE STYLES
     ============================================================ */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       background: var(--bg);
@@ -73,7 +77,7 @@
       content: '';
       position: fixed;
       inset: 0;
-      background-image:
+      background-image: 
         linear-gradient(var(--grid-line) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
       background-size: 40px 40px;
@@ -81,11 +85,9 @@
       z-index: 0;
     }
 
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--text3); }
-
+    /* ============================================================
+       SECTION 3 — APP STRUCTURE & LAYOUT COMPONENTS
+    ============================================================ */
     header {
       position: sticky;
       top: 0;
@@ -100,379 +102,1621 @@
       justify-content: space-between;
     }
 
-    .logo { display: flex; align-items: center; gap: 12px; }
-    .logo-text { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.4rem; letter-spacing: 0.08em; color: var(--text); }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .logo-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      letter-spacing: 0.08em;
+      color: var(--text);
+      line-height: 1.1;
+    }
     .logo-text span { color: var(--accent); }
-    .logo-sub { font-family: 'Share Tech Mono', monospace; font-size: 0.6rem; color: var(--text3); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 2px; }
+
+    .logo-sub {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text3);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 1.5rem;
+      margin-left: 2rem;
+      margin-right: auto;
+    }
+
+    .nav-item {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--text2);
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      background: none;
+      border: none;
+      padding: 0.5rem 0;
+    }
+    .nav-item:hover, .nav-item.active { color: var(--accent); }
+
     .header-right { display: flex; align-items: center; gap: 1.2rem; }
-    .header-status { display: flex; align-items: center; gap: 6px; font-family: 'Share Tech Mono', monospace; font-size: 0.7rem; color: var(--accent3); }
-    .status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent3); animation: pulse-dot 2s infinite; }
-    @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    .header-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent3);
+    }
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent3);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
 
     .theme-toggle {
-      width: 38px; height: 38px; border-radius: 50%; background: var(--panel); border: 1px solid var(--border); color: var(--text2); font-size: 1.05rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      color: var(--text2);
+      font-size: 1.05rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
     }
-    .theme-toggle:hover { border-color: var(--accent); color: var(--accent); background: var(--panel2); }
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--panel2);
+    }
 
-    .app { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
+    .app {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 5rem;
+    }
+
     .view { display: none; }
     .view.active { display: block; }
 
-    .page-header { margin-bottom: 2rem; display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-    .page-eyebrow { font-family: 'Share Tech Mono', monospace; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
-    .page-heading { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 700; color: var(--text); letter-spacing: 0.02em; }
+    .page-header {
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .page-eyebrow {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .page-heading {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
 
     /* ============================================================
-       SECTION 3 — PROFILE DETAIL & TEAM MANAGEMENT LAYOUT
+       SECTION 4 — INTERACTIVE TEAMS & LIST STYLINGS
     ============================================================ */
-    .profile-detail { max-width: 900px; margin: 0 auto; }
-    .detail-header { display: flex; align-items: flex-start; gap: 1.5rem; background: var(--panel); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; margin-bottom: 1rem; position: relative; overflow: hidden; }
-    .detail-header::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent3)); }
-    
-    .detail-avatar { width: 72px; height: 72px; border-radius: 6px; background: var(--bg3); border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--accent); flex-shrink: 0; }
-    .detail-info { flex: 1; }
-    .detail-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--text); line-height: 1.2; margin-bottom: 4px; }
+    .team-section {
+      margin-bottom: 2.5rem;
+    }
+    .team-header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      border-left: 3px solid var(--accent);
+      padding-left: 10px;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .team-banner-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .btn-download-sec {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      color: var(--text2);
+      padding: 4px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-download-sec:hover {
+      border-color: var(--accent3);
+      color: var(--accent3);
+    }
+
+    .bullet-container-list {
+      margin-left: 16px;
+      margin-top: 4px;
+    }
+    .bullet-container-list li {
+      font-size: 0.78rem;
+      color: var(--text2);
+      line-height: 1.45;
+      margin-bottom: 3px;
+    }
+
+    .stats-bar {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 1.4rem;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--text3);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 5px 12px;
+      letter-spacing: 0.06em;
+    }
+    .stat-pill span { color: var(--accent); font-weight: bold; margin-left: 4px; }
+
+    .directory-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .search-wrap {
+      flex: 1;
+      min-width: 220px;
+      position: relative;
+    }
+    .search-wrap input {
+      width: 100%;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
+      padding: 0.6rem 0.8rem 0.6rem 2.4rem;
+      border-radius: 4px;
+      outline: none;
+    }
+    .search-icon {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text3);
+      font-size: 1rem;
+    }
+
+    .nodes-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 1.4rem;
+      padding: 4px 0;
+    }
+    .node-filter-pill {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      padding: 5px 12px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      color: var(--text2);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: uppercase;
+    }
+    .node-filter-pill:hover, .node-filter-pill.active {
+      background: rgba(56, 189, 248, 0.12);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .tags-input-style-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.6rem;
+      border-radius: 3px;
+      min-height: 38px;
+    }
+    .tags-input-style-container input {
+      border: none !important;
+      padding: 0 !important;
+      background: transparent !important;
+      outline: none !important;
+      flex: 1;
+      min-width: 140px;
+      color: var(--text);
+    }
+    .input-tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      padding: 3px 8px;
+      background: var(--panel2);
+      border: 1px solid var(--border2);
+      color: var(--accent);
+      border-radius: 3px;
+    }
+    .input-tag-pill b { cursor: pointer; color: var(--text3); }
+    .input-tag-pill b:hover { color: var(--warn); }
+
+    .btn-primary {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 0.55rem 1.3rem;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary:hover { filter: brightness(1.12); box-shadow: var(--glow); }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1rem;
+    }
+
+    .profile-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.25rem;
+      cursor: pointer;
+      transition: all 0.22s;
+      position: relative;
+    }
+    .profile-card:hover {
+      border-color: var(--border2);
+      background: var(--panel2);
+      transform: translateY(-2px);
+    }
+
+    .card-top { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.8rem; }
+    .avatar {
+      width: 44px; height: 44px;
+      border-radius: 4px;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .card-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--text); }
+    .card-desig { font-size: 0.75rem; color: var(--text2); margin-top: 2px; }
+
+    .nodes-wrap { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 0.7rem; }
+    .node-tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.6rem;
+      padding: 2px 7px;
+      background: rgba(0, 150, 200, 0.08);
+      border: 1px solid rgba(0, 150, 200, 0.22);
+      color: var(--accent);
+      border-radius: 2px;
+      text-transform: uppercase;
+    }
+    .card-desc { font-size: 0.78rem; color: var(--text2); line-height: 1.55; }
+
+    .card-footer {
+      margin-top: 0.85rem;
+      padding-top: 0.7rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-updated { font-family: 'Share Tech Mono', monospace; font-size: 0.6rem; color: var(--text3); }
+
+    .card-actions { display: flex; gap: 0.35rem; }
+    .btn-ghost {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--text2);
+      background: none;
+      border: 1px solid var(--border);
+      padding: 3px 10px;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-ghost.btn-danger:hover { border-color: var(--warn); color: var(--warn); }
+
+    .empty-state { text-align: center; padding: 4rem 2rem; color: var(--text3); width: 100%; }
+
+    /* ============================================================
+       SECTION 5 — INTAKE SYSTEM FORM STYLINGS
+    ============================================================ */
+    .form-container { max-width: 780px; width: 100%; }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text2);
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 1.4rem;
+    }
+
+    .form-section {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .form-section-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.64rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+
+    .field { margin-bottom: 1rem; }
+    .field label {
+      display: block;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--text3);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .field label .req { color: var(--accent); }
+
+    .field input, .field select, .field textarea {
+      width: 100%;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.85rem;
+      padding: 0.6rem 0.8rem;
+      border-radius: 3px;
+      outline: none;
+    }
+
+    .nda-banner {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      background: var(--warn2);
+      border: 1px solid rgba(200, 100, 50, 0.28);
+      border-radius: 4px;
+      padding: 0.85rem 1rem;
+      margin-bottom: 1rem;
+    }
+    .nda-text { font-size: 0.75rem; color: var(--text2); line-height: 1.55; }
+
+    .project-block {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      margin-bottom: 0.85rem;
+    }
+    .project-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 1rem;
+      background: var(--panel);
+      border-bottom: 1px solid var(--border);
+    }
+    .project-num { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; color: var(--text2); }
+    .project-remove-btn { background: none; border: none; color: var(--text3); cursor: pointer; }
+
+    .project-body { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.1rem; }
+
+    .btn-add-project {
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Share Tech Mono', monospace; font-size: 0.72rem;
+      color: var(--accent); background: rgba(0, 140, 200, 0.04);
+      border: 1px dashed rgba(0, 150, 200, 0.3); border-radius: 4px;
+      padding: 0.7rem 1rem; width: 100%; cursor: pointer;
+    }
+
+    .form-actions { display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1.5rem; }
+    .btn-cancel { font-family: 'Barlow Condensed', sans-serif; padding: 0.6rem 1.4rem; background: none; border: 1px solid var(--border); color: var(--text2); cursor: pointer; }
+    .btn-save { font-family: 'Barlow Condensed', sans-serif; padding: 0.6rem 1.4rem; background: var(--accent3); color: #000; border: none; cursor: pointer; }
+
+    /* ============================================================
+       SECTION 6 — READ ONLY READOUT PANELS STYLINGS
+    ============================================================ */
+    .detail-header {
+      display: flex; align-items: flex-start; gap: 1.5rem;
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 6px; padding: 1.5rem; margin-bottom: 1rem; position: relative;
+      flex-wrap: wrap;
+    }
+    .detail-avatar {
+      width: 72px; height: 72px; border-radius: 6px; background: var(--bg3);
+      border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--accent);
+    }
+    .detail-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--text); }
     .detail-desig { font-size: 0.85rem; color: var(--text2); margin-bottom: 0.7rem; }
+    .detail-actions { margin-left: auto; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+    .detail-section { background: var(--panel); border: 1px solid var(--border); border-radius: 6px; padding: 1.25rem; margin-bottom: 1rem; }
+    .detail-section-label { font-family: 'Share Tech Mono', monospace; font-size: 0.62rem; color: var(--text3); text-transform: uppercase; margin-bottom: 0.85rem; }
+
+    .proj-item { border: 1px solid var(--border); border-radius: 4px; margin-bottom: 0.7rem; }
+    .proj-item-header { display: flex; align-items: center; padding: 0.75rem 1rem; background: var(--bg3); flex-wrap: wrap; gap: 0.5rem; }
+    .proj-item-name { font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--text); }
+    .proj-item-body { padding: 0.85rem 1rem; background: var(--panel); border-top: 1px solid var(--border); }
     
-    .detail-section { background: var(--panel); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; margin-bottom: 1rem; }
-    .detail-section-title-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); }
-    .detail-section-label { font-family: 'Share Tech Mono', monospace; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
+    .proj-detail-row { margin-bottom: 0.75rem; }
+    .proj-detail-label { font-family: 'Share Tech Mono', monospace; font-size: 0.58rem; color: var(--text3); text-transform: uppercase; margin-bottom: 5px; }
+    .proj-detail-val { font-size: 0.82rem; color: var(--text); line-height: 1.55; }
 
-    /* Modern Table Elements */
-    .table-responsive { width: 100%; overflow-x: auto; margin-top: 0.5rem; }
-    .project-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem; }
-    .project-table th { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text3); padding: 10px 12px; border-bottom: 2px solid var(--border); background: var(--bg2); }
-    .project-table td { padding: 12px; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; line-height: 1.5; }
-    .project-table tbody tr:hover { background: var(--panel2); }
+    .meta-grid-display { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.2rem; }
 
-    /* Button Layout System */
-    .btn-actions-cell { display: flex; gap: 6px; flex-wrap: nowrap; }
-    .btn-table-action { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; letter-spacing: 0.05em; padding: 4px 10px; border-radius: 3px; cursor: pointer; border: 1px solid var(--border); background: none; transition: all 0.15s; }
-    .btn-table-edit { color: var(--accent); }
-    .btn-table-edit:hover { background: rgba(56, 189, 248, 0.1); border-color: var(--accent); }
-    .btn-table-delete { color: var(--warn); }
-    .btn-table-delete:hover { background: var(--warn2); border-color: var(--warn); }
+    /* ============================================================
+       SECTION 7 — NOTIFICATIONS, TOASTS & MODALS SYSTEM
+    ============================================================ */
+    .modal-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      backdrop-filter: blur(3px);
+    }
+    .modal-backdrop.open { display: flex; }
+    
+    .modal {
+      background: var(--panel);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      padding: 2rem;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.65);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .modal h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .modal p { font-size: 0.85rem; color: var(--text2); margin-bottom: 1.5rem; line-height: 1.5; }
+    .modal-actions { display: flex; justify-content: flex-end; gap: 0.75rem; }
 
-    .btn-download-docx { font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; padding: 6px 14px; background: var(--accent3); color: #000; border: none; border-radius: 4px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
-    .btn-download-docx:hover { filter: brightness(1.1); box-shadow: 0 0 12px rgba(52, 211, 153, 0.3); }
+    .toast {
+      position: fixed; bottom: 2rem; right: 2rem;
+      background: var(--panel);
+      border: 1px solid var(--accent3);
+      color: var(--accent3);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.74rem;
+      padding: 0.8rem 1.2rem;
+      border-radius: 4px;
+      z-index: 999;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
 
-    /* Inline editable row layout items */
-    .editable-input { background: var(--bg3) !important; border: 1px solid var(--accent) !important; color: var(--text) !important; padding: 4px 6px; border-radius: 3px; font-size: 0.85rem; width: 100%; box-shadow: var(--glow); outline: none; }
-    .editable-textarea { background: var(--bg3) !important; border: 1px solid var(--accent) !important; color: var(--text) !important; padding: 4px 6px; border-radius: 3px; font-size: 0.85rem; width: 100%; min-height: 60px; box-shadow: var(--glow); outline: none; resize: vertical; font-family: inherit; }
+    .undo-bar {
+      position: fixed; bottom: 2rem; left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--panel);
+      border: 1px solid var(--warn);
+      color: var(--text);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.74rem;
+      padding: 0.75rem 1.2rem;
+      border-radius: 4px;
+      z-index: 998;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      opacity: 0;
+      transition: all 0.35s ease;
+    }
+    .undo-bar.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+    .btn-undo { font-family: 'Barlow Condensed', sans-serif; padding: 4px 14px; background: var(--warn); color: #fff; border: none; cursor: pointer; }
 
-    /* Toast Notification */
-    #toast { position: fixed; bottom: 20px; right: 20px; background: var(--panel); border: 1px solid var(--accent3); color: var(--accent3); padding: 12px 24px; border-radius: 4px; font-family: 'Share Tech Mono', monospace; font-size: 0.8rem; box-shadow: var(--shadow); z-index: 1000; display: none; }
-    #toast.show { display: block; animation: fadeUp 0.3s ease; }
-    @keyframes fadeUp { from { transform: translateY(10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    /* ============================================================
+       CRITICAL REVISIONS — PHONE CORE RESPONSIVE MATRIX OVERRIDES
+    ============================================================ */
+    @media (max-width: 768px) {
+      header {
+        height: auto;
+        padding: 0.8rem 1rem;
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: stretch;
+      }
+      .nav-tabs {
+        margin-left: 0;
+        justify-content: flex-start;
+        gap: 1rem;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 4px;
+      }
+      .header-right {
+        justify-content: space-between;
+      }
+      .app {
+        padding: 1rem 1rem 5rem;
+      }
+      .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+      }
+      .btn-primary {
+        width: 100%;
+        text-align: center;
+      }
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+      .form-row, .project-body {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .form-section {
+        padding: 1rem;
+      }
+      .form-actions {
+        flex-direction: column-reverse;
+      }
+      .form-actions button {
+        width: 100%;
+        text-align: center;
+      }
+      .detail-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+      }
+      .detail-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .detail-actions button {
+        flex: 1;
+        text-align: center;
+        min-width: 80px;
+      }
+      .toast {
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+        text-align: center;
+      }
+      .undo-bar {
+        width: calc(100% - 2rem);
+        bottom: 1rem;
+      }
+    }
   </style>
 </head>
-<body data-theme="dark">
+<body>
 
   <header>
-    <div class="logo">
-      <div class="logo-text">NSL <span>CONNECT</span></div>
-      <div class="logo-sub">Analog Layout Asset Sync</div>
-    </div>
-    <div class="header-right">
-      <div class="header-status">
-        <div class="status-dot"></div>
-        <span>SECURE NODE</span>
+    <div class="logo" onclick="showProjectsHome()">
+      <div class="logo-icon">
+        <img src="image_8afb22.png" alt="NSL Connect Logo" />
       </div>
-      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Visual Mode">◑</button>
+      <div>
+        <div class="logo-text">NSL <span>Connect</span></div>
+        <div class="logo-sub">VLSI Collaborative Hub</div>
+      </div>
+    </div>
+
+    <div class="nav-tabs">
+      <button class="nav-item active" id="tab-projects" onclick="showProjectsHome()">All Projects</button>
+      <button class="nav-item" id="tab-directory" onclick="showDirectory()">Engineers Directory</button>
+    </div>
+
+    <div class="header-right">
+      <div class="header-status"><div class="status-dot"></div>SYSTEM ONLINE</div>
+      <button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()">🌙</button>
     </div>
   </header>
 
   <div class="app">
-    <div class="view active" id="profileView">
-      
+
+    <div id="view-projects-home" class="view active">
       <div class="page-header">
         <div>
-          <div class="page-eyebrow">SYNC SYSTEM · ENGINE PIPELINE</div>
-          <div class="page-heading">Engineer Portfolio Analysis</div>
+          <div class="page-eyebrow">// team_specifications</div>
+          <h2 class="page-heading">All Team Projects</h2>
+        </div>
+        <button class="btn-primary" onclick="showTeamProjectForm()">+ Add Project Detail</button>
+      </div>
+
+      <div id="teams-distribution-wrapper"></div>
+    </div>
+
+    <div id="view-project-upload-form" class="view">
+      <div class="form-container">
+        <button class="back-btn" onclick="showProjectsHome()">← BACK TO ALL PROJECTS</button>
+        
+        <div class="page-header" style="margin-bottom:1.2rem;">
+          <div>
+            <div class="page-eyebrow">// project_logger</div>
+            <h2 class="page-heading">Describe Project Specifications</h2>
+          </div>
+        </div>
+
+        <div class="nda-banner">
+          <div class="nda-text">
+            <strong>NDA Preservation Rule:</strong> Describe layout parameters at a high level. Use separate lines to automatically present text blocks as neat bullet configurations.
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title">Project Context & Parameters</div>
+          
+          <div class="form-row">
+            <div class="field">
+              <label>Select Originating Team <span class="req">*</span></label>
+              <select id="proj-team-select" onchange="toggleCustomTeamField()">
+                <option value="Analog Mixed Signal">Analog Mixed Signal</option>
+                <option value="Layout">Layout</option>
+                <option value="RF">RF</option>
+                <option value="Memory">Memory</option>
+                <option value="GPIO">GPIO</option>
+                <option value="Others">Others</option>
+              </select>
+            </div>
+            <div class="field" id="custom-team-field-block" style="display: none;">
+              <label>Provide Team Name <span class="req">*</span></label>
+              <input type="text" id="proj-custom-team" placeholder="e.g., Standard I/O Team" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label>Project Name <span class="req">*</span></label>
+              <input type="text" id="proj-title-input" placeholder="e.g., Low Power Bandgap Setup" />
+            </div>
+            <div class="field">
+              <label>Process Node <span class="req">*</span></label>
+              <div class="tags-input-style-container">
+                <div id="proj-node-tags" style="display: flex; flex-wrap: wrap; gap: 4px;"></div>
+                <input type="text" id="proj-node-input" placeholder="Type node & press Space or Comma" />
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Goal (Supports Multi-line bullets) <span class="req">*</span></label>
+            <textarea id="proj-goal-input" rows="4" placeholder="Type each individual design target on a fresh line..."></textarea>
+          </div>
+
+          <div class="field">
+            <label>Key Achievements (Supports Multi-line bullets) <span class="req">*</span></label>
+            <textarea id="proj-achv-input" rows="4" placeholder="Type each single milestone on a separate line to bullet it..."></textarea>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn-cancel" onclick="showProjectsHome()">Cancel</button>
+          <button class="btn-save" onclick="saveTeamProject()">UPLOAD SPECIFICATION</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="view-directory" class="view">
+      <div class="page-header">
+        <div>
+          <div class="page-eyebrow">// engineer_registry</div>
+          <h2 class="page-heading">Team Directory</h2>
+        </div>
+        <button class="btn-primary" onclick="showEngineerForm()">+ Add Engineer Profile</button>
+      </div>
+
+      <div class="stats-bar">
+        <div class="stat-pill">Engineers Counted: <span id="stat-count">0</span></div>
+        <div class="stat-pill">Active Nodes Logged: <span id="stat-nodes">—</span></div>
+      </div>
+
+      <div class="directory-toolbar">
+        <div class="search-wrap">
+          <span class="search-icon">⌕</span>
+          <input type="text" id="search-input" placeholder="Search profiles by name, background expertise..." oninput="filterProfiles()" />
         </div>
       </div>
 
+      <div class="nodes-filter-bar" id="directory-nodes-filter"></div>
+      <div class="profile-grid" id="profile-grid"></div>
+    </div>
+
+    <div id="view-profile-form" class="view">
+      <div class="form-container">
+        <button class="back-btn" onclick="showDirectory()">← BACK TO DIRECTORY</button>
+        <div class="page-header" style="margin-bottom:1.2rem;">
+          <div>
+            <div class="page-eyebrow">// profile_format_builder</div>
+            <h2 class="page-heading" id="profile-form-heading">New Profile Setup</h2>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title">01 · Background Information</div>
+          <div class="form-row">
+            <div class="field">
+              <label>Full Name <span class="req">*</span></label>
+              <input type="text" id="ep-name" placeholder="Ragib Yeaser" />
+            </div>
+            <div class="field">
+              <label>Years of Experience <span class="req">*</span></label>
+              <input type="text" id="ep-yoe" placeholder="e.g., 5 Years 5 Months" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>University <span class="req">*</span></label>
+              <input type="text" id="ep-uni" placeholder="Engineering Institution" />
+            </div>
+            <div class="field">
+              <label>Education Background <span class="req">*</span></label>
+              <input type="text" id="ep-edu" placeholder="e.g., Master of Science" />
+            </div>
+          </div>
+          <div class="field">
+            <label>Key Expertise <span class="req">*</span></label>
+            <input type="text" id="ep-keyexp" placeholder="e.g., AMS Custom Layout, FinFET Layout" />
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title">02 · Tool Ecosystem Focus</div>
+          <div class="form-row">
+            <div class="field">
+              <label>Circuit Design & Simulation</label>
+              <input type="text" id="ep-t-circuit" placeholder="e.g., Cadence Virtuoso" />
+            </div>
+            <div class="field">
+              <label>Layout Design</label>
+              <input type="text" id="ep-t-layout" placeholder="e.g., Virtuoso Layout Editor" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Physical Verification</label>
+              <input type="text" id="ep-t-phys" placeholder="e.g., Calibre, PVS" />
+            </div>
+            <div class="field">
+              <label>Parasitic Extraction</label>
+              <input type="text" id="ep-t-parasitic" placeholder="e.g., StarRC, Quantus" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Reliability Validation</label>
+              <input type="text" id="ep-t-reliability" placeholder="e.g., Totem" />
+            </div>
+            <div class="field">
+              <label>Project Management</label>
+              <input type="text" id="ep-t-pm" placeholder="e.g., ClioSoft SOS" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title">03 · Base Foundations</div>
+          <div class="form-row">
+            <div class="field">
+              <label>Technology Base Nodes <span class="req">*</span></label>
+              <div class="tags-input-style-container">
+                <div id="ep-b-tech-tags" style="display: flex; flex-wrap: wrap; gap: 4px;"></div>
+                <input type="text" id="ep-b-tech" placeholder="Press Space or Comma" />
+              </div>
+            </div>
+            <div class="field">
+              <label>Foundry Background</label>
+              <input type="text" id="ep-b-foundry" placeholder="e.g., TSMC, Samsung" />
+            </div>
+            <div class="field">
+              <label>Process Types</label>
+              <input type="text" id="ep-b-process" placeholder="e.g., FinFET, BCD" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title">04 · Layout Project Experience Logs</div>
+          <div id="dynamic-engineer-projects-box"></div>
+          <button class="btn-add-project" onclick="addEngineerProjectFormBlock()">＋ ADD DETAILED PROJECT RECORD</button>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn-cancel" onclick="showDirectory()">Cancel</button>
+          <button class="btn-save" onclick="saveEngineerProfile()">SAVE PROFILE SYSTEM</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="view-profile-detail" class="view">
       <div class="profile-detail">
+        <button class="back-btn" onclick="showDirectory()">← BACK TO DIRECTORY</button>
+
         <div class="detail-header">
-          <div class="detail-avatar" id="avatarBox">RY</div>
-          <div class="detail-info">
-            <div class="detail-name" id="profileName">Ragib Yeaser</div>
-            <div class="detail-desig" id="profileSummary">Senior Analog Circuit & Custom Layout Design Engineer (5 Years 5 Months Experience)</div>
+          <div class="detail-avatar" id="d-avatar">RY</div>
+          <div style="flex:1; min-width:0;">
+            <div class="detail-name" id="d-name">Engineer Name</div>
+            <div class="detail-desig" id="d-yoe">Experience Parameters</div>
+            <div class="nodes-wrap" id="d-nodes-box"></div>
+          </div>
+          <div class="detail-actions">
+            <button class="btn-ghost" style="border-color: var(--accent3); color: var(--accent3);" id="btn-profile-docx">DOC DOWNLOAD</button>
+            <button class="btn-ghost" onclick="editProfileDirectly()">EDIT</button>
+            <button class="btn-ghost btn-danger" onclick="triggerProfileDeletion()">DELETE</button>
           </div>
         </div>
 
         <div class="detail-section">
-          <div class="detail-section-title-row">
-            <div class="detail-section-label">01 · Layout Project Experience (Non-Confidential Node Matrix)</div>
-            
-            <button class="btn-download-docx" onclick="exportProfileToDocxTable()">
-              📥 Download Profile Table (.docx)
-            </button>
+          <div class="detail-section-label">// Academic & Core Summary</div>
+          <div class="meta-grid-display">
+            <div class="proj-detail-row"><div class="proj-detail-label">University</div><div class="proj-detail-val" id="d-uni">—</div></div>
+            <div class="proj-detail-row"><div class="proj-detail-label">Background Education</div><div class="proj-detail-val" id="d-edu">—</div></div>
+            <div class="proj-detail-row"><div class="proj-detail-label">Key Expertise</div><div class="proj-detail-val" id="d-keyexp">—</div></div>
           </div>
+        </div>
 
-          <div class="table-responsive">
-            <table class="project-table" id="projectsTable">
-              <thead>
-                <tr>
-                  <th style="width: 22%;">Project Structure</th>
-                  <th style="width: 15%;">Node Tech</th>
-                  <th style="width: 48%;">Scope of Work & Technical Contributions</th>
-                  <th style="width: 15%;">Duration</th>
-                  <th style="width: 10%; text-align: center;">Actions</th>
-                </tr>
-              </thead>
-              <tbody id="projectsTableBody">
-                <tr data-id="1">
-                  <td class="p-name">High-Speed Ring Oscillator</td>
-                  <td class="p-tech">5nm / 8nm FinFET</td>
-                  <td class="p-desc">Designed high-frequency ring oscillator blocks from scratch. Handled transistor sizing, layout optimization for parasitics, matching layout tracks, and precision delay stages setup. Performed local physical verification cycles.</td>
-                  <td class="p-duration">4 Months</td>
-                  <td style="text-align: center;">
-                    <div class="btn-actions-cell">
-                      <button class="btn-table-action btn-table-edit" onclick="toggleEditRow(this)">Edit</button>
-                      <button class="btn-table-action btn-table-delete" onclick="deleteRow(this)">Delete</button>
-                    </div>
-                  </td>
-                </tr>
-                <tr data-id="2">
-                  <td class="p-name">Low-Dropout (LDO) Regulator</td>
-                  <td class="p-tech">28nm Planar / BCD</td>
-                  <td class="p-desc">Executed sub-block layout design and integration. Optimized heavy power transistors, error amplifiers, and network routing arrays for minimized IR-drop, EM protection, and structural offset matching.</td>
-                  <td class="p-duration">3 Months</td>
-                  <td style="text-align: center;">
-                    <div class="btn-actions-cell">
-                      <button class="btn-table-action btn-table-edit" onclick="toggleEditRow(this)">Edit</button>
-                      <button class="btn-table-action btn-table-delete" onclick="deleteRow(this)">Delete</button>
-                    </div>
-                  </td>
-                </tr>
-                <tr data-id="3">
-                  <td class="p-name">Precision Bandgap Reference (BGR)</td>
-                  <td class="p-tech">16nm FinFET</td>
-                  <td class="p-desc">Top-level design and block assembly. Focused closely on complex device symmetry, common-centroid matching, dummy placement configurations, and routing parasitic optimization to isolate noise paths.</td>
-                  <td class="p-duration">5 Months</td>
-                  <td style="text-align: center;">
-                    <div class="btn-actions-cell">
-                      <button class="btn-table-action btn-table-edit" onclick="toggleEditRow(this)">Edit</button>
-                      <button class="btn-table-action btn-table-delete" onclick="deleteRow(this)">Delete</button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+        <div class="detail-section">
+          <div class="detail-section-label">// System Tool Infrastructure</div>
+          <div class="meta-grid-display">
+            <div class="proj-detail-row"><div class="proj-detail-label">Circuit & Sim</div><div class="proj-detail-val" id="d-t-circuit">—</div></div>
+            <div class="proj-detail-row"><div class="proj-detail-label">Layout Architecture</div><div class="proj-detail-val" id="d-t-layout">—</div></div>
+            <div class="proj-detail-row"><div class="proj-detail-label">Physical verification</div><div class="proj-detail-val" id="d-t-phys">—</div></div>
+            <div class="proj-detail-row"><div class="proj-detail-label">Extraction tracking</div><div class="proj-detail-val" id="d-t-parasitic">—</div></div>
+            <div class="proj-detail-row"><div class="proj-detail-label">Reliability infrastructure</div><div class="proj-detail-val" id="d-t-rel">—</div></div>
+            <div class="proj-detail-row"><div class="proj-detail-label">Project Management</div><div class="proj-detail-val" id="d-t-pm">—</div></div>
           </div>
+        </div>
 
+        <div class="detail-section">
+          <div class="detail-section-label">// Technical Base Targets</div>
+          <div class="meta-grid-display">
+            <div class="proj-detail-row"><div class="proj-detail-label">Nodes</div><div class="proj-detail-val" id="d-b-tech">—</div></div>
+            <div class="proj-detail-row"><div class="proj-detail-label">Foundries</div><div class="proj-detail-val" id="d-b-foundry">—</div></div>
+            <div class="proj-detail-row"><div class="proj-detail-label">Processes</div><div class="proj-detail-val" id="d-b-process">—</div></div>
+          </div>
+        </div>
+
+        <div class="detail-section" id="d-project-section-wrapper">
+          <div class="detail-section-label">// Tracked Layout Experience History</div>
+          <div id="d-projects-accordion-target"></div>
         </div>
       </div>
+    </div>
 
+  </div>
+
+  <div class="modal-backdrop" id="project-popup-backdrop">
+    <div class="modal">
+      <div class="modal-icon">📁</div>
+      <h3 id="pop-project-name">Project Title</h3>
+      <p style="margin-bottom:0.6rem;"><strong style="color:var(--accent);">Team:</strong> <span id="pop-project-team">AMS</span></p>
+      <p style="margin-bottom:0.6rem;"><strong style="color:var(--accent);">Geometry Node:</strong> <span id="pop-project-node">7nm</span></p>
+      
+      <div style="margin-bottom: 0.8rem;">
+        <div class="proj-detail-label">Project Goal</div>
+        <div id="pop-project-goal-container" style="background:var(--bg2); padding:10px; border-radius:4px;"></div>
+      </div>
+      <div style="margin-bottom: 1.4rem;">
+        <div class="proj-detail-label">Key Achievements</div>
+        <div id="pop-project-achv-container" style="background:var(--bg2); padding:10px; border-radius:4px;"></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-primary" onclick="closeProjectPopup()">Acknowledge</button>
+      </div>
     </div>
   </div>
 
-  <div id="toast">Changes saved to active memory window.</div>
+  <div class="modal-backdrop" id="modal-backdrop">
+    <div class="modal">
+      <div class="modal-icon">🗑️</div>
+      <h3>Delete this profile?</h3>
+      <p>This will remove the engineer's record. You will have 60 seconds to undo.</p>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+        <button style="background:var(--warn); border:none; padding:0.6rem 1.6rem; color:#fff; border-radius:3px; cursor:pointer;" onclick="confirmDelete()">Yes, Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <div class="undo-bar" id="undo-bar">
+    <span style="color:var(--text2)">Profile extracted.</span>
+    <span style="color:var(--warn); font-weight:bold;" id="undo-timer">60s</span>
+    <button class="btn-undo" onclick="undoDelete()">UNDO ACTIONS</button>
+  </div>
 
   <script>
-    // Theme Toggling Pipeline
+    let profiles = JSON.parse(localStorage.getItem('nsl_profiles_v3') || '[]');
+    let teamProjects = JSON.parse(localStorage.getItem('nsl_team_projects_v3') || '[]');
+
+    let editingProfileId = null;
+    let viewingProfileId = null;
+    let engineerTechTags = [];
+    let projectNodeTags = [];
+    let selectedNodeFilter = 'ALL';
+
+    let deletedProfileSnapshot = null;
+    let undoInterval = null;
+    let undoSecondsRemaining = 60;
+    let activeDeletionStagedId = null;
+
+    window.onload = () => {
+      renderGroupedTeamProjects();
+      initializeTagEvents('ep-b-tech', 'ep-b-tech-tags', 'ENGINEER');
+      initializeTagEvents('proj-node-input', 'proj-node-tags', 'PROJECT');
+    };
+
+    function parseLinesToBulletMarkup(textRaw) {
+      if(!textRaw) return '—';
+      const fragments = textRaw.split('\n').map(x => x.trim()).filter(Boolean);
+      if(fragments.length <= 1) return escapeHtmlStrings(textRaw);
+      
+      return `<ul class="bullet-container-list">` + 
+        fragments.map(f => `<li>${escapeHtmlStrings(f)}</li>`).join('') + 
+      `</ul>`;
+    }
+
+    function navToView(viewId) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.getElementById(viewId).classList.add('active');
+      document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showProjectsHome() {
+      document.getElementById('tab-projects').classList.add('active');
+      navToView('view-projects-home');
+      renderGroupedTeamProjects();
+    }
+
+    function showDirectory() {
+      document.getElementById('tab-directory').classList.add('active');
+      navToView('view-directory');
+      selectedNodeFilter = 'ALL'; 
+      renderDirectoryProfiles();
+    }
+
     function toggleTheme() {
-      const current = document.body.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      document.body.setAttribute('data-theme', next);
+      const html = document.documentElement;
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+      document.getElementById('theme-toggle-btn').textContent = isDark ? '☀️' : '🌙';
     }
 
-    function showToast(msg, isWarn = false) {
-      const toast = document.getElementById('toast');
-      toast.textContent = msg;
-      toast.style.borderColor = isWarn ? 'var(--warn)' : 'var(--accent3)';
-      toast.style.color = isWarn ? 'var(--warn)' : 'var(--accent3)';
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 3000);
+    function initializeTagEvents(inputId, containerId, category) {
+      const inputEl = document.getElementById(inputId);
+      if(!inputEl) return;
+      const commit = () => {
+        let rawVal = inputEl.value.trim().replace(/,/g, '');
+        if(rawVal) {
+          let arr = category === 'ENGINEER' ? engineerTechTags : projectNodeTags;
+          if(!arr.includes(rawVal)) { arr.push(rawVal); refreshTags(inputId, containerId, category); }
+        }
+        inputEl.value = '';
+      };
+      inputEl.addEventListener('keydown', (e) => {
+        if(e.key === ',' || e.key === ' ') { e.preventDefault(); commit(); }
+        else if(e.key === 'Backspace' && inputEl.value === '') {
+          let arr = category === 'ENGINEER' ? engineerTechTags : projectNodeTags;
+          arr.pop(); refreshTags(inputId, containerId, category);
+        }
+      });
+      inputEl.addEventListener('blur', commit);
     }
 
-    // Inline Edit/Save Project Row Management Engine
-    function toggleEditRow(button) {
-      const row = button.closest('tr');
-      const isEditing = row.classList.contains('editing-mode');
-
-      if (!isEditing) {
-        // Switch into editing state
-        row.classList.add('editing-mode');
-        button.textContent = 'Save';
-        button.style.color = 'var(--accent3)';
-        button.style.borderColor = 'var(--accent3)';
-
-        // Convert standard structural cells to editable inputs
-        const fields = ['name', 'tech', 'desc', 'duration'];
-        fields.forEach(field => {
-          const cell = row.querySelector(`.p-${field}`);
-          const currentText = cell.textContent.trim();
-          
-          if (field === 'desc') {
-            cell.innerHTML = `<textarea class="editable-textarea">${currentText}</textarea>`;
-          } else {
-            cell.innerHTML = `<input type="text" class="editable-input" value="${currentText}">`;
-          }
-        });
-      } else {
-        // Save execution pipeline
-        row.classList.remove('editing-mode');
-        button.textContent = 'Edit';
-        button.style.color = 'var(--accent)';
-        button.style.borderColor = 'var(--border)';
-
-        const fields = ['name', 'tech', 'desc', 'duration'];
-        fields.forEach(field => {
-          const cell = row.querySelector(`.p-${field}`);
-          const inputElement = cell.querySelector('input, textarea');
-          if (inputElement) {
-            cell.textContent = inputElement.value.trim();
-          }
-        });
-        showToast('✓ Layout project details altered successfully.');
-      }
+    function refreshTags(inputId, containerId, category) {
+      const container = document.getElementById(containerId);
+      let arr = category === 'ENGINEER' ? engineerTechTags : projectNodeTags;
+      container.innerHTML = '';
+      arr.forEach((tag, idx) => {
+        const pill = document.createElement('span');
+        pill.className = 'input-tag-pill';
+        pill.innerHTML = `${escapeHtmlStrings(tag)} <b onclick="removeTagToken('${inputId}','${containerId}','${category}',${idx})">×</b>`;
+        container.appendChild(pill);
+      });
     }
 
-    // Interactive Row Deletion Engine
-    function deleteRow(button) {
-      const row = button.closest('tr');
-      const projName = row.querySelector('.p-name').textContent.trim();
-      
-      if (confirm(`Purge profile record for project: "${projName}"?`)) {
-        row.remove();
-        showToast('✓ Project layout matrix record deleted.', true);
-      }
+    function removeTagToken(inputId, containerId, category, idx) {
+      if(category === 'ENGINEER') engineerTechTags.splice(idx, 1);
+      else projectNodeTags.splice(idx, 1);
+      refreshTags(inputId, containerId, category);
     }
 
-    /**
-     * NATIVE CLIENT-SIDE GENERATION SYSTEM (.DOCX)
-     * Compiles data records dynamically out of the active DOM into a standard Microsoft Word 
-     * deployment scheme utilizing base-64 encoded application packages.
-     */
-    function exportProfileToDocxTable() {
-      const name = document.getElementById('profileName').textContent.trim();
-      const summary = document.getElementById('profileSummary').textContent.trim();
-      
-      // Target current dynamic table values
-      const rows = document.querySelectorAll('#projectsTableBody tr');
-      
-      if (rows.length === 0) {
-        alert("Cannot generate file: Project matrix data records are completely empty.");
+    function showTeamProjectForm() {
+      navToView('view-project-upload-form');
+      document.getElementById('proj-team-select').value = 'Analog Mixed Signal';
+      document.getElementById('custom-team-field-block').style.display = 'none';
+      ['proj-custom-team', 'proj-title-input', 'proj-node-input', 'proj-goal-input', 'proj-achv-input'].forEach(id => document.getElementById(id).value = '');
+      projectNodeTags = [];
+      refreshTags('proj-node-input', 'proj-node-tags', 'PROJECT');
+    }
+
+    function toggleCustomTeamField() {
+      const val = document.getElementById('proj-team-select').value;
+      document.getElementById('custom-team-field-block').style.display = val === 'Others' ? 'block' : 'none';
+    }
+
+    function saveTeamProject() {
+      const selection = document.getElementById('proj-team-select').value;
+      let teamName = selection === 'Others' ? document.getElementById('proj-custom-team').value.trim() : selection;
+      const title = document.getElementById('proj-title-input').value.trim();
+      const goal = document.getElementById('proj-goal-input').value.trim();
+      const achievements = document.getElementById('proj-achv-input').value.trim();
+
+      if (!teamName || !title || projectNodeTags.length === 0 || !goal || !achievements) {
+        showSystemToast('Complete all project parameters ✦', true);
         return;
       }
 
-      // 1. Build table rows structure using cleanly targeted XML markup injection
-      let tableRowsXml = '';
+      teamProjects.push({
+        id: 'proj-' + Date.now().toString(36),
+        teamName, projectName: title,
+        processNode: projectNodeTags.join(', '),
+        goal, keyAchievements: achievements,
+        timestamp: Date.now()
+      });
 
-      // Define static Header Row XML parameters
-      tableRowsXml += `
-        <w:tr>
-          <w:trPr><w:tblHeader/><w:cantSplit/></w:trPr>
-          <w:tc><w:tcPr><w:tcW w:w="2200" w:type="dxa"/><w:shd w:fill="0B111E"/></w:tcPr><w:p><w:pPr><w:jc w:val="left"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:b/><w:color w:val="38BDF8"/><w:sz w:val="20"/></w:rPr><w:t>Project Structure</w:t></w:r></w:p></w:tc>
-          <w:tc><w:tcPr><w:tcW w:w="1500" w:type="dxa"/><w:shd w:fill="0B111E"/></w:tcPr><w:p><w:pPr><w:jc w:val="left"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:b/><w:color w:val="38BDF8"/><w:sz w:val="20"/></w:rPr><w:t>Node Tech</w:t></w:r></w:p></w:tc>
-          <w:tc><w:tcPr><w:tcW w:w="4800" w:type="dxa"/><w:shd w:fill="0B111E"/></w:tcPr><w:p><w:pPr><w:jc w:val="left"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:b/><w:color w:val="38BDF8"/><w:sz w:val="20"/></w:rPr><w:t>Scope of Work &amp; Technical Contributions</w:t></w:r></w:p></w:tc>
-          <w:tc><w:tcPr><w:tcW w:w="1500" w:type="dxa"/><w:shd w:fill="0B111E"/></w:tcPr><w:p><w:pPr><w:jc w:val="left"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:b/><w:color w:val="38BDF8"/><w:sz w:val="20"/></w:rPr><w:t>Duration</w:t></w:r></w:p></w:tc>
-        </w:tr>
+      localStorage.setItem('nsl_team_projects_v3', JSON.stringify(teamProjects));
+      showSystemToast('✓ Project Specifications Captured');
+      showProjectsHome();
+    }
+
+    function renderGroupedTeamProjects() {
+      const container = document.getElementById('teams-distribution-wrapper');
+      container.innerHTML = '';
+
+      const categories = new Set(['Analog Mixed Signal', 'Layout', 'RF', 'Memory', 'GPIO']);
+      teamProjects.forEach(p => { if(p.teamName) categories.add(p.teamName); });
+
+      if (teamProjects.length === 0) {
+        container.innerHTML = `<div class="empty-state"><h3>No project specifications tracked</h3><p>Click + Add Project Detail to get started.</p></div>`;
+        return;
+      }
+
+      categories.forEach(team => {
+        const records = teamProjects.filter(p => p.teamName === team);
+        if (records.length === 0) return;
+
+        const section = document.createElement('div');
+        section.className = 'team-section';
+
+        let cardsMarkup = '';
+        records.forEach(p => {
+          cardsMarkup += `
+            <div class="profile-card" onclick="openProjectPopup('${p.id}')">
+              <div class="card-name" style="margin-bottom:6px;">${escapeHtmlStrings(p.projectName)}</div>
+              <div class="node-tag" style="margin-bottom:8px;">${escapeHtmlStrings(p.processNode)}</div>
+              <div class="card-desc"><strong>Goals:</strong> ${parseLinesToBulletMarkup(p.goal)}</div>
+              <div class="card-desc" style="margin-top:6px;"><strong>Achievements:</strong> ${parseLinesToBulletMarkup(p.keyAchievements)}</div>
+            </div>
+          `;
+        });
+
+        section.innerHTML = `
+          <div class="team-header-container">
+            <div class="team-banner-title">${escapeHtmlStrings(team)}</div>
+            <button class="btn-download-sec" onclick="event.stopPropagation(); downloadTeamDocx('${escapeHtmlStrings(team)}')">⬇ Download ${escapeHtmlStrings(team)} data</button>
+          </div>
+          <div class="profile-grid">${cardsMarkup}</div>
+        `;
+        container.appendChild(section);
+      });
+    }
+
+    function openProjectPopup(id) {
+      const proj = teamProjects.find(p => p.id === id);
+      if (!proj) return;
+      document.getElementById('pop-project-name').textContent = proj.projectName;
+      document.getElementById('pop-project-team').textContent = proj.teamName;
+      document.getElementById('pop-project-node').textContent = proj.processNode;
+      
+      document.getElementById('pop-project-goal-container').innerHTML = parseLinesToBulletMarkup(proj.goal);
+      document.getElementById('pop-project-achv-container').innerHTML = parseLinesToBulletMarkup(proj.keyAchievements);
+
+      document.getElementById('project-popup-backdrop').classList.add('open');
+    }
+
+    function closeProjectPopup() { document.getElementById('project-popup-backdrop').classList.remove('open'); }
+
+    function showEngineerForm(id = null) {
+      navToView('view-profile-form');
+      resetProfileFields();
+      editingProfileId = null;
+
+      if (id) {
+        editingProfileId = id;
+        const target = profiles.find(p => p.id === id);
+        if (target) populateFormFields(target);
+        document.getElementById('profile-form-heading').textContent = 'Modify Technical Profile';
+      } else {
+        document.getElementById('profile-form-heading').textContent = 'Initialize Technical Profile';
+        addEngineerProjectFormBlock();
+      }
+    }
+
+    function addEngineerProjectFormBlock(data = null) {
+      const box = document.getElementById('dynamic-engineer-projects-box');
+      const uid = data ? data.uid : 'epb-' + Math.random().toString(36).slice(2, 7);
+      const div = document.createElement('div');
+      div.className = 'project-block';
+      div.id = uid;
+
+      div.innerHTML = `
+        <div class="project-header">
+          <span class="project-num">// DETAILED PROJECT LOG</span>
+          <button class="project-remove-btn" type="button" onclick="removeDynamicProjectBlock('${uid}')">✕</button>
+        </div>
+        <div class="project-body">
+          <div class="field">
+            <label>Project Name</label>
+            <input type="text" class="field-p-name" value="${data ? escapeHtmlStrings(data.name) : ''}" />
+          </div>
+          <div class="field">
+            <label>Technology Nodes</label>
+            <input type="text" class="field-p-tech" value="${data ? escapeHtmlStrings(data.tech) : ''}" />
+          </div>
+          <div class="field">
+            <label>Duration Tracking</label>
+            <input type="text" class="field-p-duration" value="${data ? escapeHtmlStrings(data.duration) : ''}" />
+          </div>
+          <div class="field" style="grid-column: 1/-1">
+            <label>Description Parameters (Supports separate lines for bullets)</label>
+            <textarea class="field-p-desc" rows="4">${data ? escapeHtmlStrings(data.desc) : ''}</textarea>
+          </div>
+        </div>
+      `;
+      box.appendChild(div);
+    }
+
+    function removeDynamicProjectBlock(id) { const el = document.getElementById(id); if (el) el.remove(); }
+    
+    function resetProfileFields() {
+      ['ep-name', 'ep-yoe', 'ep-uni', 'ep-edu', 'ep-keyexp', 'ep-t-circuit', 'ep-t-layout', 'ep-t-phys', 'ep-t-parasitic', 'ep-t-reliability', 'ep-t-pm', 'ep-b-tech', 'ep-b-foundry', 'ep-b-process'].forEach(id => document.getElementById(id).value = '');
+      document.getElementById('dynamic-engineer-projects-box').innerHTML = '';
+      engineerTechTags = [];
+      refreshTags('ep-b-tech', 'ep-b-tech-tags', 'ENGINEER');
+    }
+
+    function populateFormFields(p) {
+      document.getElementById('ep-name').value = p.name || '';
+      document.getElementById('ep-yoe').value = p.yoe || '';
+      document.getElementById('ep-uni').value = p.uni || '';
+      document.getElementById('ep-edu').value = p.edu || '';
+      document.getElementById('ep-keyexp').value = p.keyexp || '';
+      document.getElementById('ep-t-circuit').value = p.tools?.circuit || '';
+      document.getElementById('ep-t-layout').value = p.tools?.layout || '';
+      document.getElementById('ep-t-phys').value = p.tools?.phys || '';
+      document.getElementById('ep-t-parasitic').value = p.tools?.parasitic || '';
+      document.getElementById('ep-t-reliability').value = p.tools?.reliability || '';
+      document.getElementById('ep-t-pm').value = p.tools?.pm || '';
+      document.getElementById('ep-b-foundry').value = p.base?.foundry || '';
+      document.getElementById('ep-b-process').value = p.base?.process || '';
+      engineerTechTags = p.base?.tech ? [...p.base.tech] : [];
+      refreshTags('ep-b-tech', 'ep-b-tech-tags', 'ENGINEER');
+      if (p.experienceLogs) p.experienceLogs.forEach(log => addEngineerProjectFormBlock(log));
+    }
+
+    function saveEngineerProfile() {
+      const name = document.getElementById('ep-name').value.trim();
+      const yoe = document.getElementById('ep-yoe').value.trim();
+      const keyexp = document.getElementById('ep-keyexp').value.trim();
+
+      if (!name || !yoe || !keyexp || engineerTechTags.length === 0) {
+        showSystemToast('Complete required background rows ✦', true);
+        return;
+      }
+
+      const logs = [];
+      document.querySelectorAll('#dynamic-engineer-projects-box .project-block').forEach(blk => {
+        logs.push({
+          uid: blk.id,
+          name: blk.querySelector('.field-p-name').value.trim(),
+          tech: blk.querySelector('.field-p-tech').value.trim(),
+          duration: blk.querySelector('.field-p-duration').value.trim(),
+          desc: blk.querySelector('.field-p-desc').value.trim()
+        });
+      });
+
+      const packet = {
+        id: editingProfileId || 'eng-' + Math.random().toString(36).slice(2, 8),
+        name, yoe, uni: document.getElementById('ep-uni').value.trim(), edu: document.getElementById('ep-edu').value.trim(), keyexp,
+        tools: {
+          circuit: document.getElementById('ep-t-circuit').value.trim(), layout: document.getElementById('ep-t-layout').value.trim(),
+          phys: document.getElementById('ep-t-phys').value.trim(), parasitic: document.getElementById('ep-t-parasitic').value.trim(),
+          reliability: document.getElementById('ep-t-reliability').value.trim(), pm: document.getElementById('ep-t-pm').value.trim()
+        },
+        base: { tech: engineerTechTags, foundry: document.getElementById('ep-b-foundry').value.trim(), process: document.getElementById('ep-b-process').value.trim() },
+        experienceLogs: logs, updatedAt: Date.now()
+      };
+
+      if (editingProfileId) {
+        const idx = profiles.findIndex(x => x.id === editingProfileId);
+        if (idx !== -1) profiles[idx] = packet;
+      } else {
+        profiles.push(packet);
+      }
+
+      localStorage.setItem('nsl_profiles_v3', JSON.stringify(profiles));
+      showSystemToast('✓ Profile Tracked Safely');
+      showDirectory();
+    }
+
+    function renderDirectoryProfiles() {
+      const nodes = new Set();
+      profiles.forEach(p => { if (p.base?.tech) p.base.tech.forEach(n => nodes.add(n.trim())); });
+      document.getElementById('stat-nodes').textContent = nodes.size > 0 ? Array.from(nodes).join(', ') : 'None Linked';
+
+      const filterBar = document.getElementById('directory-nodes-filter');
+      filterBar.innerHTML = '';
+      
+      if(profiles.length > 0) {
+        const btn = document.createElement('div');
+        btn.className = `node-filter-pill ${selectedNodeFilter === 'ALL' ? 'active' : ''}`;
+        btn.textContent = 'ALL NODES';
+        btn.onclick = () => { selectedNodeFilter = 'ALL'; filterProfiles(); };
+        filterBar.appendChild(btn);
+
+        nodes.forEach(node => {
+          const nBtn = document.createElement('div');
+          nBtn.className = `node-filter-pill ${selectedNodeFilter === node ? 'active' : ''}`;
+          nBtn.textContent = node;
+          nBtn.onclick = () => { selectedNodeFilter = node; filterProfiles(); };
+          filterBar.appendChild(nBtn);
+        });
+      }
+      filterProfiles();
+    }
+
+    function filterProfiles() {
+      const q = document.getElementById('search-input').value.toLowerCase();
+      let matches = profiles.filter(p => p.name.toLowerCase().includes(q) || p.keyexp.toLowerCase().includes(q) || (p.uni && p.uni.toLowerCase().includes(q)));
+
+      if(selectedNodeFilter !== 'ALL') {
+        matches = matches.filter(p => p.base?.tech?.some(n => n.toLowerCase() === selectedNodeFilter.toLowerCase()));
+      }
+
+      document.getElementById('stat-count').textContent = matches.length;
+      const grid = document.getElementById('profile-grid');
+      if(matches.length === 0) {
+        grid.innerHTML = `<div class="empty-state"><h3>No matching structural nodes located</h3></div>`;
+        return;
+      }
+
+      grid.innerHTML = matches.map(p => {
+        let nodesTags = (p.base?.tech || []).map(n => `<span class="node-tag">${escapeHtmlStrings(n)}</span>`).join(' ');
+        return `
+          <div class="profile-card" onclick="viewProfileDetails('${p.id}')">
+            <div class="card-top">
+              <div class="avatar">${p.name.substring(0,2).toUpperCase()}</div>
+              <div>
+                <div class="card-name">${escapeHtmlStrings(p.name)}</div>
+                <div class="card-desig">${escapeHtmlStrings(p.keyexp)}</div>
+              </div>
+            </div>
+            <div class="nodes-wrap">${nodesTags}</div>
+            <div class="card-desc"><strong>Experience:</strong> ${escapeHtmlStrings(p.yoe)}</div>
+            <div class="card-footer">
+              <span class="card-updated">Collaborator Register</span>
+              <div class="card-actions">
+                <button class="btn-ghost" onclick="event.stopPropagation(); showEngineerForm('${p.id}')">EDIT</button>
+                <button class="btn-ghost btn-danger" onclick="event.stopPropagation(); triggerProfileDeletion('${p.id}')">DELETE</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function viewProfileDetails(id) {
+      viewingProfileId = id;
+      const p = profiles.find(x => x.id === id);
+      if (!p) return;
+      navToView('view-profile-detail');
+
+      document.getElementById('d-avatar').textContent = p.name.substring(0,2).toUpperCase();
+      document.getElementById('d-name').textContent = p.name;
+      document.getElementById('d-yoe').textContent = p.yoe;
+      document.getElementById('d-uni').textContent = p.uni || '—';
+      document.getElementById('d-edu').textContent = p.edu || '—';
+      document.getElementById('d-keyexp').textContent = p.keyexp || '—';
+      document.getElementById('d-t-circuit').textContent = p.tools?.circuit || '—';
+      document.getElementById('d-t-layout').textContent = p.tools?.layout || '—';
+      document.getElementById('d-t-phys').textContent = p.tools?.phys || '—';
+      document.getElementById('d-t-parasitic').textContent = p.tools?.parasitic || '—';
+      document.getElementById('d-t-rel').textContent = p.tools?.reliability || '—';
+      document.getElementById('d-t-pm').textContent = p.tools?.pm || '—';
+      document.getElementById('d-b-tech').textContent = (p.base?.tech || []).join(', ') || '—';
+      document.getElementById('d-b-foundry').textContent = p.base?.foundry || '—';
+      document.getElementById('d-b-process').textContent = p.base?.process || '—';
+
+      document.getElementById('d-nodes-box').innerHTML = (p.base?.tech || []).map(n => `<span class="node-tag">${escapeHtmlStrings(n)}</span>`).join(' ');
+
+      const target = document.getElementById('d-projects-accordion-target');
+      target.innerHTML = '';
+      if (!p.experienceLogs || p.experienceLogs.length === 0) {
+        target.innerHTML = '<div class="card-desc">No layout verification project tracks saved.</div>';
+      } else {
+        p.experienceLogs.forEach(log => {
+          target.innerHTML += `
+            <div class="proj-item">
+              <div class="proj-item-header">
+                <span class="node-tag">${escapeHtmlStrings(log.tech)}</span>
+                <span class="proj-item-name">${escapeHtmlStrings(log.name)} (${escapeHtmlStrings(log.duration)})</span>
+              </div>
+              <div class="proj-item-body">
+                <div class="card-desc">${parseLinesToBulletMarkup(log.desc)}</div>
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      document.getElementById('btn-profile-docx').onclick = () => downloadEngineerDocx(p);
+    }
+
+    function editProfileDirectly() { if (viewingProfileId) showEngineerForm(viewingProfileId); }
+
+    function triggerProfileDeletion(id = null) { activeDeletionStagedId = id || viewingProfileId; document.getElementById('modal-backdrop').classList.add('open'); }
+    function closeModal() { document.getElementById('modal-backdrop').classList.remove('open'); activeDeletionStagedId = null; }
+    function confirmDelete() {
+      if (!activeDeletionStagedId) return;
+      const target = activeDeletionStagedId; closeModal();
+      deletedProfileSnapshot = JSON.parse(JSON.stringify(profiles.find(x => x.id === target)));
+      profiles = profiles.filter(x => x.id !== target);
+      localStorage.setItem('nsl_profiles_v3', JSON.stringify(profiles));
+      if (viewingProfileId === target) showDirectory(); else renderDirectoryProfiles();
+      startUndoCountdown();
+    }
+
+    function startUndoCountdown() {
+      if (undoInterval) clearInterval(undoInterval);
+      undoSecondsRemaining = 60;
+      const bar = document.getElementById('undo-bar');
+      document.getElementById('undo-timer').textContent = '60s';
+      bar.classList.add('show');
+      undoInterval = setInterval(() => {
+        undoSecondsRemaining--;
+        document.getElementById('undo-timer').textContent = undoSecondsRemaining + 's';
+        if (undoSecondsRemaining <= 0) { clearInterval(undoInterval); bar.classList.remove('show'); deletedProfileSnapshot = null; }
+      }, 1000);
+    }
+
+    function undoDelete() {
+      if (!deletedProfileSnapshot) return;
+      profiles.push(deletedProfileSnapshot);
+      localStorage.setItem('nsl_profiles_v3', JSON.stringify(profiles));
+      deletedProfileSnapshot = null; clearInterval(undoInterval);
+      document.getElementById('undo-bar').classList.remove('show');
+      showSystemToast('✓ Profile State Vectors Restored');
+      renderDirectoryProfiles();
+    }
+
+    function showSystemToast(txt, err = false) {
+      const el = document.getElementById('toast'); el.textContent = txt;
+      el.style.borderColor = err ? 'var(--warn)' : 'var(--accent3)';
+      el.style.color = err ? 'var(--warn)' : 'var(--accent3)';
+      el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 3000);
+    }
+
+    function escapeHtmlStrings(str) {
+      if(!str) return '';
+      return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    /* =========================================================================
+       NATIVE DOCUMENT WRAPPER GENERATOR — PLAIN WHITE BG WITH Crisp BLACK BORDERS
+       ========================================================================= */
+
+    function buildHtmlBulletsList(textRaw) {
+      if(!textRaw) return '—';
+      const lines = textRaw.split('\n').map(l => l.trim()).filter(Boolean);
+      
+      if (lines.length <= 1) {
+        return escapeHtmlStrings(textRaw);
+      }
+
+      return `<ul style="margin: 0; padding-left: 20px; font-family: 'Arial', sans-serif; font-size: 11pt;">` + 
+        lines.map(line => `<li style="margin-bottom: 3px;">${escapeHtmlStrings(line)}</li>`).join('') + 
+      `</ul>`;
+    }
+
+    function triggerNativeDocxSave(filename, innerTableHtml) {
+      const documentHtml = `
+        <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+        <head>
+          <meta charset="utf-8">
+          <title>Export Matrix</title>
+          <style>
+            body { font-family: 'Arial', sans-serif; font-size: 11pt; line-height: 1.4; color: #000000; background-color: #ffffff; padding: 20px; }
+            h1 { font-family: 'Arial', sans-serif; font-size: 16pt; font-weight: bold; text-align: center; margin-bottom: 18pt; color: #000000; }
+            h2 { font-family: 'Arial', sans-serif; font-size: 13pt; font-weight: bold; margin-top: 20pt; margin-bottom: 8pt; color: #000000; }
+            table { width: 100%; border-collapse: collapse; background-color: #ffffff; margin-top: 12pt; margin-bottom: 12pt; }
+            th, td { border: 1px solid #000000; padding: 10px; text-align: left; vertical-align: top; background-color: #ffffff; color: #000000; font-size: 10.5pt; }
+            th { font-weight: bold; text-align: center; }
+            p { margin: 0 0 6px 0; }
+          </style>
+        </head>
+        <body>
+          ${innerTableHtml}
+        </body>
+        </html>
       `;
 
-      // Define standard Data Rows parsed out of active elements
-      rows.forEach(row => {
-        // Guard step against scanning elements that are actively in intermediate edit state input tags
-        let pName = '', pTech = '', pDesc = '', pDuration = '';
-        
-        if (row.classList.contains('editing-mode')) {
-          pName = row.querySelector('.p-name input').value;
-          pTech = row.querySelector('.p-tech input').value;
-          pDesc = row.querySelector('.p-desc textarea').value;
-          pDuration = row.querySelector('.p-duration input').value;
-        } else {
-          pName = row.querySelector('.p-name').textContent;
-          pTech = row.querySelector('.p-tech').textContent;
-          pDesc = row.querySelector('.p-desc').textContent;
-          pDuration = row.querySelector('.p-duration').textContent;
-        }
+      const containerBlob = new Blob([documentHtml], { type: 'application/msword;charset=utf-8' });
+      const url = URL.createObjectURL(containerBlob);
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.href = url;
+      downloadAnchor.download = filename;
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      document.body.removeChild(downloadAnchor);
+      URL.revokeObjectURL(url);
+    }
 
-        // Escape specialized XML structural elements safely to block runtime errors
-        const cleanXml = (str) => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    function downloadTeamDocx(teamName) {
+      const list = teamProjects.filter(p => p.teamName.toLowerCase() === teamName.toLowerCase());
+      if(list.length === 0) {
+        showSystemToast("No active data records to pull for this segment.", true);
+        return;
+      }
 
-        tableRowsXml += `
-          <w:tr>
-            <w:trPr><w:cantSplit/></w:trPr>
-            <w:tc><w:tcPr><w:tcW w:w="2200" w:type="dxa"/></w:tcPr><w:p><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:b/><w:sz w:val="20"/></w:rPr><w:t>${cleanXml(pName)}</w:t></w:r></w:p></w:tc>
-            <w:tc><w:tcPr><w:tcW w:w="1500" w:type="dxa"/></w:tcPr><w:p><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:sz w:val="18"/><w:color w:val="475569"/></w:rPr><w:t>${cleanXml(pTech)}</w:t></w:r></w:p></w:tc>
-            <w:tc><w:tcPr><w:tcW w:w="4800" w:type="dxa"/></w:tcPr><w:p><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:sz w:val="18"/></w:rPr><w:t>${cleanXml(pDesc)}</w:t></w:r></w:p></w:tc>
-            <w:tc><w:tcPr><w:tcW w:w="1500" w:type="dxa"/></w:tcPr><w:p><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:sz w:val="18"/></w:rPr><w:t>${cleanXml(pDuration)}</w:t></w:r></w:p></w:tc>
-          </w:tr>
+      let tableRows = `
+        <tr>
+          <th style="width: 20%;">Project</th>
+          <th style="width: 35%;">Goal</th>
+          <th style="width: 15%;">Technology</th>
+          <th style="width: 30%;">Achievement</th>
+        </tr>
+      `;
+
+      list.forEach(item => {
+        tableRows += `
+          <tr>
+            <td><strong>${escapeHtmlStrings(item.projectName)}</strong></td>
+            <td>${buildHtmlBulletsList(item.goal)}</td>
+            <td style="text-align: center;">${escapeHtmlStrings(item.processNode)}</td>
+            <td>${buildHtmlBulletsList(item.keyAchievements)}</td>
+          </tr>
         `;
       });
 
-      // 2. Full Standard OpenXML Word Document Structure Template wrapper string setup
-      const docxHeader = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-        <w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
-        <w:body>
-          <w:p>
-            <w:pPr><w:spacing w:after="60"/></w:pPr>
-            <w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:b/><w:sz w:val="36"/><w:color w:val="0B111E"/></w:rPr><w:t>${name}</w:t></w:r>
-          </w:p>
-          <w:p>
-            <w:pPr><w:spacing w:after="360"/></w:pPr>
-            <w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:i/><w:sz w:val="20"/><w:color w:val="64748b"/></w:rPr><w:t>${summary}</w:t></w:r>
-          </w:p>
-
-          <w:tbl>
-            <w:tblPr>
-              <w:tblW w:w="10000" w:type="pct"/>
-              <w:tblBorders>
-                <w:top w:val="single" w:sz="4" w:space="0" w:color="D0DBE7"/>
-                <w:left w:val="none"/>
-                <w:bottom w:val="single" w:sz="6" w:space="0" w:color="A1B5CC"/>
-                <w:right w:val="none"/>
-                <w:insideH w:val="single" w:sz="4" w:space="0" w:color="E9EFF5"/>
-                <w:insideV w:val="none"/>
-              </w:tblBorders>
-              <w:tblCellMar>
-                <w:top w:w="140" w:type="dxa"/>
-                <w:bottom w:w="140" w:type="dxa"/>
-                <w:left w:w="140" w:type="dxa"/>
-                <w:right w:w="140" w:type="dxa"/>
-              </w:tblCellMar>
-            </w:tblPr>
+      const innerContent = `
+        <h1>PORTFOLIO (${escapeHtmlStrings(teamName.toUpperCase())})</h1>
+        <table>
+          ${tableRows}
+        </table>
       `;
 
-      const docxFooter = `
-          </w:tbl>
-        </w:body>
-        </w:document>
+      triggerNativeDocxSave(`Portfolio_${teamName.replace(/\s+/g, '_')}.doc`, innerContent);
+      showSystemToast("✓ Team specifications table extracted");
+    }
+
+    function downloadEngineerDocx(engineerObj) {
+      let innerContent = `
+        <h1>ENGINEER SYSTEM PROFILE: ${escapeHtmlStrings(engineerObj.name.toUpperCase())}</h1>
+        <p style="font-size: 11pt; margin-bottom: 4px;"><strong>Experience Parameters:</strong> ${escapeHtmlStrings(engineerObj.yoe)}</p>
+        <p style="font-size: 11pt; margin-bottom: 4px;"><strong>University Framework:</strong> ${escapeHtmlStrings(engineerObj.uni || '—')}</p>
+        <p style="font-size: 11pt; margin-bottom: 4px;"><strong>Education Level:</strong> ${escapeHtmlStrings(engineerObj.edu || '—')}</p>
+        <p style="font-size: 11pt; margin-bottom: 12px;"><strong>Key Professional Expertise:</strong> ${escapeHtmlStrings(engineerObj.keyexp)}</p>
+        
+        <h2>TRACKED LAYOUT PROJECT RECORDS</h2>
       `;
 
-      const completeDocumentContent = docxHeader + tableRowsXml + docxFooter;
+      if(!engineerObj.experienceLogs || engineerObj.experienceLogs.length === 0) {
+        innerContent += `<p style="font-style: italic; color: #555555;">No localized project log data rows currently compiled for this engineer.</p>`;
+      } else {
+        let tableRows = `
+          <tr>
+            <th style="width: 25%;">Project Name</th>
+            <th style="width: 15%;">Technology Node</th>
+            <th style="width: 15%;">Duration</th>
+            <th style="width: 45%;">Experience Description Scope</th>
+          </tr>
+        `;
 
-      // 3. Compile structural components into a deployable application zip layout bundle container logic
-      const containerZipLayoutBase64 = 
-        "UEsDBBQAAAAIAIiqu1YAAAAAAAAAAAAAAAALAAAAX3JlbHMvLnJlbHOVks1qwzAMgvdC72DoPrvtbYyxm96G0NsYexAnidw49g+yK2XvPms7g9ImbCH0SST9+STN9vGzqasv6MRmN8BwloEguunshb0B79WLtwEir9bI3mODAVs4bLeP70w5pSux9SWhshGvAcuUvI+Ysh8wYp66pIps7X2gXLOszscofbYf0PZtWz/Y/BygZpxfMKbeAFNph8w9InDqO0v6by0mYVw7Z9wQ/y+ZshPZWhhL+vCAnO6v1g8UEsBAhQAFAAAAAgAiKq7VgAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAADatQAAAABfcmVscy8ucmVsc1BLBQYAAAAAAQABAEUAAAB9AAAAAAA=";
+        engineerObj.experienceLogs.forEach(log => {
+          tableRows += `
+            <tr>
+              <td><strong>${escapeHtmlStrings(log.name)}</strong></td>
+              <td style="text-align: center;">${escapeHtmlStrings(log.tech)}</td>
+              <td style="text-align: center;">${escapeHtmlStrings(log.duration)}</td>
+              <td>${buildHtmlBulletsList(log.desc)}</td>
+            </tr>
+          `;
+        });
 
-      // Unpack dynamic generation components securely using standard modern ArrayBuffer logic 
-      const zipContentString = atob(containerZipLayoutBase64);
-      const outputBuffer = new Uint8Array(zipContentString.length);
-      for (let i = 0; i < zipContentString.length; i++) {
-        outputBuffer[i] = zipContentString.charCodeAt(i);
+        innerContent += `
+          <table>
+            ${tableRows}
+          </table>
+        `;
       }
 
-      // Convert word document XML stream directly into clean container structure standard Array strings
-      const encoder = new TextEncoder();
-      const documentBytes = encoder.encode(completeDocumentContent);
-
-      // Deploy blob creation and stream package tracking for dynamic download trigger
-      const fileBlob = new Blob([documentBytes], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
-      const downloadUrl = URL.createObjectURL(fileBlob);
-      
-      const anchorElement = document.createElement("a");
-      anchorElement.href = downloadUrl;
-      anchorElement.download = `${name.replace(/\s+/g, '_')}_Layout_Portfolio.docx`;
-      document.body.appendChild(anchorElement);
-      anchorElement.click();
-      
-      // Clean up pointer tracks out of client virtual frame allocation space
-      document.body.removeChild(anchorElement);
-      URL.revokeObjectURL(downloadUrl);
-      showToast('✓ Word document layout generated and downloaded successfully.');
+      triggerNativeDocxSave(`Profile_${engineerObj.name.replace(/\s+/g, '_')}.doc`, innerContent);
+      showSystemToast("✓ Profile document extracted with clean layout grids");
     }
   </script>
 </body>
