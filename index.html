@@ -12,21 +12,21 @@
        SECTION 1 — CSS CUSTOM PROPERTIES (THEME VARIABLES)
     ============================================================ */
     [data-theme="dark"] {
-      --bg:        #0b111e;
+      --bg:        #0b111e;      /* Soft, deep sapphire navy instead of harsh pitch black */
       --bg2:       #101726;
-      --bg3:       #151f32;
-      --panel:     #121b2d;
-      --panel2:    #1a263f;
-      --border:    #1f2f4a;
+      --bg3:       #151f32;      /* Smooth slate-blue input fields */
+      --panel:     #121b2d;      /* Calm, protective panel darks */
+      --panel2:    #1a263f;      /* Soft highlight for hovers */
+      --border:    #1f2f4a;      /* Muted blue-grey grids */
       --border2:   #2d4368;
-      --accent:    #38bdf8;
-      --accent2:   #0284c7;
-      --accent3:   #34d399;
-      --warn:      #f87171;
+      --accent:    #38bdf8;      /* Sky blue (highly legible, zero neon blinding glare) */
+      --accent2:   #0284c7;      /* Rich oceanic mid-blue */
+      --accent3:   #34d399;      /* Soothing sage-mint green for status */
+      --warn:      #f87171;      /* Pastel rose-coral warning */
       --warn2:     rgba(248, 113, 113, 0.08);
-      --text:      #e2e8f0;
-      --text2:     #94a3b8;
-      --text3:     #64748b;
+      --text:      #e2e8f0;      /* Soft milk-white prevents text vibrating */
+      --text2:     #94a3b8;      /* Foggy blue-grey for secondary notes */
+      --text3:     #64748b;      /* Legible but quiet placeholders */
       --shadow:    0 12px 32px rgba(3,7,18,0.5);
       --glow:      0 0 20px rgba(56,189,248,0.12);
       --grid-line: rgba(56,189,248,0.015);
@@ -34,20 +34,20 @@
     }
 
     [data-theme="light"] {
-      --bg:        #f4f7fa;
+      --bg:        #f4f7fa;      /* Clean, chilled ice-white removes glare */
       --bg2:       #e9eff5;
-      --bg3:       #ffffff;
-      --panel:     #ffffff;
-      --panel2:    #f0f4f8;
-      --border:    #d0dbe7;
+      --bg3:       #ffffff;      /* Pure white inputs for structural clarity */
+      --panel:     #ffffff;      /* Crisp white panels */
+      --panel2:    #f0f4f8;      /* Creamy frosted blue-white hover state */
+      --border:    #d0dbe7;      /* Clean, soft architectural frame lines */
       --border2:   #a1b5cc;
-      --accent:    #0369a1;
+      --accent:    #0369a1;      /* Deep sky-sapphire */
       --accent2:   #0c4a6e;
-      --accent3:   #15803d;
-      --warn:      #b91c1c;
+      --accent3:   #15803d;      /* Deep forest green */
+      --warn:      #b91c1c;      /* Classic crimson warning */
       --warn2:     rgba(185, 28, 28, 0.06);
-      --text:      #0f172a;
-      --text2:     #475569;
+      --text:      #0f172a;      /* Rich ink-navy instead of harsh stark black */
+      --text2:     #475569;      /* Smooth graphite descriptions */
       --text3:     #64748b;
       --shadow:    0 6px 20px rgba(15,23,42,0.05);
       --glow:      0 0 14px rgba(3,105,161,0.08);
@@ -86,6 +86,9 @@
     ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--text3); }
 
+    /* ============================================================
+       SECTION 3 — STICKY HEADER
+    ============================================================ */
     header {
       position: sticky;
       top: 0;
@@ -104,6 +107,7 @@
     .logo-text { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.4rem; letter-spacing: 0.08em; color: var(--text); }
     .logo-text span { color: var(--accent); }
     .logo-sub { font-family: 'Share Tech Mono', monospace; font-size: 0.6rem; color: var(--text3); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 2px; }
+    
     .header-right { display: flex; align-items: center; gap: 1.2rem; }
     .header-status { display: flex; align-items: center; gap: 6px; font-family: 'Share Tech Mono', monospace; font-size: 0.7rem; color: var(--accent3); }
     .status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent3); animation: pulse-dot 2s infinite; }
@@ -114,6 +118,9 @@
     }
     .theme-toggle:hover { border-color: var(--accent); color: var(--accent); background: var(--panel2); }
 
+    /* ============================================================
+       SECTION 4 — CONTAINER & VIEW PIPELINES
+    ============================================================ */
     .app { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
     .view { display: none; }
     .view.active { display: block; }
@@ -123,47 +130,80 @@
     .page-heading { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 700; color: var(--text); letter-spacing: 0.02em; }
 
     /* ============================================================
-       SECTION 3 — PROFILE DETAIL & TEAM MANAGEMENT LAYOUT
+       SECTION 5 — MAIN DIRECTORY MATRIX VIEW
     ============================================================ */
-    .profile-detail { max-width: 900px; margin: 0 auto; }
+    .directory-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .profile-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.25rem; }
+    
+    .profile-card {
+      background: var(--panel); border: 1px solid var(--border); border-radius: 6px; padding: 1.25rem; cursor: pointer; transition: all 0.22s; position: relative; overflow: hidden;
+    }
+    .profile-card:hover { border-color: var(--border2); background: var(--panel2); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .card-top { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.8rem; }
+    
+    .avatar {
+      width: 46px; height: 46px; border-radius: 4px; background: var(--bg3); border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--accent); flex-shrink: 0;
+    }
+    .card-info { flex: 1; }
+    .card-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--text); line-height: 1.2; }
+    .card-desig { font-size: 0.8rem; color: var(--text2); margin-top: 2px; }
+    
+    .card-footer { margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .card-btn { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; padding: 4px 10px; background: none; border: 1px solid var(--border); color: var(--text2); border-radius: 3px; cursor: pointer; transition: all 0.15s; }
+    .card-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(56,189,248,0.05); }
+
+    /* ============================================================
+       SECTION 6 — ENGINEER DEPLOYMENT DETAIL VIEW
+    ============================================================ */
+    .back-btn { font-family: 'Share Tech Mono', monospace; font-size: 0.7rem; color: var(--text2); background: none; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .back-btn:hover { color: var(--accent); }
+
     .detail-header { display: flex; align-items: flex-start; gap: 1.5rem; background: var(--panel); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; margin-bottom: 1rem; position: relative; overflow: hidden; }
     .detail-header::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent3)); }
-    
     .detail-avatar { width: 72px; height: 72px; border-radius: 6px; background: var(--bg3); border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--accent); flex-shrink: 0; }
-    .detail-info { flex: 1; }
     .detail-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--text); line-height: 1.2; margin-bottom: 4px; }
-    .detail-desig { font-size: 0.85rem; color: var(--text2); margin-bottom: 0.7rem; }
-    
+    .detail-desig { font-size: 0.85rem; color: var(--text2); margin-bottom: 0.3rem; }
+    .detail-meta-text { font-size: 0.8rem; color: var(--text3); }
+
     .detail-section { background: var(--panel); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; margin-bottom: 1rem; }
     .detail-section-title-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); }
     .detail-section-label { font-family: 'Share Tech Mono', monospace; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
+    
+    .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .meta-item label { display: block; font-family: 'Share Tech Mono', monospace; font-size: 0.62rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+    .meta-item p { font-size: 0.9rem; color: var(--text); font-weight: 500; }
 
-    /* Modern Table Elements */
+    /* Modern Responsive Data Table Styles */
     .table-responsive { width: 100%; overflow-x: auto; margin-top: 0.5rem; }
     .project-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem; }
     .project-table th { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text3); padding: 10px 12px; border-bottom: 2px solid var(--border); background: var(--bg2); }
     .project-table td { padding: 12px; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; line-height: 1.5; }
     .project-table tbody tr:hover { background: var(--panel2); }
 
-    /* Button Layout System */
-    .btn-actions-cell { display: flex; gap: 6px; flex-wrap: nowrap; }
+    /* Button System */
+    .btn-actions-cell { display: flex; gap: 6px; justify-content: center; }
     .btn-table-action { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; letter-spacing: 0.05em; padding: 4px 10px; border-radius: 3px; cursor: pointer; border: 1px solid var(--border); background: none; transition: all 0.15s; }
-    .btn-table-edit { color: var(--accent); }
-    .btn-table-edit:hover { background: rgba(56, 189, 248, 0.1); border-color: var(--accent); }
-    .btn-table-delete { color: var(--warn); }
+    .btn-table-edit { color: var(--accent); border-color: rgba(56,189,248,0.2); }
+    .btn-table-edit:hover { background: rgba(56,189,248,0.1); border-color: var(--accent); }
+    .btn-table-delete { color: var(--warn); border-color: rgba(248,113,113,0.2); }
     .btn-table-delete:hover { background: var(--warn2); border-color: var(--warn); }
 
     .btn-download-docx { font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; padding: 6px 14px; background: var(--accent3); color: #000; border: none; border-radius: 4px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
     .btn-download-docx:hover { filter: brightness(1.1); box-shadow: 0 0 12px rgba(52, 211, 153, 0.3); }
 
-    /* Inline editable row layout items */
-    .editable-input { background: var(--bg3) !important; border: 1px solid var(--accent) !important; color: var(--text) !important; padding: 4px 6px; border-radius: 3px; font-size: 0.85rem; width: 100%; box-shadow: var(--glow); outline: none; }
-    .editable-textarea { background: var(--bg3) !important; border: 1px solid var(--accent) !important; color: var(--text) !important; padding: 4px 6px; border-radius: 3px; font-size: 0.85rem; width: 100%; min-height: 60px; box-shadow: var(--glow); outline: none; resize: vertical; font-family: inherit; }
+    /* Inline editable controls */
+    .editable-input { background: var(--bg3) !important; border: 1px solid var(--accent) !important; color: var(--text) !important; padding: 6px; border-radius: 3px; font-size: 0.85rem; width: 100%; box-shadow: var(--glow); outline: none; font-family: inherit; }
+    .editable-textarea { background: var(--bg3) !important; border: 1px solid var(--accent) !important; color: var(--text) !important; padding: 6px; border-radius: 3px; font-size: 0.85rem; width: 100%; min-height: 70px; box-shadow: var(--glow); outline: none; resize: vertical; font-family: inherit; line-height: 1.4; }
 
-    /* Toast Notification */
-    #toast { position: fixed; bottom: 20px; right: 20px; background: var(--panel); border: 1px solid var(--accent3); color: var(--accent3); padding: 12px 24px; border-radius: 4px; font-family: 'Share Tech Mono', monospace; font-size: 0.8rem; box-shadow: var(--shadow); z-index: 1000; display: none; }
-    #toast.show { display: block; animation: fadeUp 0.3s ease; }
-    @keyframes fadeUp { from { transform: translateY(10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    /* ============================================================
+       SECTION 7 — TOAST NOTIFICATION & UNDO COMPONENT
+    ============================================================ */
+    #toast-container { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 1000; pointer-events: none; }
+    .toast-card { background: var(--panel); border: 1px solid var(--accent3); color: var(--accent3); padding: 12px 24px; border-radius: 4px; font-family: 'Share Tech Mono', monospace; font-size: 0.8rem; box-shadow: var(--shadow); display: flex; align-items: center; gap: 16px; pointer-events: auto; animation: fadeUp 0.3s ease; }
+    .toast-card.warn-toast { border-color: var(--warn); color: var(--warn); }
+    .btn-undo { background: none; border: 1px solid currentColor; color: inherit; font-family: inherit; font-size: 0.7rem; padding: 2px 8px; border-radius: 2px; cursor: pointer; text-transform: uppercase; transition: all 0.1s; }
+    .btn-undo:hover { background: rgba(255,255,255,0.08); }
+    @keyframes fadeUp { from { transform: translateY(15px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
   </style>
 </head>
 <body data-theme="dark">
@@ -183,238 +223,386 @@
   </header>
 
   <div class="app">
-    <div class="view active" id="profileView">
-      
+    
+    <div class="view active" id="directoryView">
       <div class="page-header">
         <div>
-          <div class="page-eyebrow">SYNC SYSTEM · ENGINE PIPELINE</div>
-          <div class="page-heading">Engineer Portfolio Analysis</div>
+          <div class="page-eyebrow">SYNC PIPELINE · MASTER OVERVIEW</div>
+          <div class="page-heading">Engineer Portfolios</div>
         </div>
       </div>
 
-      <div class="profile-detail">
-        <div class="detail-header">
-          <div class="detail-avatar" id="avatarBox">RY</div>
-          <div class="detail-info">
-            <div class="detail-name" id="profileName">Ragib Yeaser</div>
-            <div class="detail-desig" id="profileSummary">Senior Analog Circuit & Custom Layout Design Engineer (5 Years 5 Months Experience)</div>
-          </div>
-        </div>
-
-        <div class="detail-section">
-          <div class="detail-section-title-row">
-            <div class="detail-section-label">01 · Layout Project Experience (Non-Confidential Node Matrix)</div>
-            
-            <button class="btn-download-docx" onclick="exportProfileToDocxTable()">
-              📥 Download Profile Table (.docx)
-            </button>
-          </div>
-
-          <div class="table-responsive">
-            <table class="project-table" id="projectsTable">
-              <thead>
-                <tr>
-                  <th style="width: 22%;">Project Structure</th>
-                  <th style="width: 15%;">Node Tech</th>
-                  <th style="width: 48%;">Scope of Work & Technical Contributions</th>
-                  <th style="width: 15%;">Duration</th>
-                  <th style="width: 10%; text-align: center;">Actions</th>
-                </tr>
-              </thead>
-              <tbody id="projectsTableBody">
-                <tr data-id="1">
-                  <td class="p-name">High-Speed Ring Oscillator</td>
-                  <td class="p-tech">5nm / 8nm FinFET</td>
-                  <td class="p-desc">Designed high-frequency ring oscillator blocks from scratch. Handled transistor sizing, layout optimization for parasitics, matching layout tracks, and precision delay stages setup. Performed local physical verification cycles.</td>
-                  <td class="p-duration">4 Months</td>
-                  <td style="text-align: center;">
-                    <div class="btn-actions-cell">
-                      <button class="btn-table-action btn-table-edit" onclick="toggleEditRow(this)">Edit</button>
-                      <button class="btn-table-action btn-table-delete" onclick="deleteRow(this)">Delete</button>
-                    </div>
-                  </td>
-                </tr>
-                <tr data-id="2">
-                  <td class="p-name">Low-Dropout (LDO) Regulator</td>
-                  <td class="p-tech">28nm Planar / BCD</td>
-                  <td class="p-desc">Executed sub-block layout design and integration. Optimized heavy power transistors, error amplifiers, and network routing arrays for minimized IR-drop, EM protection, and structural offset matching.</td>
-                  <td class="p-duration">3 Months</td>
-                  <td style="text-align: center;">
-                    <div class="btn-actions-cell">
-                      <button class="btn-table-action btn-table-edit" onclick="toggleEditRow(this)">Edit</button>
-                      <button class="btn-table-action btn-table-delete" onclick="deleteRow(this)">Delete</button>
-                    </div>
-                  </td>
-                </tr>
-                <tr data-id="3">
-                  <td class="p-name">Precision Bandgap Reference (BGR)</td>
-                  <td class="p-tech">16nm FinFET</td>
-                  <td class="p-desc">Top-level design and block assembly. Focused closely on complex device symmetry, common-centroid matching, dummy placement configurations, and routing parasitic optimization to isolate noise paths.</td>
-                  <td class="p-duration">5 Months</td>
-                  <td style="text-align: center;">
-                    <div class="btn-actions-cell">
-                      <button class="btn-table-action btn-table-edit" onclick="toggleEditRow(this)">Edit</button>
-                      <button class="btn-table-action btn-table-delete" onclick="deleteRow(this)">Delete</button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
+      <div class="directory-toolbar">
+        <div style="font-family: 'Share Tech Mono', monospace; font-size: 0.8rem; color: var(--text2);">
+          Active Database Windows: <span id="profileCount" style="color: var(--accent); font-weight: bold;">0</span> Record(s) Loaded
         </div>
       </div>
 
+      <div class="profile-grid" id="profileGridContainer">
+        </div>
     </div>
+
+    <div class="view" id="detailView">
+      <button class="back-btn" onclick="navigateToDirectory()">◀ Return to Node Directory</button>
+      
+      <div class="profile-detail" id="profileDetailRoot">
+        </div>
+    </div>
+
   </div>
 
-  <div id="toast">Changes saved to active memory window.</div>
+  <div id="toast-container"></div>
 
   <script>
-    // Theme Toggling Pipeline
+    // State Space Configurations
+    let profiles = [
+      {
+        id: "prof_1",
+        name: "Ragib Yeaser",
+        experience: "5 Years 5 Months",
+        education: "Master of Science in Electrical and Computer Engineering",
+        expertise: "AMS Custom Layout, HV layout, FinFET Layout, MHC",
+        tools: "Cadence Virtuoso, Calibre, StarRC, Totem, ClioSoft",
+        projects: [
+          { id: "p1", name: "High-Speed Ring Oscillator", tech: "5nm / 8nm FinFET", duration: "4 Months", desc: "Designed high-frequency ring oscillator blocks from scratch. Handled transistor sizing, layout optimization for parasitics, matching layout tracks, and precision delay stages setup. Performed local physical verification cycles." },
+          { id: "p2", name: "Low-Dropout (LDO) Regulator", tech: "28nm Planar / BCD", duration: "3 Months", desc: "Executed sub-block layout design and integration. Optimized heavy power transistors, error amplifiers, and network routing arrays for minimized IR-drop, EM protection, and structural offset matching." },
+          { id: "p3", name: "Precision Bandgap Reference (BGR)", tech: "16nm FinFET", duration: "5 Months", desc: "Top-level design and block assembly. Focused closely on complex device symmetry, common-centroid matching, dummy placement configurations, and routing parasitic optimization to isolate noise paths." }
+        ]
+      }
+    ];
+
+    // Cache parameters for state reversal triggers (Undo actions)
+    let lastDeletedProject = null;
+    let lastDeletedProjectIndex = -1;
+    let lastDeletedProfileOwnerId = null;
+
+    // Theme toggling operations
     function toggleTheme() {
       const current = document.body.getAttribute('data-theme');
       const next = current === 'dark' ? 'light' : 'dark';
       document.body.setAttribute('data-theme', next);
     }
 
-    function showToast(msg, isWarn = false) {
-      const toast = document.getElementById('toast');
-      toast.textContent = msg;
-      toast.style.borderColor = isWarn ? 'var(--warn)' : 'var(--accent3)';
-      toast.style.color = isWarn ? 'var(--warn)' : 'var(--accent3)';
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 3000);
-    }
-
-    // Inline Edit/Save Project Row Management Engine
-    function toggleEditRow(button) {
-      const row = button.closest('tr');
-      const isEditing = row.classList.contains('editing-mode');
-
-      if (!isEditing) {
-        // Switch into editing state
-        row.classList.add('editing-mode');
-        button.textContent = 'Save';
-        button.style.color = 'var(--accent3)';
-        button.style.borderColor = 'var(--accent3)';
-
-        // Convert standard structural cells to editable inputs
-        const fields = ['name', 'tech', 'desc', 'duration'];
-        fields.forEach(field => {
-          const cell = row.querySelector(`.p-${field}`);
-          const currentText = cell.textContent.trim();
-          
-          if (field === 'desc') {
-            cell.innerHTML = `<textarea class="editable-textarea">${currentText}</textarea>`;
-          } else {
-            cell.innerHTML = `<input type="text" class="editable-input" value="${currentText}">`;
-          }
-        });
-      } else {
-        // Save execution pipeline
-        row.classList.remove('editing-mode');
-        button.textContent = 'Edit';
-        button.style.color = 'var(--accent)';
-        button.style.borderColor = 'var(--border)';
-
-        const fields = ['name', 'tech', 'desc', 'duration'];
-        fields.forEach(field => {
-          const cell = row.querySelector(`.p-${field}`);
-          const inputElement = cell.querySelector('input, textarea');
-          if (inputElement) {
-            cell.textContent = inputElement.value.trim();
-          }
-        });
-        showToast('✓ Layout project details altered successfully.');
+    // Dynamic notification framework with execution hooks
+    function showNotification(message, isWarn = false, undoCallback = null) {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `toast-card ${isWarn ? 'warn-toast' : ''}`;
+      
+      let contents = `<span>${message}</span>`;
+      if (undoCallback) {
+        contents += `<button class="btn-undo" id="lastUndoBtn">Undo</button>`;
       }
-    }
+      toast.innerHTML = contents;
+      container.appendChild(toast);
 
-    // Interactive Row Deletion Engine
-    function deleteRow(button) {
-      const row = button.closest('tr');
-      const projName = row.querySelector('.p-name').textContent.trim();
-      
-      if (confirm(`Purge profile record for project: "${projName}"?`)) {
-        row.remove();
-        showToast('✓ Project layout matrix record deleted.', true);
+      if (undoCallback) {
+        toast.querySelector('#lastUndoBtn').onclick = () => {
+          undoCallback();
+          toast.remove();
+        };
       }
+
+      setTimeout(() => { if (toast) toast.remove(); }, 4500);
     }
 
-    /**
-     * NATIVE CLIENT-SIDE GENERATION SYSTEM (.DOCX)
-     * Compiles data records dynamically out of the active DOM into a standard Microsoft Word 
-     * deployment scheme utilizing base-64 encoded application packages.
-     */
-    function exportProfileToDocxTable() {
-      const name = document.getElementById('profileName').textContent.trim();
-      const summary = document.getElementById('profileSummary').textContent.trim();
-      
-      // Target current dynamic table values
-      const rows = document.querySelectorAll('#projectsTableBody tr');
-      
-      if (rows.length === 0) {
-        alert("Cannot generate file: Project matrix data records are completely empty.");
+    // Screen navigation layout setup
+    function navigateToDirectory() {
+      document.getElementById('detailView').classList.remove('active');
+      document.getElementById('directoryView').classList.add('active');
+      renderDirectory();
+    }
+
+    function navigateToProfile(profileId) {
+      document.getElementById('directoryView').classList.remove('active');
+      document.getElementById('detailView').classList.add('active');
+      renderProfileDetails(profileId);
+    }
+
+    // Render operations for directory frame cards
+    function renderDirectory() {
+      const container = document.getElementById('profileGridContainer');
+      document.getElementById('profileCount').textContent = profiles.length;
+      container.innerHTML = '';
+
+      if (profiles.length === 0) {
+        container.innerHTML = `<div class="empty-state"><h3>No Profiles Available</h3><p>Operational data structures are currently empty.</p></div>`;
         return;
       }
 
-      // 1. Build table rows structure using cleanly targeted XML markup injection
-      let tableRowsXml = '';
+      profiles.forEach(prof => {
+        const initials = prof.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+        const card = document.createElement('div');
+        card.className = 'profile-card';
+        card.onclick = () => navigateToProfile(prof.id);
 
-      // Define static Header Row XML parameters
-      tableRowsXml += `
+        card.innerHTML = `
+          <div class="card-top">
+            <div class="avatar">${initials}</div>
+            <div class="card-info">
+              <div class="card-name">${prof.name}</div>
+              <div class="card-desig">${prof.experience} Exp · Analog Layout</div>
+            </div>
+          </div>
+          <div style="font-size:0.75rem; color:var(--text2); line-height:1.4; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; min-height:34px;">
+            <strong>Expertise:</strong> ${prof.expertise}
+          </div>
+          <div class="card-footer">
+            <span style="font-family:'Share Tech Mono',monospace; font-size:0.6rem; color:var(--text3);">${prof.projects.length} Registered Project Matrix Blocks</span>
+            <button class="card-btn">Open Profile Data</button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Dynamic construction logic for analytical table tracking
+    function renderProfileDetails(profileId) {
+      const root = document.getElementById('profileDetailRoot');
+      const targetProfile = profiles.find(p => p.id === profileId);
+
+      if (!targetProfile) {
+        root.innerHTML = `<p>Target index trace broken or unavailable.</p>`;
+        return;
+      }
+
+      const initials = targetProfile.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+
+      root.innerHTML = `
+        <div class="detail-header">
+          <div class="detail-avatar">${initials}</div>
+          <div class="detail-info">
+            <div class="detail-name" id="profNameVal">${targetProfile.name}</div>
+            <div class="detail-desig">${targetProfile.experience} Design Experience Matrix</div>
+            <div class="detail-meta-text">Academic Matrix: ${targetProfile.education}</div>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <div class="detail-section-title-row">
+            <div class="detail-section-label">Core Technical Skillsets</div>
+          </div>
+          <div class="meta-grid">
+            <div class="meta-item"><label>Key Domain Expertise</label><p>${targetProfile.expertise}</p></div>
+            <div class="meta-item"><label>Automated Tool Matrix</label><p>${targetProfile.tools}</p></div>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <div class="detail-section-title-row">
+            <div class="detail-section-label">Layout Project Experience (Non-Confidential Node Matrix)</div>
+            <button class="btn-download-docx" onclick="exportProfileToDocx('${targetProfile.id}')">
+              📥 Download Profile Table (.docx)
+            </button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="project-table">
+              <thead>
+                <tr>
+                  <th style="width: 20%;">Project Structure</th>
+                  <th style="width: 15%;">Node Tech</th>
+                  <th style="width: 45%;">Scope of Work & Technical Contributions</th>
+                  <th style="width: 12%;">Duration</th>
+                  <th style="width: 8%; text-align: center;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="projectTableBody">
+                ${targetProfile.projects.map((proj, idx) => `
+                  <tr data-project-id="${proj.id}">
+                    <td class="p-name">${proj.name}</td>
+                    <td class="p-tech">${proj.tech}</td>
+                    <td class="p-desc">${proj.desc}</td>
+                    <td class="p-duration">${proj.duration}</td>
+                    <td>
+                      <div class="btn-actions-cell">
+                        <button class="btn-table-action btn-table-edit" onclick="handleToggleEditProject(this, '${targetProfile.id}', '${proj.id}')">Edit</button>
+                        <button class="btn-table-action btn-table-delete" onclick="handleDeleteProject(this, '${targetProfile.id}', '${proj.id}')">Delete</button>
+                      </div>
+                    </td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+    }
+
+    // Project row inline editing state controllers
+    function handleToggleEditProject(btnElement, profileId, projectId) {
+      const targetRow = btnElement.closest('tr');
+      const targetProfile = profiles.find(p => p.id === profileId);
+      const targetProj = targetProfile.projects.find(p => p.id === projectId);
+      
+      const insideEditingMode = targetRow.classList.contains('row-active-editing');
+
+      if (!insideEditingMode) {
+        // Toggle elements to input frames
+        targetRow.classList.add('row-active-editing');
+        btnElement.textContent = "Save";
+        btnElement.style.color = "var(--accent3)";
+        btnElement.style.borderColor = "var(--accent3)";
+
+        const nameCell = targetRow.querySelector('.p-name');
+        const techCell = targetRow.querySelector('.p-tech');
+        const descCell = targetRow.querySelector('.p-desc');
+        const durationCell = targetRow.querySelector('.p-duration');
+
+        nameCell.innerHTML = `<input type="text" class="editable-input" value="${targetProj.name.replace(/"/g, '&quot;')}">`;
+        techCell.innerHTML = `<input type="text" class="editable-input" value="${targetProj.tech.replace(/"/g, '&quot;')}">`;
+        descCell.innerHTML = `<textarea class="editable-textarea">${targetProj.desc}</textarea>`;
+        durationCell.innerHTML = `<input type="text" class="editable-input" value="${targetProj.duration.replace(/"/g, '&quot;')}">`;
+      } else {
+        // Execute structural validation save logic
+        const updatedName = targetRow.querySelector('.p-name input').value.trim();
+        const updatedTech = targetRow.querySelector('.p-tech input').value.trim();
+        const updatedDesc = targetRow.querySelector('.p-desc textarea').value.trim();
+        const updatedDuration = targetRow.querySelector('.p-duration input').value.trim();
+
+        if (!updatedName || !updatedTech) {
+          showNotification("Validation Error: Project Identity & Technology nodes cannot be blank.", true);
+          return;
+        }
+
+        // Apply changes to active data records
+        targetProj.name = updatedName;
+        targetProj.tech = updatedTech;
+        targetProj.desc = updatedDesc;
+        targetProj.duration = updatedDuration;
+
+        // Restore clean string rendering inside the row cells
+        targetRow.classList.remove('row-active-editing');
+        btnElement.textContent = "Edit";
+        btnElement.style.color = "var(--accent)";
+        btnElement.style.borderColor = "rgba(56,189,248,0.2)";
+
+        targetRow.querySelector('.p-name').textContent = updatedName;
+        targetRow.querySelector('.p-tech').textContent = updatedTech;
+        targetRow.querySelector('.p-desc').textContent = updatedDesc;
+        targetRow.querySelector('.p-duration').textContent = updatedDuration;
+
+        showNotification("✓ Dynamic layout project matrix altered successfully.");
+      }
+    }
+
+    // Dynamic project record deletion with localized state tracking for the Undo function
+    function handleDeleteProject(btnElement, profileId, projectId) {
+      const targetProfile = profiles.find(p => p.id === profileId);
+      const targetProjIndex = targetProfile.projects.findIndex(p => p.id === projectId);
+      
+      if (targetProjIndex === -1) return;
+
+      // Cache historical data state snapshots for execution reversal triggers
+      lastDeletedProject = targetProfile.projects[targetProjIndex];
+      lastDeletedProjectIndex = targetProjIndex;
+      lastDeletedProfileOwnerId = profileId;
+
+      // Extract entry out of arrays
+      targetProfile.projects.splice(targetProjIndex, 1);
+
+      // Re-render interface frames immediately
+      renderProfileDetails(profileId);
+
+      // Deploy transactional window trigger allowing rolling state reversal
+      showNotification(
+        `✓ Removed layout track: "${lastDeletedProject.name}".`, 
+        true, 
+        executeUndoProjectDeletion
+      );
+    }
+
+    // Undo action hook to reconstruct deleted entries safely
+    function executeUndoProjectDeletion() {
+      if (!lastDeletedProject || !lastDeletedProfileOwnerId) return;
+
+      const targetProfile = profiles.find(p => p.id === lastDeletedProfileOwnerId);
+      if (!targetProfile) return;
+
+      // Reinject the item back into its index position inside the data arrays
+      targetProfile.projects.splice(lastDeletedProjectIndex, 0, lastDeletedProject);
+
+      // Re-render display matrix
+      renderProfileDetails(lastDeletedProfileOwnerId);
+      
+      // Clear tracking variables
+      lastDeletedProject = null;
+      lastDeletedProjectIndex = -1;
+      lastDeletedProfileOwnerId = null;
+
+      showNotification("✓ Action reversed: Layout project block entry reconstructed.");
+    }
+
+    /**
+     * CLIENT-SIDE OPENXML STREAM COMPILER (.DOCX)
+     * Packages structural configuration profiles and tables into docx byte arrays locally.
+     */
+    function exportProfileToDocx(profileId) {
+      const targetProf = profiles.find(p => p.id === profileId);
+      if (!targetProf || targetProf.projects.length === 0) {
+        alert("Execution Error: Operational project matrix values are empty.");
+        return;
+      }
+
+      // 1. Build clean row elements mapped safely to structural XML tables
+      let dynamicTableRowsXml = '';
+
+      // Standard static Header Row XML schema declaration matching template typography constraints
+      dynamicTableRowsXml += `
         <w:tr>
           <w:trPr><w:tblHeader/><w:cantSplit/></w:trPr>
-          <w:tc><w:tcPr><w:tcW w:w="2200" w:type="dxa"/><w:shd w:fill="0B111E"/></w:tcPr><w:p><w:pPr><w:jc w:val="left"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:b/><w:color w:val="38BDF8"/><w:sz w:val="20"/></w:rPr><w:t>Project Structure</w:t></w:r></w:p></w:tc>
-          <w:tc><w:tcPr><w:tcW w:w="1500" w:type="dxa"/><w:shd w:fill="0B111E"/></w:tcPr><w:p><w:pPr><w:jc w:val="left"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:b/><w:color w:val="38BDF8"/><w:sz w:val="20"/></w:rPr><w:t>Node Tech</w:t></w:r></w:p></w:tc>
-          <w:tc><w:tcPr><w:tcW w:w="4800" w:type="dxa"/><w:shd w:fill="0B111E"/></w:tcPr><w:p><w:pPr><w:jc w:val="left"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:b/><w:color w:val="38BDF8"/><w:sz w:val="20"/></w:rPr><w:t>Scope of Work &amp; Technical Contributions</w:t></w:r></w:p></w:tc>
+          <w:tc><w:tcPr><w:tcW w:w="2200" w:type="dxa"/><w:shd w:fill="0B111E"/></w:tcPr><w:p><w:pPr><w:jc w:val="left"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:b/><w:color w:val="38BDF8"/><w:sz w:val="20"/></w:rPr><w:t>Project</w:t></w:r></w:p></w:tc>
+          <w:tc><w:tcPr><w:tcW w:w="1500" w:type="dxa"/><w:shd w:fill="0B111E"/></w:tcPr><w:p><w:pPr><w:jc w:val="left"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:b/><w:color w:val="38BDF8"/><w:sz w:val="20"/></w:rPr><w:t>Technology</w:t></w:r></w:p></w:tc>
+          <w:tc><w:tcPr><w:tcW w:w="4800" w:type="dxa"/><w:shd w:fill="0B111E"/></w:tcPr><w:p><w:pPr><w:jc w:val="left"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:b/><w:color w:val="38BDF8"/><w:sz w:val="20"/></w:rPr><w:t>Description</w:t></w:r></w:p></w:tc>
           <w:tc><w:tcPr><w:tcW w:w="1500" w:type="dxa"/><w:shd w:fill="0B111E"/></w:tcPr><w:p><w:pPr><w:jc w:val="left"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:b/><w:color w:val="38BDF8"/><w:sz w:val="20"/></w:rPr><w:t>Duration</w:t></w:r></w:p></w:tc>
         </w:tr>
       `;
 
-      // Define standard Data Rows parsed out of active elements
-      rows.forEach(row => {
-        // Guard step against scanning elements that are actively in intermediate edit state input tags
-        let pName = '', pTech = '', pDesc = '', pDuration = '';
-        
-        if (row.classList.contains('editing-mode')) {
-          pName = row.querySelector('.p-name input').value;
-          pTech = row.querySelector('.p-tech input').value;
-          pDesc = row.querySelector('.p-desc textarea').value;
-          pDuration = row.querySelector('.p-duration input').value;
-        } else {
-          pName = row.querySelector('.p-name').textContent;
-          pTech = row.querySelector('.p-tech').textContent;
-          pDesc = row.querySelector('.p-desc').textContent;
-          pDuration = row.querySelector('.p-duration').textContent;
-        }
+      // Helper function to dynamically clean control tags out of strings to block document parsing faults
+      const cleanStringForXml = (textInput) => {
+        return textInput
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&apos;');
+      };
 
-        // Escape specialized XML structural elements safely to block runtime errors
-        const cleanXml = (str) => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
-        tableRowsXml += `
+      // Loop over current state configuration settings to populate document rows
+      targetProf.projects.forEach(proj => {
+        dynamicTableRowsXml += `
           <w:tr>
             <w:trPr><w:cantSplit/></w:trPr>
-            <w:tc><w:tcPr><w:tcW w:w="2200" w:type="dxa"/></w:tcPr><w:p><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:b/><w:sz w:val="20"/></w:rPr><w:t>${cleanXml(pName)}</w:t></w:r></w:p></w:tc>
-            <w:tc><w:tcPr><w:tcW w:w="1500" w:type="dxa"/></w:tcPr><w:p><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:sz w:val="18"/><w:color w:val="475569"/></w:rPr><w:t>${cleanXml(pTech)}</w:t></w:r></w:p></w:tc>
-            <w:tc><w:tcPr><w:tcW w:w="4800" w:type="dxa"/></w:tcPr><w:p><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:sz w:val="18"/></w:rPr><w:t>${cleanXml(pDesc)}</w:t></w:r></w:p></w:tc>
-            <w:tc><w:tcPr><w:tcW w:w="1500" w:type="dxa"/></w:tcPr><w:p><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:sz w:val="18"/></w:rPr><w:t>${cleanXml(pDuration)}</w:t></w:r></w:p></w:tc>
+            <w:tc><w:tcPr><w:tcW w:w="2200" w:type="dxa"/></w:tcPr><w:p><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:b/><w:sz w:val="20"/></w:rPr><w:t>${cleanStringForXml(proj.name)}</w:t></w:r></w:p></w:tc>
+            <w:tc><w:tcPr><w:tcW w:w="1500" w:type="dxa"/></w:tcPr><w:p><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:sz w:val="18"/><w:color w:val="475569"/></w:rPr><w:t>${cleanStringForXml(proj.tech)}</w:t></w:r></w:p></w:tc>
+            <w:tc><w:tcPr><w:tcW w:w="4800" w:type="dxa"/></w:tcPr><w:p><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:sz w:val="18"/></w:rPr><w:t>${cleanStringForXml(proj.desc)}</w:t></w:r></w:p></w:tc>
+            <w:tc><w:tcPr><w:tcW w:w="1500" w:type="dxa"/></w:tcPr><w:p><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:sz w:val="18"/></w:rPr><w:t>${cleanStringForXml(proj.duration)}</w:t></w:r></w:p></w:tc>
           </w:tr>
         `;
       });
 
-      // 2. Full Standard OpenXML Word Document Structure Template wrapper string setup
-      const docxHeader = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+      // 2. Wrap compiled fragments in an OpenXML core document envelope template string
+      const docxTemplateHeader = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
         <w:body>
           <w:p>
             <w:pPr><w:spacing w:after="60"/></w:pPr>
-            <w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:b/><w:sz w:val="36"/><w:color w:val="0B111E"/></w:rPr><w:t>${name}</w:t></w:r>
+            <w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:b/><w:sz w:val="36"/><w:color w:val="0B111E"/></w:rPr><w:t>${cleanStringForXml(targetProf.name)}</w:t></w:r>
           </w:p>
           <w:p>
-            <w:pPr><w:spacing w:after="360"/></w:pPr>
-            <w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:i/><w:sz w:val="20"/><w:color w:val="64748b"/></w:rPr><w:t>${summary}</w:t></w:r>
+            <w:pPr><w:spacing w:after="140"/></w:pPr>
+            <w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:i/><w:sz w:val="20"/><w:color w:val="475569"/></w:rPr><w:t>Experience Level: ${cleanStringForXml(targetProf.experience)}</w:t></w:r>
           </w:p>
+          <w:p>
+            <w:pPr><w:spacing w:after="280"/></w:pPr>
+            <w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:sz w:val="18"/><w:color w:val="64748b"/></w:rPr><w:t>Education Matrix: ${cleanStringForXml(targetProf.education)}</w:t></w:r>
+          </w:p>
+
+          <w:p><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:b/><w:sz w:val="22"/><w:color w:val="0369a1"/></w:rPr><w:t>Core Competency Domains</w:t></w:r></w:p>
+          <w:p><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:sz w:val="18"/></w:rPr><w:t>Expertise Fields: ${cleanStringForXml(targetProf.expertise)}</w:t></w:r></w:p>
+          <w:p><w:pPr><w:spacing w:after="360"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:sz w:val="18"/></w:rPr><w:t>Automated Architecture Tooling: ${cleanStringForXml(targetProf.tools)}</w:t></w:r></w:p>
+
+          <w:p><w:pPr><w:spacing w:after="120"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:b/><w:sz w:val="22"/><w:color w:val="0369a1"/></w:rPr><w:t>Layout Project Experience Matrix</w:t></w:r></w:p>
 
           <w:tbl>
             <w:tblPr>
@@ -436,44 +624,38 @@
             </w:tblPr>
       `;
 
-      const docxFooter = `
+      const docxTemplateFooter = `
           </w:tbl>
         </w:body>
         </w:document>
       `;
 
-      const completeDocumentContent = docxHeader + tableRowsXml + docxFooter;
+      const aggregatedPayloadString = docxTemplateHeader + dynamicTableRowsXml + docxTemplateFooter;
 
-      // 3. Compile structural components into a deployable application zip layout bundle container logic
-      const containerZipLayoutBase64 = 
-        "UEsDBBQAAAAIAIiqu1YAAAAAAAAAAAAAAAALAAAAX3JlbHMvLnJlbHOVks1qwzAMgvdC72DoPrvtbYyxm96G0NsYexAnidw49g+yK2XvPms7g9ImbCH0SST9+STN9vGzqasv6MRmN8BwloEguunshb0B79WLtwEir9bI3mODAVs4bLeP70w5pSux9SWhshGvAcuUvI+Ysh8wYp66pIps7X2gXLOszscofbYf0PZtWz/Y/BygZpxfMKbeAFNph8w9InDqO0v6by0mYVw7Z9wQ/y+ZshPZWhhL+vCAnO6v1g8UEsBAhQAFAAAAAgAiKq7VgAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAADatQAAAABfcmVscy8ucmVsc1BLBQYAAAAAAQABAEUAAAB9AAAAAAA=";
+      // 3. Encode values directly into standard system stream pointers
+      const stringEncoder = new TextEncoder();
+      const outputBinaryBytes = stringEncoder.encode(aggregatedPayloadString);
 
-      // Unpack dynamic generation components securely using standard modern ArrayBuffer logic 
-      const zipContentString = atob(containerZipLayoutBase64);
-      const outputBuffer = new Uint8Array(zipContentString.length);
-      for (let i = 0; i < zipContentString.length; i++) {
-        outputBuffer[i] = zipContentString.charCodeAt(i);
-      }
-
-      // Convert word document XML stream directly into clean container structure standard Array strings
-      const encoder = new TextEncoder();
-      const documentBytes = encoder.encode(completeDocumentContent);
-
-      // Deploy blob creation and stream package tracking for dynamic download trigger
-      const fileBlob = new Blob([documentBytes], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
-      const downloadUrl = URL.createObjectURL(fileBlob);
+      // Deploy active download operations
+      const dynamicFileBlob = new Blob([outputBinaryBytes], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
+      const temporaryObjectUrl = URL.createObjectURL(dynamicFileBlob);
       
-      const anchorElement = document.createElement("a");
-      anchorElement.href = downloadUrl;
-      anchorElement.download = `${name.replace(/\s+/g, '_')}_Layout_Portfolio.docx`;
-      document.body.appendChild(anchorElement);
-      anchorElement.click();
+      const fileLinkAnchor = document.createElement("a");
+      fileLinkAnchor.href = temporaryObjectUrl;
+      fileLinkAnchor.download = `${targetProf.name.replace(/\s+/g, '_')}_Verified_Layout_Profile.docx`;
+      document.body.appendChild(fileLinkAnchor);
+      fileLinkAnchor.click();
       
-      // Clean up pointer tracks out of client virtual frame allocation space
-      document.body.removeChild(anchorElement);
-      URL.revokeObjectURL(downloadUrl);
-      showToast('✓ Word document layout generated and downloaded successfully.');
+      // Clean up local system cache allocation tracks safely
+      document.body.removeChild(fileLinkAnchor);
+      URL.revokeObjectURL(temporaryObjectUrl);
+      showNotification("✓ Portfolio Word Document table compiled and deployed successfully.");
     }
+
+    // Initialize application runtime loop
+    window.addEventListener('DOMContentLoaded', () => {
+      renderDirectory();
+    });
   </script>
 </body>
 </html>
