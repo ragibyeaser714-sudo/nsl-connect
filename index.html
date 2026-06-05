@@ -1,0 +1,2047 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NSL Connect</title>
+
+  <!-- ── GOOGLE FONTS ── -->
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       SECTION 1 — CSS CUSTOM PROPERTIES (THEME VARIABLES)
+       Edit colors here to retheme the entire app instantly.
+       Two blocks below: [data-theme="dark"] and [data-theme="light"]
+    ============================================================ */
+
+    /* ---------- DARK THEME ---------- */
+    /* ---------- EYE-SOOTHING NAVY/BLUE DARK THEME ---------- */
+[data-theme="dark"] {
+  --bg:        #0b111e;      /* Soft, deep sapphire navy instead of harsh pitch black */
+  --bg2:       #101726;
+  --bg3:       #151f32;      /* Smooth slate-blue input fields */
+  --panel:     #121b2d;      /* Calm, protective panel darks */
+  --panel2:    #1a263f;      /* Soft highlight for hovers */
+  --border:    #1f2f4a;      /* Muted blue-grey grids */
+  --border2:   #2d4368;
+  --accent:    #38bdf8;      /* Sky blue (highly legible, zero neon blinding glare) */
+  --accent2:   #0284c7;      /* Rich oceanic mid-blue */
+  --accent3:   #34d399;      /* Soothing sage-mint green for status */
+  --warn:      #f87171;      /* Pastel rose-coral warning (calmer than hot red-orange) */
+  --warn2:     rgba(248, 113, 113, 0.08);
+  --text:      #e2e8f0;      /* Soft milk-white (prevents text vibrating against dark panels) */
+  --text2:     #94a3b8;      /* Foggy blue-grey for secondary notes */
+  --text3:     #64748b;      /* Legible but quiet placeholders */
+  --shadow:    0 12px 32px rgba(3,7,18,0.5);
+  --glow:      0 0 20px rgba(56,189,248,0.12);
+  --grid-line: rgba(56,189,248,0.015);
+  --header-bg: rgba(11,17,30,0.92);
+}
+
+/* ---------- EYE-SOOTHING ICE-WHITE LIGHT THEME ---------- */
+[data-theme="light"] {
+  --bg:        #f4f7fa;      /* Clean, chilled ice-white (removes aggressive screen glare) */
+  --bg2:       #e9eff5;
+  --bg3:       #ffffff;      /* Pure white inputs for structural clarity */
+  --panel:     #ffffff;      /* crisp white panels floating on ice-white canvas */
+  --panel2:    #f0f4f8;      /* Creamy frosted blue-white hover state */
+  --border:    #d0dbe7;      /* Clean, soft architectural frame lines */
+  --border2:   #a1b5cc;
+  --accent:    #0369a1;      /* Deep sky-sapphire for ultra-clean clickable items */
+  --accent2:   #0c4a6e;
+  --accent3:   #15803d;      /* Deep forest green (easy on the optic nerve) */
+  --warn:      #b91c1c;      /* Classic crimson warning */
+  --warn2:     rgba(185, 28, 28, 0.06);
+  --text:      #0f172a;      /* Rich ink-navy instead of harsh stark black */
+  --text2:     #475569;      /* Smooth graphite for secondary descriptions */
+  --text3:     #64748b;      /* Steady slate placeholder (fully accessible, no squinting) */
+  --shadow:    0 6px 20px rgba(15,23,42,0.05);
+  --glow:      0 0 14px rgba(3,105,161,0.08);
+  --grid-line: rgba(3,105,161,0.025);
+  --header-bg: rgba(244,247,250,0.94);
+}
+    /* ============================================================
+       SECTION 2 — RESET & BASE STYLES
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* Subtle grid texture overlaid on the background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Custom thin scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text3); }
+
+    /* ============================================================
+       SECTION 3 — STICKY HEADER
+       Logo · status indicator · theme toggle button
+    ============================================================ */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--header-bg);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo-icon { width: 36px; height: 36px; }
+    .logo-icon svg { width: 100%; height: 100%; }
+
+    .logo-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      letter-spacing: 0.08em;
+      color: var(--text);
+    }
+    .logo-text span { color: var(--accent); }
+
+    .logo-sub {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text3);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .header-right { display: flex; align-items: center; gap: 1.2rem; }
+
+    /* Animated online status indicator */
+    .header-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent3);
+    }
+
+    .status-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent3);
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.3; }
+    }
+
+    /* Dark / light toggle button */
+    .theme-toggle {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      color: var(--text2);
+      font-size: 1.05rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--panel2);
+    }
+
+    /* ============================================================
+       SECTION 4 — APP CONTAINER & VIEW SYSTEM
+       Only the .view.active div is shown at any time.
+    ============================================================ */
+    .app {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 5rem;
+    }
+
+    .view          { display: none; }
+    .view.active   { display: block; }
+
+    /* Shared page header used across views */
+    .page-header {
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .page-eyebrow {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .page-heading {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+
+    /* ============================================================
+       SECTION 5 — DIRECTORY VIEW
+       Stats bar · search + filter chips · profile card grid
+    ============================================================ */
+
+    /* ── Stats bar ── */
+    .stats-bar { display: flex; gap: 0.8rem; margin-bottom: 1.4rem; flex-wrap: wrap; }
+
+    .stat-pill {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--text3);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 5px 12px;
+      letter-spacing: 0.06em;
+    }
+    .stat-pill span { color: var(--accent); font-weight: bold; margin-left: 4px; }
+
+    /* ── Search + filter row ── */
+    .directory-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+      flex-wrap: wrap;
+    }
+
+    .search-wrap { flex: 1; min-width: 220px; position: relative; }
+
+    .search-wrap input {
+      width: 100%;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
+      padding: 0.6rem 0.8rem 0.6rem 2.4rem;
+      border-radius: 4px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .search-wrap input:focus {
+      border-color: var(--accent2);
+      box-shadow: 0 0 0 3px rgba(0,130,180,0.08);
+    }
+    .search-wrap input::placeholder { color: var(--text3); }
+
+    .search-icon {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text3);
+      font-size: 1rem;
+      pointer-events: none;
+    }
+
+    /* ── Node filter chips ── */
+    .filter-chips { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+
+    .chip {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.64rem;
+      padding: 4px 10px;
+      border-radius: 2px;
+      border: 1px solid var(--border);
+      color: var(--text2);
+      background: var(--panel);
+      cursor: pointer;
+      transition: all 0.15s;
+      letter-spacing: 0.05em;
+    }
+    .chip:hover, .chip.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(0,150,200,0.07);
+    }
+
+    /* ── Primary action button (Add Profile) ── */
+    .btn-primary {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 0.55rem 1.3rem;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .btn-primary:hover { filter: brightness(1.12); box-shadow: var(--glow); }
+
+    /* ── Profile card grid ── */
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1rem;
+    }
+
+    /* ── Individual profile card ── */
+    .profile-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.25rem;
+      cursor: pointer;
+      transition: all 0.22s;
+      position: relative;
+      overflow: hidden;
+      animation: fadeUp 0.35s ease both;
+    }
+    /* Stagger animation delay for each card */
+    .profile-card:nth-child(2) { animation-delay: 0.05s; }
+    .profile-card:nth-child(3) { animation-delay: 0.10s; }
+    .profile-card:nth-child(4) { animation-delay: 0.15s; }
+    .profile-card:nth-child(5) { animation-delay: 0.20s; }
+    .profile-card:nth-child(6) { animation-delay: 0.25s; }
+
+    /* Top accent line that slides in on hover */
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.22s;
+    }
+    .profile-card:hover {
+      border-color: var(--border2);
+      background: var(--panel2);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+    .profile-card:hover::before { opacity: 1; }
+
+    .card-top { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.8rem; }
+
+    .avatar {
+      width: 44px; height: 44px;
+      border-radius: 4px;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      flex-shrink: 0;
+      letter-spacing: 0.04em;
+    }
+
+    .card-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+    }
+    .card-desig { font-size: 0.75rem; color: var(--text2); margin-top: 2px; }
+
+    /* Node tags inside card */
+    .nodes-wrap { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 0.7rem; }
+
+    .node-tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.6rem;
+      padding: 2px 7px;
+      background: rgba(0,150,200,0.08);
+      border: 1px solid rgba(0,150,200,0.22);
+      color: var(--accent);
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+    }
+
+    .card-desc {
+      font-size: 0.78rem;
+      color: var(--text2);
+      line-height: 1.55;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Card bottom row */
+    .card-footer {
+      margin-top: 0.85rem;
+      padding-top: 0.7rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .card-updated {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text3);
+      flex: 1;
+    }
+
+    .card-actions { display: flex; gap: 0.35rem; }
+
+    /* Ghost outlined buttons (Edit / Delete on cards) */
+    .btn-ghost {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--text2);
+      background: none;
+      border: 1px solid var(--border);
+      padding: 3px 10px;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.15s;
+      letter-spacing: 0.04em;
+    }
+    .btn-ghost:hover        { border-color: var(--accent);  color: var(--accent); }
+    .btn-ghost.btn-danger   { color: var(--text3); }
+    .btn-ghost.btn-danger:hover { border-color: var(--warn); color: var(--warn); }
+
+    /* Empty state shown when no profiles or no search results */
+    .empty-state { text-align: center; padding: 4rem 2rem; color: var(--text3); }
+    .empty-state h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.2rem; color: var(--text2); margin-bottom: 0.4rem;
+    }
+    .empty-state p { font-size: 0.8rem; }
+
+    /* ============================================================
+       SECTION 6 — FORM VIEW
+       Sections: Basic Info + per-project blocks
+    ============================================================ */
+    .form-container { max-width: 780px; }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text2);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin-bottom: 1.4rem;
+      transition: color 0.15s;
+    }
+    .back-btn:hover { color: var(--accent); }
+
+    /* Grouped form section card */
+    .form-section {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Section header label (e.g. "01 · Basic Information") */
+    .form-section-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.64rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Two-column grid inside form sections */
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
+
+    .field { margin-bottom: 1rem; }
+    .field:last-child { margin-bottom: 0; }
+
+    .field label {
+      display: block;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--text3);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .field label .req { color: var(--accent); margin-left: 2px; }
+
+    /* Standard inputs, selects, textareas */
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.85rem;
+      padding: 0.6rem 0.8rem;
+      border-radius: 3px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      resize: vertical;
+    }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--accent2);
+      box-shadow: 0 0 0 3px rgba(0,130,180,0.08);
+    }
+    .field input::placeholder,
+    .field textarea::placeholder { color: var(--text3); }
+    .field select { appearance: none; }
+    .field select option { background: var(--bg2); }
+
+    /* Small helper text below fields */
+    .field-hint {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--text3);
+      margin-top: 4px;
+    }
+
+    /* ── Tag pill input component ── */
+    .tag-input-wrap {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 6px 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      min-height: 42px;
+      align-items: center;
+      cursor: text;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .tag-input-wrap:focus-within {
+      border-color: var(--accent2);
+      box-shadow: 0 0 0 3px rgba(0,130,180,0.08);
+    }
+
+    .tag-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.66rem;
+      padding: 3px 8px;
+      background: rgba(0,150,200,0.1);
+      border: 1px solid rgba(0,150,200,0.25);
+      color: var(--accent);
+      border-radius: 2px;
+    }
+
+    .tag-remove {
+      background: none;
+      border: none;
+      color: var(--accent2);
+      cursor: pointer;
+      font-size: 0.85rem;
+      line-height: 1;
+      padding: 0;
+      opacity: 0.7;
+      transition: opacity 0.15s;
+    }
+    .tag-remove:hover { opacity: 1; }
+
+    .tag-input-field {
+      flex: 1;
+      min-width: 100px;
+      background: none;
+      border: none;
+      outline: none;
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.83rem;
+    }
+    .tag-input-field::placeholder { color: var(--text3); }
+
+    /* ── NDA reminder banner ── */
+    .nda-banner {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      background: var(--warn2);
+      border: 1px solid rgba(200,100,50,0.28);
+      border-radius: 4px;
+      padding: 0.85rem 1rem;
+      margin-bottom: 1rem;
+    }
+    .nda-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+    .nda-text { font-size: 0.75rem; color: var(--text2); line-height: 1.55; }
+    .nda-text strong {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--warn);
+      margin-bottom: 2px;
+    }
+
+    /* ── PROJECT BLOCK — one per project in the form ── */
+    .project-block {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      margin-bottom: 0.85rem;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .project-block:focus-within { border-color: var(--border2); }
+
+    /* Clickable header row to collapse/expand project fields */
+    .project-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      cursor: pointer;
+      background: var(--panel);
+      border-bottom: 1px solid var(--border);
+      user-select: none;
+    }
+
+    /* PROJ·01 label badge */
+    .project-num {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--accent);
+      background: rgba(0,150,200,0.08);
+      border: 1px solid rgba(0,150,200,0.2);
+      border-radius: 2px;
+      padding: 2px 7px;
+      flex-shrink: 0;
+    }
+
+    .project-title-display {
+      flex: 1;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* Chevron rotates when collapsed */
+    .project-chevron {
+      font-size: 0.75rem;
+      color: var(--text3);
+      transition: transform 0.2s;
+    }
+    .project-block.collapsed .project-chevron { transform: rotate(-90deg); }
+
+    .project-remove-btn {
+      background: none;
+      border: none;
+      color: var(--text3);
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 2px 4px;
+      transition: color 0.15s;
+    }
+    .project-remove-btn:hover { color: var(--warn); }
+
+    /* Form fields grid inside each project block */
+    .project-body {
+      padding: 1.1rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .project-body.collapsed    { display: none; }
+    .project-body .field-full  { grid-column: 1 / -1; } /* span both columns */
+    @media (max-width: 560px)  { .project-body { grid-template-columns: 1fr; } }
+
+    /* Dashed "Add Project" button */
+    .btn-add-project {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      background: rgba(0,150,200,0.05);
+      border: 1px dashed rgba(0,150,200,0.3);
+      border-radius: 4px;
+      padding: 0.7rem 1rem;
+      width: 100%;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.08em;
+      margin-top: 0.5rem;
+    }
+    .btn-add-project:hover {
+      background: rgba(0,150,200,0.1);
+      border-color: var(--accent);
+    }
+
+    /* Cancel and Save buttons at form bottom */
+    .form-actions { display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1.5rem; }
+
+    .btn-cancel {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      padding: 0.6rem 1.4rem;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text2);
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-cancel:hover { border-color: var(--text2); color: var(--text); }
+
+    .btn-save {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 0.6rem 1.8rem;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-save:hover { filter: brightness(1.1); box-shadow: var(--glow); }
+
+    /* ============================================================
+       SECTION 7 — DETAIL VIEW
+       Full engineer profile page with project accordion
+    ============================================================ */
+    .profile-detail { max-width: 820px; }
+
+    /* Hero header card */
+    .detail-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Gradient accent line at top of hero card */
+    .detail-header::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent3));
+    }
+
+    .detail-avatar {
+      width: 72px; height: 72px;
+      border-radius: 6px;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .detail-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    .detail-desig { font-size: 0.85rem; color: var(--text2); margin-bottom: 0.7rem; }
+    .detail-actions { margin-left: auto; display: flex; gap: 0.5rem; flex-shrink: 0; }
+
+    /* Reusable panel for detail view sections */
+    .detail-section {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .detail-section-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 0.85rem;
+    }
+
+    /* Collapsible project row inside detail view */
+    .proj-item {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin-bottom: 0.7rem;
+      overflow: hidden;
+    }
+
+    .proj-item-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: var(--bg3);
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s;
+    }
+    .proj-item-header:hover { background: var(--panel2); }
+
+    .proj-item-name {
+      flex: 1;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .proj-item-body {
+      padding: 0.85rem 1rem;
+      display: none;
+      background: var(--panel);
+      border-top: 1px solid var(--border);
+    }
+    .proj-item-body.open { display: block; }
+
+    .proj-detail-row { margin-bottom: 0.75rem; }
+    .proj-detail-row:last-child { margin-bottom: 0; }
+
+    .proj-detail-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.14em;
+      color: var(--text3);
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .proj-detail-val { font-size: 0.82rem; color: var(--text); line-height: 1.55; }
+
+    /* Bullet list for goals and achievements */
+    .bullet-list { list-style: none; padding: 0; }
+    .bullet-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: var(--text);
+      padding: 3px 0;
+      line-height: 1.45;
+    }
+    .bullet-dot {
+      width: 5px; height: 5px;
+      background: var(--accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+
+    /* Meta information row at bottom of detail */
+    .meta-row { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+    .meta-block .meta-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 4px;
+    }
+    .meta-block .meta-val { font-size: 0.83rem; color: var(--text); }
+
+    /* ============================================================
+       SECTION 8 — DELETE CONFIRMATION MODAL
+    ============================================================ */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      backdrop-filter: blur(3px);
+    }
+    .modal-backdrop.open { display: flex; }
+
+    .modal {
+      background: var(--panel);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      padding: 2rem;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.65);
+      animation: modal-in 0.25s ease;
+    }
+
+    @keyframes modal-in {
+      from { transform: scale(0.94) translateY(14px); opacity: 0; }
+      to   { transform: scale(1)    translateY(0);    opacity: 1; }
+    }
+
+    .modal-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+
+    .modal h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .modal p {
+      font-size: 0.8rem;
+      color: var(--text2);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-actions { display: flex; gap: 0.75rem; justify-content: flex-end; }
+
+    .btn-delete {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 0.6rem 1.6rem;
+      background: var(--warn);
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: filter 0.2s;
+    }
+    .btn-delete:hover { filter: brightness(1.1); }
+
+    /* ============================================================
+       SECTION 9 — TOAST + UNDO BAR
+       Toast: bottom-right brief messages
+       Undo bar: bottom-center, shows 60s countdown after delete
+    ============================================================ */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--panel);
+      border: 1px solid var(--accent3);
+      color: var(--accent3);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.74rem;
+      padding: 0.8rem 1.2rem;
+      border-radius: 4px;
+      box-shadow: var(--shadow);
+      z-index: 999;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      pointer-events: none;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; pointer-events: auto; }
+
+    /* Undo bar — appears after delete, shows 60s countdown */
+    .undo-bar {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--panel);
+      border: 1px solid var(--warn);
+      color: var(--text);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.74rem;
+      padding: 0.75rem 1.2rem;
+      border-radius: 4px;
+      box-shadow: var(--shadow);
+      z-index: 998;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      opacity: 0;
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .undo-bar.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .undo-msg    { color: var(--text2); }
+    .undo-timer  { color: var(--warn); font-weight: bold; min-width: 32px; }
+
+    .btn-undo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 4px 14px;
+      background: var(--warn);
+      color: #fff;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: filter 0.15s;
+    }
+    .btn-undo:hover { filter: brightness(1.1); }
+
+    /* ============================================================
+       SECTION 10 — KEYFRAME ANIMATIONS
+    ============================================================ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════
+     HEADER
+     Logo · system status dot · dark/light toggle
+══════════════════════════════════════════════════ -->
+<header>
+  <div class="logo">
+    <!-- Chip SVG icon — edit stroke colors to match your brand -->
+    <div class="logo-icon">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="1" width="34" height="34" rx="3" stroke="var(--border2)" stroke-width="1.5"/>
+        <rect x="7" y="7" width="10" height="10" rx="1" fill="none" stroke="var(--accent)"  stroke-width="1.2"/>
+        <rect x="19" y="7" width="10" height="10" rx="1" fill="none" stroke="var(--accent)"  stroke-width="1.2"/>
+        <rect x="7" y="19" width="10" height="10" rx="1" fill="none" stroke="var(--accent3)" stroke-width="1.2"/>
+        <rect x="19" y="19" width="10" height="10" rx="1" fill="none" stroke="var(--accent3)" stroke-width="1.2"/>
+        <line x1="12" y1="17" x2="12" y2="19" stroke="var(--accent)"  stroke-width="1"/>
+        <line x1="24" y1="17" x2="24" y2="19" stroke="var(--accent)"  stroke-width="1"/>
+        <line x1="17" y1="12" x2="19" y2="12" stroke="var(--accent)"  stroke-width="1"/>
+        <line x1="17" y1="24" x2="19" y2="24" stroke="var(--accent3)" stroke-width="1"/>
+      </svg>
+    </div>
+    <div>
+      <div class="logo-text">NSL <span>Connect</span></div>
+      <div class="logo-sub">Engineer Directory · VLSI</div>
+    </div>
+  </div>
+
+  <div class="header-right">
+    <div class="header-status">
+      <div class="status-dot"></div>
+      SYSTEM ONLINE
+    </div>
+    <!-- Click to switch between dark and light themes -->
+    <button class="theme-toggle" id="theme-toggle-btn"
+            title="Toggle light / dark theme" onclick="toggleTheme()">🌙</button>
+  </div>
+</header>
+
+
+<!-- ══════════════════════════════════════════════════
+     MAIN APP CONTAINER
+══════════════════════════════════════════════════ -->
+<div class="app">
+
+
+  <!-- ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+       VIEW 1 — DIRECTORY
+       Shows all engineers as cards
+  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ -->
+  <div id="view-directory" class="view active">
+
+    <div class="page-header">
+      <div>
+        <div class="page-eyebrow">// engineer_registry</div>
+        <div class="page-heading">Team Directory</div>
+      </div>
+      <button class="btn-primary" onclick="showForm()">+ Add Profile</button>
+    </div>
+
+    <!-- Quick stats: headcount, nodes, total projects -->
+    <div class="stats-bar">
+      <div class="stat-pill">Engineers: <span id="stat-count">0</span></div>
+      <div class="stat-pill">Active Nodes: <span id="stat-nodes">—</span></div>
+      <div class="stat-pill">Projects Logged: <span id="stat-projects">0</span></div>
+    </div>
+
+    <!-- Search input + node filter chips -->
+    <div class="directory-toolbar">
+      <div class="search-wrap">
+        <span class="search-icon">⌕</span>
+        <input type="text" id="search-input"
+               placeholder="Search by name, node, designation, project…"
+               oninput="filterProfiles()" />
+      </div>
+      <div class="filter-chips" id="filter-chips"></div>
+    </div>
+
+    <!-- Profile cards injected here by renderCards() -->
+    <div class="profile-grid" id="profile-grid">
+      <div class="empty-state">
+        <h3>No profiles yet</h3>
+        <p>Click <strong style="color:var(--accent)">+ Add Profile</strong> to get started.</p>
+      </div>
+    </div>
+
+  </div><!-- /view-directory -->
+
+
+  <!-- ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+       VIEW 2 — FORM  (Add / Edit)
+       Basic info + per-project blocks
+  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ -->
+  <div id="view-form" class="view">
+    <div class="form-container">
+
+      <button class="back-btn" onclick="showDirectory()">← BACK TO DIRECTORY</button>
+
+      <div class="page-header" style="margin-bottom:1.2rem;">
+        <div>
+          <div class="page-eyebrow">// profile_editor</div>
+          <div class="page-heading" id="form-heading">New Profile</div>
+        </div>
+      </div>
+
+      <!-- NDA reminder — keep this visible to guide engineers -->
+      <div class="nda-banner">
+        <div class="nda-icon">⚠</div>
+        <div class="nda-text">
+          <strong>NDA Reminder</strong>
+          Do not enter proprietary circuit details, customer-specific data, unreleased process
+          parameters, or any information covered by your NDA. Describe all work at a high level only.
+        </div>
+      </div>
+
+      <!-- ── SECTION 01: Basic Info ── -->
+      <div class="form-section">
+        <div class="form-section-title">01 · Basic Information</div>
+
+        <div class="form-row">
+          <div class="field">
+            <label>Full Name <span class="req">*</span></label>
+            <input type="text" id="f-name" placeholder="e.g. Tariq Rahman" />
+          </div>
+          <div class="field">
+            <label>Designation <span class="req">*</span></label>
+            <input type="text" id="f-desig" placeholder="e.g. Senior Physical Design Engineer" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label>Department</label>
+            <input type="text" id="f-dept" placeholder="e.g. Physical Design, DFT, RTL…" />
+          </div>
+          <div class="field">
+            <label>Years of Experience</label>
+            <input type="number" id="f-yoe" placeholder="e.g. 6" min="0" max="60" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Brief Summary <span class="req">*</span></label>
+          <textarea id="f-desc" rows="3"
+            placeholder="High-level overview of your expertise, tools, and methodologies. No confidential details.">
+          </textarea>
+          <div class="field-hint">No customer names, design IDs, or unreleased specs.</div>
+        </div>
+      </div>
+
+      <!-- ── SECTION 02: Projects ── -->
+      <!-- Each project is a collapsible block added via addProjectBlock() -->
+      <div class="form-section">
+        <div class="form-section-title">02 · Projects</div>
+
+        <!-- Project blocks injected here -->
+        <div id="projects-container"></div>
+
+        <!-- Clicking this adds a new blank project block -->
+        <button class="btn-add-project" onclick="addProjectBlock()">
+          ＋ ADD ANOTHER PROJECT
+        </button>
+      </div>
+
+      <!-- Form action buttons -->
+      <div class="form-actions">
+        <button class="btn-cancel" onclick="showDirectory()">Cancel</button>
+        <button class="btn-save"   onclick="saveProfile()">SAVE PROFILE</button>
+      </div>
+
+    </div>
+  </div><!-- /view-form -->
+
+
+  <!-- ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+       VIEW 3 — PROFILE DETAIL
+       Full read-only profile page
+  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ -->
+  <div id="view-detail" class="view">
+    <div class="profile-detail">
+
+      <button class="back-btn" onclick="showDirectory()">← BACK TO DIRECTORY</button>
+
+      <!-- Hero card: avatar · name · designation · nodes -->
+      <div class="detail-header">
+        <div class="detail-avatar" id="detail-avatar"></div>
+        <div style="flex:1; min-width:0;">
+          <div class="detail-name"  id="detail-name"></div>
+          <div class="detail-desig" id="detail-desig"></div>
+          <div class="nodes-wrap"   id="detail-nodes"></div>
+        </div>
+        <!-- Edit and Delete buttons (top-right of hero) -->
+        <div class="detail-actions">
+          <button class="btn-ghost"             onclick="editCurrentProfile()">EDIT</button>
+          <button class="btn-ghost btn-danger"  onclick="promptDelete(currentViewId)">DELETE</button>
+        </div>
+      </div>
+
+      <!-- Summary paragraph -->
+      <div class="detail-section">
+        <div class="detail-section-label">// Summary</div>
+        <p id="detail-desc" style="font-size:0.83rem;color:var(--text);line-height:1.65;"></p>
+      </div>
+
+      <!-- Projects accordion (hidden when no projects) -->
+      <div class="detail-section" id="detail-projects-section">
+        <div class="detail-section-label">// Projects</div>
+        <div id="detail-projects"></div>
+      </div>
+
+      <!-- Meta: dept, yoe, updated timestamp -->
+      <div class="detail-section">
+        <div class="meta-row">
+          <div class="meta-block">
+            <div class="meta-label">Department</div>
+            <div class="meta-val" id="detail-dept"></div>
+          </div>
+          <div class="meta-block">
+            <div class="meta-label">Experience</div>
+            <div class="meta-val" id="detail-yoe"></div>
+          </div>
+          <div class="meta-block">
+            <div class="meta-label">Last Updated</div>
+            <div class="meta-val"
+                 style="font-family:'Share Tech Mono',monospace;font-size:0.75rem;"
+                 id="detail-updated"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /view-detail -->
+
+
+</div><!-- /app -->
+
+
+<!-- ══════════════════════════════════════════════════
+     DELETE CONFIRMATION MODAL
+     Triggered by promptDelete(); closed by closeModal()
+══════════════════════════════════════════════════ -->
+<div class="modal-backdrop" id="modal-backdrop">
+  <div class="modal">
+    <div class="modal-icon">🗑️</div>
+    <h3>Delete this profile?</h3>
+    <p>
+      This will remove the engineer's profile from NSL Connect.<br>
+      <strong style="color:var(--warn);">You will have 60 seconds to undo</strong>
+      the deletion before it becomes permanent.
+    </p>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-delete" onclick="confirmDelete()">Yes, Delete</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════
+     TOAST — brief status messages (bottom-right)
+══════════════════════════════════════════════════ -->
+<div class="toast" id="toast"></div>
+
+
+<!-- ══════════════════════════════════════════════════
+     UNDO BAR — appears for 60s after a delete
+══════════════════════════════════════════════════ -->
+<div class="undo-bar" id="undo-bar">
+  <span class="undo-msg">Profile deleted.</span>
+  <span class="undo-timer" id="undo-timer">60s</span>
+  <button class="btn-undo" onclick="undoDelete()">UNDO</button>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════════ -->
+<script>
+/* ===========================================================
+   STATE
+   profiles  — master array of all engineer profile objects
+   editingId — id of profile currently being edited (null = new)
+   currentViewId — id of profile open in the detail view
+   projects  — working array of project objects while the form is open
+=========================================================== */
+let profiles      = JSON.parse(localStorage.getItem('nsl_profiles') || '[]');
+let editingId     = null;
+let currentViewId = null;
+let projects      = [];   // populated when a form is open
+
+/* Delete / undo state */
+let deletedProfile  = null;  // snapshot of the deleted profile
+let undoInterval    = null;  // setInterval handle for countdown
+let undoSecondsLeft = 60;
+
+/* Directory filter state */
+let activeFilter = 'all';
+
+/* ===========================================================
+   THEME TOGGLE
+   Persists preference in localStorage as 'nsl_theme'
+=========================================================== */
+function toggleTheme() {
+  const html   = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  const next   = isDark ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  document.getElementById('theme-toggle-btn').textContent = isDark ? '☀️' : '🌙';
+  localStorage.setItem('nsl_theme', next);
+}
+
+/* Apply saved theme before first paint */
+(function initTheme() {
+  const saved = localStorage.getItem('nsl_theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+  document.getElementById('theme-toggle-btn').textContent = saved === 'dark' ? '🌙' : '☀️';
+})();
+
+/* ===========================================================
+   UTILITIES
+=========================================================== */
+
+/* Two-letter initials from a full name */
+function initials(name) {
+  return name.split(' ').filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join('');
+}
+
+/* "12 Jun 2025" from a Unix timestamp */
+function fmt(ts) {
+  return new Date(ts).toLocaleDateString('en-GB', {
+    day: '2-digit', month: 'short', year: 'numeric'
+  });
+}
+
+/* Short unique id — no external library needed */
+function uid() {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+}
+
+/* Write profiles to localStorage */
+function persist() {
+  localStorage.setItem('nsl_profiles', JSON.stringify(profiles));
+}
+
+/* Escape HTML to prevent XSS when building innerHTML strings */
+function escHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+/* ===========================================================
+   VIEW SWITCHING
+=========================================================== */
+function setView(id) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showDirectory() {
+  setView('view-directory');
+  renderDirectory();
+}
+
+function showForm(id = null) {
+  setView('view-form');
+  resetForm();
+  editingId = null;
+
+  if (id) {
+    /* Editing an existing profile */
+    editingId = id;
+    const p = profiles.find(x => x.id === id);
+    if (p) populateForm(p);
+    document.getElementById('form-heading').textContent = 'Edit Profile';
+  } else {
+    /* New profile — add one blank project to start */
+    document.getElementById('form-heading').textContent = 'New Profile';
+    addProjectBlock();
+  }
+}
+
+function showDetail(id) {
+  currentViewId = id;
+  setView('view-detail');
+  renderDetail(id);
+}
+
+function editCurrentProfile() { showForm(currentViewId); }
+
+/* ===========================================================
+   PROJECT BLOCKS (form)
+   Each block has: name · node · goals (tags) · achievements (tags)
+   projects[] array mirrors the DOM blocks as source of truth.
+=========================================================== */
+
+/* Add one project block to the form.
+   Pass an existing project object when editing, null for a new empty block. */
+function addProjectBlock(data) {
+  const pid  = data ? data._id : uid();
+  const proj = data
+    ? { ...data }
+    : { _id: pid, name: '', node: '', goals: [], achievements: [] };
+
+  if (!data) projects.push(proj);
+
+  const idx = projects.findIndex(p => p._id === pid);
+  const num = String(idx + 1).padStart(2, '0');
+
+  /* Build block HTML */
+  const block = document.createElement('div');
+  block.className = 'project-block';
+  block.id        = 'pb-' + pid;
+
+  block.innerHTML = `
+    <!-- Clickable header row (collapse / expand) -->
+    <div class="project-header" onclick="toggleProjectBlock('${pid}')">
+      <span class="project-num">PROJ·${num}</span>
+      <span class="project-title-display" id="ptitle-${pid}">
+        ${escHtml(proj.name) || 'Untitled Project'}
+      </span>
+      <!-- Remove button — stops propagation so header click doesn't also fire -->
+      <button class="project-remove-btn" title="Remove this project"
+              onclick="event.stopPropagation(); removeProjectBlock('${pid}')">✕</button>
+      <span class="project-chevron">▾</span>
+    </div>
+
+    <!-- Project form fields (two-column grid) -->
+    <div class="project-body" id="pbody-${pid}">
+
+      <!-- Project name: full width -->
+      <div class="field field-full">
+        <label>Project Name <span class="req">*</span></label>
+        <input type="text" id="pname-${pid}"
+               placeholder="e.g. Low-Power SoC Integration (no customer names)"
+               value="${escHtml(proj.name)}"
+               oninput="liveUpdateTitle('${pid}', this.value)" />
+      </div>
+
+      <!-- Technology node for this specific project -->
+      <div class="field">
+        <label>Technology Node</label>
+        <input type="text" id="pnode-${pid}"
+               placeholder="e.g. 7nm, 28nm, 180nm"
+               value="${escHtml(proj.node)}" />
+      </div>
+
+      <!-- Goals — tag-style input; press Enter to add each goal -->
+      <div class="field">
+        <label>Goal(s)</label>
+        <div class="tag-input-wrap" id="goals-wrap-${pid}">
+          <input class="tag-input-field" id="goals-input-${pid}"
+                 placeholder="Type a goal, press Enter"
+                 onkeydown="handleTagKey(event,'goals','${pid}')" />
+        </div>
+        <div class="field-hint">Press Enter to add each goal</div>
+      </div>
+
+      <!-- Key achievements — full width, tag-style -->
+      <div class="field field-full">
+        <label>Key Achievements</label>
+        <div class="tag-input-wrap" id="ach-wrap-${pid}">
+          <input class="tag-input-field" id="ach-input-${pid}"
+                 placeholder="Type an achievement, press Enter"
+                 onkeydown="handleTagKey(event,'ach','${pid}')" />
+        </div>
+        <div class="field-hint">Press Enter to add each achievement. No confidential data.</div>
+      </div>
+
+    </div><!-- /project-body -->
+  `;
+
+  document.getElementById('projects-container').appendChild(block);
+
+  /* Populate tags for existing projects (when editing) */
+  renderProjectTags(pid, 'goals', proj.goals);
+  renderProjectTags(pid, 'ach',   proj.achievements);
+}
+
+/* Collapse or expand a project block by toggling body display */
+function toggleProjectBlock(pid) {
+  const body  = document.getElementById('pbody-' + pid);
+  const block = document.getElementById('pb-'    + pid);
+  const open  = body.style.display !== 'none' && body.style.display !== '';
+
+  /* First render: body is visible by default (no inline style yet) */
+  const isVisible = body.style.display === 'none' ? false : true;
+
+  body.style.display = isVisible ? 'none' : 'grid';
+  block.classList.toggle('collapsed', isVisible);
+}
+
+/* Remove a project block from DOM and from projects[] */
+function removeProjectBlock(pid) {
+  projects = projects.filter(p => p._id !== pid);
+  const el = document.getElementById('pb-' + pid);
+  if (el) el.remove();
+  renumberProjectBlocks();
+}
+
+/* Keep PROJ·01, PROJ·02… labels accurate after removal */
+function renumberProjectBlocks() {
+  projects.forEach((p, i) => {
+    const numEl = document.querySelector('#pb-' + p._id + ' .project-num');
+    if (numEl) numEl.textContent = 'PROJ·' + String(i + 1).padStart(2, '0');
+  });
+}
+
+/* Live-update the header title as the user types in the name field */
+function liveUpdateTitle(pid, val) {
+  const el = document.getElementById('ptitle-' + pid);
+  if (el) el.textContent = val.trim() || 'Untitled Project';
+  const proj = projects.find(p => p._id === pid);
+  if (proj) proj.name = val.trim();
+}
+
+/* ===========================================================
+   TAG INPUT — used for goals and achievements inside project blocks
+=========================================================== */
+function handleTagKey(e, type, pid) {
+  if (e.key === 'Enter' || e.key === ',') {
+    e.preventDefault();
+    const val = e.target.value.replace(/,/g, '').trim();
+    if (!val) return;
+
+    const proj = projects.find(p => p._id === pid);
+    if (!proj) return;
+
+    const arr = type === 'goals' ? proj.goals : proj.achievements;
+    if (!arr.includes(val)) {
+      arr.push(val);
+      renderProjectTags(pid, type, arr);
+    }
+    e.target.value = '';
+
+  } else if (e.key === 'Backspace' && e.target.value === '') {
+    /* Delete last tag on backspace when input is empty */
+    const proj = projects.find(p => p._id === pid);
+    if (!proj) return;
+    const arr = type === 'goals' ? proj.goals : proj.achievements;
+    if (arr.length) {
+      arr.pop();
+      renderProjectTags(pid, type, arr);
+    }
+  }
+}
+
+/* Remove a tag by index */
+function removeProjectTag(pid, type, idx) {
+  const proj = projects.find(p => p._id === pid);
+  if (!proj) return;
+  const arr = type === 'goals' ? proj.goals : proj.achievements;
+  arr.splice(idx, 1);
+  renderProjectTags(pid, type, arr);
+}
+
+/* Re-render the tag pills inside a tag-input-wrap */
+function renderProjectTags(pid, type, arr) {
+  const wrapId  = (type === 'goals' ? 'goals-wrap-' : 'ach-wrap-') + pid;
+  const inputId = (type === 'goals' ? 'goals-input-' : 'ach-input-') + pid;
+  const wrap    = document.getElementById(wrapId);
+  const input   = document.getElementById(inputId);
+  if (!wrap || !input) return;
+
+  wrap.innerHTML = '';
+  arr.forEach((t, i) => {
+    const span = document.createElement('span');
+    span.className = 'tag-item';
+    span.innerHTML = `${escHtml(t)}
+      <button class="tag-remove"
+        onclick="removeProjectTag('${pid}','${type}',${i})">×</button>`;
+    wrap.appendChild(span);
+  });
+  wrap.appendChild(input);
+  wrap.onclick = () => input.focus(); // click anywhere in wrap to focus input
+}
+
+/* ===========================================================
+   FORM: RESET & POPULATE
+=========================================================== */
+function resetForm() {
+  /* Clear basic fields */
+  ['f-name', 'f-desig', 'f-dept', 'f-yoe', 'f-desc'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  /* Clear projects */
+  projects = [];
+  document.getElementById('projects-container').innerHTML = '';
+}
+
+function populateForm(p) {
+  document.getElementById('f-name').value  = p.name        || '';
+  document.getElementById('f-desig').value = p.designation || '';
+  document.getElementById('f-dept').value  = p.department  || '';
+  document.getElementById('f-yoe').value   = p.yoe         || '';
+  document.getElementById('f-desc').value  = (p.description || '').trim();
+
+  /* Load existing projects into the form */
+  projects = (p.projects || []).map(pr => ({ ...pr,
+    goals:        [...(pr.goals        || [])],
+    achievements: [...(pr.achievements || [])],
+  }));
+
+  projects.forEach(pr => addProjectBlock(pr));
+
+  /* Always have at least one project block */
+  if (!projects.length) addProjectBlock();
+}
+
+/* ===========================================================
+   SAVE PROFILE
+   Reads DOM values back, merges with projects[] data, persists.
+=========================================================== */
+function saveProfile() {
+  const name  = document.getElementById('f-name').value.trim();
+  const desig = document.getElementById('f-desig').value.trim();
+  const desc  = document.getElementById('f-desc').value.trim();
+
+  if (!name || !desig || !desc) {
+    showToast('Please fill in all required fields ✦', true);
+    return;
+  }
+
+  /* Flush any text sitting in tag inputs that wasn't submitted yet */
+  projects.forEach(proj => {
+    ['goals', 'ach'].forEach(type => {
+      const inputId = (type === 'goals' ? 'goals-input-' : 'ach-input-') + proj._id;
+      const el = document.getElementById(inputId);
+      if (el && el.value.trim()) {
+        const arr = type === 'goals' ? proj.goals : proj.achievements;
+        const val = el.value.trim();
+        if (!arr.includes(val)) arr.push(val);
+        el.value = '';
+        renderProjectTags(proj._id, type, arr);
+      }
+    });
+  });
+
+  /* Collect final project data from DOM + projects[] */
+  const savedProjects = projects.map(proj => {
+    const nameEl = document.getElementById('pname-' + proj._id);
+    const nodeEl = document.getElementById('pnode-' + proj._id);
+    return {
+      _id:          proj._id,
+      name:         (nameEl ? nameEl.value.trim() : '') || proj.name,
+      node:         (nodeEl ? nodeEl.value.trim() : '') || proj.node,
+      goals:        [...proj.goals],
+      achievements: [...proj.achievements],
+    };
+  }).filter(pr => pr.name); /* Drop completely unnamed/empty projects */
+
+  /* Collect unique technology nodes across all projects for filtering */
+  const allNodes = [...new Set(savedProjects.map(p => p.node).filter(Boolean))];
+
+  const profile = {
+    id:          editingId || uid(),
+    name,
+    designation: desig,
+    department:  document.getElementById('f-dept').value.trim(),
+    yoe:         document.getElementById('f-yoe').value.trim(),
+    description: desc,
+    nodes:       allNodes,
+    projects:    savedProjects,
+    updatedAt:   Date.now(),
+  };
+
+  if (editingId) {
+    const idx = profiles.findIndex(p => p.id === editingId);
+    if (idx !== -1) profiles[idx] = profile;
+  } else {
+    profiles.push(profile);
+  }
+
+  persist();
+  showToast(editingId ? '✓ Profile updated' : '✓ Profile created');
+  showDirectory();
+}
+
+/* ===========================================================
+   DIRECTORY: RENDER
+=========================================================== */
+
+/* Get all unique technology nodes used across all profiles */
+function allNodesGlobal() {
+  const s = new Set();
+  profiles.forEach(p => (p.nodes || []).forEach(n => s.add(n)));
+  return [...s].sort();
+}
+
+function updateStats() {
+  document.getElementById('stat-count').textContent    = profiles.length;
+  const nodes = allNodesGlobal();
+  document.getElementById('stat-nodes').textContent    = nodes.length ? nodes.join(', ') : '—';
+  const totalProj = profiles.reduce((sum, p) => sum + (p.projects || []).length, 0);
+  document.getElementById('stat-projects').textContent = totalProj;
+}
+
+function renderFilterChips() {
+  const container = document.getElementById('filter-chips');
+  container.innerHTML = '';
+
+  const makeChip = (label, val) => {
+    const c = document.createElement('span');
+    c.className = 'chip' + (activeFilter === val ? ' active' : '');
+    c.textContent = label;
+    c.onclick = () => { activeFilter = val; renderFilterChips(); filterProfiles(); };
+    container.appendChild(c);
+  };
+
+  makeChip('All', 'all');
+  allNodesGlobal().forEach(n => makeChip(n, n));
+}
+
+function filterProfiles() {
+  const q = document.getElementById('search-input').value.toLowerCase();
+  let list = profiles;
+
+  /* Filter by active node chip */
+  if (activeFilter !== 'all') {
+    list = list.filter(p => (p.nodes || []).includes(activeFilter));
+  }
+
+  /* Filter by search query (name, designation, dept, nodes, project names) */
+  if (q) {
+    list = list.filter(p =>
+      p.name.toLowerCase().includes(q) ||
+      (p.designation || '').toLowerCase().includes(q) ||
+      (p.department  || '').toLowerCase().includes(q) ||
+      (p.nodes       || []).some(n => n.toLowerCase().includes(q)) ||
+      (p.projects    || []).some(pr =>
+        (pr.name || '').toLowerCase().includes(q) ||
+        (pr.goals || []).some(g => g.toLowerCase().includes(q)) ||
+        (pr.achievements || []).some(a => a.toLowerCase().includes(q))
+      )
+    );
+  }
+
+  renderCards(list);
+}
+
+function renderCards(list) {
+  const grid = document.getElementById('profile-grid');
+
+  if (!list.length) {
+    grid.innerHTML = `
+      <div class="empty-state">
+        <h3>No matches found</h3>
+        <p>Try a different search or filter.</p>
+      </div>`;
+    return;
+  }
+
+  grid.innerHTML = list.map(p => `
+    <div class="profile-card" onclick="showDetail('${p.id}')">
+
+      <div class="card-top">
+        <div class="avatar">${initials(p.name)}</div>
+        <div>
+          <div class="card-name">${escHtml(p.name)}</div>
+          <div class="card-desig">
+            ${escHtml(p.designation)}${p.yoe ? ' · ' + p.yoe + ' yrs' : ''}
+          </div>
+        </div>
+      </div>
+
+      <!-- Technology node tags -->
+      <div class="nodes-wrap">
+        ${(p.nodes || []).map(n => `<span class="node-tag">${escHtml(n)}</span>`).join('')}
+        ${!(p.nodes || []).length
+          ? '<span style="font-size:0.7rem;color:var(--text3);font-family:\'Share Tech Mono\',monospace;">no nodes listed</span>'
+          : ''}
+      </div>
+
+      <!-- Summary snippet (2-line clamp) -->
+      <div class="card-desc">${escHtml(p.description)}</div>
+
+      <!-- Footer row -->
+      <div class="card-footer">
+        <span class="card-updated">Updated ${fmt(p.updatedAt)}</span>
+        <div class="card-actions">
+          <!-- Edit: goes to form for this profile -->
+          <button class="btn-ghost"
+                  onclick="event.stopPropagation(); showForm('${p.id}')">EDIT</button>
+          <!-- Delete: opens confirmation modal -->
+          <button class="btn-ghost btn-danger"
+                  onclick="event.stopPropagation(); promptDelete('${p.id}')">DELETE</button>
+        </div>
+      </div>
+
+    </div>
+  `).join('');
+}
+
+function renderDirectory() {
+  updateStats();
+  renderFilterChips();
+  filterProfiles();
+}
+
+/* ===========================================================
+   DETAIL VIEW: RENDER
+=========================================================== */
+function renderDetail(id) {
+  const p = profiles.find(x => x.id === id);
+  if (!p) { showDirectory(); return; }
+
+  document.getElementById('detail-avatar').textContent  = initials(p.name);
+  document.getElementById('detail-name').textContent    = p.name;
+  document.getElementById('detail-desig').textContent   = p.designation;
+  document.getElementById('detail-desc').textContent    = p.description;
+  document.getElementById('detail-dept').textContent    = p.department || '—';
+  document.getElementById('detail-yoe').textContent     = p.yoe ? p.yoe + ' years' : '—';
+  document.getElementById('detail-updated').textContent = fmt(p.updatedAt);
+
+  /* Node tags in hero */
+  document.getElementById('detail-nodes').innerHTML =
+    (p.nodes || []).map(n => `<span class="node-tag">${escHtml(n)}</span>`).join('');
+
+  /* Projects accordion */
+  const projContainer = document.getElementById('detail-projects');
+  const projSection   = document.getElementById('detail-projects-section');
+
+  if (!(p.projects || []).length) {
+    projSection.style.display = 'none';
+  } else {
+    projSection.style.display = '';
+    projContainer.innerHTML = (p.projects).map((pr, i) => `
+      <div class="proj-item">
+
+        <!-- Clickable header — click to expand/collapse this project -->
+        <div class="proj-item-header" onclick="toggleDetailProject(this)">
+          ${pr.node
+            ? `<span class="node-tag" style="flex-shrink:0;">${escHtml(pr.node)}</span>`
+            : ''}
+          <span class="proj-item-name">${escHtml(pr.name)}</span>
+          <span style="font-size:0.75rem;color:var(--text3);transition:transform 0.2s;">▾</span>
+        </div>
+
+        <!-- Project details body (first project open by default) -->
+        <div class="proj-item-body ${i === 0 ? 'open' : ''}">
+
+          ${pr.node ? `
+          <div class="proj-detail-row">
+            <div class="proj-detail-label">Technology Node</div>
+            <div class="proj-detail-val">${escHtml(pr.node)}</div>
+          </div>` : ''}
+
+          ${(pr.goals || []).length ? `
+          <div class="proj-detail-row">
+            <div class="proj-detail-label">Goals</div>
+            <ul class="bullet-list">
+              ${pr.goals.map(g => `
+                <li><span class="bullet-dot"></span>${escHtml(g)}</li>
+              `).join('')}
+            </ul>
+          </div>` : ''}
+
+          ${(pr.achievements || []).length ? `
+          <div class="proj-detail-row">
+            <div class="proj-detail-label">Key Achievements</div>
+            <ul class="bullet-list">
+              ${pr.achievements.map(a => `
+                <li><span class="bullet-dot"></span>${escHtml(a)}</li>
+              `).join('')}
+            </ul>
+          </div>` : ''}
+
+        </div><!-- /proj-item-body -->
+      </div>
+    `).join('');
+  }
+}
+
+/* Toggle open/close for a project accordion row in the detail view */
+function toggleDetailProject(headerEl) {
+  const body    = headerEl.nextElementSibling;
+  const chevron = headerEl.querySelector('span:last-child');
+  const isOpen  = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  chevron.style.transform = isOpen ? 'rotate(-90deg)' : '';
+}
+
+/* ===========================================================
+   DELETE + 60-SECOND UNDO
+=========================================================== */
+let pendingDeleteId = null;  /* id of profile staged for deletion via modal */
+
+/* Open the confirmation modal */
+function promptDelete(id) {
+  pendingDeleteId = id;
+  document.getElementById('modal-backdrop').classList.add('open');
+}
+
+/* Close the modal without doing anything */
+function closeModal() {
+  document.getElementById('modal-backdrop').classList.remove('open');
+  pendingDeleteId = null;
+}
+
+/* User confirmed — snapshot the profile, remove it, start undo timer */
+function confirmDelete() {
+  if (!pendingDeleteId) return;
+  const id = pendingDeleteId;
+  closeModal();
+
+  /* Save a deep copy before removing */
+  deletedProfile = JSON.parse(JSON.stringify(profiles.find(p => p.id === id)));
+  profiles = profiles.filter(p => p.id !== id);
+  persist();
+
+  /* Navigate away if we were viewing the deleted profile */
+  if (currentViewId === id) showDirectory();
+  else renderDirectory();
+
+  /* Start the 60-second undo window */
+  startUndoCountdown();
+}
+
+function startUndoCountdown() {
+  /* Cancel any running countdown */
+  if (undoInterval) clearInterval(undoInterval);
+  undoSecondsLeft = 60;
+
+  const bar     = document.getElementById('undo-bar');
+  const timerEl = document.getElementById('undo-timer');
+  timerEl.textContent = '60s';
+  bar.classList.add('show');
+
+  undoInterval = setInterval(() => {
+    undoSecondsLeft--;
+    timerEl.textContent = undoSecondsLeft + 's';
+
+    if (undoSecondsLeft <= 0) {
+      /* Time's up — permanently delete */
+      clearInterval(undoInterval);
+      bar.classList.remove('show');
+      deletedProfile = null;
+    }
+  }, 1000);
+}
+
+/* Restore the deleted profile within the 60-second window */
+function undoDelete() {
+  if (!deletedProfile) return;
+
+  profiles.push(deletedProfile);
+  persist();
+  deletedProfile = null;
+
+  clearInterval(undoInterval);
+  document.getElementById('undo-bar').classList.remove('show');
+
+  showToast('✓ Deletion undone — profile restored');
+  renderDirectory();
+}
+
+/* ===========================================================
+   TOAST
+   isError = true shows orange border/text instead of green
+=========================================================== */
+function showToast(msg, isError = false) {
+  const el = document.getElementById('toast');
+  el.textContent        = msg;
+  el.style.borderColor  = isError ? 'var(--warn)'   : 'var(--accent3)';
+  el.style.color        = isError ? 'var(--warn)'   : 'var(--accent3)';
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 3200);
+}
+
+/* ===========================================================
+   INIT — render directory on first load
+=========================================================== */
+renderDirectory();
+</script>
+</body>
+</html>
+
