@@ -253,6 +253,8 @@
       margin-bottom: 1rem;
       border-left: 3px solid var(--accent);
       padding-left: 10px;
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
     .team-banner-title {
       font-family: 'Barlow Condensed', sans-serif;
@@ -278,7 +280,6 @@
       color: var(--accent3);
     }
 
-    /* Render multi line inputs lists wrapper */
     .bullet-container-list {
       margin-left: 16px;
       margin-top: 4px;
@@ -495,7 +496,7 @@
     /* ============================================================
        SECTION 5 — INTAKE SYSTEM FORM STYLINGS
     ============================================================ */
-    .form-container { max-width: 780px; }
+    .form-container { max-width: 780px; width: 100%; }
     .back-btn {
       display: inline-flex;
       align-items: center;
@@ -602,6 +603,7 @@
       display: flex; align-items: flex-start; gap: 1.5rem;
       background: var(--panel); border: 1px solid var(--border);
       border-radius: 6px; padding: 1.5rem; margin-bottom: 1rem; position: relative;
+      flex-wrap: wrap;
     }
     .detail-avatar {
       width: 72px; height: 72px; border-radius: 6px; background: var(--bg3);
@@ -610,13 +612,13 @@
     }
     .detail-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--text); }
     .detail-desig { font-size: 0.85rem; color: var(--text2); margin-bottom: 0.7rem; }
-    .detail-actions { margin-left: auto; display: flex; gap: 0.5rem; }
+    .detail-actions { margin-left: auto; display: flex; gap: 0.5rem; flex-wrap: wrap; }
 
     .detail-section { background: var(--panel); border: 1px solid var(--border); border-radius: 6px; padding: 1.25rem; margin-bottom: 1rem; }
     .detail-section-label { font-family: 'Share Tech Mono', monospace; font-size: 0.62rem; color: var(--text3); text-transform: uppercase; margin-bottom: 0.85rem; }
 
     .proj-item { border: 1px solid var(--border); border-radius: 4px; margin-bottom: 0.7rem; }
-    .proj-item-header { display: flex; align-items: center; padding: 0.75rem 1rem; background: var(--bg3); }
+    .proj-item-header { display: flex; align-items: center; padding: 0.75rem 1rem; background: var(--bg3); flex-wrap: wrap; gap: 0.5rem; }
     .proj-item-name { font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--text); }
     .proj-item-body { padding: 0.85rem 1rem; background: var(--panel); border-top: 1px solid var(--border); }
     
@@ -649,6 +651,8 @@
       max-width: 500px;
       width: 100%;
       box-shadow: 0 24px 80px rgba(0, 0, 0, 0.65);
+      max-height: 90vh;
+      overflow-y: auto;
     }
     .modal-icon { font-size: 2rem; margin-bottom: 0.75rem; }
     .modal h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
@@ -690,6 +694,82 @@
     }
     .undo-bar.show { transform: translateX(-50%) translateY(0); opacity: 1; }
     .btn-undo { font-family: 'Barlow Condensed', sans-serif; padding: 4px 14px; background: var(--warn); color: #fff; border: none; cursor: pointer; }
+
+    /* ============================================================
+       CRITICAL REVISIONS — PHONE CORE RESPONSIVE MATRIX OVERRIDES
+    ============================================================ */
+    @media (max-width: 768px) {
+      header {
+        height: auto;
+        padding: 0.8rem 1rem;
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: stretch;
+      }
+      .nav-tabs {
+        margin-left: 0;
+        justify-content: flex-start;
+        gap: 1rem;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 4px;
+      }
+      .header-right {
+        justify-content: space-between;
+      }
+      .app {
+        padding: 1rem 1rem 5rem;
+      }
+      .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+      }
+      .btn-primary {
+        width: 100%;
+        text-align: center;
+      }
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+      .form-row, .project-body {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .form-section {
+        padding: 1rem;
+      }
+      .form-actions {
+        flex-direction: column-reverse;
+      }
+      .form-actions button {
+        width: 100%;
+        text-align: center;
+      }
+      .detail-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+      }
+      .detail-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .detail-actions button {
+        flex: 1;
+        text-align: center;
+        min-width: 80px;
+      }
+      .toast {
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+        text-align: center;
+      }
+      .undo-bar {
+        width: calc(100% - 2rem);
+        bottom: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1049,7 +1129,6 @@
       initializeTagEvents('proj-node-input', 'proj-node-tags', 'PROJECT');
     };
 
-    /* Turns multi-line inputs cleanly into custom frontend list elements */
     function parseLinesToBulletMarkup(textRaw) {
       if(!textRaw) return '—';
       const fragments = textRaw.split('\n').map(x => x.trim()).filter(Boolean);
@@ -1087,7 +1166,6 @@
       document.getElementById('theme-toggle-btn').textContent = isDark ? '☀️' : '🌙';
     }
 
-    /* INTERACTIVE NODE PILL LOGIC PACKETS */
     function initializeTagEvents(inputId, containerId, category) {
       const inputEl = document.getElementById(inputId);
       if(!inputEl) return;
@@ -1127,7 +1205,6 @@
       refreshTags(inputId, containerId, category);
     }
 
-    /* SPECIFICATION LOGGING CONTROLLERS */
     function showTeamProjectForm() {
       navToView('view-project-upload-form');
       document.getElementById('proj-team-select').value = 'Analog Mixed Signal';
@@ -1224,7 +1301,6 @@
 
     function closeProjectPopup() { document.getElementById('project-popup-backdrop').classList.remove('open'); }
 
-    /* COLLABORATOR RECORD SYSTEM ACTIONS */
     function showEngineerForm(id = null) {
       navToView('view-profile-form');
       resetProfileFields();
@@ -1447,7 +1523,7 @@
           target.innerHTML += `
             <div class="proj-item">
               <div class="proj-item-header">
-                <span class="node-tag" style="margin-right:10px;">${escapeHtmlStrings(log.tech)}</span>
+                <span class="node-tag">${escapeHtmlStrings(log.tech)}</span>
                 <span class="proj-item-name">${escapeHtmlStrings(log.name)} (${escapeHtmlStrings(log.duration)})</span>
               </div>
               <div class="proj-item-body">
@@ -1463,7 +1539,6 @@
 
     function editProfileDirectly() { if (viewingProfileId) showEngineerForm(viewingProfileId); }
 
-    /* RECORD DELETION LOGIC ROUTINES */
     function triggerProfileDeletion(id = null) { activeDeletionStagedId = id || viewingProfileId; document.getElementById('modal-backdrop').classList.add('open'); }
     function closeModal() { document.getElementById('modal-backdrop').classList.remove('open'); activeDeletionStagedId = null; }
     function confirmDelete() {
@@ -1515,7 +1590,6 @@
        NATIVE DOCUMENT WRAPPER GENERATOR — PLAIN WHITE BG WITH Crisp BLACK BORDERS
        ========================================================================= */
 
-    /* Parses multi-line inputs cleanly into matching bullet layouts for documents */
     function buildHtmlBulletsList(textRaw) {
       if(!textRaw) return '—';
       const lines = textRaw.split('\n').map(l => l.trim()).filter(Boolean);
@@ -1529,7 +1603,6 @@
       `</ul>`;
     }
 
-    /* Compiles table models into a valid Office transport container format */
     function triggerNativeDocxSave(filename, innerTableHtml) {
       const documentHtml = `
         <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
@@ -1563,7 +1636,6 @@
       URL.revokeObjectURL(url);
     }
 
-    /* SPEC DATA EXPORT METHOD 1: EXTRACT TEAM CHANNELS */
     function downloadTeamDocx(teamName) {
       const list = teamProjects.filter(p => p.teamName.toLowerCase() === teamName.toLowerCase());
       if(list.length === 0) {
@@ -1602,7 +1674,6 @@
       showSystemToast("✓ Team specifications table extracted");
     }
 
-    /* SPEC DATA EXPORT METHOD 2: EXTRACT INDIVIDUAL DOSSIERS */
     function downloadEngineerDocx(engineerObj) {
       let innerContent = `
         <h1>ENGINEER SYSTEM PROFILE: ${escapeHtmlStrings(engineerObj.name.toUpperCase())}</h1>
