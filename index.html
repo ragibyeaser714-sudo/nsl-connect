@@ -5,65 +5,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NSL Connect</title>
 
-  <!-- ── GOOGLE FONTS ── -->
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* ============================================================
-       SECTION 1 — CSS CUSTOM PROPERTIES (THEME VARIABLES)
-       Edit colors here to retheme the entire app instantly.
-       Two blocks below: [data-theme="dark"] and [data-theme="light"]
-    ============================================================ */
+    /* THEME SYSTEM VARIABLES */
+    [data-theme="dark"] {
+      --bg:        #0b111e;      
+      --bg2:       #101726;
+      --bg3:       #151f32;      
+      --panel:     #121b2d;      
+      --panel2:    #1a263f;      
+      --border:    #1f2f4a;      
+      --border2:   #2d4368;
+      --accent:    #38bdf8;      
+      --accent2:   #0284c7;      
+      --accent3:   #34d399;      
+      --warn:      #f87171;      
+      --warn2:     rgba(248, 113, 113, 0.08);
+      --text:      #e2e8f0;      
+      --text2:     #94a3b8;      
+      --text3:     #64748b;      
+      --shadow:    0 12px 32px rgba(3,7,18,0.5);
+      --glow:      0 0 20px rgba(56,189,248,0.12);
+      --grid-line: rgba(56,189,248,0.015);
+      --header-bg: rgba(11,17,30,0.92);
+    }
 
-    /* ---------- DARK THEME ---------- */
-    /* ---------- EYE-SOOTHING NAVY/BLUE DARK THEME ---------- */
-[data-theme="dark"] {
-  --bg:        #0b111e;      /* Soft, deep sapphire navy instead of harsh pitch black */
-  --bg2:       #101726;
-  --bg3:       #151f32;      /* Smooth slate-blue input fields */
-  --panel:     #121b2d;      /* Calm, protective panel darks */
-  --panel2:    #1a263f;      /* Soft highlight for hovers */
-  --border:    #1f2f4a;      /* Muted blue-grey grids */
-  --border2:   #2d4368;
-  --accent:    #38bdf8;      /* Sky blue (highly legible, zero neon blinding glare) */
-  --accent2:   #0284c7;      /* Rich oceanic mid-blue */
-  --accent3:   #34d399;      /* Soothing sage-mint green for status */
-  --warn:      #f87171;      /* Pastel rose-coral warning (calmer than hot red-orange) */
-  --warn2:     rgba(248, 113, 113, 0.08);
-  --text:      #e2e8f0;      /* Soft milk-white (prevents text vibrating against dark panels) */
-  --text2:     #94a3b8;      /* Foggy blue-grey for secondary notes */
-  --text3:     #64748b;      /* Legible but quiet placeholders */
-  --shadow:    0 12px 32px rgba(3,7,18,0.5);
-  --glow:      0 0 20px rgba(56,189,248,0.12);
-  --grid-line: rgba(56,189,248,0.015);
-  --header-bg: rgba(11,17,30,0.92);
-}
+    [data-theme="light"] {
+      --bg:        #f4f7fa;      
+      --bg2:       #e9eff5;
+      --bg3:       #ffffff;      
+      --panel:     #ffffff;      
+      --panel2:    #f0f4f8;      
+      --border:    #d0dbe7;      
+      --border2:   #a1b5cc;
+      --accent:    #0369a1;      
+      --accent2:   #0c4a6e;
+      --accent3:   #15803d;      
+      --warn:      #b91c1c;      
+      --warn2:     rgba(185, 28, 28, 0.06);
+      --text:      #0f172a;      
+      --text2:     #475569;      
+      --text3:     #64748b;      
+      --shadow:    0 6px 20px rgba(15,23,42,0.05);
+      --glow:      0 0 14px rgba(3,105,161,0.08);
+      --grid-line: rgba(3,105,161,0.025);
+      --header-bg: rgba(244,247,250,0.94);
+    }
 
-/* ---------- EYE-SOOTHING ICE-WHITE LIGHT THEME ---------- */
-[data-theme="light"] {
-  --bg:        #f4f7fa;      /* Clean, chilled ice-white (removes aggressive screen glare) */
-  --bg2:       #e9eff5;
-  --bg3:       #ffffff;      /* Pure white inputs for structural clarity */
-  --panel:     #ffffff;      /* crisp white panels floating on ice-white canvas */
-  --panel2:    #f0f4f8;      /* Creamy frosted blue-white hover state */
-  --border:    #d0dbe7;      /* Clean, soft architectural frame lines */
-  --border2:   #a1b5cc;
-  --accent:    #0369a1;      /* Deep sky-sapphire for ultra-clean clickable items */
-  --accent2:   #0c4a6e;
-  --accent3:   #15803d;      /* Deep forest green (easy on the optic nerve) */
-  --warn:      #b91c1c;      /* Classic crimson warning */
-  --warn2:     rgba(185, 28, 28, 0.06);
-  --text:      #0f172a;      /* Rich ink-navy instead of harsh stark black */
-  --text2:     #475569;      /* Smooth graphite for secondary descriptions */
-  --text3:     #64748b;      /* Steady slate placeholder (fully accessible, no squinting) */
-  --shadow:    0 6px 20px rgba(15,23,42,0.05);
-  --glow:      0 0 14px rgba(3,105,161,0.08);
-  --grid-line: rgba(3,105,161,0.025);
-  --header-bg: rgba(244,247,250,0.94);
-}
-    /* ============================================================
-       SECTION 2 — RESET & BASE STYLES
-    ============================================================ */
+    /* BASE RESET STYLES */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
@@ -75,7 +65,6 @@
       transition: background 0.3s, color 0.3s;
     }
 
-    /* Subtle grid texture overlaid on the background */
     body::before {
       content: '';
       position: fixed;
@@ -88,16 +77,12 @@
       z-index: 0;
     }
 
-    /* Custom thin scrollbar */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--text3); }
 
-    /* ============================================================
-       SECTION 3 — STICKY HEADER
-       Logo · status indicator · theme toggle button
-    ============================================================ */
+    /* HEADER & NAVIGATION */
     header {
       position: sticky;
       top: 0;
@@ -110,10 +95,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: background 0.3s, border-color 0.3s;
     }
 
-    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo { display: flex; align-items: center; gap: 12px; cursor: pointer; }
     .logo-icon { width: 36px; height: 36px; }
     .logo-icon svg { width: 100%; height: 100%; }
 
@@ -135,9 +119,33 @@
       margin-top: 2px;
     }
 
+    .nav-tabs {
+      display: flex;
+      gap: 1.5rem;
+      margin-left: 2rem;
+      margin-right: auto;
+    }
+
+    .nav-item {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--text2);
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      background: none;
+      border: none;
+      padding: 0.5rem 0;
+    }
+
+    .nav-item:hover, .nav-item.active {
+      color: var(--accent);
+    }
+
     .header-right { display: flex; align-items: center; gap: 1.2rem; }
 
-    /* Animated online status indicator */
     .header-status {
       display: flex;
       align-items: center;
@@ -159,7 +167,6 @@
       50%       { opacity: 0.3; }
     }
 
-    /* Dark / light toggle button */
     .theme-toggle {
       width: 38px; height: 38px;
       border-radius: 50%;
@@ -179,10 +186,7 @@
       background: var(--panel2);
     }
 
-    /* ============================================================
-       SECTION 4 — APP CONTAINER & VIEW SYSTEM
-       Only the .view.active div is shown at any time.
-    ============================================================ */
+    /* VIEW MANAGEMENT SYSTEM */
     .app {
       position: relative;
       z-index: 1;
@@ -194,7 +198,6 @@
     .view          { display: none; }
     .view.active   { display: block; }
 
-    /* Shared page header used across views */
     .page-header {
       margin-bottom: 2rem;
       display: flex;
@@ -221,12 +224,24 @@
       letter-spacing: 0.02em;
     }
 
-    /* ============================================================
-       SECTION 5 — DIRECTORY VIEW
-       Stats bar · search + filter chips · profile card grid
-    ============================================================ */
+    /* HOMEPAGE TEAM LAYOUTS */
+    .team-section {
+      margin-bottom: 2.5rem;
+    }
 
-    /* ── Stats bar ── */
+    .team-banner-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      border-left: 3px solid var(--accent);
+      padding-left: 10px;
+    }
+
+    /* COMPONENT STYLES & INTERACTIONS */
     .stats-bar { display: flex; gap: 0.8rem; margin-bottom: 1.4rem; flex-wrap: wrap; }
 
     .stat-pill {
@@ -241,12 +256,11 @@
     }
     .stat-pill span { color: var(--accent); font-weight: bold; margin-left: 4px; }
 
-    /* ── Search + filter row ── */
     .directory-toolbar {
       display: flex;
       align-items: center;
       gap: 1rem;
-      margin-bottom: 1.4rem;
+      margin-bottom: 1rem;
       flex-wrap: wrap;
     }
 
@@ -268,7 +282,6 @@
       border-color: var(--accent2);
       box-shadow: 0 0 0 3px rgba(0,130,180,0.08);
     }
-    .search-wrap input::placeholder { color: var(--text3); }
 
     .search-icon {
       position: absolute;
@@ -280,28 +293,82 @@
       pointer-events: none;
     }
 
-    /* ── Node filter chips ── */
-    .filter-chips { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    /* NODES MULTI FILTER BAR */
+    .nodes-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 1.4rem;
+      padding: 4px 0;
+    }
 
-    .chip {
+    .node-filter-pill {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.64rem;
-      padding: 4px 10px;
-      border-radius: 2px;
+      font-size: 0.7rem;
+      padding: 5px 12px;
+      background: var(--panel);
       border: 1px solid var(--border);
       color: var(--text2);
-      background: var(--panel);
+      border-radius: 4px;
       cursor: pointer;
-      transition: all 0.15s;
-      letter-spacing: 0.05em;
+      transition: all 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
-    .chip:hover, .chip.active {
+    .node-filter-pill:hover, .node-filter-pill.active {
+      background: rgba(56, 189, 248, 0.12);
       border-color: var(--accent);
       color: var(--accent);
-      background: rgba(0,150,200,0.07);
     }
 
-    /* ── Primary action button (Add Profile) ── */
+    /* INTERACTIVE TAGS CONTAINER INPUT */
+    .tags-input-style-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.6rem;
+      border-radius: 3px;
+      min-height: 38px;
+    }
+    .tags-input-style-container:focus-within {
+      border-color: var(--accent2);
+      box-shadow: 0 0 0 3px rgba(0,130,180,0.08);
+    }
+    .tags-input-style-container input {
+      border: none !important;
+      padding: 0 !important;
+      background: transparent !important;
+      outline: none !important;
+      flex: 1;
+      min-width: 140px;
+      height: 100%;
+      color: var(--text);
+    }
+    .input-tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      padding: 3px 8px;
+      background: var(--panel2);
+      border: 1px solid var(--border2);
+      color: var(--accent);
+      border-radius: 3px;
+    }
+    .input-tag-pill b {
+      cursor: pointer;
+      color: var(--text3);
+      font-weight: bold;
+      transition: color 0.15s;
+    }
+    .input-tag-pill b:hover {
+      color: var(--warn);
+    }
+
     .btn-primary {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 0.9rem;
@@ -318,14 +385,12 @@
     }
     .btn-primary:hover { filter: brightness(1.12); box-shadow: var(--glow); }
 
-    /* ── Profile card grid ── */
     .profile-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 1rem;
     }
 
-    /* ── Individual profile card ── */
     .profile-card {
       background: var(--panel);
       border: 1px solid var(--border);
@@ -337,14 +402,7 @@
       overflow: hidden;
       animation: fadeUp 0.35s ease both;
     }
-    /* Stagger animation delay for each card */
-    .profile-card:nth-child(2) { animation-delay: 0.05s; }
-    .profile-card:nth-child(3) { animation-delay: 0.10s; }
-    .profile-card:nth-child(4) { animation-delay: 0.15s; }
-    .profile-card:nth-child(5) { animation-delay: 0.20s; }
-    .profile-card:nth-child(6) { animation-delay: 0.25s; }
 
-    /* Top accent line that slides in on hover */
     .profile-card::before {
       content: '';
       position: absolute;
@@ -389,7 +447,6 @@
     }
     .card-desig { font-size: 0.75rem; color: var(--text2); margin-top: 2px; }
 
-    /* Node tags inside card */
     .nodes-wrap { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 0.7rem; }
 
     .node-tag {
@@ -401,6 +458,7 @@
       color: var(--accent);
       border-radius: 2px;
       letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
 
     .card-desc {
@@ -413,7 +471,6 @@
       overflow: hidden;
     }
 
-    /* Card bottom row */
     .card-footer {
       margin-top: 0.85rem;
       padding-top: 0.7rem;
@@ -433,7 +490,6 @@
 
     .card-actions { display: flex; gap: 0.35rem; }
 
-    /* Ghost outlined buttons (Edit / Delete on cards) */
     .btn-ghost {
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.62rem;
@@ -450,18 +506,14 @@
     .btn-ghost.btn-danger   { color: var(--text3); }
     .btn-ghost.btn-danger:hover { border-color: var(--warn); color: var(--warn); }
 
-    /* Empty state shown when no profiles or no search results */
-    .empty-state { text-align: center; padding: 4rem 2rem; color: var(--text3); }
+    .empty-state { text-align: center; padding: 4rem 2rem; color: var(--text3); width: 100%; grid-column: 1/-1;}
     .empty-state h3 {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1.2rem; color: var(--text2); margin-bottom: 0.4rem;
     }
     .empty-state p { font-size: 0.8rem; }
 
-    /* ============================================================
-       SECTION 6 — FORM VIEW
-       Sections: Basic Info + per-project blocks
-    ============================================================ */
+    /* FORM PANEL STYLES */
     .form-container { max-width: 780px; }
 
     .back-btn {
@@ -480,7 +532,6 @@
     }
     .back-btn:hover { color: var(--accent); }
 
-    /* Grouped form section card */
     .form-section {
       background: var(--panel);
       border: 1px solid var(--border);
@@ -489,7 +540,6 @@
       margin-bottom: 1rem;
     }
 
-    /* Section header label (e.g. "01 · Basic Information") */
     .form-section-title {
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.64rem;
@@ -501,12 +551,13 @@
       border-bottom: 1px solid var(--border);
     }
 
-    /* Two-column grid inside form sections */
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-row:last-of-type { margin-bottom: 0; }
     @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
 
     .field { margin-bottom: 1rem; }
     .field:last-child { margin-bottom: 0; }
+    .field-full { grid-column: 1 / -1; }
 
     .field label {
       display: block;
@@ -519,7 +570,6 @@
     }
     .field label .req { color: var(--accent); margin-left: 2px; }
 
-    /* Standard inputs, selects, textareas */
     .field input,
     .field select,
     .field textarea {
@@ -543,10 +593,9 @@
     }
     .field input::placeholder,
     .field textarea::placeholder { color: var(--text3); }
-    .field select { appearance: none; }
-    .field select option { background: var(--bg2); }
+    .field select { appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='%2364748b'><polygon points='0,2 10,2 5,8'/></svg>"); background-repeat: no-repeat; background-position: right 0.8rem center; padding-right: 2rem; }
+    .field select option { background: var(--bg2); color: var(--text); }
 
-    /* Small helper text below fields */
     .field-hint {
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.62rem;
@@ -554,64 +603,6 @@
       margin-top: 4px;
     }
 
-    /* ── Tag pill input component ── */
-    .tag-input-wrap {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      padding: 6px 8px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-      min-height: 42px;
-      align-items: center;
-      cursor: text;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    .tag-input-wrap:focus-within {
-      border-color: var(--accent2);
-      box-shadow: 0 0 0 3px rgba(0,130,180,0.08);
-    }
-
-    .tag-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.66rem;
-      padding: 3px 8px;
-      background: rgba(0,150,200,0.1);
-      border: 1px solid rgba(0,150,200,0.25);
-      color: var(--accent);
-      border-radius: 2px;
-    }
-
-    .tag-remove {
-      background: none;
-      border: none;
-      color: var(--accent2);
-      cursor: pointer;
-      font-size: 0.85rem;
-      line-height: 1;
-      padding: 0;
-      opacity: 0.7;
-      transition: opacity 0.15s;
-    }
-    .tag-remove:hover { opacity: 1; }
-
-    .tag-input-field {
-      flex: 1;
-      min-width: 100px;
-      background: none;
-      border: none;
-      outline: none;
-      color: var(--text);
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.83rem;
-    }
-    .tag-input-field::placeholder { color: var(--text3); }
-
-    /* ── NDA reminder banner ── */
     .nda-banner {
       display: flex;
       align-items: flex-start;
@@ -633,18 +624,14 @@
       margin-bottom: 2px;
     }
 
-    /* ── PROJECT BLOCK — one per project in the form ── */
     .project-block {
       background: var(--bg3);
       border: 1px solid var(--border);
       border-radius: 5px;
       margin-bottom: 0.85rem;
       overflow: hidden;
-      transition: border-color 0.2s;
     }
-    .project-block:focus-within { border-color: var(--border2); }
 
-    /* Clickable header row to collapse/expand project fields */
     .project-header {
       display: flex;
       align-items: center;
@@ -656,7 +643,6 @@
       user-select: none;
     }
 
-    /* PROJ·01 label badge */
     .project-num {
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.62rem;
@@ -665,24 +651,7 @@
       border: 1px solid rgba(0,150,200,0.2);
       border-radius: 2px;
       padding: 2px 7px;
-      flex-shrink: 0;
     }
-
-    .project-title-display {
-      flex: 1;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    /* Chevron rotates when collapsed */
-    .project-chevron {
-      font-size: 0.75rem;
-      color: var(--text3);
-      transition: transform 0.2s;
-    }
-    .project-block.collapsed .project-chevron { transform: rotate(-90deg); }
 
     .project-remove-btn {
       background: none;
@@ -691,22 +660,16 @@
       cursor: pointer;
       font-size: 1rem;
       padding: 2px 4px;
-      transition: color 0.15s;
     }
     .project-remove-btn:hover { color: var(--warn); }
 
-    /* Form fields grid inside each project block */
     .project-body {
       padding: 1.1rem;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1rem;
     }
-    .project-body.collapsed    { display: none; }
-    .project-body .field-full  { grid-column: 1 / -1; } /* span both columns */
-    @media (max-width: 560px)  { .project-body { grid-template-columns: 1fr; } }
 
-    /* Dashed "Add Project" button */
     .btn-add-project {
       display: flex;
       align-items: center;
@@ -725,12 +688,8 @@
       letter-spacing: 0.08em;
       margin-top: 0.5rem;
     }
-    .btn-add-project:hover {
-      background: rgba(0,150,200,0.1);
-      border-color: var(--accent);
-    }
+    .btn-add-project:hover { background: rgba(0,150,200,0.1); border-color: var(--accent); }
 
-    /* Cancel and Save buttons at form bottom */
     .form-actions { display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1.5rem; }
 
     .btn-cancel {
@@ -744,7 +703,6 @@
       color: var(--text2);
       border-radius: 3px;
       cursor: pointer;
-      transition: all 0.2s;
     }
     .btn-cancel:hover { border-color: var(--text2); color: var(--text); }
 
@@ -752,24 +710,19 @@
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 0.88rem;
       font-weight: 700;
-      letter-spacing: 0.1em;
-      padding: 0.6rem 1.8rem;
-      background: var(--accent);
+      letter-spacing: 0.08em;
+      padding: 0.6rem 1.4rem;
+      background: var(--accent3);
       color: #000;
       border: none;
       border-radius: 3px;
       cursor: pointer;
-      transition: all 0.2s;
     }
-    .btn-save:hover { filter: brightness(1.1); box-shadow: var(--glow); }
+    .btn-save:hover { filter: brightness(1.1); }
 
-    /* ============================================================
-       SECTION 7 — DETAIL VIEW
-       Full engineer profile page with project accordion
-    ============================================================ */
+    /* PROFILE DETAILS PAGE */
     .profile-detail { max-width: 820px; }
 
-    /* Hero header card */
     .detail-header {
       display: flex;
       align-items: flex-start;
@@ -782,7 +735,6 @@
       position: relative;
       overflow: hidden;
     }
-    /* Gradient accent line at top of hero card */
     .detail-header::after {
       content: '';
       position: absolute;
@@ -817,7 +769,6 @@
     .detail-desig { font-size: 0.85rem; color: var(--text2); margin-bottom: 0.7rem; }
     .detail-actions { margin-left: auto; display: flex; gap: 0.5rem; flex-shrink: 0; }
 
-    /* Reusable panel for detail view sections */
     .detail-section {
       background: var(--panel);
       border: 1px solid var(--border);
@@ -835,7 +786,6 @@
       margin-bottom: 0.85rem;
     }
 
-    /* Collapsible project row inside detail view */
     .proj-item {
       border: 1px solid var(--border);
       border-radius: 4px;
@@ -851,9 +801,7 @@
       background: var(--bg3);
       cursor: pointer;
       user-select: none;
-      transition: background 0.15s;
     }
-    .proj-item-header:hover { background: var(--panel2); }
 
     .proj-item-name {
       flex: 1;
@@ -865,11 +813,9 @@
 
     .proj-item-body {
       padding: 0.85rem 1rem;
-      display: none;
       background: var(--panel);
       border-top: 1px solid var(--border);
     }
-    .proj-item-body.open { display: block; }
 
     .proj-detail-row { margin-bottom: 0.75rem; }
     .proj-detail-row:last-child { margin-bottom: 0; }
@@ -883,42 +829,15 @@
       margin-bottom: 5px;
     }
 
-    .proj-detail-val { font-size: 0.82rem; color: var(--text); line-height: 1.55; }
+    .proj-detail-val { font-size: 0.82rem; color: var(--text); line-height: 1.55; white-space: pre-wrap; }
 
-    /* Bullet list for goals and achievements */
-    .bullet-list { list-style: none; padding: 0; }
-    .bullet-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.5rem;
-      font-size: 0.82rem;
-      color: var(--text);
-      padding: 3px 0;
-      line-height: 1.45;
-    }
-    .bullet-dot {
-      width: 5px; height: 5px;
-      background: var(--accent);
-      border-radius: 50%;
-      flex-shrink: 0;
-      margin-top: 7px;
+    .meta-grid-display {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.2rem;
     }
 
-    /* Meta information row at bottom of detail */
-    .meta-row { display: flex; gap: 2.5rem; flex-wrap: wrap; }
-    .meta-block .meta-label {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--text3);
-      margin-bottom: 4px;
-    }
-    .meta-block .meta-val { font-size: 0.83rem; color: var(--text); }
-
-    /* ============================================================
-       SECTION 8 — DELETE CONFIRMATION MODAL
-    ============================================================ */
+    /* SYSTEM OVERLAYS & MODALS */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -937,7 +856,7 @@
       border: 1px solid var(--border2);
       border-radius: 8px;
       padding: 2rem;
-      max-width: 420px;
+      max-width: 500px;
       width: 100%;
       box-shadow: 0 24px 80px rgba(0,0,0,0.65);
       animation: modal-in 0.25s ease;
@@ -949,44 +868,11 @@
     }
 
     .modal-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+    .modal h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+    .modal p { font-size: 0.82rem; color: var(--text2); line-height: 1.6; margin-bottom: 1.5rem; }
+    .modal-actions { display: flex; gap: 0.5rem; justify-content: flex-end; }
 
-    .modal h3 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 0.5rem;
-    }
-
-    .modal p {
-      font-size: 0.8rem;
-      color: var(--text2);
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-    }
-
-    .modal-actions { display: flex; gap: 0.75rem; justify-content: flex-end; }
-
-    .btn-delete {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      padding: 0.6rem 1.6rem;
-      background: var(--warn);
-      color: #fff;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-      transition: filter 0.2s;
-    }
-    .btn-delete:hover { filter: brightness(1.1); }
-
-    /* ============================================================
-       SECTION 9 — TOAST + UNDO BAR
-       Toast: bottom-right brief messages
-       Undo bar: bottom-center, shows 60s countdown after delete
-    ============================================================ */
+    /* SYSTEM MESSAGES */
     .toast {
       position: fixed;
       bottom: 2rem;
@@ -1007,7 +893,6 @@
     }
     .toast.show { transform: translateY(0); opacity: 1; pointer-events: auto; }
 
-    /* Undo bar — appears after delete, shows 60s countdown */
     .undo-bar {
       position: fixed;
       bottom: 2rem;
@@ -1030,12 +915,7 @@
       pointer-events: none;
       white-space: nowrap;
     }
-    .undo-bar.show {
-      transform: translateX(-50%) translateY(0);
-      opacity: 1;
-      pointer-events: auto;
-    }
-
+    .undo-bar.show { transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: auto; }
     .undo-msg    { color: var(--text2); }
     .undo-timer  { color: var(--warn); font-weight: bold; min-width: 32px; }
 
@@ -1050,29 +930,18 @@
       border: none;
       border-radius: 2px;
       cursor: pointer;
-      transition: filter 0.15s;
     }
-    .btn-undo:hover { filter: brightness(1.1); }
 
-    /* ============================================================
-       SECTION 10 — KEYFRAME ANIMATIONS
-    ============================================================ */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-
   </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════════════
-     HEADER
-     Logo · system status dot · dark/light toggle
-══════════════════════════════════════════════════ -->
 <header>
-  <div class="logo">
-    <!-- Chip SVG icon — edit stroke colors to match your brand -->
+  <div class="logo" onclick="showProjectsHome()">
     <div class="logo-icon">
       <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="1" y="1" width="34" height="34" rx="3" stroke="var(--border2)" stroke-width="1.5"/>
@@ -1080,991 +949,969 @@
         <rect x="19" y="7" width="10" height="10" rx="1" fill="none" stroke="var(--accent)"  stroke-width="1.2"/>
         <rect x="7" y="19" width="10" height="10" rx="1" fill="none" stroke="var(--accent3)" stroke-width="1.2"/>
         <rect x="19" y="19" width="10" height="10" rx="1" fill="none" stroke="var(--accent3)" stroke-width="1.2"/>
-        <line x1="12" y1="17" x2="12" y2="19" stroke="var(--accent)"  stroke-width="1"/>
-        <line x1="24" y1="17" x2="24" y2="19" stroke="var(--accent)"  stroke-width="1"/>
-        <line x1="17" y1="12" x2="19" y2="12" stroke="var(--accent)"  stroke-width="1"/>
-        <line x1="17" y1="24" x2="19" y2="24" stroke="var(--accent3)" stroke-width="1"/>
       </svg>
     </div>
     <div>
       <div class="logo-text">NSL <span>Connect</span></div>
-      <div class="logo-sub">EEEEEngineer Directory · VLSI</div>
+      <div class="logo-sub">VLSI Collaborative Hub</div>
     </div>
+  </div>
+
+  <div class="nav-tabs">
+    <button class="nav-item active" id="tab-projects" onclick="showProjectsHome()">All Projects</button>
+    <button class="nav-item" id="tab-directory" onclick="showDirectory()">Engineers Directory</button>
   </div>
 
   <div class="header-right">
-    <div class="header-status">
-      <div class="status-dot"></div>
-      SYSTEM ONLINE
-    </div>
-    <!-- Click to switch between dark and light themes -->
-    <button class="theme-toggle" id="theme-toggle-btn"
-            title="Toggle light / dark theme" onclick="toggleTheme()">🌙</button>
+    <div class="header-status"><div class="status-dot"></div>SYSTEM ONLINE</div>
+    <button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()">🌙</button>
   </div>
 </header>
 
-
-<!-- ══════════════════════════════════════════════════
-     MAIN APP CONTAINER
-══════════════════════════════════════════════════ -->
 <div class="app">
 
+  <div id="view-projects-home" class="view active">
+    <div class="page-header">
+      <div>
+        <div class="page-eyebrow">// team_specifications</div>
+        <div class="page-heading">All Team Projects</div>
+      </div>
+      <button class="btn-primary" onclick="showTeamProjectForm()">+ Add Project Detail</button>
+    </div>
 
-  <!-- ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-       VIEW 1 — DIRECTORY
-       Shows all engineers as cards
-  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ -->
-  <div id="view-directory" class="view active">
+    <div id="teams-distribution-wrapper"></div>
+  </div>
 
+  <div id="view-project-upload-form" class="view">
+    <div class="form-container">
+      <button class="back-btn" onclick="showProjectsHome()">← BACK TO ALL PROJECTS</button>
+      
+      <div class="page-header" style="margin-bottom:1.2rem;">
+        <div>
+          <div class="page-eyebrow">// project_logger</div>
+          <div class="page-heading">Describe Project Specifications</div>
+        </div>
+      </div>
+
+      <div class="nda-banner">
+        <div class="nda-icon">⚠</div>
+        <div class="nda-text">
+          <strong>NDA Preservation Rule</strong>
+          Describe all validation parameters and achievements at a high, schematic-generalized level. Do not specify foundry source fields or proprietary node names directly if bounded by NDA.
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Project Context & Parameters</div>
+        
+        <div class="form-row">
+          <div class="field">
+            <label>Select Originating Team <span class="req">*</span></label>
+            <select id="proj-team-select" onchange="toggleCustomTeamField()">
+              <option value="Analog Mixed Signal">Analog Mixed Signal</option>
+              <option value="Layout">Layout</option>
+              <option value="RF">RF</option>
+              <option value="Memory">Memory</option>
+              <option value="GPIO">GPIO</option>
+              <option value="Others">Others</option>
+            </select>
+          </div>
+          <div class="field" id="custom-team-field-block" style="display: none;">
+            <label>Provide Team Name <span class="req">*</span></label>
+            <input type="text" id="proj-custom-team" placeholder="e.g. Standard I/O Team" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label>Project Name <span class="req">*</span></label>
+            <input type="text" id="proj-title-input" placeholder="e.g. Ultra-Low Power Bandgap Setup" />
+          </div>
+          <div class="field">
+            <label>Process Node <span class="req">*</span></label>
+            <div class="tags-input-style-container">
+              <div id="proj-node-tags" style="display: flex; flex-wrap: wrap; gap: 4px;"></div>
+              <input type="text" id="proj-node-input" placeholder="Type node & press Space or Comma" />
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Goal <span class="req">*</span></label>
+          <textarea id="proj-goal-input" rows="3" placeholder="Describe main architectural targets or parameters..."></textarea>
+        </div>
+
+        <div class="field">
+          <label>Key Achievements <span class="req">*</span></label>
+          <textarea id="proj-achv-input" rows="3" placeholder="Silicon proven parameters, layout area optimization tracking..."></textarea>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn-cancel" onclick="showProjectsHome()">Cancel</button>
+        <button class="btn-save" onclick="saveTeamProject()">UPLOAD SPECIFICATION</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="view-directory" class="view">
     <div class="page-header">
       <div>
         <div class="page-eyebrow">// engineer_registry</div>
         <div class="page-heading">Team Directory</div>
       </div>
-      <button class="btn-primary" onclick="showForm()">+ Add Profile</button>
+      <button class="btn-primary" onclick="showEngineerForm()">+ Add Engineer Profile</button>
     </div>
 
-    <!-- Quick stats: headcount, nodes, total projects -->
     <div class="stats-bar">
-      <div class="stat-pill">Engineers: <span id="stat-count">0</span></div>
-      <div class="stat-pill">Active Nodes: <span id="stat-nodes">—</span></div>
-      <div class="stat-pill">Projects Logged: <span id="stat-projects">0</span></div>
+      <div class="stat-pill">Engineers Counted: <span id="stat-count">0</span></div>
+      <div class="stat-pill">Active Nodes Logged: <span id="stat-nodes">—</span></div>
     </div>
 
-    <!-- Search input + node filter chips -->
     <div class="directory-toolbar">
       <div class="search-wrap">
         <span class="search-icon">⌕</span>
-        <input type="text" id="search-input"
-               placeholder="Search by name, node, designation, project…"
-               oninput="filterProfiles()" />
-      </div>
-      <div class="filter-chips" id="filter-chips"></div>
-    </div>
-
-    <!-- Profile cards injected here by renderCards() -->
-    <div class="profile-grid" id="profile-grid">
-      <div class="empty-state">
-        <h3>No profiles yet</h3>
-        <p>Click <strong style="color:var(--accent)">+ Add Profile</strong> to get started.</p>
+        <input type="text" id="search-input" placeholder="Search profiles by name, background expertise..." oninput="filterProfiles()" />
       </div>
     </div>
 
-  </div><!-- /view-directory -->
+    <div class="nodes-filter-bar" id="directory-nodes-filter"></div>
 
+    <div class="profile-grid" id="profile-grid"></div>
+  </div>
 
-  <!-- ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-       VIEW 2 — FORM  (Add / Edit)
-       Basic info + per-project blocks
-  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ -->
-  <div id="view-form" class="view">
+  <div id="view-profile-form" class="view">
     <div class="form-container">
-
       <button class="back-btn" onclick="showDirectory()">← BACK TO DIRECTORY</button>
 
       <div class="page-header" style="margin-bottom:1.2rem;">
         <div>
-          <div class="page-eyebrow">// profile_editor</div>
-          <div class="page-heading" id="form-heading">New Profile</div>
+          <div class="page-eyebrow">// profile_format_builder</div>
+          <h2 class="page-heading" id="profile-form-heading">New Profile Setup</h2>
         </div>
       </div>
 
-      <!-- NDA reminder — keep this visible to guide engineers -->
-      <div class="nda-banner">
-        <div class="nda-icon">⚠</div>
-        <div class="nda-text">
-          <strong>NDA Reminder</strong>
-          Do not enter proprietary circuit details, customer-specific data, unreleased process
-          parameters, or any information covered by your NDA. Describe all work at a high level only.
-        </div>
-      </div>
-
-      <!-- ── SECTION 01: Basic Info ── -->
       <div class="form-section">
-        <div class="form-section-title">01 · Basic Information</div>
-
+        <div class="form-section-title">01 · Background Information</div>
         <div class="form-row">
           <div class="field">
             <label>Full Name <span class="req">*</span></label>
-            <input type="text" id="f-name" placeholder="e.g. Tariq Rahman" />
+            <input type="text" id="ep-name" placeholder="Ragib Yeaser" />
           </div>
           <div class="field">
-            <label>Designation <span class="req">*</span></label>
-            <input type="text" id="f-desig" placeholder="e.g. Senior Physical Design Engineer" />
+            <label>Years of Experience <span class="req">*</span></label>
+            <input type="text" id="ep-yoe" placeholder="e.g. 5 Years 5 Months" />
           </div>
         </div>
-
         <div class="form-row">
           <div class="field">
-            <label>Department</label>
-            <input type="text" id="f-dept" placeholder="e.g. Physical Design, DFT, RTL…" />
+            <label>University <span class="req">*</span></label>
+            <input type="text" id="ep-uni" placeholder="Engineering Institution Name" />
           </div>
           <div class="field">
-            <label>Years of Experience</label>
-            <input type="number" id="f-yoe" placeholder="e.g. 6" min="0" max="60" />
+            <label>Education Background <span class="req">*</span></label>
+            <input type="text" id="ep-edu" placeholder="e.g. Master of Science in Electrical and Computer Engineering" />
           </div>
         </div>
-
         <div class="field">
-          <label>Brief Summary <span class="req">*</span></label>
-          <textarea id="f-desc" rows="3"
-            placeholder="High-level overview of your expertise, tools, and methodologies. No confidential details.">
-          </textarea>
-          <div class="field-hint">No customer names, design IDs, or unreleased specs.</div>
+          <label>Key Expertise <span class="req">*</span></label>
+          <input type="text" id="ep-keyexp" placeholder="e.g., AMS Custom Layout, HV layout, FinFET Layout, MHC" />
         </div>
       </div>
 
-      <!-- ── SECTION 02: Projects ── -->
-      <!-- Each project is a collapsible block added via addProjectBlock() -->
       <div class="form-section">
-        <div class="form-section-title">02 · Projects</div>
-
-        <!-- Project blocks injected here -->
-        <div id="projects-container"></div>
-
-        <!-- Clicking this adds a new blank project block -->
-        <button class="btn-add-project" onclick="addProjectBlock()">
-          ＋ ADD ANOTHER PROJECT
-        </button>
+        <div class="form-section-title">02 · Tool Expertise Ecosystem</div>
+        <div class="form-row">
+          <div class="field">
+            <label>Circuit Design & Simulation</label>
+            <input type="text" id="ep-t-circuit" placeholder="e.g., Cadence Virtuoso Schematic Editor, ADE Explorer" />
+          </div>
+          <div class="field">
+            <label>Layout Design</label>
+            <input type="text" id="ep-t-layout" placeholder="e.g., Cadence Virtuoso Layout Editor (Layout-L, Layout-XL)" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label>Physical Verification</label>
+            <input type="text" id="ep-t-phys" placeholder="e.g., Assura, Calibre, Pegasus, PVS" />
+          </div>
+          <div class="field">
+            <label>Parasitic Extraction</label>
+            <input type="text" id="ep-t-parasitic" placeholder="e.g., Assura, StarRC, QuantusRC (QRC)" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label>Reliability Validation</label>
+            <input type="text" id="ep-t-reliability" placeholder="e.g., Totem, EMX" />
+          </div>
+          <div class="field">
+            <label>Project Management</label>
+            <input type="text" id="ep-t-pm" placeholder="e.g., ClioSoft SOS, ClearCase, ICM, VersIC" />
+          </div>
+        </div>
       </div>
 
-      <!-- Form action buttons -->
+      <div class="form-section">
+        <div class="form-section-title">03 · Base Technical Foundations</div>
+        <div class="form-row">
+          <div class="field">
+            <label>Technology Base Nodes <span class="req">*</span></label>
+            <div class="tags-input-style-container">
+              <div id="ep-b-tech-tags" style="display: flex; flex-wrap: wrap; gap: 4px;"></div>
+              <input type="text" id="ep-b-tech" placeholder="Type node & press Space or Comma" />
+            </div>
+          </div>
+          <div class="field">
+            <label>Foundry Background</label>
+            <input type="text" id="ep-b-foundry" placeholder="e.g., Samsung, Intel, TSMC, UMC, GF" />
+          </div>
+          <div class="field">
+            <label>Process Types</label>
+            <input type="text" id="ep-b-process" placeholder="e.g., FinFET, BCD, FDSOI, Planar" />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">04 · Layout Project Experience Logs</div>
+        <div class="nda-banner">
+          <div class="nda-text">
+            <strong>Formatting Guide Rule</strong>
+            Do not use confidential system properties. Assign generalized naming structures (e.g., Ring oscillator).
+          </div>
+        </div>
+        <div id="dynamic-engineer-projects-box"></div>
+        <button class="btn-add-project" onclick="addEngineerProjectFormBlock()">＋ ADD DETAILED PROJECT RECORD</button>
+      </div>
+
       <div class="form-actions">
         <button class="btn-cancel" onclick="showDirectory()">Cancel</button>
-        <button class="btn-save"   onclick="saveProfile()">SAVE PROFILE</button>
+        <button class="btn-save" onclick="saveEngineerProfile()">SAVE PROFILE SYSTEM</button>
       </div>
-
     </div>
-  </div><!-- /view-form -->
+  </div>
 
-
-  <!-- ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-       VIEW 3 — PROFILE DETAIL
-       Full read-only profile page
-  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ -->
-  <div id="view-detail" class="view">
+  <div id="view-profile-detail" class="view">
     <div class="profile-detail">
-
       <button class="back-btn" onclick="showDirectory()">← BACK TO DIRECTORY</button>
 
-      <!-- Hero card: avatar · name · designation · nodes -->
       <div class="detail-header">
-        <div class="detail-avatar" id="detail-avatar"></div>
+        <div class="detail-avatar" id="d-avatar">RY</div>
         <div style="flex:1; min-width:0;">
-          <div class="detail-name"  id="detail-name"></div>
-          <div class="detail-desig" id="detail-desig"></div>
-          <div class="nodes-wrap"   id="detail-nodes"></div>
+          <div class="detail-name" id="d-name">Engineer Name</div>
+          <div class="detail-desig" id="d-yoe">Experience Parameters</div>
+          <div class="nodes-wrap" id="d-nodes-box"></div>
         </div>
-        <!-- Edit and Delete buttons (top-right of hero) -->
         <div class="detail-actions">
-          <button class="btn-ghost"             onclick="editCurrentProfile()">EDIT</button>
-          <button class="btn-ghost btn-danger"  onclick="promptDelete(currentViewId)">DELETE</button>
+          <button class="btn-ghost" onclick="editProfileDirectly()">EDIT</button>
+          <button class="btn-ghost btn-danger" onclick="triggerProfileDeletion()">DELETE</button>
         </div>
       </div>
 
-      <!-- Summary paragraph -->
       <div class="detail-section">
-        <div class="detail-section-label">// Summary</div>
-        <p id="detail-desc" style="font-size:0.83rem;color:var(--text);line-height:1.65;"></p>
-      </div>
-
-      <!-- Projects accordion (hidden when no projects) -->
-      <div class="detail-section" id="detail-projects-section">
-        <div class="detail-section-label">// Projects</div>
-        <div id="detail-projects"></div>
-      </div>
-
-      <!-- Meta: dept, yoe, updated timestamp -->
-      <div class="detail-section">
-        <div class="meta-row">
-          <div class="meta-block">
-            <div class="meta-label">Department</div>
-            <div class="meta-val" id="detail-dept"></div>
-          </div>
-          <div class="meta-block">
-            <div class="meta-label">Experience</div>
-            <div class="meta-val" id="detail-yoe"></div>
-          </div>
-          <div class="meta-block">
-            <div class="meta-label">Last Updated</div>
-            <div class="meta-val"
-                 style="font-family:'Share Tech Mono',monospace;font-size:0.75rem;"
-                 id="detail-updated"></div>
-          </div>
+        <div class="detail-section-label">// Academic & Core Summary</div>
+        <div class="meta-grid-display">
+          <div class="proj-detail-row"><div class="proj-detail-label">University</div><div class="proj-detail-val" id="d-uni">—</div></div>
+          <div class="proj-detail-row"><div class="proj-detail-label">Background Education</div><div class="proj-detail-val" id="d-edu">—</div></div>
+          <div class="proj-detail-row"><div class="proj-detail-label">Key Expertise</div><div class="proj-detail-val" id="d-keyexp">—</div></div>
         </div>
       </div>
 
+      <div class="detail-section">
+        <div class="detail-section-label">// System Tool Infrastructure</div>
+        <div class="meta-grid-display">
+          <div class="proj-detail-row"><div class="proj-detail-label">Circuit & Sim</div><div class="proj-detail-val" id="d-t-circuit">—</div></div>
+          <div class="proj-detail-row"><div class="proj-detail-label">Layout Architecture</div><div class="proj-detail-val" id="d-t-layout">—</div></div>
+          <div class="proj-detail-row"><div class="proj-detail-label">Physical verification</div><div class="proj-detail-val" id="d-t-phys">—</div></div>
+          <div class="proj-detail-row"><div class="proj-detail-label">Extraction tracking</div><div class="proj-detail-val" id="d-t-parasitic">—</div></div>
+          <div class="proj-detail-row"><div class="proj-detail-label">Reliability infrastructure</div><div class="proj-detail-val" id="d-t-rel">—</div></div>
+          <div class="proj-detail-row"><div class="proj-detail-label">Project Management</div><div class="proj-detail-val" id="d-t-pm">—</div></div>
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <div class="detail-section-label">// Technical Base Targets</div>
+        <div class="meta-grid-display">
+          <div class="proj-detail-row"><div class="proj-detail-label">Nodes</div><div class="proj-detail-val" id="d-b-tech">—</div></div>
+          <div class="proj-detail-row"><div class="proj-detail-label">Foundries</div><div class="proj-detail-val" id="d-b-foundry">—</div></div>
+          <div class="proj-detail-row"><div class="proj-detail-label">Processes</div><div class="proj-detail-val" id="d-b-process">—</div></div>
+        </div>
+      </div>
+
+      <div class="detail-section" id="d-project-section-wrapper">
+        <div class="detail-section-label">// Tracked Layout Experience History</div>
+        <div id="d-projects-accordion-target"></div>
+      </div>
     </div>
-  </div><!-- /view-detail -->
+  </div>
 
+</div>
 
-</div><!-- /app -->
+<div class="modal-backdrop" id="project-popup-backdrop">
+  <div class="modal">
+    <div class="modal-icon">📁</div>
+    <h3 id="pop-project-name">Project Title</h3>
+    <p style="margin-bottom:0.8rem;"><strong style="color:var(--accent);">Team Assignment:</strong> <span id="pop-project-team">AMS</span></p>
+    <p style="margin-bottom:0.8rem;"><strong style="color:var(--accent);">Process Geometry:</strong> <span id="pop-project-node">7nm</span></p>
+    <div style="margin-bottom: 1rem;">
+      <div class="proj-detail-label">Project Goal</div>
+      <div class="proj-detail-val" id="pop-project-goal" style="background:var(--bg2); padding:8px; border-radius:4px;">—</div>
+    </div>
+    <div style="margin-bottom: 1.5rem;">
+      <div class="proj-detail-label">Key Achievements</div>
+      <div class="proj-detail-val" id="pop-project-achv" style="background:var(--bg2); padding:8px; border-radius:4px;">—</div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-primary" onclick="closeProjectPopup()">Acknowledge Details</button>
+    </div>
+  </div>
+</div>
 
-
-<!-- ══════════════════════════════════════════════════
-     DELETE CONFIRMATION MODAL
-     Triggered by promptDelete(); closed by closeModal()
-══════════════════════════════════════════════════ -->
 <div class="modal-backdrop" id="modal-backdrop">
   <div class="modal">
     <div class="modal-icon">🗑️</div>
     <h3>Delete this profile?</h3>
     <p>
-      This will remove the engineer's profile from NSL Connect.<br>
-      <strong style="color:var(--warn);">You will have 60 seconds to undo</strong>
-      the deletion before it becomes permanent.
+      This will remove the engineer's record from NSL Connect.<br>
+      <strong style="color:var(--warn);">You will have 60 seconds to undo</strong> the deletion before it becomes permanent.
     </p>
     <div class="modal-actions">
       <button class="btn-cancel" onclick="closeModal()">Cancel</button>
-      <button class="btn-delete" onclick="confirmDelete()">Yes, Delete</button>
+      <button class="btn-delete" style="background:var(--warn); border:none; padding:0.6rem 1.6rem; color:#fff; border-radius:3px; cursor:pointer;" onclick="confirmDelete()">Yes, Delete</button>
     </div>
   </div>
 </div>
 
-
-<!-- ══════════════════════════════════════════════════
-     TOAST — brief status messages (bottom-right)
-══════════════════════════════════════════════════ -->
 <div class="toast" id="toast"></div>
 
-
-<!-- ══════════════════════════════════════════════════
-     UNDO BAR — appears for 60s after a delete
-══════════════════════════════════════════════════ -->
 <div class="undo-bar" id="undo-bar">
-  <span class="undo-msg">Profile deleted.</span>
+  <span class="undo-msg">Profile data extracted.</span>
   <span class="undo-timer" id="undo-timer">60s</span>
-  <button class="btn-undo" onclick="undoDelete()">UNDO</button>
+  <button class="btn-undo" onclick="undoDelete()">UNDO ACTIONS</button>
 </div>
 
-
-<!-- ══════════════════════════════════════════════════
-     JAVASCRIPT
-══════════════════════════════════════════════════ -->
 <script>
-/* ===========================================================
-   STATE
-   profiles  — master array of all engineer profile objects
-   editingId — id of profile currently being edited (null = new)
-   currentViewId — id of profile open in the detail view
-   projects  — working array of project objects while the form is open
-=========================================================== */
-let profiles      = JSON.parse(localStorage.getItem('nsl_profiles') || '[]');
-let editingId     = null;
-let currentViewId = null;
-let projects      = [];   // populated when a form is open
+  // Databases Configuration Mapping
+  let profiles = JSON.parse(localStorage.getItem('nsl_profiles_v2') || '[]');
+  let teamProjects = JSON.parse(localStorage.getItem('nsl_team_projects_v2') || '[]');
 
-/* Delete / undo state */
-let deletedProfile  = null;  // snapshot of the deleted profile
-let undoInterval    = null;  // setInterval handle for countdown
-let undoSecondsLeft = 60;
+  let editingProfileId = null;
+  let viewingProfileId = null;
+  
+  // Storage arrays holding tag entries during interactive configuration steps
+  let engineerTechTags = [];
+  let projectNodeTags = [];
+  let selectedNodeFilter = 'ALL';
 
-/* Directory filter state */
-let activeFilter = 'all';
+  /* System Restore Storage Slots */
+  let deletedProfileSnapshot = null;
+  let undoInterval = null;
+  let undoSecondsRemaining = 60;
 
-/* ===========================================================
-   THEME TOGGLE
-   Persists preference in localStorage as 'nsl_theme'
-=========================================================== */
-function toggleTheme() {
-  const html   = document.documentElement;
-  const isDark = html.getAttribute('data-theme') === 'dark';
-  const next   = isDark ? 'light' : 'dark';
-  html.setAttribute('data-theme', next);
-  document.getElementById('theme-toggle-btn').textContent = isDark ? '☀️' : '🌙';
-  localStorage.setItem('nsl_theme', next);
-}
+  window.onload = () => {
+    renderGroupedTeamProjects();
+    initializeTagEvents('ep-b-tech', 'ep-b-tech-tags', 'ENGINEER');
+    initializeTagEvents('proj-node-input', 'proj-node-tags', 'PROJECT');
+  };
 
-/* Apply saved theme before first paint */
-(function initTheme() {
-  const saved = localStorage.getItem('nsl_theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', saved);
-  document.getElementById('theme-toggle-btn').textContent = saved === 'dark' ? '🌙' : '☀️';
-})();
-
-/* ===========================================================
-   UTILITIES
-=========================================================== */
-
-/* Two-letter initials from a full name */
-function initials(name) {
-  return name.split(' ').filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join('');
-}
-
-/* "12 Jun 2025" from a Unix timestamp */
-function fmt(ts) {
-  return new Date(ts).toLocaleDateString('en-GB', {
-    day: '2-digit', month: 'short', year: 'numeric'
-  });
-}
-
-/* Short unique id — no external library needed */
-function uid() {
-  return Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
-}
-
-/* Write profiles to localStorage */
-function persist() {
-  localStorage.setItem('nsl_profiles', JSON.stringify(profiles));
-}
-
-/* Escape HTML to prevent XSS when building innerHTML strings */
-function escHtml(str) {
-  if (!str) return '';
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-}
-
-/* ===========================================================
-   VIEW SWITCHING
-=========================================================== */
-function setView(id) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function showDirectory() {
-  setView('view-directory');
-  renderDirectory();
-}
-
-function showForm(id = null) {
-  setView('view-form');
-  resetForm();
-  editingId = null;
-
-  if (id) {
-    /* Editing an existing profile */
-    editingId = id;
-    const p = profiles.find(x => x.id === id);
-    if (p) populateForm(p);
-    document.getElementById('form-heading').textContent = 'Edit Profile';
-  } else {
-    /* New profile — add one blank project to start */
-    document.getElementById('form-heading').textContent = 'New Profile';
-    addProjectBlock();
-  }
-}
-
-function showDetail(id) {
-  currentViewId = id;
-  setView('view-detail');
-  renderDetail(id);
-}
-
-function editCurrentProfile() { showForm(currentViewId); }
-
-/* ===========================================================
-   PROJECT BLOCKS (form)
-   Each block has: name · node · goals (tags) · achievements (tags)
-   projects[] array mirrors the DOM blocks as source of truth.
-=========================================================== */
-
-/* Add one project block to the form.
-   Pass an existing project object when editing, null for a new empty block. */
-function addProjectBlock(data) {
-  const pid  = data ? data._id : uid();
-  const proj = data
-    ? { ...data }
-    : { _id: pid, name: '', node: '', goals: [], achievements: [] };
-
-  if (!data) projects.push(proj);
-
-  const idx = projects.findIndex(p => p._id === pid);
-  const num = String(idx + 1).padStart(2, '0');
-
-  /* Build block HTML */
-  const block = document.createElement('div');
-  block.className = 'project-block';
-  block.id        = 'pb-' + pid;
-
-  block.innerHTML = `
-    <!-- Clickable header row (collapse / expand) -->
-    <div class="project-header" onclick="toggleProjectBlock('${pid}')">
-      <span class="project-num">PROJ·${num}</span>
-      <span class="project-title-display" id="ptitle-${pid}">
-        ${escHtml(proj.name) || 'Untitled Project'}
-      </span>
-      <!-- Remove button — stops propagation so header click doesn't also fire -->
-      <button class="project-remove-btn" title="Remove this project"
-              onclick="event.stopPropagation(); removeProjectBlock('${pid}')">✕</button>
-      <span class="project-chevron">▾</span>
-    </div>
-
-    <!-- Project form fields (two-column grid) -->
-    <div class="project-body" id="pbody-${pid}">
-
-      <!-- Project name: full width -->
-      <div class="field field-full">
-        <label>Project Name <span class="req">*</span></label>
-        <input type="text" id="pname-${pid}"
-               placeholder="e.g. Low-Power SoC Integration (no customer names)"
-               value="${escHtml(proj.name)}"
-               oninput="liveUpdateTitle('${pid}', this.value)" />
-      </div>
-
-      <!-- Technology node for this specific project -->
-      <div class="field">
-        <label>Technology Node</label>
-        <input type="text" id="pnode-${pid}"
-               placeholder="e.g. 7nm, 28nm, 180nm"
-               value="${escHtml(proj.node)}" />
-      </div>
-
-      <!-- Goals — tag-style input; press Enter to add each goal -->
-      <div class="field">
-        <label>Goal(s)</label>
-        <div class="tag-input-wrap" id="goals-wrap-${pid}">
-          <input class="tag-input-field" id="goals-input-${pid}"
-                 placeholder="Type a goal, press Enter"
-                 onkeydown="handleTagKey(event,'goals','${pid}')" />
-        </div>
-        <div class="field-hint">Press Enter to add each goal</div>
-      </div>
-
-      <!-- Key achievements — full width, tag-style -->
-      <div class="field field-full">
-        <label>Key Achievements</label>
-        <div class="tag-input-wrap" id="ach-wrap-${pid}">
-          <input class="tag-input-field" id="ach-input-${pid}"
-                 placeholder="Type an achievement, press Enter"
-                 onkeydown="handleTagKey(event,'ach','${pid}')" />
-        </div>
-        <div class="field-hint">Press Enter to add each achievement. No confidential data.</div>
-      </div>
-
-    </div><!-- /project-body -->
-  `;
-
-  document.getElementById('projects-container').appendChild(block);
-
-  /* Populate tags for existing projects (when editing) */
-  renderProjectTags(pid, 'goals', proj.goals);
-  renderProjectTags(pid, 'ach',   proj.achievements);
-}
-
-/* Collapse or expand a project block by toggling body display */
-function toggleProjectBlock(pid) {
-  const body  = document.getElementById('pbody-' + pid);
-  const block = document.getElementById('pb-'    + pid);
-  const open  = body.style.display !== 'none' && body.style.display !== '';
-
-  /* First render: body is visible by default (no inline style yet) */
-  const isVisible = body.style.display === 'none' ? false : true;
-
-  body.style.display = isVisible ? 'none' : 'grid';
-  block.classList.toggle('collapsed', isVisible);
-}
-
-/* Remove a project block from DOM and from projects[] */
-function removeProjectBlock(pid) {
-  projects = projects.filter(p => p._id !== pid);
-  const el = document.getElementById('pb-' + pid);
-  if (el) el.remove();
-  renumberProjectBlocks();
-}
-
-/* Keep PROJ·01, PROJ·02… labels accurate after removal */
-function renumberProjectBlocks() {
-  projects.forEach((p, i) => {
-    const numEl = document.querySelector('#pb-' + p._id + ' .project-num');
-    if (numEl) numEl.textContent = 'PROJ·' + String(i + 1).padStart(2, '0');
-  });
-}
-
-/* Live-update the header title as the user types in the name field */
-function liveUpdateTitle(pid, val) {
-  const el = document.getElementById('ptitle-' + pid);
-  if (el) el.textContent = val.trim() || 'Untitled Project';
-  const proj = projects.find(p => p._id === pid);
-  if (proj) proj.name = val.trim();
-}
-
-/* ===========================================================
-   TAG INPUT — used for goals and achievements inside project blocks
-=========================================================== */
-function handleTagKey(e, type, pid) {
-  if (e.key === 'Enter' || e.key === ',') {
-    e.preventDefault();
-    const val = e.target.value.replace(/,/g, '').trim();
-    if (!val) return;
-
-    const proj = projects.find(p => p._id === pid);
-    if (!proj) return;
-
-    const arr = type === 'goals' ? proj.goals : proj.achievements;
-    if (!arr.includes(val)) {
-      arr.push(val);
-      renderProjectTags(pid, type, arr);
-    }
-    e.target.value = '';
-
-  } else if (e.key === 'Backspace' && e.target.value === '') {
-    /* Delete last tag on backspace when input is empty */
-    const proj = projects.find(p => p._id === pid);
-    if (!proj) return;
-    const arr = type === 'goals' ? proj.goals : proj.achievements;
-    if (arr.length) {
-      arr.pop();
-      renderProjectTags(pid, type, arr);
-    }
-  }
-}
-
-/* Remove a tag by index */
-function removeProjectTag(pid, type, idx) {
-  const proj = projects.find(p => p._id === pid);
-  if (!proj) return;
-  const arr = type === 'goals' ? proj.goals : proj.achievements;
-  arr.splice(idx, 1);
-  renderProjectTags(pid, type, arr);
-}
-
-/* Re-render the tag pills inside a tag-input-wrap */
-function renderProjectTags(pid, type, arr) {
-  const wrapId  = (type === 'goals' ? 'goals-wrap-' : 'ach-wrap-') + pid;
-  const inputId = (type === 'goals' ? 'goals-input-' : 'ach-input-') + pid;
-  const wrap    = document.getElementById(wrapId);
-  const input   = document.getElementById(inputId);
-  if (!wrap || !input) return;
-
-  wrap.innerHTML = '';
-  arr.forEach((t, i) => {
-    const span = document.createElement('span');
-    span.className = 'tag-item';
-    span.innerHTML = `${escHtml(t)}
-      <button class="tag-remove"
-        onclick="removeProjectTag('${pid}','${type}',${i})">×</button>`;
-    wrap.appendChild(span);
-  });
-  wrap.appendChild(input);
-  wrap.onclick = () => input.focus(); // click anywhere in wrap to focus input
-}
-
-/* ===========================================================
-   FORM: RESET & POPULATE
-=========================================================== */
-function resetForm() {
-  /* Clear basic fields */
-  ['f-name', 'f-desig', 'f-dept', 'f-yoe', 'f-desc'].forEach(id => {
-    document.getElementById(id).value = '';
-  });
-  /* Clear projects */
-  projects = [];
-  document.getElementById('projects-container').innerHTML = '';
-}
-
-function populateForm(p) {
-  document.getElementById('f-name').value  = p.name        || '';
-  document.getElementById('f-desig').value = p.designation || '';
-  document.getElementById('f-dept').value  = p.department  || '';
-  document.getElementById('f-yoe').value   = p.yoe         || '';
-  document.getElementById('f-desc').value  = (p.description || '').trim();
-
-  /* Load existing projects into the form */
-  projects = (p.projects || []).map(pr => ({ ...pr,
-    goals:        [...(pr.goals        || [])],
-    achievements: [...(pr.achievements || [])],
-  }));
-
-  projects.forEach(pr => addProjectBlock(pr));
-
-  /* Always have at least one project block */
-  if (!projects.length) addProjectBlock();
-}
-
-/* ===========================================================
-   SAVE PROFILE
-   Reads DOM values back, merges with projects[] data, persists.
-=========================================================== */
-function saveProfile() {
-  const name  = document.getElementById('f-name').value.trim();
-  const desig = document.getElementById('f-desig').value.trim();
-  const desc  = document.getElementById('f-desc').value.trim();
-
-  if (!name || !desig || !desc) {
-    showToast('Please fill in all required fields ✦', true);
-    return;
+  /* Navigation Controller */
+  function navToView(viewId) {
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.getElementById(viewId).classList.add('active');
+    
+    document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  /* Flush any text sitting in tag inputs that wasn't submitted yet */
-  projects.forEach(proj => {
-    ['goals', 'ach'].forEach(type => {
-      const inputId = (type === 'goals' ? 'goals-input-' : 'ach-input-') + proj._id;
-      const el = document.getElementById(inputId);
-      if (el && el.value.trim()) {
-        const arr = type === 'goals' ? proj.goals : proj.achievements;
-        const val = el.value.trim();
-        if (!arr.includes(val)) arr.push(val);
-        el.value = '';
-        renderProjectTags(proj._id, type, arr);
+  function showProjectsHome() {
+    document.getElementById('tab-projects').classList.add('active');
+    navToView('view-projects-home');
+    renderGroupedTeamProjects();
+  }
+
+  function showDirectory() {
+    document.getElementById('tab-directory').classList.add('active');
+    navToView('view-directory');
+    selectedNodeFilter = 'ALL'; 
+    renderDirectoryProfiles();
+  }
+
+  /* Core Themes Toggle */
+  function toggleTheme() {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    const nextTheme = isDark ? 'light' : 'dark';
+    html.setAttribute('data-theme', nextTheme);
+    document.getElementById('theme-toggle-btn').textContent = isDark ? '☀️' : '🌙';
+  }
+
+  /* TAG ENTRY SYSTEM CONTROLLERS */
+  function initializeTagEvents(inputId, containerId, category) {
+    const inputEl = document.getElementById(inputId);
+    if(!inputEl) return;
+
+    const commitTagToken = () => {
+      let rawVal = inputEl.value.trim().replace(/,/g, '');
+      if(rawVal) {
+        let currentArray = category === 'ENGINEER' ? engineerTechTags : projectNodeTags;
+        if(!currentArray.includes(rawVal)) {
+          currentArray.push(rawVal);
+          refreshTagTokensDisplay(inputId, containerId, category);
+        }
+      }
+      inputEl.value = '';
+    };
+
+    inputEl.addEventListener('keydown', (e) => {
+      if(e.key === ',' || e.key === ' ') {
+        e.preventDefault();
+        commitTagToken();
+      } else if(e.key === 'Backspace' && inputEl.value === '') {
+        let currentArray = category === 'ENGINEER' ? engineerTechTags : projectNodeTags;
+        currentArray.pop();
+        refreshTagTokensDisplay(inputId, containerId, category);
       }
     });
-  });
 
-  /* Collect final project data from DOM + projects[] */
-  const savedProjects = projects.map(proj => {
-    const nameEl = document.getElementById('pname-' + proj._id);
-    const nodeEl = document.getElementById('pnode-' + proj._id);
-    return {
-      _id:          proj._id,
-      name:         (nameEl ? nameEl.value.trim() : '') || proj.name,
-      node:         (nodeEl ? nodeEl.value.trim() : '') || proj.node,
-      goals:        [...proj.goals],
-      achievements: [...proj.achievements],
+    inputEl.addEventListener('blur', () => {
+      commitTagToken();
+    });
+  }
+
+  function refreshTagTokensDisplay(inputId, containerId, category) {
+    const container = document.getElementById(containerId);
+    let targetArray = category === 'ENGINEER' ? engineerTechTags : projectNodeTags;
+    container.innerHTML = '';
+    
+    targetArray.forEach((tag, index) => {
+      const pill = document.createElement('span');
+      pill.className = 'input-tag-pill';
+      pill.innerHTML = `${escapeHtmlStrings(tag)} <b onclick="removeTagToken('${inputId}', '${containerId}', '${category}', ${index})">×</b>`;
+      container.appendChild(pill);
+    });
+  }
+
+  function removeTagToken(inputId, containerId, category, index) {
+    if(category === 'ENGINEER') {
+      engineerTechTags.splice(index, 1);
+    } else {
+      projectNodeTags.splice(index, 1);
+    }
+    refreshTagTokensDisplay(inputId, containerId, category);
+  }
+
+  /* HOMEPAGE TEAM CATEGORY PROJECT DISPATCHERS */
+  function showTeamProjectForm() {
+    navToView('view-project-upload-form');
+    document.getElementById('proj-team-select').value = 'Analog Mixed Signal';
+    document.getElementById('custom-team-field-block').style.display = 'none';
+    ['proj-custom-team', 'proj-title-input', 'proj-node-input', 'proj-goal-input', 'proj-achv-input'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+    projectNodeTags = [];
+    refreshTagTokensDisplay('proj-node-input', 'proj-node-tags', 'PROJECT');
+  }
+
+  function toggleCustomTeamField() {
+    const selection = document.getElementById('proj-team-select').value;
+    document.getElementById('custom-team-field-block').style.display = selection === 'Others' ? 'block' : 'none';
+  }
+
+  function saveTeamProject() {
+    const selection = document.getElementById('proj-team-select').value;
+    let finalTeamName = selection;
+    if (selection === 'Others') {
+      finalTeamName = document.getElementById('proj-custom-team').value.trim();
+    }
+
+    const title = document.getElementById('proj-title-input').value.trim();
+    const goal = document.getElementById('proj-goal-input').value.trim();
+    const achievements = document.getElementById('proj-achv-input').value.trim();
+
+    if (!finalTeamName || !title || projectNodeTags.length === 0 || !goal || !achievements) {
+      showSystemToast('Complete all requested project parameters ✦', true);
+      return;
+    }
+
+    const newProject = {
+      id: 'proj-' + Date.now().toString(36),
+      teamName: finalTeamName,
+      projectName: title,
+      processNode: projectNodeTags.join(', '), // Saved cleanly as list values strings
+      goal: goal,
+      keyAchievements: achievements,
+      timestamp: Date.now()
     };
-  }).filter(pr => pr.name); /* Drop completely unnamed/empty projects */
 
-  /* Collect unique technology nodes across all projects for filtering */
-  const allNodes = [...new Set(savedProjects.map(p => p.node).filter(Boolean))];
-
-  const profile = {
-    id:          editingId || uid(),
-    name,
-    designation: desig,
-    department:  document.getElementById('f-dept').value.trim(),
-    yoe:         document.getElementById('f-yoe').value.trim(),
-    description: desc,
-    nodes:       allNodes,
-    projects:    savedProjects,
-    updatedAt:   Date.now(),
-  };
-
-  if (editingId) {
-    const idx = profiles.findIndex(p => p.id === editingId);
-    if (idx !== -1) profiles[idx] = profile;
-  } else {
-    profiles.push(profile);
+    teamProjects.push(newProject);
+    localStorage.setItem('nsl_team_projects_v2', JSON.stringify(teamProjects));
+    showSystemToast('✓ Project Specifications Captured Securely');
+    showProjectsHome();
   }
 
-  persist();
-  showToast(editingId ? '✓ Profile updated' : '✓ Profile created');
-  showDirectory();
-}
+  function renderGroupedTeamProjects() {
+    const container = document.getElementById('teams-distribution-wrapper');
+    container.innerHTML = '';
 
-/* ===========================================================
-   DIRECTORY: RENDER
-=========================================================== */
+    const structuredGroups = ['Analog Mixed Signal', 'Layout', 'RF', 'Memory', 'GPIO'];
+    const mappedCategories = new Set(structuredGroups);
+    teamProjects.forEach(p => { if(p.teamName) mappedCategories.add(p.teamName); });
 
-/* Get all unique technology nodes used across all profiles */
-function allNodesGlobal() {
-  const s = new Set();
-  profiles.forEach(p => (p.nodes || []).forEach(n => s.add(n)));
-  return [...s].sort();
-}
+    if (teamProjects.length === 0) {
+      container.innerHTML = `
+        <div class="empty-state">
+          <h3>No structural specifications saved</h3>
+          <p>Click <strong style="color:var(--accent)">+ Add Project Detail</strong> to initialize tracking maps.</p>
+        </div>`;
+      return;
+    }
 
-function updateStats() {
-  document.getElementById('stat-count').textContent    = profiles.length;
-  const nodes = allNodesGlobal();
-  document.getElementById('stat-nodes').textContent    = nodes.length ? nodes.join(', ') : '—';
-  const totalProj = profiles.reduce((sum, p) => sum + (p.projects || []).length, 0);
-  document.getElementById('stat-projects').textContent = totalProj;
-}
+    mappedCategories.forEach(team => {
+      const activeRecords = teamProjects.filter(p => p.teamName === team);
+      if (activeRecords.length === 0) return;
 
-function renderFilterChips() {
-  const container = document.getElementById('filter-chips');
-  container.innerHTML = '';
+      const section = document.createElement('div');
+      section.className = 'team-section';
 
-  const makeChip = (label, val) => {
-    const c = document.createElement('span');
-    c.className = 'chip' + (activeFilter === val ? ' active' : '');
-    c.textContent = label;
-    c.onclick = () => { activeFilter = val; renderFilterChips(); filterProfiles(); };
-    container.appendChild(c);
-  };
+      let projectGridMarkup = '';
+      activeRecords.forEach(p => {
+        projectGridMarkup += `
+          <div class="profile-card" onclick="openProjectPopup('${p.id}')">
+            <div class="card-name" style="font-size:1.1rem; color:var(--text); margin-bottom:6px;">${escapeHtmlStrings(p.projectName)}</div>
+            <div class="node-tag" style="display:inline-block; margin-bottom:8px;">${escapeHtmlStrings(p.processNode)}</div>
+            <div class="card-desc" style="-webkit-line-clamp: 2;">${escapeHtmlStrings(p.goal)}</div>
+          </div>
+        `;
+      });
 
-  makeChip('All', 'all');
-  allNodesGlobal().forEach(n => makeChip(n, n));
-}
-
-function filterProfiles() {
-  const q = document.getElementById('search-input').value.toLowerCase();
-  let list = profiles;
-
-  /* Filter by active node chip */
-  if (activeFilter !== 'all') {
-    list = list.filter(p => (p.nodes || []).includes(activeFilter));
+      section.innerHTML = `
+        <div class="team-banner-title">${escapeHtmlStrings(team)}</div>
+        <div class="profile-grid">${projectGridMarkup}</div>
+      `;
+      container.appendChild(section);
+    });
   }
 
-  /* Filter by search query (name, designation, dept, nodes, project names) */
-  if (q) {
-    list = list.filter(p =>
-      p.name.toLowerCase().includes(q) ||
-      (p.designation || '').toLowerCase().includes(q) ||
-      (p.department  || '').toLowerCase().includes(q) ||
-      (p.nodes       || []).some(n => n.toLowerCase().includes(q)) ||
-      (p.projects    || []).some(pr =>
-        (pr.name || '').toLowerCase().includes(q) ||
-        (pr.goals || []).some(g => g.toLowerCase().includes(q)) ||
-        (pr.achievements || []).some(a => a.toLowerCase().includes(q))
-      )
+  function openProjectPopup(id) {
+    const proj = teamProjects.find(p => p.id === id);
+    if (!proj) return;
+
+    document.getElementById('pop-project-name').textContent = proj.projectName;
+    document.getElementById('pop-project-team').textContent = proj.teamName;
+    document.getElementById('pop-project-node').textContent = proj.processNode;
+    document.getElementById('pop-project-goal').textContent = proj.goal;
+    document.getElementById('pop-project-achv').textContent = proj.keyAchievements;
+
+    document.getElementById('project-popup-backdrop').classList.add('open');
+  }
+
+  function closeProjectPopup() {
+    document.getElementById('project-popup-backdrop').classList.remove('open');
+  }
+
+  /* PROFILE BUILDER MANAGEMENT ENGINE */
+  function showEngineerForm(id = null) {
+    navToView('view-profile-form');
+    resetProfileFormElements();
+    editingProfileId = null;
+
+    if (id) {
+      editingProfileId = id;
+      const target = profiles.find(p => p.id === id);
+      if (target) populateFormFieldsForEditing(target);
+      document.getElementById('profile-form-heading').textContent = 'Modify Technical Profile';
+    } else {
+      document.getElementById('profile-form-heading').textContent = 'Initialize Technical Profile';
+      addEngineerProjectFormBlock();
+    }
+  }
+
+  function addEngineerProjectFormBlock(data = null) {
+    const box = document.getElementById('dynamic-engineer-projects-box');
+    const trackingId = data ? data.uid : 'epb-' + Math.random().toString(36).slice(2, 7);
+
+    const container = document.createElement('div');
+    container.className = 'project-block';
+    container.id = trackingId;
+
+    container.innerHTML = `
+      <div class="project-header">
+        <span class="project-num">// PROFILE PROJECT RECORD</span>
+        <button class="project-remove-btn" type="button" onclick="removeDynamicProjectBlock('${trackingId}')">✕</button>
+      </div>
+      <div class="project-body">
+        <div class="field">
+          <label>Project Name (Generalized)</label>
+          <input type="text" class="field-p-name" placeholder="e.g. Ring oscillator" value="${data ? escapeHtmlStrings(data.name) : ''}" />
+        </div>
+        <div class="field">
+          <label>Technology Nodes</label>
+          <input type="text" class="field-p-tech" placeholder="e.g. 5nm, 8nm (FinFET)" value="${data ? escapeHtmlStrings(data.tech) : ''}" />
+        </div>
+        <div class="field">
+          <label>Duration Tracking</label>
+          <input type="text" class="field-p-duration" placeholder="e.g. 3 months" value="${data ? escapeHtmlStrings(data.duration) : ''}" />
+        </div>
+        <div class="field field-full">
+          <label>Experience Scope Description Parameters</label>
+          <textarea class="field-p-desc" rows="4" placeholder="Mention baseline features: Scratch configuration? Block vs chip-level integration status? Architectural challenges or noise trade-offs?">${data ? escapeHtmlStrings(data.desc) : ''}</textarea>
+        </div>
+      </div>
+    `;
+    box.appendChild(container);
+  }
+
+  function removeDynamicProjectBlock(id) {
+    const el = document.getElementById(id);
+    if (el) el.remove();
+  }
+
+  function resetProfileFormElements() {
+    ['ep-name', 'ep-yoe', 'ep-uni', 'ep-edu', 'ep-keyexp', 'ep-t-circuit', 'ep-t-layout', 'ep-t-phys', 'ep-t-parasitic', 'ep-t-reliability', 'ep-t-pm', 'ep-b-tech', 'ep-b-foundry', 'ep-b-process'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+    document.getElementById('dynamic-engineer-projects-box').innerHTML = '';
+    engineerTechTags = [];
+    refreshTagTokensDisplay('ep-b-tech', 'ep-b-tech-tags', 'ENGINEER');
+  }
+
+  function populateFormFieldsForEditing(p) {
+    document.getElementById('ep-name').value = p.name || '';
+    document.getElementById('ep-yoe').value = p.yoe || '';
+    document.getElementById('ep-uni').value = p.uni || '';
+    document.getElementById('ep-edu').value = p.edu || '';
+    document.getElementById('ep-keyexp').value = p.keyexp || '';
+    
+    document.getElementById('ep-t-circuit').value = p.tools?.circuit || '';
+    document.getElementById('ep-t-layout').value = p.tools?.layout || '';
+    document.getElementById('ep-t-phys').value = p.tools?.phys || '';
+    document.getElementById('ep-t-parasitic').value = p.tools?.parasitic || '';
+    document.getElementById('ep-t-reliability').value = p.tools?.reliability || '';
+    document.getElementById('ep-t-pm').value = p.tools?.pm || '';
+
+    document.getElementById('ep-b-foundry').value = p.base?.foundry || '';
+    document.getElementById('ep-b-process').value = p.base?.process || '';
+
+    // Extracted array list values check mapping back to tag array strings
+    if (p.base && p.base.tech) {
+      engineerTechTags = Array.isArray(p.base.tech) ? [...p.base.tech] : p.base.tech.split(',').map(n => n.trim()).filter(Boolean);
+    } else {
+      engineerTechTags = [];
+    }
+    refreshTagTokensDisplay('ep-b-tech', 'ep-b-tech-tags', 'ENGINEER');
+
+    if (p.experienceLogs) {
+      p.experienceLogs.forEach(log => addEngineerProjectFormBlock(log));
+    }
+  }
+
+  function saveEngineerProfile() {
+    const name = document.getElementById('ep-name').value.trim();
+    const yoe = document.getElementById('ep-yoe').value.trim();
+    const keyexp = document.getElementById('ep-keyexp').value.trim();
+
+    if (!name || !yoe || !keyexp || engineerTechTags.length === 0) {
+      showSystemToast('Ensure critical framework lines and Technology Base Nodes are set ✦', true);
+      return;
+    }
+
+    const projectBlocks = document.querySelectorAll('#dynamic-engineer-projects-box .project-block');
+    const logsArray = [];
+    projectBlocks.forEach(blk => {
+      logsArray.push({
+        uid: blk.id,
+        name: blk.querySelector('.field-p-name').value.trim(),
+        tech: blk.querySelector('.field-p-tech').value.trim(),
+        duration: blk.querySelector('.field-p-duration').value.trim(),
+        desc: blk.querySelector('.field-p-desc').value.trim()
+      });
+    });
+
+    const packet = {
+      id: editingProfileId || 'eng-' + Math.random().toString(36).slice(2, 8),
+      name,
+      yoe,
+      uni: document.getElementById('ep-uni').value.trim(),
+      edu: document.getElementById('ep-edu').value.trim(),
+      keyexp,
+      tools: {
+        circuit: document.getElementById('ep-t-circuit').value.trim(),
+        layout: document.getElementById('ep-t-layout').value.trim(),
+        phys: document.getElementById('ep-t-phys').value.trim(),
+        parasitic: document.getElementById('ep-t-parasitic').value.trim(),
+        reliability: document.getElementById('ep-t-reliability').value.trim(),
+        pm: document.getElementById('ep-t-pm').value.trim()
+      },
+      base: {
+        tech: engineerTechTags, // Array mapping system implementation
+        foundry: document.getElementById('ep-b-foundry').value.trim(),
+        process: document.getElementById('ep-b-process').value.trim()
+      },
+      experienceLogs: logsArray,
+      updatedAt: Date.now()
+    };
+
+    if (editingProfileId) {
+      const targetIdx = profiles.findIndex(x => x.id === editingProfileId);
+      if (targetIdx !== -1) profiles[targetIdx] = packet;
+    } else {
+      profiles.push(packet);
+    }
+
+    localStorage.setItem('nsl_profiles_v2', JSON.stringify(profiles));
+    showSystemToast(editingProfileId ? '✓ Profile Refined Successfully' : '✓ Profile Initialized Inside Cloud Core');
+    showDirectory();
+  }
+
+  function renderDirectoryProfiles() {
+    // Generate unique node listings across saved profile elements to populate buttons
+    const nodeExtracts = new Set();
+    profiles.forEach(p => { 
+      if (p.base && p.base.tech) {
+        let profileNodesList = Array.isArray(p.base.tech) ? p.base.tech : p.base.tech.split(',').map(n => n.trim()).filter(Boolean);
+        profileNodesList.forEach(n => nodeExtracts.add(n.trim()));
+      }
+    });
+
+    document.getElementById('stat-nodes').textContent = nodeExtracts.size > 0 ? Array.from(nodeExtracts).join(', ') : 'None Linked';
+
+    // Render nodes interaction bar
+    const nodesFilterBar = document.getElementById('directory-nodes-filter');
+    nodesFilterBar.innerHTML = '';
+    
+    if(profiles.length > 0) {
+      const allBtn = document.createElement('div');
+      allBtn.className = `node-filter-pill ${selectedNodeFilter === 'ALL' ? 'active' : ''}`;
+      allBtn.textContent = 'ALL NODES';
+      allBtn.onclick = () => {
+        selectedNodeFilter = 'ALL';
+        filterProfiles();
+      };
+      nodesFilterBar.appendChild(allBtn);
+
+      nodeExtracts.forEach(nodeName => {
+        const nodeBtn = document.createElement('div');
+        nodeBtn.className = `node-filter-pill ${selectedNodeFilter.toLowerCase() === nodeName.toLowerCase() ? 'active' : ''}`;
+        nodeBtn.textContent = nodeName;
+        nodeBtn.onclick = () => {
+          selectedNodeFilter = nodeName;
+          filterProfiles();
+        };
+        nodesFilterBar.appendChild(nodeBtn);
+      });
+    }
+
+    filterProfiles(); 
+  }
+
+  /* RE-DYNAMIC COMBINED FILTER LOGIC STEP MAPS */
+  function filterProfiles() {
+    const query = document.getElementById('search-input').value.toLowerCase();
+    
+    let matches = profiles.filter(p => 
+      p.name.toLowerCase().includes(query) || 
+      p.keyexp.toLowerCase().includes(query) || 
+      (p.uni && p.uni.toLowerCase().includes(query))
     );
-  }
 
-  renderCards(list);
-}
+    // Dynamic Filter condition for targeted node names selection button mappings
+    if(selectedNodeFilter !== 'ALL') {
+      matches = matches.filter(p => {
+        if(!p.base || !p.base.tech) return false;
+        let profileNodesList = Array.isArray(p.base.tech) ? p.base.tech : p.base.tech.split(',').map(n => n.trim()).filter(Boolean);
+        return profileNodesList.some(n => n.toLowerCase() === selectedNodeFilter.toLowerCase());
+      });
+    }
 
-function renderCards(list) {
-  const grid = document.getElementById('profile-grid');
+    document.getElementById('stat-count').textContent = matches.length;
+    const grid = document.getElementById('profile-grid');
+    
+    if(matches.length === 0) {
+      grid.innerHTML = `<div class="empty-state"><h3>No systemic matching records verified</h3><p>Try refining tags selection or searching options.</p></div>`;
+      return;
+    }
+    
+    grid.innerHTML = matches.map(p => {
+      let arrayDisplayList = Array.isArray(p.base?.tech) ? p.base.tech : (p.base?.tech ? p.base.tech.split(',') : []);
+      let nodesTagsMarkup = arrayDisplayList.map(n => `<span class="node-tag">${escapeHtmlStrings(n.trim())}</span>`).join(' ');
 
-  if (!list.length) {
-    grid.innerHTML = `
-      <div class="empty-state">
-        <h3>No matches found</h3>
-        <p>Try a different search or filter.</p>
-      </div>`;
-    return;
-  }
-
-  grid.innerHTML = list.map(p => `
-    <div class="profile-card" onclick="showDetail('${p.id}')">
-
-      <div class="card-top">
-        <div class="avatar">${initials(p.name)}</div>
-        <div>
-          <div class="card-name">${escHtml(p.name)}</div>
-          <div class="card-desig">
-            ${escHtml(p.designation)}${p.yoe ? ' · ' + p.yoe + ' yrs' : ''}
+      return `
+        <div class="profile-card" onclick="viewProfileDetails('${p.id}')">
+          <div class="card-top">
+            <div class="avatar">${p.name.substring(0,2).toUpperCase()}</div>
+            <div>
+              <div class="card-name">${escapeHtmlStrings(p.name)}</div>
+              <div class="card-desig">${escapeHtmlStrings(p.keyexp)}</div>
+            </div>
+          </div>
+          <div class="nodes-wrap">${nodesTagsMarkup}</div>
+          <div class="card-desc" style="margin-bottom:8px;"><strong>Exp level:</strong> ${escapeHtmlStrings(p.yoe)}</div>
+          <div class="card-desc"><strong>Tools focus:</strong> ${escapeHtmlStrings(p.tools?.layout || 'Virtuoso layout engine')}</div>
+          <div class="card-footer">
+            <span class="card-updated">Logged Tracking Map</span>
+            <div class="card-actions">
+              <button class="btn-ghost" onclick="event.stopPropagation(); showEngineerForm('${p.id}')">EDIT</button>
+              <button class="btn-ghost btn-danger" onclick="event.stopPropagation(); triggerProfileDeletion('${p.id}')">DELETE</button>
+            </div>
           </div>
         </div>
-      </div>
+      `;
+    }).join('');
 
-      <!-- Technology node tags -->
-      <div class="nodes-wrap">
-        ${(p.nodes || []).map(n => `<span class="node-tag">${escHtml(n)}</span>`).join('')}
-        ${!(p.nodes || []).length
-          ? '<span style="font-size:0.7rem;color:var(--text3);font-family:\'Share Tech Mono\',monospace;">no nodes listed</span>'
-          : ''}
-      </div>
-
-      <!-- Summary snippet (2-line clamp) -->
-      <div class="card-desc">${escHtml(p.description)}</div>
-
-      <!-- Footer row -->
-      <div class="card-footer">
-        <span class="card-updated">Updated ${fmt(p.updatedAt)}</span>
-        <div class="card-actions">
-          <!-- Edit: goes to form for this profile -->
-          <button class="btn-ghost"
-                  onclick="event.stopPropagation(); showForm('${p.id}')">EDIT</button>
-          <!-- Delete: opens confirmation modal -->
-          <button class="btn-ghost btn-danger"
-                  onclick="event.stopPropagation(); promptDelete('${p.id}')">DELETE</button>
-        </div>
-      </div>
-
-    </div>
-  `).join('');
-}
-
-function renderDirectory() {
-  updateStats();
-  renderFilterChips();
-  filterProfiles();
-}
-
-/* ===========================================================
-   DETAIL VIEW: RENDER
-=========================================================== */
-function renderDetail(id) {
-  const p = profiles.find(x => x.id === id);
-  if (!p) { showDirectory(); return; }
-
-  document.getElementById('detail-avatar').textContent  = initials(p.name);
-  document.getElementById('detail-name').textContent    = p.name;
-  document.getElementById('detail-desig').textContent   = p.designation;
-  document.getElementById('detail-desc').textContent    = p.description;
-  document.getElementById('detail-dept').textContent    = p.department || '—';
-  document.getElementById('detail-yoe').textContent     = p.yoe ? p.yoe + ' years' : '—';
-  document.getElementById('detail-updated').textContent = fmt(p.updatedAt);
-
-  /* Node tags in hero */
-  document.getElementById('detail-nodes').innerHTML =
-    (p.nodes || []).map(n => `<span class="node-tag">${escHtml(n)}</span>`).join('');
-
-  /* Projects accordion */
-  const projContainer = document.getElementById('detail-projects');
-  const projSection   = document.getElementById('detail-projects-section');
-
-  if (!(p.projects || []).length) {
-    projSection.style.display = 'none';
-  } else {
-    projSection.style.display = '';
-    projContainer.innerHTML = (p.projects).map((pr, i) => `
-      <div class="proj-item">
-
-        <!-- Clickable header — click to expand/collapse this project -->
-        <div class="proj-item-header" onclick="toggleDetailProject(this)">
-          ${pr.node
-            ? `<span class="node-tag" style="flex-shrink:0;">${escHtml(pr.node)}</span>`
-            : ''}
-          <span class="proj-item-name">${escHtml(pr.name)}</span>
-          <span style="font-size:0.75rem;color:var(--text3);transition:transform 0.2s;">▾</span>
-        </div>
-
-        <!-- Project details body (first project open by default) -->
-        <div class="proj-item-body ${i === 0 ? 'open' : ''}">
-
-          ${pr.node ? `
-          <div class="proj-detail-row">
-            <div class="proj-detail-label">Technology Node</div>
-            <div class="proj-detail-val">${escHtml(pr.node)}</div>
-          </div>` : ''}
-
-          ${(pr.goals || []).length ? `
-          <div class="proj-detail-row">
-            <div class="proj-detail-label">Goals</div>
-            <ul class="bullet-list">
-              ${pr.goals.map(g => `
-                <li><span class="bullet-dot"></span>${escHtml(g)}</li>
-              `).join('')}
-            </ul>
-          </div>` : ''}
-
-          ${(pr.achievements || []).length ? `
-          <div class="proj-detail-row">
-            <div class="proj-detail-label">Key Achievements</div>
-            <ul class="bullet-list">
-              ${pr.achievements.map(a => `
-                <li><span class="bullet-dot"></span>${escHtml(a)}</li>
-              `).join('')}
-            </ul>
-          </div>` : ''}
-
-        </div><!-- /proj-item-body -->
-      </div>
-    `).join('');
+    // Dynamically update the active states on elements
+    document.querySelectorAll('.node-filter-pill').forEach(pill => {
+      if(pill.textContent.toLowerCase() === selectedNodeFilter.toLowerCase() || (pill.textContent === 'ALL NODES' && selectedNodeFilter === 'ALL')) {
+        pill.classList.add('active');
+      } else {
+        pill.classList.remove('active');
+      }
+    });
   }
-}
 
-/* Toggle open/close for a project accordion row in the detail view */
-function toggleDetailProject(headerEl) {
-  const body    = headerEl.nextElementSibling;
-  const chevron = headerEl.querySelector('span:last-child');
-  const isOpen  = body.classList.contains('open');
-  body.classList.toggle('open', !isOpen);
-  chevron.style.transform = isOpen ? 'rotate(-90deg)' : '';
-}
+  function viewProfileDetails(id) {
+    viewingProfileId = id;
+    const p = profiles.find(x => x.id === id);
+    if (!p) return;
 
-/* ===========================================================
-   DELETE + 60-SECOND UNDO
-=========================================================== */
-let pendingDeleteId = null;  /* id of profile staged for deletion via modal */
+    navToView('view-profile-detail');
 
-/* Open the confirmation modal */
-function promptDelete(id) {
-  pendingDeleteId = id;
-  document.getElementById('modal-backdrop').classList.add('open');
-}
+    document.getElementById('d-avatar').textContent = p.name.substring(0,2).toUpperCase();
+    document.getElementById('d-name').textContent = p.name;
+    document.getElementById('d-yoe').textContent = p.yoe;
 
-/* Close the modal without doing anything */
-function closeModal() {
-  document.getElementById('modal-backdrop').classList.remove('open');
-  pendingDeleteId = null;
-}
+    document.getElementById('d-uni').textContent = p.uni || '—';
+    document.getElementById('d-edu').textContent = p.edu || '—';
+    document.getElementById('d-keyexp').textContent = p.keyexp || '—';
 
-/* User confirmed — snapshot the profile, remove it, start undo timer */
-function confirmDelete() {
-  if (!pendingDeleteId) return;
-  const id = pendingDeleteId;
-  closeModal();
+    document.getElementById('d-t-circuit').textContent = p.tools?.circuit || '—';
+    document.getElementById('d-t-layout').textContent = p.tools?.layout || '—';
+    document.getElementById('d-t-phys').textContent = p.tools?.phys || '—';
+    document.getElementById('d-t-parasitic').textContent = p.tools?.parasitic || '—';
+    document.getElementById('d-t-rel').textContent = p.tools?.reliability || '—';
+    document.getElementById('d-t-pm').textContent = p.tools?.pm || '—';
 
-  /* Save a deep copy before removing */
-  deletedProfile = JSON.parse(JSON.stringify(profiles.find(p => p.id === id)));
-  profiles = profiles.filter(p => p.id !== id);
-  persist();
+    // Gracefully format tags into detailed metrics field layouts
+    let formattedTechText = Array.isArray(p.base?.tech) ? p.base.tech.join(', ') : (p.base?.tech || '—');
+    document.getElementById('d-b-tech').textContent = formattedTechText;
+    document.getElementById('d-b-foundry').textContent = p.base?.foundry || '—';
+    document.getElementById('d-b-process').textContent = p.base?.process || '—';
 
-  /* Navigate away if we were viewing the deleted profile */
-  if (currentViewId === id) showDirectory();
-  else renderDirectory();
+    const dNodesBox = document.getElementById('d-nodes-box');
+    let arrayDisplayList = Array.isArray(p.base?.tech) ? p.base.tech : (p.base?.tech ? p.base.tech.split(',') : []);
+    dNodesBox.innerHTML = arrayDisplayList.map(n => `<span class="node-tag">${escapeHtmlStrings(n.trim())}</span>`).join(' ');
 
-  /* Start the 60-second undo window */
-  startUndoCountdown();
-}
+    const targetAccordion = document.getElementById('d-projects-accordion-target');
+    targetAccordion.innerHTML = '';
 
-function startUndoCountdown() {
-  /* Cancel any running countdown */
-  if (undoInterval) clearInterval(undoInterval);
-  undoSecondsLeft = 60;
-
-  const bar     = document.getElementById('undo-bar');
-  const timerEl = document.getElementById('undo-timer');
-  timerEl.textContent = '60s';
-  bar.classList.add('show');
-
-  undoInterval = setInterval(() => {
-    undoSecondsLeft--;
-    timerEl.textContent = undoSecondsLeft + 's';
-
-    if (undoSecondsLeft <= 0) {
-      /* Time's up — permanently delete */
-      clearInterval(undoInterval);
-      bar.classList.remove('show');
-      deletedProfile = null;
+    if (!p.experienceLogs || p.experienceLogs.length === 0) {
+      targetAccordion.innerHTML = '<div class="card-desc">No customized layout validation maps logged for this instance.</div>';
+    } else {
+      p.experienceLogs.forEach(log => {
+        targetAccordion.innerHTML += `
+          <div class="proj-item">
+            <div class="proj-item-header" style="background:var(--bg2);">
+              <span class="node-tag" style="margin-right:10px;">${escapeHtmlStrings(log.tech)}</span>
+              <span class="proj-item-name">${escapeHtmlStrings(log.name)} (${escapeHtmlStrings(log.duration)})</span>
+            </div>
+            <div class="proj-item-body">
+              <div class="proj-detail-label">Scope Details & Analytical Realizations</div>
+              <div class="proj-detail-val">${escapeHtmlStrings(log.desc)}</div>
+            </div>
+          </div>
+        `;
+      });
     }
-  }, 1000);
-}
+  }
 
-/* Restore the deleted profile within the 60-second window */
-function undoDelete() {
-  if (!deletedProfile) return;
+  function editProfileDirectly() {
+    if (viewingProfileId) showEngineerForm(viewingProfileId);
+  }
 
-  profiles.push(deletedProfile);
-  persist();
-  deletedProfile = null;
+  /* 60-SECOND DELETION & RECONSTITUTION SYSTEM */
+  let activeDeletionStagedId = null;
 
-  clearInterval(undoInterval);
-  document.getElementById('undo-bar').classList.remove('show');
+  function triggerProfileDeletion(id = null) {
+    activeDeletionStagedId = id || viewingProfileId;
+    document.getElementById('modal-backdrop').classList.add('open');
+  }
 
-  showToast('✓ Deletion undone — profile restored');
-  renderDirectory();
-}
+  function closeModal() {
+    document.getElementById('modal-backdrop').classList.remove('open');
+    activeDeletionStagedId = null;
+  }
 
-/* ===========================================================
-   TOAST
-   isError = true shows orange border/text instead of green
-=========================================================== */
-function showToast(msg, isError = false) {
-  const el = document.getElementById('toast');
-  el.textContent        = msg;
-  el.style.borderColor  = isError ? 'var(--warn)'   : 'var(--accent3)';
-  el.style.color        = isError ? 'var(--warn)'   : 'var(--accent3)';
-  el.classList.add('show');
-  setTimeout(() => el.classList.remove('show'), 3200);
-}
+  function confirmDelete() {
+    if (!activeDeletionStagedId) return;
+    const indexId = activeDeletionStagedId;
+    closeModal();
 
-/* ===========================================================
-   INIT — render directory on first load
-=========================================================== */
-renderDirectory();
+    deletedProfileSnapshot = JSON.parse(JSON.stringify(profiles.find(x => x.id === indexId)));
+    profiles = profiles.filter(x => x.id !== indexId);
+    
+    localStorage.setItem('nsl_profiles_v2', JSON.stringify(profiles));
+
+    if (viewingProfileId === indexId) showDirectory();
+    else renderDirectoryProfiles();
+
+    initializeUndoClockSequence();
+  }
+
+  function initializeUndoClockSequence() {
+    if (undoInterval) clearInterval(undoInterval);
+    undoSecondsRemaining = 60;
+
+    const banner = document.getElementById('undo-bar');
+    const displayTimer = document.getElementById('undo-timer');
+    
+    displayTimer.textContent = '60s';
+    banner.classList.add('show');
+
+    undoInterval = setInterval(() => {
+      undoSecondsRemaining--;
+      displayTimer.textContent = undoSecondsRemaining + 's';
+
+      if (undoSecondsRemaining <= 0) {
+        clearInterval(undoInterval);
+        banner.classList.remove('show');
+        deletedProfileSnapshot = null;
+      }
+    }, 1000);
+  }
+
+  function undoDelete() {
+    if (!deletedProfileSnapshot) return;
+
+    profiles.push(deletedProfileSnapshot);
+    localStorage.setItem('nsl_profiles_v2', JSON.stringify(profiles));
+    deletedProfileSnapshot = null;
+
+    clearInterval(undoInterval);
+    document.getElementById('undo-bar').classList.remove('show');
+
+    showSystemToast('✓ State Vector Reconstitution Complete');
+    renderDirectoryProfiles();
+  }
+
+  /* Core Toasts */
+  function showSystemToast(text, failureMode = false) {
+    const el = document.getElementById('toast');
+    el.textContent = text;
+    el.style.borderColor = failureMode ? 'var(--warn)' : 'var(--accent3)';
+    el.style.color = failureMode ? 'var(--warn)' : 'var(--accent3)';
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 3200);
+  }
+
+  function escapeHtmlStrings(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
 </script>
 </body>
-  <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyD3Z40Si0uxCb0P_5BoyYvKcwkC8Ty5z5Y",
-    authDomain: "nsl-connect-e733f.firebaseapp.com",
-    projectId: "nsl-connect-e733f",
-    storageBucket: "nsl-connect-e733f.firebasestorage.app",
-    messagingSenderId: "958304560503",
-    appId: "1:958304560503:web:527607a7b0b6bc75b8ed72",
-    measurementId: "G-SR1Z3SKCMJ"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
 </html>
-
