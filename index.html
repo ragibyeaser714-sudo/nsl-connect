@@ -8,7 +8,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* THEME SYSTEM VARIABLES */
+    /* ============================================================
+       SECTION 1 — CSS CUSTOM PROPERTIES (THEME VARIABLES)
+    ============================================================ */
     [data-theme="dark"] {
       --bg:        #0b111e;      
       --bg2:       #101726;
@@ -25,10 +27,10 @@
       --text:      #e2e8f0;      
       --text2:     #94a3b8;      
       --text3:     #64748b;      
-      --shadow:    0 12px 32px rgba(3,7,18,0.5);
-      --glow:      0 0 20px rgba(56,189,248,0.12);
-      --grid-line: rgba(56,189,248,0.015);
-      --header-bg: rgba(11,17,30,0.92);
+      --shadow:    0 12px 32px rgba(3, 7, 18, 0.5);
+      --glow:      0 0 20px rgba(56, 189, 248, 0.12);
+      --grid-line: rgba(56, 189, 248, 0.015);
+      --header-bg: rgba(11, 17, 30, 0.92);
     }
 
     [data-theme="light"] {
@@ -44,17 +46,23 @@
       --accent3:   #15803d;      
       --warn:      #b91c1c;      
       --warn2:     rgba(185, 28, 28, 0.06);
-      --text: #0f172a;
-      --text2: #475569;
-      --text3: #64748b;
-      --shadow: 0 6px 20px rgba(15,23,42,0.05);
-      --glow: 0 0 14px rgba(3,105,161,0.08);
-      --grid-line: rgba(3,105,161,0.025);
-      --header-bg: rgba(244,247,250,0.94);
+      --text:      #0f172a;
+      --text2:     #475569;
+      --text3:     #64748b;
+      --shadow:    0 6px 20px rgba(15, 23, 42, 0.05);
+      --glow:      0 0 14px rgba(3, 105, 161, 0.08);
+      --grid-line: rgba(3, 105, 161, 0.025);
+      --header-bg: rgba(244, 247, 250, 0.94);
     }
 
-    /* BASE RESET STYLES */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    /* ============================================================
+       SECTION 2 — GLOBAL RESET & BASE STYLES
+    ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       background: var(--bg);
@@ -69,7 +77,7 @@
       content: '';
       position: fixed;
       inset: 0;
-      background-image:
+      background-image: 
         linear-gradient(var(--grid-line) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
       background-size: 40px 40px;
@@ -77,7 +85,9 @@
       z-index: 0;
     }
 
-    /* HEADER & NAVIGATION */
+    /* ============================================================
+       SECTION 3 — APP STRUCTURE & LAYOUT COMPONENTS
+    ============================================================ */
     header {
       position: sticky;
       top: 0;
@@ -92,9 +102,25 @@
       justify-content: space-between;
     }
 
-    .logo { display: flex; align-items: center; gap: 12px; cursor: pointer; }
-    .logo-icon { width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; }
-    .logo-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 6px;
+    }
 
     .logo-text {
       font-family: 'Barlow Condensed', sans-serif;
@@ -135,7 +161,6 @@
       border: none;
       padding: 0.5rem 0;
     }
-
     .nav-item:hover, .nav-item.active { color: var(--accent); }
 
     .header-right { display: flex; align-items: center; gap: 1.2rem; }
@@ -148,21 +173,21 @@
       font-size: 0.7rem;
       color: var(--accent3);
     }
-
     .status-dot {
-      width: 6px; height: 6px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: var(--accent3);
-      animation: pulse-dot 2s infinite;
+      animation: pulse 2s infinite;
     }
-
-    @keyframes pulse-dot {
+    @keyframes pulse {
       0%, 100% { opacity: 1; }
-      50%       { opacity: 0.3; }
+      50% { opacity: 0.3; }
     }
 
     .theme-toggle {
-      width: 38px; height: 38px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       background: var(--panel);
       border: 1px solid var(--border);
@@ -180,7 +205,6 @@
       background: var(--panel2);
     }
 
-    /* VIEW MANAGEMENT SYSTEM */
     .app {
       position: relative;
       z-index: 1;
@@ -189,8 +213,8 @@
       padding: 2rem 1.5rem 5rem;
     }
 
-    .view          { display: none; }
-    .view.active   { display: block; }
+    .view { display: none; }
+    .view.active { display: block; }
 
     .page-header {
       margin-bottom: 2rem;
@@ -200,7 +224,6 @@
       flex-wrap: wrap;
       gap: 1rem;
     }
-
     .page-eyebrow {
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.7rem;
@@ -209,7 +232,6 @@
       color: var(--accent);
       margin-bottom: 4px;
     }
-
     .page-heading {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 2rem;
@@ -218,11 +240,12 @@
       letter-spacing: 0.02em;
     }
 
-    /* HOMEPAGE TEAM LAYOUTS */
+    /* ============================================================
+       SECTION 4 — INTERACTIVE TEAMS & LIST STYLINGS
+    ============================================================ */
     .team-section {
       margin-bottom: 2.5rem;
     }
-
     .team-header-container {
       display: flex;
       align-items: center;
@@ -231,7 +254,6 @@
       border-left: 3px solid var(--accent);
       padding-left: 10px;
     }
-
     .team-banner-title {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1.4rem;
@@ -240,7 +262,6 @@
       letter-spacing: 0.05em;
       text-transform: uppercase;
     }
-
     .btn-download-sec {
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.7rem;
@@ -257,9 +278,24 @@
       color: var(--accent3);
     }
 
-    /* COMPONENT STYLES & DIRECTIONS */
-    .stats-bar { display: flex; gap: 0.8rem; margin-bottom: 1.4rem; flex-wrap: wrap; }
+    /* Render multi line inputs lists wrapper */
+    .bullet-container-list {
+      margin-left: 16px;
+      margin-top: 4px;
+    }
+    .bullet-container-list li {
+      font-size: 0.78rem;
+      color: var(--text2);
+      line-height: 1.45;
+      margin-bottom: 3px;
+    }
 
+    .stats-bar {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 1.4rem;
+      flex-wrap: wrap;
+    }
     .stat-pill {
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.65rem;
@@ -279,9 +315,11 @@
       margin-bottom: 1rem;
       flex-wrap: wrap;
     }
-
-    .search-wrap { flex: 1; min-width: 220px; position: relative; }
-
+    .search-wrap {
+      flex: 1;
+      min-width: 220px;
+      position: relative;
+    }
     .search-wrap input {
       width: 100%;
       background: var(--panel);
@@ -293,7 +331,6 @@
       border-radius: 4px;
       outline: none;
     }
-
     .search-icon {
       position: absolute;
       left: 0.75rem;
@@ -310,7 +347,6 @@
       margin-bottom: 1.4rem;
       padding: 4px 0;
     }
-
     .node-filter-pill {
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.7rem;
@@ -401,7 +437,6 @@
     }
 
     .card-top { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.8rem; }
-
     .avatar {
       width: 44px; height: 44px;
       border-radius: 4px;
@@ -415,45 +450,21 @@
       font-weight: 700;
       color: var(--accent);
     }
-
-    .card-name {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text);
-    }
+    .card-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--text); }
     .card-desig { font-size: 0.75rem; color: var(--text2); margin-top: 2px; }
 
     .nodes-wrap { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 0.7rem; }
-
     .node-tag {
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.6rem;
       padding: 2px 7px;
-      background: rgba(0,150,200,0.08);
-      border: 1px solid rgba(0,150,200,0.22);
+      background: rgba(0, 150, 200, 0.08);
+      border: 1px solid rgba(0, 150, 200, 0.22);
       color: var(--accent);
       border-radius: 2px;
       text-transform: uppercase;
     }
-
-    .card-desc {
-      font-size: 0.78rem;
-      color: var(--text2);
-      line-height: 1.55;
-    }
-
-    /* RENDER MULTIPLE BULLETS ARRAYS CSS */
-    .bullet-container-list {
-      margin-left: 14px;
-      margin-top: 4px;
-    }
-    .bullet-container-list li {
-      font-size: 0.78rem;
-      color: var(--text2);
-      line-height: 1.45;
-      margin-bottom: 3px;
-    }
+    .card-desc { font-size: 0.78rem; color: var(--text2); line-height: 1.55; }
 
     .card-footer {
       margin-top: 0.85rem;
@@ -463,15 +474,9 @@
       align-items: center;
       justify-content: space-between;
     }
-
-    .card-updated {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.6rem;
-      color: var(--text3);
-    }
+    .card-updated { font-family: 'Share Tech Mono', monospace; font-size: 0.6rem; color: var(--text3); }
 
     .card-actions { display: flex; gap: 0.35rem; }
-
     .btn-ghost {
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.62rem;
@@ -487,9 +492,10 @@
 
     .empty-state { text-align: center; padding: 4rem 2rem; color: var(--text3); width: 100%; }
 
-    /* FORM STYLES */
+    /* ============================================================
+       SECTION 5 — INTAKE SYSTEM FORM STYLINGS
+    ============================================================ */
     .form-container { max-width: 780px; }
-
     .back-btn {
       display: inline-flex;
       align-items: center;
@@ -510,7 +516,6 @@
       padding: 1.5rem;
       margin-bottom: 1rem;
     }
-
     .form-section-title {
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.64rem;
@@ -552,7 +557,7 @@
       align-items: flex-start;
       gap: 0.75rem;
       background: var(--warn2);
-      border: 1px solid rgba(200,100,50,0.28);
+      border: 1px solid rgba(200, 100, 50, 0.28);
       border-radius: 4px;
       padding: 0.85rem 1rem;
       margin-bottom: 1rem;
@@ -565,7 +570,6 @@
       border-radius: 5px;
       margin-bottom: 0.85rem;
     }
-
     .project-header {
       display: flex;
       align-items: center;
@@ -574,7 +578,7 @@
       background: var(--panel);
       border-bottom: 1px solid var(--border);
     }
-
+    .project-num { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; color: var(--text2); }
     .project-remove-btn { background: none; border: none; color: var(--text3); cursor: pointer; }
 
     .project-body { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.1rem; }
@@ -582,24 +586,18 @@
     .btn-add-project {
       display: flex; align-items: center; justify-content: center;
       font-family: 'Share Tech Mono', monospace; font-size: 0.72rem;
-      color: var(--accent); background: rgba(0,150,200,0.05);
-      border: 1px dashed rgba(0,150,200,0.3); border-radius: 4px;
+      color: var(--accent); background: rgba(0, 140, 200, 0.04);
+      border: 1px dashed rgba(0, 150, 200, 0.3); border-radius: 4px;
       padding: 0.7rem 1rem; width: 100%; cursor: pointer;
     }
 
     .form-actions { display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1.5rem; }
+    .btn-cancel { font-family: 'Barlow Condensed', sans-serif; padding: 0.6rem 1.4rem; background: none; border: 1px solid var(--border); color: var(--text2); cursor: pointer; }
+    .btn-save { font-family: 'Barlow Condensed', sans-serif; padding: 0.6rem 1.4rem; background: var(--accent3); color: #000; border: none; cursor: pointer; }
 
-    .btn-cancel {
-      font-family: 'Barlow Condensed', sans-serif; padding: 0.6rem 1.4rem;
-      background: none; border: 1px solid var(--border); color: var(--text2); cursor: pointer;
-    }
-
-    .btn-save {
-      font-family: 'Barlow Condensed', sans-serif; padding: 0.6rem 1.4rem;
-      background: var(--accent3); color: #000; border: none; cursor: pointer;
-    }
-
-    /* PROFILE DETAILS DISPLAY SYSTEM */
+    /* ============================================================
+       SECTION 6 — READ ONLY READOUT PANELS STYLINGS
+    ============================================================ */
     .detail-header {
       display: flex; align-items: flex-start; gap: 1.5rem;
       background: var(--panel); border: 1px solid var(--border);
@@ -628,1016 +626,1027 @@
 
     .meta-grid-display { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.2rem; }
 
-    /* POPUPS & ALERTS */
-    .modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 200; display: none; align-items: center; justify-content: center; padding: 1rem; backdrop-filter: blur(3px); }
+    /* ============================================================
+       SECTION 7 — NOTIFICATIONS, TOASTS & MODALS SYSTEM
+    ============================================================ */
+    .modal-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      backdrop-filter: blur(3px);
+    }
     .modal-backdrop.open { display: flex; }
-    .modal { background: var(--panel); border: 1px solid var(--border2); border-radius: 8px; padding: 2rem; max-width: 500px; width: 100%; box-shadow: 0 24px 80px rgba(0,0,0,0.65); }
     
-    .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--panel); border: 1px solid var(--accent3); color: var(--accent3); font-family: 'Share Tech Mono', monospace; font-size: 0.74rem; padding: 0.8rem 1.2rem; border-radius: 4px; z-index: 999; transform: translateY(80px); opacity: 0; transition: all 0.3s ease; }
+    .modal {
+      background: var(--panel);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      padding: 2rem;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.65);
+    }
+    .modal-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .modal h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .modal p { font-size: 0.85rem; color: var(--text2); margin-bottom: 1.5rem; line-height: 1.5; }
+    .modal-actions { display: flex; justify-content: flex-end; gap: 0.75rem; }
+
+    .toast {
+      position: fixed; bottom: 2rem; right: 2rem;
+      background: var(--panel);
+      border: 1px solid var(--accent3);
+      color: var(--accent3);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.74rem;
+      padding: 0.8rem 1.2rem;
+      border-radius: 4px;
+      z-index: 999;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
     .toast.show { transform: translateY(0); opacity: 1; }
 
-    .undo-bar { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--panel); border: 1px solid var(--warn); color: var(--text); font-family: 'Share Tech Mono', monospace; font-size: 0.74rem; padding: 0.75rem 1.2rem; border-radius: 4px; z-index: 998; display: flex; align-items: center; gap: 1rem; opacity: 0; transition: all 0.35s ease; }
+    .undo-bar {
+      position: fixed; bottom: 2rem; left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--panel);
+      border: 1px solid var(--warn);
+      color: var(--text);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.74rem;
+      padding: 0.75rem 1.2rem;
+      border-radius: 4px;
+      z-index: 998;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      opacity: 0;
+      transition: all 0.35s ease;
+    }
     .undo-bar.show { transform: translateX(-50%) translateY(0); opacity: 1; }
     .btn-undo { font-family: 'Barlow Condensed', sans-serif; padding: 4px 14px; background: var(--warn); color: #fff; border: none; cursor: pointer; }
   </style>
 </head>
 <body>
 
-<header>
-  <div class="logo" onclick="showProjectsHome()">
-    <div class="logo-icon">
-      <img src="image_8afb22.png" alt="NSL Connect Logo" />
-    </div>
-    <div>
-      <div class="logo-text">NSL <span>Connect</span></div>
-      <div class="logo-sub">VLSI Collaborative Hub</div>
-    </div>
-  </div>
-
-  <div class="nav-tabs">
-    <button class="nav-item active" id="tab-projects" onclick="showProjectsHome()">All Projects</button>
-    <button class="nav-item" id="tab-directory" onclick="showDirectory()">Engineers Directory</button>
-  </div>
-
-  <div class="header-right">
-    <div class="header-status"><div class="status-dot"></div>SYSTEM ONLINE</div>
-    <button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()">🌙</button>
-  </div>
-</header>
-
-<div class="app">
-
-  <div id="view-projects-home" class="view active">
-    <div class="page-header">
+  <header>
+    <div class="logo" onclick="showProjectsHome()">
+      <div class="logo-icon">
+        <img src="image_8afb22.png" alt="NSL Connect Logo" />
+      </div>
       <div>
-        <div class="page-eyebrow">// team_specifications</div>
-        <div class="page-heading">All Team Projects</div>
+        <div class="logo-text">NSL <span>Connect</span></div>
+        <div class="logo-sub">VLSI Collaborative Hub</div>
       </div>
-      <button class="btn-primary" onclick="showTeamProjectForm()">+ Add Project Detail</button>
     </div>
 
-    <div id="teams-distribution-wrapper"></div>
-  </div>
+    <div class="nav-tabs">
+      <button class="nav-item active" id="tab-projects" onclick="showProjectsHome()">All Projects</button>
+      <button class="nav-item" id="tab-directory" onclick="showDirectory()">Engineers Directory</button>
+    </div>
 
-  <div id="view-project-upload-form" class="view">
-    <div class="form-container">
-      <button class="back-btn" onclick="showProjectsHome()">← BACK TO ALL PROJECTS</button>
-      
-      <div class="page-header" style="margin-bottom:1.2rem;">
+    <div class="header-right">
+      <div class="header-status"><div class="status-dot"></div>SYSTEM ONLINE</div>
+      <button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()">🌙</button>
+    </div>
+  </header>
+
+  <div class="app">
+
+    <div id="view-projects-home" class="view active">
+      <div class="page-header">
         <div>
-          <div class="page-eyebrow">// project_logger</div>
-          <div class="page-heading">Describe Project Specifications</div>
+          <div class="page-eyebrow">// team_specifications</div>
+          <h2 class="page-heading">All Team Projects</h2>
         </div>
+        <button class="btn-primary" onclick="showTeamProjectForm()">+ Add Project Detail</button>
       </div>
 
-      <div class="nda-banner">
-        <div class="nda-text">
-          <strong>NDA Preservation Rule</strong>
-          Describe layout parameters at a high level. Use separate lines to automatically present text blocks as neat bullet configurations.
-        </div>
-      </div>
+      <div id="teams-distribution-wrapper"></div>
+    </div>
 
-      <div class="form-section">
-        <div class="form-section-title">Project Context & Parameters</div>
+    <div id="view-project-upload-form" class="view">
+      <div class="form-container">
+        <button class="back-btn" onclick="showProjectsHome()">← BACK TO ALL PROJECTS</button>
         
-        <div class="form-row">
-          <div class="field">
-            <label>Select Originating Team <span class="req">*</span></label>
-            <select id="proj-team-select" onchange="toggleCustomTeamField()">
-              <option value="Analog Mixed Signal">Analog Mixed Signal</option>
-              <option value="Layout">Layout</option>
-              <option value="RF">RF</option>
-              <option value="Memory">Memory</option>
-              <option value="GPIO">GPIO</option>
-              <option value="Others">Others</option>
-            </select>
-          </div>
-          <div class="field" id="custom-team-field-block" style="display: none;">
-            <label>Provide Team Name <span class="req">*</span></label>
-            <input type="text" id="proj-custom-team" placeholder="e.g. Standard I/O Team" />
+        <div class="page-header" style="margin-bottom:1.2rem;">
+          <div>
+            <div class="page-eyebrow">// project_logger</div>
+            <h2 class="page-heading">Describe Project Specifications</h2>
           </div>
         </div>
 
-        <div class="form-row">
-          <div class="field">
-            <label>Project Name <span class="req">*</span></label>
-            <input type="text" id="proj-title-input" placeholder="e.g. Low Power Bandgap Setup" />
+        <div class="nda-banner">
+          <div class="nda-text">
+            <strong>NDA Preservation Rule:</strong> Describe layout parameters at a high level. Use separate lines to automatically present text blocks as neat bullet configurations.
           </div>
-          <div class="field">
-            <label>Process Node <span class="req">*</span></label>
-            <div class="tags-input-style-container">
-              <div id="proj-node-tags" style="display: flex; flex-wrap: wrap; gap: 4px;"></div>
-              <input type="text" id="proj-node-input" placeholder="Type node & press Space or Comma" />
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title">Project Context & Parameters</div>
+          
+          <div class="form-row">
+            <div class="field">
+              <label>Select Originating Team <span class="req">*</span></label>
+              <select id="proj-team-select" onchange="toggleCustomTeamField()">
+                <option value="Analog Mixed Signal">Analog Mixed Signal</option>
+                <option value="Layout">Layout</option>
+                <option value="RF">RF</option>
+                <option value="Memory">Memory</option>
+                <option value="GPIO">GPIO</option>
+                <option value="Others">Others</option>
+              </select>
+            </div>
+            <div class="field" id="custom-team-field-block" style="display: none;">
+              <label>Provide Team Name <span class="req">*</span></label>
+              <input type="text" id="proj-custom-team" placeholder="e.g., Standard I/O Team" />
             </div>
           </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label>Project Name <span class="req">*</span></label>
+              <input type="text" id="proj-title-input" placeholder="e.g., Low Power Bandgap Setup" />
+            </div>
+            <div class="field">
+              <label>Process Node <span class="req">*</span></label>
+              <div class="tags-input-style-container">
+                <div id="proj-node-tags" style="display: flex; flex-wrap: wrap; gap: 4px;"></div>
+                <input type="text" id="proj-node-input" placeholder="Type node & press Space or Comma" />
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Goal (Supports Multi-line bullets) <span class="req">*</span></label>
+            <textarea id="proj-goal-input" rows="4" placeholder="Type each individual design target on a fresh line..."></textarea>
+          </div>
+
+          <div class="field">
+            <label>Key Achievements (Supports Multi-line bullets) <span class="req">*</span></label>
+            <textarea id="proj-achv-input" rows="4" placeholder="Type each single milestone on a separate line to bullet it..."></textarea>
+          </div>
         </div>
 
-        <div class="field">
-          <label>Goal (Supports Multi-line bullets) <span class="req">*</span></label>
-          <textarea id="proj-goal-input" rows="4" placeholder="Type each individual design target on a fresh line..."></textarea>
-        </div>
-
-        <div class="field">
-          <label>Key Achievements (Supports Multi-line bullets) <span class="req">*</span></label>
-          <textarea id="proj-achv-input" rows="4" placeholder="Type each single milestone on a separate line to bullet it..."></textarea>
+        <div class="form-actions">
+          <button class="btn-cancel" onclick="showProjectsHome()">Cancel</button>
+          <button class="btn-save" onclick="saveTeamProject()">UPLOAD SPECIFICATION</button>
         </div>
       </div>
-
-      <div class="form-actions">
-        <button class="btn-cancel" onclick="showProjectsHome()">Cancel</button>
-        <button class="btn-save" onclick="saveTeamProject()">UPLOAD SPECIFICATION</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="view-directory" class="view">
-    <div class="page-header">
-      <div>
-        <div class="page-eyebrow">// engineer_registry</div>
-        <div class="page-heading">Team Directory</div>
-      </div>
-      <button class="btn-primary" onclick="showEngineerForm()">+ Add Engineer Profile</button>
     </div>
 
-    <div class="stats-bar">
-      <div class="stat-pill">Engineers Counted: <span id="stat-count">0</span></div>
-      <div class="stat-pill">Active Nodes Logged: <span id="stat-nodes">—</span></div>
-    </div>
-
-    <div class="directory-toolbar">
-      <div class="search-wrap">
-        <span class="search-icon">⌕</span>
-        <input type="text" id="search-input" placeholder="Search profiles by name, background expertise..." oninput="filterProfiles()" />
-      </div>
-    </div>
-
-    <div class="nodes-filter-bar" id="directory-nodes-filter"></div>
-    <div class="profile-grid" id="profile-grid"></div>
-  </div>
-
-  <div id="view-profile-form" class="view">
-    <div class="form-container">
-      <button class="back-btn" onclick="showDirectory()">← BACK TO DIRECTORY</button>
-      <div class="page-header" style="margin-bottom:1.2rem;">
+    <div id="view-directory" class="view">
+      <div class="page-header">
         <div>
-          <div class="page-eyebrow">// profile_format_builder</div>
-          <h2 class="page-heading" id="profile-form-heading">New Profile Setup</h2>
+          <div class="page-eyebrow">// engineer_registry</div>
+          <h2 class="page-heading">Team Directory</h2>
+        </div>
+        <button class="btn-primary" onclick="showEngineerForm()">+ Add Engineer Profile</button>
+      </div>
+
+      <div class="stats-bar">
+        <div class="stat-pill">Engineers Counted: <span id="stat-count">0</span></div>
+        <div class="stat-pill">Active Nodes Logged: <span id="stat-nodes">—</span></div>
+      </div>
+
+      <div class="directory-toolbar">
+        <div class="search-wrap">
+          <span class="search-icon">⌕</span>
+          <input type="text" id="search-input" placeholder="Search profiles by name, background expertise..." oninput="filterProfiles()" />
         </div>
       </div>
 
-      <div class="form-section">
-        <div class="form-section-title">01 · Background Information</div>
-        <div class="form-row">
-          <div class="field">
-            <label>Full Name <span class="req">*</span></label>
-            <input type="text" id="ep-name" placeholder="Ragib Yeaser" />
-          </div>
-          <div class="field">
-            <label>Years of Experience <span class="req">*</span></label>
-            <input type="text" id="ep-yoe" placeholder="e.g. 5 Years" />
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="field">
-            <label>University <span class="req">*</span></label>
-            <input type="text" id="ep-uni" placeholder="Engineering Institution" />
-          </div>
-          <div class="field">
-            <label>Education Background <span class="req">*</span></label>
-            <input type="text" id="ep-edu" placeholder="e.g. Master of Science" />
-          </div>
-        </div>
-        <div class="field">
-          <label>Key Expertise <span class="req">*</span></label>
-          <input type="text" id="ep-keyexp" placeholder="e.g., AMS Custom Layout" />
-        </div>
-      </div>
+      <div class="nodes-filter-bar" id="directory-nodes-filter"></div>
+      <div class="profile-grid" id="profile-grid"></div>
+    </div>
 
-      <div class="form-section">
-        <div class="form-section-title">02 · Tool Ecosystem Focus</div>
-        <div class="form-row">
-          <div class="field">
-            <label>Circuit Design & Simulation</label>
-            <input type="text" id="ep-t-circuit" placeholder="e.g., Cadence Virtuoso" />
-          </div>
-          <div class="field">
-            <label>Layout Design</label>
-            <input type="text" id="ep-t-layout" placeholder="e.g., Virtuoso Layout Editor" />
+    <div id="view-profile-form" class="view">
+      <div class="form-container">
+        <button class="back-btn" onclick="showDirectory()">← BACK TO DIRECTORY</button>
+        <div class="page-header" style="margin-bottom:1.2rem;">
+          <div>
+            <div class="page-eyebrow">// profile_format_builder</div>
+            <h2 class="page-heading" id="profile-form-heading">New Profile Setup</h2>
           </div>
         </div>
-        <div class="form-row">
-          <div class="field">
-            <label>Physical Verification</label>
-            <input type="text" id="ep-t-phys" placeholder="e.g., Calibre, PVS" />
-          </div>
-          <div class="field">
-            <label>Parasitic Extraction</label>
-            <input type="text" id="ep-t-parasitic" placeholder="e.g., StarRC, Quantus" />
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="field">
-            <label>Reliability Validation</label>
-            <input type="text" id="ep-t-reliability" placeholder="e.g., Totem" />
-          </div>
-          <div class="field">
-            <label>Project Management</label>
-            <input type="text" id="ep-t-pm" placeholder="e.g., ClioSoft SOS" />
-          </div>
-        </div>
-      </div>
 
-      <div class="form-section">
-        <div class="form-section-title">03 · Base Foundations</div>
-        <div class="form-row">
-          <div class="field">
-            <label>Technology Base Nodes <span class="req">*</span></label>
-            <div class="tags-input-style-container">
-              <div id="ep-b-tech-tags" style="display: flex; flex-wrap: wrap; gap: 4px;"></div>
-              <input type="text" id="ep-b-tech" placeholder="Press Space or Comma" />
+        <div class="form-section">
+          <div class="form-section-title">01 · Background Information</div>
+          <div class="form-row">
+            <div class="field">
+              <label>Full Name <span class="req">*</span></label>
+              <input type="text" id="ep-name" placeholder="Ragib Yeaser" />
+            </div>
+            <div class="field">
+              <label>Years of Experience <span class="req">*</span></label>
+              <input type="text" id="ep-yoe" placeholder="e.g., 5 Years 5 Months" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>University <span class="req">*</span></label>
+              <input type="text" id="ep-uni" placeholder="Engineering Institution" />
+            </div>
+            <div class="field">
+              <label>Education Background <span class="req">*</span></label>
+              <input type="text" id="ep-edu" placeholder="e.g., Master of Science" />
             </div>
           </div>
           <div class="field">
-            <label>Foundry Background</label>
-            <input type="text" id="ep-b-foundry" placeholder="e.g., TSMC, Samsung" />
-          </div>
-          <div class="field">
-            <label>Process Types</label>
-            <input type="text" id="ep-b-process" placeholder="e.g., FinFET, BCD" />
+            <label>Key Expertise <span class="req">*</span></label>
+            <input type="text" id="ep-keyexp" placeholder="e.g., AMS Custom Layout, FinFET Layout" />
           </div>
         </div>
-      </div>
 
-      <div class="form-section">
-        <div class="form-section-title">04 · Layout Project Experience Logs</div>
-        <div id="dynamic-engineer-projects-box"></div>
-        <button class="btn-add-project" onclick="addEngineerProjectFormBlock()">＋ ADD DETAILED PROJECT RECORD</button>
-      </div>
-
-      <div class="form-actions">
-        <button class="btn-cancel" onclick="showDirectory()">Cancel</button>
-        <button class="btn-save" onclick="saveEngineerProfile()">SAVE PROFILE SYSTEM</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="view-profile-detail" class="view">
-    <div class="profile-detail">
-      <button class="back-btn" onclick="showDirectory()">← BACK TO DIRECTORY</button>
-
-      <div class="detail-header">
-        <div class="detail-avatar" id="d-avatar">RY</div>
-        <div style="flex:1; min-width:0;">
-          <div class="detail-name" id="d-name">Engineer Name</div>
-          <div class="detail-desig" id="d-yoe">Experience Parameters</div>
-          <div class="nodes-wrap" id="d-nodes-box"></div>
-        </div>
-        <div class="detail-actions">
-          <button class="btn-ghost" style="border-color: var(--accent3); color: var(--accent3);" id="btn-profile-docx">DOCX DOWNLOAD</button>
-          <button class="btn-ghost" onclick="editProfileDirectly()">EDIT</button>
-          <button class="btn-ghost btn-danger" onclick="triggerProfileDeletion()">DELETE</button>
-        </div>
-      </div>
-
-      <div class="detail-section">
-        <div class="detail-section-label">// Academic & Core Summary</div>
-        <div class="meta-grid-display">
-          <div class="proj-detail-row"><div class="proj-detail-label">University</div><div class="proj-detail-val" id="d-uni">—</div></div>
-          <div class="proj-detail-row"><div class="proj-detail-label">Background Education</div><div class="proj-detail-val" id="d-edu">—</div></div>
-          <div class="proj-detail-row"><div class="proj-detail-label">Key Expertise</div><div class="proj-detail-val" id="d-keyexp">—</div></div>
-        </div>
-      </div>
-
-      <div class="detail-section">
-        <div class="detail-section-label">// System Tool Infrastructure</div>
-        <div class="meta-grid-display">
-          <div class="proj-detail-row"><div class="proj-detail-label">Circuit & Sim</div><div class="proj-detail-val" id="d-t-circuit">—</div></div>
-          <div class="proj-detail-row"><div class="proj-detail-label">Layout Architecture</div><div class="proj-detail-val" id="d-t-layout">—</div></div>
-          <div class="proj-detail-row"><div class="proj-detail-label">Physical verification</div><div class="proj-detail-val" id="d-t-phys">—</div></div>
-          <div class="proj-detail-row"><div class="proj-detail-label">Extraction tracking</div><div class="proj-detail-val" id="d-t-parasitic">—</div></div>
-          <div class="proj-detail-row"><div class="proj-detail-label">Reliability infrastructure</div><div class="proj-detail-val" id="d-t-rel">—</div></div>
-          <div class="proj-detail-row"><div class="proj-detail-label">Project Management</div><div class="proj-detail-val" id="d-t-pm">—</div></div>
-        </div>
-      </div>
-
-      <div class="detail-section">
-        <div class="detail-section-label">// Technical Base Targets</div>
-        <div class="meta-grid-display">
-          <div class="proj-detail-row"><div class="proj-detail-label">Nodes</div><div class="proj-detail-val" id="d-b-tech">—</div></div>
-          <div class="proj-detail-row"><div class="proj-detail-label">Foundries</div><div class="proj-detail-val" id="d-b-foundry">—</div></div>
-          <div class="proj-detail-row"><div class="proj-detail-label">Processes</div><div class="proj-detail-val" id="d-b-process">—</div></div>
-        </div>
-      </div>
-
-      <div class="detail-section" id="d-project-section-wrapper">
-        <div class="detail-section-label">// Tracked Layout Experience History</div>
-        <div id="d-projects-accordion-target"></div>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<div class="modal-backdrop" id="project-popup-backdrop">
-  <div class="modal">
-    <div class="modal-icon">📁</div>
-    <h3 id="pop-project-name">Project Title</h3>
-    <p style="margin-bottom:0.6rem;"><strong style="color:var(--accent);">Team:</strong> <span id="pop-project-team">AMS</span></p>
-    <p style="margin-bottom:0.6rem;"><strong style="color:var(--accent);">Geometry Node:</strong> <span id="pop-project-node">7nm</span></p>
-    
-    <div style="margin-bottom: 0.8rem;">
-      <div class="proj-detail-label">Project Goal</div>
-      <div id="pop-project-goal-container" style="background:var(--bg2); padding:10px; border-radius:4px;"></div>
-    </div>
-    <div style="margin-bottom: 1.4rem;">
-      <div class="proj-detail-label">Key Achievements</div>
-      <div id="pop-project-achv-container" style="background:var(--bg2); padding:10px; border-radius:4px;"></div>
-    </div>
-    <div class="modal-actions">
-      <button class="btn-primary" onclick="closeProjectPopup()">Acknowledge</button>
-    </div>
-  </div>
-</div>
-
-<div class="modal-backdrop" id="modal-backdrop">
-  <div class="modal">
-    <div class="modal-icon">🗑️</div>
-    <h3>Delete this profile?</h3>
-    <p>This will remove the engineer's record. You will have 60 seconds to undo.</p>
-    <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
-      <button style="background:var(--warn); border:none; padding:0.6rem 1.6rem; color:#fff; border-radius:3px; cursor:pointer;" onclick="confirmDelete()">Yes, Delete</button>
-    </div>
-  </div>
-</div>
-
-<div class="toast" id="toast"></div>
-<div class="undo-bar" id="undo-bar">
-  <span style="color:var(--text2)">Profile extracted.</span>
-  <span style="color:var(--warn); font-weight:bold;" id="undo-timer">60s</span>
-  <button class="btn-undo" onclick="undoDelete()">UNDO ACTIONS</button>
-</div>
-
-<script>
-  let profiles = JSON.parse(localStorage.getItem('nsl_profiles_v3') || '[]');
-  let teamProjects = JSON.parse(localStorage.getItem('nsl_team_projects_v3') || '[]');
-
-  let editingProfileId = null;
-  let viewingProfileId = null;
-  let engineerTechTags = [];
-  let projectNodeTags = [];
-  let selectedNodeFilter = 'ALL';
-
-  let deletedProfileSnapshot = null;
-  let undoInterval = null;
-  let undoSecondsRemaining = 60;
-  let activeDeletionStagedId = null;
-
-  window.onload = () => {
-    renderGroupedTeamProjects();
-    initializeTagEvents('ep-b-tech', 'ep-b-tech-tags', 'ENGINEER');
-    initializeTagEvents('proj-node-input', 'proj-node-tags', 'PROJECT');
-  };
-
-  /* Parsing split multiline strings to cleanly styled lists arrays */
-  function parseLinesToBulletMarkup(textRaw) {
-    if(!textRaw) return '—';
-    const fragments = textRaw.split('\n').map(x => x.trim()).filter(Boolean);
-    if(fragments.length <= 1) return escapeHtmlStrings(textRaw);
-    
-    return `<ul class="bullet-container-list">` + 
-      fragments.map(f => `<li>${escapeHtmlStrings(f)}</li>`).join('') + 
-    `</ul>`;
-  }
-
-  function navToView(viewId) {
-    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-    document.getElementById(viewId).classList.add('active');
-    document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function showProjectsHome() {
-    document.getElementById('tab-projects').classList.add('active');
-    navToView('view-projects-home');
-    renderGroupedTeamProjects();
-  }
-
-  function showDirectory() {
-    document.getElementById('tab-directory').classList.add('active');
-    navToView('view-directory');
-    selectedNodeFilter = 'ALL'; 
-    renderDirectoryProfiles();
-  }
-
-  function toggleTheme() {
-    const html = document.documentElement;
-    const isDark = html.getAttribute('data-theme') === 'dark';
-    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-    document.getElementById('theme-toggle-btn').textContent = isDark ? '☀️' : '🌙';
-  }
-
-  /* INTERACTIVE TAG TOKENS */
-  function initializeTagEvents(inputId, containerId, category) {
-    const inputEl = document.getElementById(inputId);
-    if(!inputEl) return;
-    const commit = () => {
-      let rawVal = inputEl.value.trim().replace(/,/g, '');
-      if(rawVal) {
-        let arr = category === 'ENGINEER' ? engineerTechTags : projectNodeTags;
-        if(!arr.includes(rawVal)) { arr.push(rawVal); refreshTags(inputId, containerId, category); }
-      }
-      inputEl.value = '';
-    };
-    inputEl.addEventListener('keydown', (e) => {
-      if(e.key === ',' || e.key === ' ') { e.preventDefault(); commit(); }
-      else if(e.key === 'Backspace' && inputEl.value === '') {
-        let arr = category === 'ENGINEER' ? engineerTechTags : projectNodeTags;
-        arr.pop(); refreshTags(inputId, containerId, category);
-      }
-    });
-    inputEl.addEventListener('blur', commit);
-  }
-
-  function refreshTags(inputId, containerId, category) {
-    const container = document.getElementById(containerId);
-    let arr = category === 'ENGINEER' ? engineerTechTags : projectNodeTags;
-    container.innerHTML = '';
-    arr.forEach((tag, idx) => {
-      const pill = document.createElement('span');
-      pill.className = 'input-tag-pill';
-      pill.innerHTML = `${escapeHtmlStrings(tag)} <b onclick="removeTagToken('${inputId}','${containerId}','${category}',${idx})">×</b>`;
-      container.appendChild(pill);
-    });
-  }
-
-  function removeTagToken(inputId, containerId, category, idx) {
-    if(category === 'ENGINEER') engineerTechTags.splice(idx, 1);
-    else projectNodeTags.splice(idx, 1);
-    refreshTags(inputId, containerId, category);
-  }
-
-  /* HOME DASHBOARD LOGIC MAPS */
-  function showTeamProjectForm() {
-    navToView('view-project-upload-form');
-    document.getElementById('proj-team-select').value = 'Analog Mixed Signal';
-    document.getElementById('custom-team-field-block').style.display = 'none';
-    ['proj-custom-team', 'proj-title-input', 'proj-node-input', 'proj-goal-input', 'proj-achv-input'].forEach(id => document.getElementById(id).value = '');
-    projectNodeTags = [];
-    refreshTags('proj-node-input', 'proj-node-tags', 'PROJECT');
-  }
-
-  function toggleCustomTeamField() {
-    const val = document.getElementById('proj-team-select').value;
-    document.getElementById('custom-team-field-block').style.display = val === 'Others' ? 'block' : 'none';
-  }
-
-  function saveTeamProject() {
-    const selection = document.getElementById('proj-team-select').value;
-    let teamName = selection === 'Others' ? document.getElementById('proj-custom-team').value.trim() : selection;
-    const title = document.getElementById('proj-title-input').value.trim();
-    const goal = document.getElementById('proj-goal-input').value.trim();
-    const achievements = document.getElementById('proj-achv-input').value.trim();
-
-    if (!teamName || !title || projectNodeTags.length === 0 || !goal || !achievements) {
-      showSystemToast('Complete all project parameters ✦', true);
-      return;
-    }
-
-    teamProjects.push({
-      id: 'proj-' + Date.now().toString(36),
-      teamName, projectName: title,
-      processNode: projectNodeTags.join(', '),
-      goal, keyAchievements: achievements,
-      timestamp: Date.now()
-    });
-
-    localStorage.setItem('nsl_team_projects_v3', JSON.stringify(teamProjects));
-    showSystemToast('✓ Project Specifications Captured');
-    showProjectsHome();
-  }
-
-  function renderGroupedTeamProjects() {
-    const container = document.getElementById('teams-distribution-wrapper');
-    container.innerHTML = '';
-
-    const categories = new Set(['Analog Mixed Signal', 'Layout', 'RF', 'Memory', 'GPIO']);
-    teamProjects.forEach(p => { if(p.teamName) categories.add(p.teamName); });
-
-    if (teamProjects.length === 0) {
-      container.innerHTML = `<div class="empty-state"><h3>No project specifications tracked</h3><p>Click + Add Project Detail to get started.</p></div>`;
-      return;
-    }
-
-    categories.forEach(team => {
-      const records = teamProjects.filter(p => p.teamName === team);
-      if (records.length === 0) return;
-
-      const section = document.createElement('div');
-      section.className = 'team-section';
-
-      let cardsMarkup = '';
-      records.forEach(p => {
-        cardsMarkup += `
-          <div class="profile-card" onclick="openProjectPopup('${p.id}')">
-            <div class="card-name" style="margin-bottom:6px;">${escapeHtmlStrings(p.projectName)}</div>
-            <div class="node-tag" style="margin-bottom:8px;">${escapeHtmlStrings(p.processNode)}</div>
-            <div class="card-desc"><strong>Goals:</strong> ${parseLinesToBulletMarkup(p.goal)}</div>
-            <div class="card-desc" style="margin-top:6px;"><strong>Achievements:</strong> ${parseLinesToBulletMarkup(p.keyAchievements)}</div>
+        <div class="form-section">
+          <div class="form-section-title">02 · Tool Ecosystem Focus</div>
+          <div class="form-row">
+            <div class="field">
+              <label>Circuit Design & Simulation</label>
+              <input type="text" id="ep-t-circuit" placeholder="e.g., Cadence Virtuoso" />
+            </div>
+            <div class="field">
+              <label>Layout Design</label>
+              <input type="text" id="ep-t-layout" placeholder="e.g., Virtuoso Layout Editor" />
+            </div>
           </div>
-        `;
-      });
-
-      section.innerHTML = `
-        <div class="team-header-container">
-          <div class="team-banner-title">${escapeHtmlStrings(team)}</div>
-          <button class="btn-download-sec" onclick="downloadTeamDocx('${escapeHtmlStrings(team)}')">⬇ Download ${escapeHtmlStrings(team)} data</button>
+          <div class="form-row">
+            <div class="field">
+              <label>Physical Verification</label>
+              <input type="text" id="ep-t-phys" placeholder="e.g., Calibre, PVS" />
+            </div>
+            <div class="field">
+              <label>Parasitic Extraction</label>
+              <input type="text" id="ep-t-parasitic" placeholder="e.g., StarRC, Quantus" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Reliability Validation</label>
+              <input type="text" id="ep-t-reliability" placeholder="e.g., Totem" />
+            </div>
+            <div class="field">
+              <label>Project Management</label>
+              <input type="text" id="ep-t-pm" placeholder="e.g., ClioSoft SOS" />
+            </div>
+          </div>
         </div>
-        <div class="profile-grid">${cardsMarkup}</div>
-      `;
-      container.appendChild(section);
-    });
-  }
 
-  function openProjectPopup(id) {
-    const proj = teamProjects.find(p => p.id === id);
-    if (!proj) return;
-    document.getElementById('pop-project-name').textContent = proj.projectName;
-    document.getElementById('pop-project-team').textContent = proj.teamName;
-    document.getElementById('pop-project-node').textContent = proj.processNode;
-    
-    document.getElementById('pop-project-goal-container').innerHTML = parseLinesToBulletMarkup(proj.goal);
-    document.getElementById('pop-project-achv-container').innerHTML = parseLinesToBulletMarkup(proj.keyAchievements);
-
-    document.getElementById('project-popup-backdrop').classList.add('open');
-  }
-
-  function closeProjectPopup() { document.getElementById('project-popup-backdrop').classList.remove('open'); }
-
-  /* DIRECTORY MANIFEST PIPELINES */
-  function showEngineerForm(id = null) {
-    navToView('view-profile-form');
-    resetProfileFields();
-    editingProfileId = null;
-
-    if (id) {
-      editingProfileId = id;
-      const target = profiles.find(p => p.id === id);
-      if (target) populateFormFields(target);
-      document.getElementById('profile-form-heading').textContent = 'Modify Technical Profile';
-    } else {
-      document.getElementById('profile-form-heading').textContent = 'Initialize Technical Profile';
-      addEngineerProjectFormBlock();
-    }
-  }
-
-  function addEngineerProjectFormBlock(data = null) {
-    const box = document.getElementById('dynamic-engineer-projects-box');
-    const uid = data ? data.uid : 'epb-' + Math.random().toString(36).slice(2, 7);
-    const div = document.createElement('div');
-    div.className = 'project-block';
-    div.id = uid;
-
-    div.innerHTML = `
-      <div class="project-header">
-        <span class="project-num">// DETAILED PROJECT LOG</span>
-        <button class="project-remove-btn" type="button" onclick="removeDynamicProjectBlock('${uid}')">✕</button>
-      </div>
-      <div class="project-body">
-        <div class="field">
-          <label>Project Name</label>
-          <input type="text" class="field-p-name" value="${data ? escapeHtmlStrings(data.name) : ''}" />
+        <div class="form-section">
+          <div class="form-section-title">03 · Base Foundations</div>
+          <div class="form-row">
+            <div class="field">
+              <label>Technology Base Nodes <span class="req">*</span></label>
+              <div class="tags-input-style-container">
+                <div id="ep-b-tech-tags" style="display: flex; flex-wrap: wrap; gap: 4px;"></div>
+                <input type="text" id="ep-b-tech" placeholder="Press Space or Comma" />
+              </div>
+            </div>
+            <div class="field">
+              <label>Foundry Background</label>
+              <input type="text" id="ep-b-foundry" placeholder="e.g., TSMC, Samsung" />
+            </div>
+            <div class="field">
+              <label>Process Types</label>
+              <input type="text" id="ep-b-process" placeholder="e.g., FinFET, BCD" />
+            </div>
+          </div>
         </div>
-        <div class="field">
-          <label>Technology Nodes</label>
-          <input type="text" class="field-p-tech" value="${data ? escapeHtmlStrings(data.tech) : ''}" />
+
+        <div class="form-section">
+          <div class="form-section-title">04 · Layout Project Experience Logs</div>
+          <div id="dynamic-engineer-projects-box"></div>
+          <button class="btn-add-project" onclick="addEngineerProjectFormBlock()">＋ ADD DETAILED PROJECT RECORD</button>
         </div>
-        <div class="field">
-          <label>Duration Tracking</label>
-          <input type="text" class="field-p-duration" value="${data ? escapeHtmlStrings(data.duration) : ''}" />
-        </div>
-        <div class="field" style="grid-column: 1/-1">
-          <label>Description Parameters (Supports separate lines for bullets)</label>
-          <textarea class="field-p-desc" rows="4">${data ? escapeHtmlStrings(data.desc) : ''}</textarea>
+
+        <div class="form-actions">
+          <button class="btn-cancel" onclick="showDirectory()">Cancel</button>
+          <button class="btn-save" onclick="saveEngineerProfile()">SAVE PROFILE SYSTEM</button>
         </div>
       </div>
-    `;
-    box.appendChild(div);
-  }
+    </div>
 
-  function removeDynamicProjectBlock(id) { const el = document.getElementById(id); if (el) el.remove(); }
-  function resetProfileFields() {
-    ['ep-name', 'ep-yoe', 'ep-uni', 'ep-edu', 'ep-keyexp', 'ep-t-circuit', 'ep-t-layout', 'ep-t-phys', 'ep-t-parasitic', 'ep-t-reliability', 'ep-t-pm', 'ep-b-tech', 'ep-b-foundry', 'ep-b-process'].forEach(id => document.getElementById(id).value = '');
-    document.getElementById('dynamic-engineer-projects-box').innerHTML = '';
-    engineerTechTags = [];
-    refreshTags('ep-b-tech', 'ep-b-tech-tags', 'ENGINEER');
-  }
+    <div id="view-profile-detail" class="view">
+      <div class="profile-detail">
+        <button class="back-btn" onclick="showDirectory()">← BACK TO DIRECTORY</button>
 
-  function populateFormFields(p) {
-    document.getElementById('ep-name').value = p.name || '';
-    document.getElementById('ep-yoe').value = p.yoe || '';
-    document.getElementById('ep-uni').value = p.uni || '';
-    document.getElementById('ep-edu').value = p.edu || '';
-    document.getElementById('ep-keyexp').value = p.keyexp || '';
-    document.getElementById('ep-t-circuit').value = p.tools?.circuit || '';
-    document.getElementById('ep-t-layout').value = p.tools?.layout || '';
-    document.getElementById('ep-t-phys').value = p.tools?.phys || '';
-    document.getElementById('ep-t-parasitic').value = p.tools?.parasitic || '';
-    document.getElementById('ep-t-reliability').value = p.tools?.reliability || '';
-    document.getElementById('ep-t-pm').value = p.tools?.pm || '';
-    document.getElementById('ep-b-foundry').value = p.base?.foundry || '';
-    document.getElementById('ep-b-process').value = p.base?.process || '';
-    engineerTechTags = p.base?.tech ? [...p.base.tech] : [];
-    refreshTags('ep-b-tech', 'ep-b-tech-tags', 'ENGINEER');
-    if (p.experienceLogs) p.experienceLogs.forEach(log => addEngineerProjectFormBlock(log));
-  }
+        <div class="detail-header">
+          <div class="detail-avatar" id="d-avatar">RY</div>
+          <div style="flex:1; min-width:0;">
+            <div class="detail-name" id="d-name">Engineer Name</div>
+            <div class="detail-desig" id="d-yoe">Experience Parameters</div>
+            <div class="nodes-wrap" id="d-nodes-box"></div>
+          </div>
+          <div class="detail-actions">
+            <button class="btn-ghost" style="border-color: var(--accent3); color: var(--accent3);" id="btn-profile-docx">DOC DOWNLOAD</button>
+            <button class="btn-ghost" onclick="editProfileDirectly()">EDIT</button>
+            <button class="btn-ghost btn-danger" onclick="triggerProfileDeletion()">DELETE</button>
+          </div>
+        </div>
 
-  function saveEngineerProfile() {
-    const name = document.getElementById('ep-name').value.trim();
-    const yoe = document.getElementById('ep-yoe').value.trim();
-    const keyexp = document.getElementById('ep-keyexp').value.trim();
+        <div class="detail-section">
+          <div class="detail-section-label">// Academic & Core Summary</div>
+          <div class="meta-grid-display">
+            <div class="proj-detail-row"><div class="proj-detail-label">University</div><div class="proj-detail-val" id="d-uni">—</div></div>
+            <div class="proj-detail-row"><div class="proj-detail-label">Background Education</div><div class="proj-detail-val" id="d-edu">—</div></div>
+            <div class="proj-detail-row"><div class="proj-detail-label">Key Expertise</div><div class="proj-detail-val" id="d-keyexp">—</div></div>
+          </div>
+        </div>
 
-    if (!name || !yoe || !keyexp || engineerTechTags.length === 0) {
-      showSystemToast('Complete required background rows ✦', true);
-      return;
-    }
+        <div class="detail-section">
+          <div class="detail-section-label">// System Tool Infrastructure</div>
+          <div class="meta-grid-display">
+            <div class="proj-detail-row"><div class="proj-detail-label">Circuit & Sim</div><div class="proj-detail-val" id="d-t-circuit">—</div></div>
+            <div class="proj-detail-row"><div class="proj-detail-label">Layout Architecture</div><div class="proj-detail-val" id="d-t-layout">—</div></div>
+            <div class="proj-detail-row"><div class="proj-detail-label">Physical verification</div><div class="proj-detail-val" id="d-t-phys">—</div></div>
+            <div class="proj-detail-row"><div class="proj-detail-label">Extraction tracking</div><div class="proj-detail-val" id="d-t-parasitic">—</div></div>
+            <div class="proj-detail-row"><div class="proj-detail-label">Reliability infrastructure</div><div class="proj-detail-val" id="d-t-rel">—</div></div>
+            <div class="proj-detail-row"><div class="proj-detail-label">Project Management</div><div class="proj-detail-val" id="d-t-pm">—</div></div>
+          </div>
+        </div>
 
-    const logs = [];
-    document.querySelectorAll('#dynamic-engineer-projects-box .project-block').forEach(blk => {
-      logs.push({
-        uid: blk.id,
-        name: blk.querySelector('.field-p-name').value.trim(),
-        tech: blk.querySelector('.field-p-tech').value.trim(),
-        duration: blk.querySelector('.field-p-duration').value.trim(),
-        desc: blk.querySelector('.field-p-desc').value.trim()
-      });
-    });
+        <div class="detail-section">
+          <div class="detail-section-label">// Technical Base Targets</div>
+          <div class="meta-grid-display">
+            <div class="proj-detail-row"><div class="proj-detail-label">Nodes</div><div class="proj-detail-val" id="d-b-tech">—</div></div>
+            <div class="proj-detail-row"><div class="proj-detail-label">Foundries</div><div class="proj-detail-val" id="d-b-foundry">—</div></div>
+            <div class="proj-detail-row"><div class="proj-detail-label">Processes</div><div class="proj-detail-val" id="d-b-process">—</div></div>
+          </div>
+        </div>
 
-    const packet = {
-      id: editingProfileId || 'eng-' + Math.random().toString(36).slice(2, 8),
-      name, yoe, uni: document.getElementById('ep-uni').value.trim(), edu: document.getElementById('ep-edu').value.trim(), keyexp,
-      tools: {
-        circuit: document.getElementById('ep-t-circuit').value.trim(), layout: document.getElementById('ep-t-layout').value.trim(),
-        phys: document.getElementById('ep-t-phys').value.trim(), parasitic: document.getElementById('ep-t-parasitic').value.trim(),
-        reliability: document.getElementById('ep-t-reliability').value.trim(), pm: document.getElementById('ep-t-pm').value.trim()
-      },
-      base: { tech: engineerTechTags, foundry: document.getElementById('ep-b-foundry').value.trim(), process: document.getElementById('ep-b-process').value.trim() },
-      experienceLogs: logs, updatedAt: Date.now()
+        <div class="detail-section" id="d-project-section-wrapper">
+          <div class="detail-section-label">// Tracked Layout Experience History</div>
+          <div id="d-projects-accordion-target"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal-backdrop" id="project-popup-backdrop">
+    <div class="modal">
+      <div class="modal-icon">📁</div>
+      <h3 id="pop-project-name">Project Title</h3>
+      <p style="margin-bottom:0.6rem;"><strong style="color:var(--accent);">Team:</strong> <span id="pop-project-team">AMS</span></p>
+      <p style="margin-bottom:0.6rem;"><strong style="color:var(--accent);">Geometry Node:</strong> <span id="pop-project-node">7nm</span></p>
+      
+      <div style="margin-bottom: 0.8rem;">
+        <div class="proj-detail-label">Project Goal</div>
+        <div id="pop-project-goal-container" style="background:var(--bg2); padding:10px; border-radius:4px;"></div>
+      </div>
+      <div style="margin-bottom: 1.4rem;">
+        <div class="proj-detail-label">Key Achievements</div>
+        <div id="pop-project-achv-container" style="background:var(--bg2); padding:10px; border-radius:4px;"></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-primary" onclick="closeProjectPopup()">Acknowledge</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-backdrop">
+    <div class="modal">
+      <div class="modal-icon">🗑️</div>
+      <h3>Delete this profile?</h3>
+      <p>This will remove the engineer's record. You will have 60 seconds to undo.</p>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+        <button style="background:var(--warn); border:none; padding:0.6rem 1.6rem; color:#fff; border-radius:3px; cursor:pointer;" onclick="confirmDelete()">Yes, Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <div class="undo-bar" id="undo-bar">
+    <span style="color:var(--text2)">Profile extracted.</span>
+    <span style="color:var(--warn); font-weight:bold;" id="undo-timer">60s</span>
+    <button class="btn-undo" onclick="undoDelete()">UNDO ACTIONS</button>
+  </div>
+
+  <script>
+    let profiles = JSON.parse(localStorage.getItem('nsl_profiles_v3') || '[]');
+    let teamProjects = JSON.parse(localStorage.getItem('nsl_team_projects_v3') || '[]');
+
+    let editingProfileId = null;
+    let viewingProfileId = null;
+    let engineerTechTags = [];
+    let projectNodeTags = [];
+    let selectedNodeFilter = 'ALL';
+
+    let deletedProfileSnapshot = null;
+    let undoInterval = null;
+    let undoSecondsRemaining = 60;
+    let activeDeletionStagedId = null;
+
+    window.onload = () => {
+      renderGroupedTeamProjects();
+      initializeTagEvents('ep-b-tech', 'ep-b-tech-tags', 'ENGINEER');
+      initializeTagEvents('proj-node-input', 'proj-node-tags', 'PROJECT');
     };
 
-    if (editingProfileId) {
-      const idx = profiles.findIndex(x => x.id === editingProfileId);
-      if (idx !== -1) profiles[idx] = packet;
-    } else {
-      profiles.push(packet);
+    /* Turns multi-line inputs cleanly into custom frontend list elements */
+    function parseLinesToBulletMarkup(textRaw) {
+      if(!textRaw) return '—';
+      const fragments = textRaw.split('\n').map(x => x.trim()).filter(Boolean);
+      if(fragments.length <= 1) return escapeHtmlStrings(textRaw);
+      
+      return `<ul class="bullet-container-list">` + 
+        fragments.map(f => `<li>${escapeHtmlStrings(f)}</li>`).join('') + 
+      `</ul>`;
     }
 
-    localStorage.setItem('nsl_profiles_v3', JSON.stringify(profiles));
-    showSystemToast('✓ Profile Tracked Safely');
-    showDirectory();
-  }
+    function navToView(viewId) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.getElementById(viewId).classList.add('active');
+      document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-  function renderDirectoryProfiles() {
-    const nodes = new Set();
-    profiles.forEach(p => { if (p.base?.tech) p.base.tech.forEach(n => nodes.add(n.trim())); });
-    document.getElementById('stat-nodes').textContent = nodes.size > 0 ? Array.from(nodes).join(', ') : 'None Linked';
+    function showProjectsHome() {
+      document.getElementById('tab-projects').classList.add('active');
+      navToView('view-projects-home');
+      renderGroupedTeamProjects();
+    }
 
-    const filterBar = document.getElementById('directory-nodes-filter');
-    filterBar.innerHTML = '';
-    
-    if(profiles.length > 0) {
-      const btn = document.createElement('div');
-      btn.className = `node-filter-pill ${selectedNodeFilter === 'ALL' ? 'active' : ''}`;
-      btn.textContent = 'ALL NODES';
-      btn.onclick = () => { selectedNodeFilter = 'ALL'; filterProfiles(); };
-      filterBar.appendChild(btn);
+    function showDirectory() {
+      document.getElementById('tab-directory').classList.add('active');
+      navToView('view-directory');
+      selectedNodeFilter = 'ALL'; 
+      renderDirectoryProfiles();
+    }
 
-      nodes.forEach(node => {
-        const nBtn = document.createElement('div');
-        nBtn.className = `node-filter-pill ${selectedNodeFilter === node ? 'active' : ''}`;
-        nBtn.textContent = node;
-        nBtn.onclick = () => { selectedNodeFilter = node; filterProfiles(); };
-        filterBar.appendChild(nBtn);
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+      document.getElementById('theme-toggle-btn').textContent = isDark ? '☀️' : '🌙';
+    }
+
+    /* INTERACTIVE NODE PILL LOGIC PACKETS */
+    function initializeTagEvents(inputId, containerId, category) {
+      const inputEl = document.getElementById(inputId);
+      if(!inputEl) return;
+      const commit = () => {
+        let rawVal = inputEl.value.trim().replace(/,/g, '');
+        if(rawVal) {
+          let arr = category === 'ENGINEER' ? engineerTechTags : projectNodeTags;
+          if(!arr.includes(rawVal)) { arr.push(rawVal); refreshTags(inputId, containerId, category); }
+        }
+        inputEl.value = '';
+      };
+      inputEl.addEventListener('keydown', (e) => {
+        if(e.key === ',' || e.key === ' ') { e.preventDefault(); commit(); }
+        else if(e.key === 'Backspace' && inputEl.value === '') {
+          let arr = category === 'ENGINEER' ? engineerTechTags : projectNodeTags;
+          arr.pop(); refreshTags(inputId, containerId, category);
+        }
+      });
+      inputEl.addEventListener('blur', commit);
+    }
+
+    function refreshTags(inputId, containerId, category) {
+      const container = document.getElementById(containerId);
+      let arr = category === 'ENGINEER' ? engineerTechTags : projectNodeTags;
+      container.innerHTML = '';
+      arr.forEach((tag, idx) => {
+        const pill = document.createElement('span');
+        pill.className = 'input-tag-pill';
+        pill.innerHTML = `${escapeHtmlStrings(tag)} <b onclick="removeTagToken('${inputId}','${containerId}','${category}',${idx})">×</b>`;
+        container.appendChild(pill);
       });
     }
-    filterProfiles();
-  }
 
-  function filterProfiles() {
-    const q = document.getElementById('search-input').value.toLowerCase();
-    let matches = profiles.filter(p => p.name.toLowerCase().includes(q) || p.keyexp.toLowerCase().includes(q) || (p.uni && p.uni.toLowerCase().includes(q)));
-
-    if(selectedNodeFilter !== 'ALL') {
-      matches = matches.filter(p => p.base?.tech?.some(n => n.toLowerCase() === selectedNodeFilter.toLowerCase()));
+    function removeTagToken(inputId, containerId, category, idx) {
+      if(category === 'ENGINEER') engineerTechTags.splice(idx, 1);
+      else projectNodeTags.splice(idx, 1);
+      refreshTags(inputId, containerId, category);
     }
 
-    document.getElementById('stat-count').textContent = matches.length;
-    const grid = document.getElementById('profile-grid');
-    if(matches.length === 0) {
-      grid.innerHTML = `<div class="empty-state"><h3>No matching structural nodes located</h3></div>`;
-      return;
+    /* SPECIFICATION LOGGING CONTROLLERS */
+    function showTeamProjectForm() {
+      navToView('view-project-upload-form');
+      document.getElementById('proj-team-select').value = 'Analog Mixed Signal';
+      document.getElementById('custom-team-field-block').style.display = 'none';
+      ['proj-custom-team', 'proj-title-input', 'proj-node-input', 'proj-goal-input', 'proj-achv-input'].forEach(id => document.getElementById(id).value = '');
+      projectNodeTags = [];
+      refreshTags('proj-node-input', 'proj-node-tags', 'PROJECT');
     }
 
-    grid.innerHTML = matches.map(p => {
-      let nodesTags = (p.base?.tech || []).map(n => `<span class="node-tag">${escapeHtmlStrings(n)}</span>`).join(' ');
-      return `
-        <div class="profile-card" onclick="viewProfileDetails('${p.id}')">
-          <div class="card-top">
-            <div class="avatar">${p.name.substring(0,2).toUpperCase()}</div>
-            <div>
-              <div class="card-name">${escapeHtmlStrings(p.name)}</div>
-              <div class="card-desig">${escapeHtmlStrings(p.keyexp)}</div>
+    function toggleCustomTeamField() {
+      const val = document.getElementById('proj-team-select').value;
+      document.getElementById('custom-team-field-block').style.display = val === 'Others' ? 'block' : 'none';
+    }
+
+    function saveTeamProject() {
+      const selection = document.getElementById('proj-team-select').value;
+      let teamName = selection === 'Others' ? document.getElementById('proj-custom-team').value.trim() : selection;
+      const title = document.getElementById('proj-title-input').value.trim();
+      const goal = document.getElementById('proj-goal-input').value.trim();
+      const achievements = document.getElementById('proj-achv-input').value.trim();
+
+      if (!teamName || !title || projectNodeTags.length === 0 || !goal || !achievements) {
+        showSystemToast('Complete all project parameters ✦', true);
+        return;
+      }
+
+      teamProjects.push({
+        id: 'proj-' + Date.now().toString(36),
+        teamName, projectName: title,
+        processNode: projectNodeTags.join(', '),
+        goal, keyAchievements: achievements,
+        timestamp: Date.now()
+      });
+
+      localStorage.setItem('nsl_team_projects_v3', JSON.stringify(teamProjects));
+      showSystemToast('✓ Project Specifications Captured');
+      showProjectsHome();
+    }
+
+    function renderGroupedTeamProjects() {
+      const container = document.getElementById('teams-distribution-wrapper');
+      container.innerHTML = '';
+
+      const categories = new Set(['Analog Mixed Signal', 'Layout', 'RF', 'Memory', 'GPIO']);
+      teamProjects.forEach(p => { if(p.teamName) categories.add(p.teamName); });
+
+      if (teamProjects.length === 0) {
+        container.innerHTML = `<div class="empty-state"><h3>No project specifications tracked</h3><p>Click + Add Project Detail to get started.</p></div>`;
+        return;
+      }
+
+      categories.forEach(team => {
+        const records = teamProjects.filter(p => p.teamName === team);
+        if (records.length === 0) return;
+
+        const section = document.createElement('div');
+        section.className = 'team-section';
+
+        let cardsMarkup = '';
+        records.forEach(p => {
+          cardsMarkup += `
+            <div class="profile-card" onclick="openProjectPopup('${p.id}')">
+              <div class="card-name" style="margin-bottom:6px;">${escapeHtmlStrings(p.projectName)}</div>
+              <div class="node-tag" style="margin-bottom:8px;">${escapeHtmlStrings(p.processNode)}</div>
+              <div class="card-desc"><strong>Goals:</strong> ${parseLinesToBulletMarkup(p.goal)}</div>
+              <div class="card-desc" style="margin-top:6px;"><strong>Achievements:</strong> ${parseLinesToBulletMarkup(p.keyAchievements)}</div>
             </div>
+          `;
+        });
+
+        section.innerHTML = `
+          <div class="team-header-container">
+            <div class="team-banner-title">${escapeHtmlStrings(team)}</div>
+            <button class="btn-download-sec" onclick="event.stopPropagation(); downloadTeamDocx('${escapeHtmlStrings(team)}')">⬇ Download ${escapeHtmlStrings(team)} data</button>
           </div>
-          <div class="nodes-wrap">${nodesTags}</div>
-          <div class="card-desc"><strong>Experience:</strong> ${escapeHtmlStrings(p.yoe)}</div>
-          <div class="card-footer">
-            <span class="card-updated">Collaborator Register</span>
-            <div class="card-actions">
-              <button class="btn-ghost" onclick="event.stopPropagation(); showEngineerForm('${p.id}')">EDIT</button>
-              <button class="btn-ghost btn-danger" onclick="event.stopPropagation(); triggerProfileDeletion('${p.id}')">DELETE</button>
-            </div>
+          <div class="profile-grid">${cardsMarkup}</div>
+        `;
+        container.appendChild(section);
+      });
+    }
+
+    function openProjectPopup(id) {
+      const proj = teamProjects.find(p => p.id === id);
+      if (!proj) return;
+      document.getElementById('pop-project-name').textContent = proj.projectName;
+      document.getElementById('pop-project-team').textContent = proj.teamName;
+      document.getElementById('pop-project-node').textContent = proj.processNode;
+      
+      document.getElementById('pop-project-goal-container').innerHTML = parseLinesToBulletMarkup(proj.goal);
+      document.getElementById('pop-project-achv-container').innerHTML = parseLinesToBulletMarkup(proj.keyAchievements);
+
+      document.getElementById('project-popup-backdrop').classList.add('open');
+    }
+
+    function closeProjectPopup() { document.getElementById('project-popup-backdrop').classList.remove('open'); }
+
+    /* COLLABORATOR RECORD SYSTEM ACTIONS */
+    function showEngineerForm(id = null) {
+      navToView('view-profile-form');
+      resetProfileFields();
+      editingProfileId = null;
+
+      if (id) {
+        editingProfileId = id;
+        const target = profiles.find(p => p.id === id);
+        if (target) populateFormFields(target);
+        document.getElementById('profile-form-heading').textContent = 'Modify Technical Profile';
+      } else {
+        document.getElementById('profile-form-heading').textContent = 'Initialize Technical Profile';
+        addEngineerProjectFormBlock();
+      }
+    }
+
+    function addEngineerProjectFormBlock(data = null) {
+      const box = document.getElementById('dynamic-engineer-projects-box');
+      const uid = data ? data.uid : 'epb-' + Math.random().toString(36).slice(2, 7);
+      const div = document.createElement('div');
+      div.className = 'project-block';
+      div.id = uid;
+
+      div.innerHTML = `
+        <div class="project-header">
+          <span class="project-num">// DETAILED PROJECT LOG</span>
+          <button class="project-remove-btn" type="button" onclick="removeDynamicProjectBlock('${uid}')">✕</button>
+        </div>
+        <div class="project-body">
+          <div class="field">
+            <label>Project Name</label>
+            <input type="text" class="field-p-name" value="${data ? escapeHtmlStrings(data.name) : ''}" />
+          </div>
+          <div class="field">
+            <label>Technology Nodes</label>
+            <input type="text" class="field-p-tech" value="${data ? escapeHtmlStrings(data.tech) : ''}" />
+          </div>
+          <div class="field">
+            <label>Duration Tracking</label>
+            <input type="text" class="field-p-duration" value="${data ? escapeHtmlStrings(data.duration) : ''}" />
+          </div>
+          <div class="field" style="grid-column: 1/-1">
+            <label>Description Parameters (Supports separate lines for bullets)</label>
+            <textarea class="field-p-desc" rows="4">${data ? escapeHtmlStrings(data.desc) : ''}</textarea>
           </div>
         </div>
       `;
-    }).join('');
-  }
+      box.appendChild(div);
+    }
 
-  function viewProfileDetails(id) {
-    viewingProfileId = id;
-    const p = profiles.find(x => x.id === id);
-    if (!p) return;
-    navToView('view-profile-detail');
+    function removeDynamicProjectBlock(id) { const el = document.getElementById(id); if (el) el.remove(); }
+    
+    function resetProfileFields() {
+      ['ep-name', 'ep-yoe', 'ep-uni', 'ep-edu', 'ep-keyexp', 'ep-t-circuit', 'ep-t-layout', 'ep-t-phys', 'ep-t-parasitic', 'ep-t-reliability', 'ep-t-pm', 'ep-b-tech', 'ep-b-foundry', 'ep-b-process'].forEach(id => document.getElementById(id).value = '');
+      document.getElementById('dynamic-engineer-projects-box').innerHTML = '';
+      engineerTechTags = [];
+      refreshTags('ep-b-tech', 'ep-b-tech-tags', 'ENGINEER');
+    }
 
-    document.getElementById('d-avatar').textContent = p.name.substring(0,2).toUpperCase();
-    document.getElementById('d-name').textContent = p.name;
-    document.getElementById('d-yoe').textContent = p.yoe;
-    document.getElementById('d-uni').textContent = p.uni || '—';
-    document.getElementById('d-edu').textContent = p.edu || '—';
-    document.getElementById('d-keyexp').textContent = p.keyexp || '—';
-    document.getElementById('d-t-circuit').textContent = p.tools?.circuit || '—';
-    document.getElementById('d-t-layout').textContent = p.tools?.layout || '—';
-    document.getElementById('d-t-phys').textContent = p.tools?.phys || '—';
-    document.getElementById('d-t-parasitic').textContent = p.tools?.parasitic || '—';
-    document.getElementById('d-t-rel').textContent = p.tools?.reliability || '—';
-    document.getElementById('d-t-pm').textContent = p.tools?.pm || '—';
-    document.getElementById('d-b-tech').textContent = (p.base?.tech || []).join(', ') || '—';
-    document.getElementById('d-b-foundry').textContent = p.base?.foundry || '—';
-    document.getElementById('d-b-process').textContent = p.base?.process || '—';
+    function populateFormFields(p) {
+      document.getElementById('ep-name').value = p.name || '';
+      document.getElementById('ep-yoe').value = p.yoe || '';
+      document.getElementById('ep-uni').value = p.uni || '';
+      document.getElementById('ep-edu').value = p.edu || '';
+      document.getElementById('ep-keyexp').value = p.keyexp || '';
+      document.getElementById('ep-t-circuit').value = p.tools?.circuit || '';
+      document.getElementById('ep-t-layout').value = p.tools?.layout || '';
+      document.getElementById('ep-t-phys').value = p.tools?.phys || '';
+      document.getElementById('ep-t-parasitic').value = p.tools?.parasitic || '';
+      document.getElementById('ep-t-reliability').value = p.tools?.reliability || '';
+      document.getElementById('ep-t-pm').value = p.tools?.pm || '';
+      document.getElementById('ep-b-foundry').value = p.base?.foundry || '';
+      document.getElementById('ep-b-process').value = p.base?.process || '';
+      engineerTechTags = p.base?.tech ? [...p.base.tech] : [];
+      refreshTags('ep-b-tech', 'ep-b-tech-tags', 'ENGINEER');
+      if (p.experienceLogs) p.experienceLogs.forEach(log => addEngineerProjectFormBlock(log));
+    }
 
-    document.getElementById('d-nodes-box').innerHTML = (p.base?.tech || []).map(n => `<span class="node-tag">${escapeHtmlStrings(n)}</span>`).join(' ');
+    function saveEngineerProfile() {
+      const name = document.getElementById('ep-name').value.trim();
+      const yoe = document.getElementById('ep-yoe').value.trim();
+      const keyexp = document.getElementById('ep-keyexp').value.trim();
 
-    const target = document.getElementById('d-projects-accordion-target');
-    target.innerHTML = '';
-    if (!p.experienceLogs || p.experienceLogs.length === 0) {
-      target.innerHTML = '<div class="card-desc">No layout verification project tracks saved.</div>';
-    } else {
-      p.experienceLogs.forEach(log => {
-        target.innerHTML += `
-          <div class="proj-item">
-            <div class="proj-item-header">
-              <span class="node-tag" style="margin-right:10px;">${escapeHtmlStrings(log.tech)}</span>
-              <span class="proj-item-name">${escapeHtmlStrings(log.name)} (${escapeHtmlStrings(log.duration)})</span>
+      if (!name || !yoe || !keyexp || engineerTechTags.length === 0) {
+        showSystemToast('Complete required background rows ✦', true);
+        return;
+      }
+
+      const logs = [];
+      document.querySelectorAll('#dynamic-engineer-projects-box .project-block').forEach(blk => {
+        logs.push({
+          uid: blk.id,
+          name: blk.querySelector('.field-p-name').value.trim(),
+          tech: blk.querySelector('.field-p-tech').value.trim(),
+          duration: blk.querySelector('.field-p-duration').value.trim(),
+          desc: blk.querySelector('.field-p-desc').value.trim()
+        });
+      });
+
+      const packet = {
+        id: editingProfileId || 'eng-' + Math.random().toString(36).slice(2, 8),
+        name, yoe, uni: document.getElementById('ep-uni').value.trim(), edu: document.getElementById('ep-edu').value.trim(), keyexp,
+        tools: {
+          circuit: document.getElementById('ep-t-circuit').value.trim(), layout: document.getElementById('ep-t-layout').value.trim(),
+          phys: document.getElementById('ep-t-phys').value.trim(), parasitic: document.getElementById('ep-t-parasitic').value.trim(),
+          reliability: document.getElementById('ep-t-reliability').value.trim(), pm: document.getElementById('ep-t-pm').value.trim()
+        },
+        base: { tech: engineerTechTags, foundry: document.getElementById('ep-b-foundry').value.trim(), process: document.getElementById('ep-b-process').value.trim() },
+        experienceLogs: logs, updatedAt: Date.now()
+      };
+
+      if (editingProfileId) {
+        const idx = profiles.findIndex(x => x.id === editingProfileId);
+        if (idx !== -1) profiles[idx] = packet;
+      } else {
+        profiles.push(packet);
+      }
+
+      localStorage.setItem('nsl_profiles_v3', JSON.stringify(profiles));
+      showSystemToast('✓ Profile Tracked Safely');
+      showDirectory();
+    }
+
+    function renderDirectoryProfiles() {
+      const nodes = new Set();
+      profiles.forEach(p => { if (p.base?.tech) p.base.tech.forEach(n => nodes.add(n.trim())); });
+      document.getElementById('stat-nodes').textContent = nodes.size > 0 ? Array.from(nodes).join(', ') : 'None Linked';
+
+      const filterBar = document.getElementById('directory-nodes-filter');
+      filterBar.innerHTML = '';
+      
+      if(profiles.length > 0) {
+        const btn = document.createElement('div');
+        btn.className = `node-filter-pill ${selectedNodeFilter === 'ALL' ? 'active' : ''}`;
+        btn.textContent = 'ALL NODES';
+        btn.onclick = () => { selectedNodeFilter = 'ALL'; filterProfiles(); };
+        filterBar.appendChild(btn);
+
+        nodes.forEach(node => {
+          const nBtn = document.createElement('div');
+          nBtn.className = `node-filter-pill ${selectedNodeFilter === node ? 'active' : ''}`;
+          nBtn.textContent = node;
+          nBtn.onclick = () => { selectedNodeFilter = node; filterProfiles(); };
+          filterBar.appendChild(nBtn);
+        });
+      }
+      filterProfiles();
+    }
+
+    function filterProfiles() {
+      const q = document.getElementById('search-input').value.toLowerCase();
+      let matches = profiles.filter(p => p.name.toLowerCase().includes(q) || p.keyexp.toLowerCase().includes(q) || (p.uni && p.uni.toLowerCase().includes(q)));
+
+      if(selectedNodeFilter !== 'ALL') {
+        matches = matches.filter(p => p.base?.tech?.some(n => n.toLowerCase() === selectedNodeFilter.toLowerCase()));
+      }
+
+      document.getElementById('stat-count').textContent = matches.length;
+      const grid = document.getElementById('profile-grid');
+      if(matches.length === 0) {
+        grid.innerHTML = `<div class="empty-state"><h3>No matching structural nodes located</h3></div>`;
+        return;
+      }
+
+      grid.innerHTML = matches.map(p => {
+        let nodesTags = (p.base?.tech || []).map(n => `<span class="node-tag">${escapeHtmlStrings(n)}</span>`).join(' ');
+        return `
+          <div class="profile-card" onclick="viewProfileDetails('${p.id}')">
+            <div class="card-top">
+              <div class="avatar">${p.name.substring(0,2).toUpperCase()}</div>
+              <div>
+                <div class="card-name">${escapeHtmlStrings(p.name)}</div>
+                <div class="card-desig">${escapeHtmlStrings(p.keyexp)}</div>
+              </div>
             </div>
-            <div class="proj-item-body">
-              <div class="card-desc">${parseLinesToBulletMarkup(log.desc)}</div>
+            <div class="nodes-wrap">${nodesTags}</div>
+            <div class="card-desc"><strong>Experience:</strong> ${escapeHtmlStrings(p.yoe)}</div>
+            <div class="card-footer">
+              <span class="card-updated">Collaborator Register</span>
+              <div class="card-actions">
+                <button class="btn-ghost" onclick="event.stopPropagation(); showEngineerForm('${p.id}')">EDIT</button>
+                <button class="btn-ghost btn-danger" onclick="event.stopPropagation(); triggerProfileDeletion('${p.id}')">DELETE</button>
+              </div>
             </div>
           </div>
         `;
-      });
+      }).join('');
     }
 
-    // Bind action hook parameters to native document generator mapping options
-    document.getElementById('btn-profile-docx').onclick = () => downloadEngineerDocx(p);
-  }
+    function viewProfileDetails(id) {
+      viewingProfileId = id;
+      const p = profiles.find(x => x.id === id);
+      if (!p) return;
+      navToView('view-profile-detail');
 
-  function editProfileDirectly() { if (viewingProfileId) showEngineerForm(viewingProfileId); }
+      document.getElementById('d-avatar').textContent = p.name.substring(0,2).toUpperCase();
+      document.getElementById('d-name').textContent = p.name;
+      document.getElementById('d-yoe').textContent = p.yoe;
+      document.getElementById('d-uni').textContent = p.uni || '—';
+      document.getElementById('d-edu').textContent = p.edu || '—';
+      document.getElementById('d-keyexp').textContent = p.keyexp || '—';
+      document.getElementById('d-t-circuit').textContent = p.tools?.circuit || '—';
+      document.getElementById('d-t-layout').textContent = p.tools?.layout || '—';
+      document.getElementById('d-t-phys').textContent = p.tools?.phys || '—';
+      document.getElementById('d-t-parasitic').textContent = p.tools?.parasitic || '—';
+      document.getElementById('d-t-rel').textContent = p.tools?.reliability || '—';
+      document.getElementById('d-t-pm').textContent = p.tools?.pm || '—';
+      document.getElementById('d-b-tech').textContent = (p.base?.tech || []).join(', ') || '—';
+      document.getElementById('d-b-foundry').textContent = p.base?.foundry || '—';
+      document.getElementById('d-b-process').textContent = p.base?.process || '—';
 
-  /* DELETION CONTROLLERS */
-  function triggerProfileDeletion(id = null) { activeDeletionStagedId = id || viewingProfileId; document.getElementById('modal-backdrop').classList.add('open'); }
-  function closeModal() { document.getElementById('modal-backdrop').classList.remove('open'); activeDeletionStagedId = null; }
-  function confirmDelete() {
-    if (!activeDeletionStagedId) return;
-    const target = activeDeletionStagedId; closeModal();
-    deletedProfileSnapshot = JSON.parse(JSON.stringify(profiles.find(x => x.id === target)));
-    profiles = profiles.filter(x => x.id !== target);
-    localStorage.setItem('nsl_profiles_v3', JSON.stringify(profiles));
-    if (viewingProfileId === target) showDirectory(); else renderDirectoryProfiles();
-    startUndoCountdown();
-  }
+      document.getElementById('d-nodes-box').innerHTML = (p.base?.tech || []).map(n => `<span class="node-tag">${escapeHtmlStrings(n)}</span>`).join(' ');
 
-  function startUndoCountdown() {
-    if (undoInterval) clearInterval(undoInterval);
-    undoSecondsRemaining = 60;
-    const bar = document.getElementById('undo-bar');
-    document.getElementById('undo-timer').textContent = '60s';
-    bar.classList.add('show');
-    undoInterval = setInterval(() => {
-      undoSecondsRemaining--;
-      document.getElementById('undo-timer').textContent = undoSecondsRemaining + 's';
-      if (undoSecondsRemaining <= 0) { clearInterval(undoInterval); bar.classList.remove('show'); deletedProfileSnapshot = null; }
-    }, 1000);
-  }
-
-  function undoDelete() {
-    if (!deletedProfileSnapshot) return;
-    profiles.push(deletedProfileSnapshot);
-    localStorage.setItem('nsl_profiles_v3', JSON.stringify(profiles));
-    deletedProfileSnapshot = null; clearInterval(undoInterval);
-    document.getElementById('undo-bar').classList.remove('show');
-    showSystemToast('✓ Profile State Vectors Restored');
-    renderDirectoryProfiles();
-  }
-
-  function showSystemToast(txt, err = false) {
-    const el = document.getElementById('toast'); el.textContent = txt;
-    el.style.borderColor = err ? 'var(--warn)' : 'var(--accent3)';
-    el.style.color = err ? 'var(--warn)' : 'var(--accent3)';
-    el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 3000);
-  }
-
-  function escapeHtmlStrings(str) {
-    if(!str) return '';
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  /* =========================================================================
-     PLAIN WHITE BACKGROUND BLACK BORDER WORD DOCUMENT GENERATION CONTEXT ENGINE
-     ========================================================================= */
-
-  function buildWmlBulletsList(textRaw) {
-    if(!textRaw) return '<w:p><w:r><w:t>—</w:t></w:r></w:p>';
-    const lines = textRaw.split('\n').map(l => l.trim()).filter(Boolean);
-    
-    // Fall back cleanly if it's only a single line of input text parameters
-    if (lines.length <= 1) {
-      return `<w:p><w:r><w:t>${escapeXml(textRaw)}</w:t></w:r></w:p>`;
-    }
-
-    return lines.map(line => `
-      <w:p>
-        <w:pPr>
-          <w:numPr>
-            <w:ilvl w:val="0"/>
-            <w:numId w:val="1"/>
-          </w:numPr>
-        </w:pPr>
-        <w:r><w:t>${escapeXml(line)}</w:t></w:r>
-      </w:p>
-    `).join('');
-  }
-
-  function escapeXml(unsafeStr) {
-    return unsafeStr.replace(/[<>&'"]/g, (c) => {
-      switch (c) {
-        case '<': return '&lt;'; case '>': return '&gt;'; case '&': return '&amp;'; case '\'': return '&apos;'; case '"': return '&quot;';
-        default: return c;
+      const target = document.getElementById('d-projects-accordion-target');
+      target.innerHTML = '';
+      if (!p.experienceLogs || p.experienceLogs.length === 0) {
+        target.innerHTML = '<div class="card-desc">No layout verification project tracks saved.</div>';
+      } else {
+        p.experienceLogs.forEach(log => {
+          target.innerHTML += `
+            <div class="proj-item">
+              <div class="proj-item-header">
+                <span class="node-tag" style="margin-right:10px;">${escapeHtmlStrings(log.tech)}</span>
+                <span class="proj-item-name">${escapeHtmlStrings(log.name)} (${escapeHtmlStrings(log.duration)})</span>
+              </div>
+              <div class="proj-item-body">
+                <div class="card-desc">${parseLinesToBulletMarkup(log.desc)}</div>
+              </div>
+            </div>
+          `;
+        });
       }
-    });
-  }
 
-  // Generates a zip bundle mapping structure without external libraries to trigger clean downloads
-  function triggerNativeDocxSave(filename, innerBodyWmlContent) {
-    // Standard template base package definitions mapping Office XML standards
-    const prefix = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-    <w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
-      <w:body>`;
-      
-    const suffix = `
-      </w:body>
-    </w:document>`;
-
-    const documentXml = prefix + innerBodyWmlContent + suffix;
-
-    // Use a multi-file data blobbing structure targeting application/msword directly for reliable browser execution
-    const containerBlob = new Blob([documentXml], { type: 'application/msword' });
-    const url = URL.createObjectURL(containerBlob);
-    const downloadAnchor = document.createElement('a');
-    downloadAnchor.href = url;
-    downloadAnchor.download = filename;
-    document.body.appendChild(downloadAnchor);
-    downloadAnchor.click();
-    document.body.removeChild(downloadAnchor);
-    URL.revokeObjectURL(url);
-  }
-
-  /* DOWNLOAD SYSTEM HANDLER 1: TEAM SPECIFICATIONS PORTFOLIO */
-  function downloadTeamDocx(teamName) {
-    const list = teamProjects.filter(p => p.teamName.toLowerCase() === teamName.toLowerCase());
-    if(list.length === 0) {
-      showSystemToast("No active data records to pull for this segment.", true);
-      return;
+      document.getElementById('btn-profile-docx').onclick = () => downloadEngineerDocx(p);
     }
 
-    // Document header title string styling parameters
-    let bodyMarkup = `
-      <w:p>
-        <w:pPr><w:jc w:val="center"/><w:spacing w:after="240"/></w:pPr>
-        <w:r><w:rPr><w:b/><w:sz w:val="32"/></w:rPr><w:t>PORTFOLIO (${escapeXml(teamName.toUpperCase())})</w:t></w:r>
-      </w:p>
-    `;
+    function editProfileDirectly() { if (viewingProfileId) showEngineerForm(viewingProfileId); }
 
-    // Initialize layout formatting: Grid styling mapping clear plain white with solid black board cells
-    bodyMarkup += `
-      <w:tbl>
-        <w:tblPr>
-          <w:tblW w:w="5000" w:type="pct"/>
-          <w:tblBorders>
-            <w:top w:val="single" w:sz="6" w:space="0" w:color="000000"/>
-            <w:left w:val="single" w:sz="6" w:space="0" w:color="000000"/>
-            <w:bottom w:val="single" w:sz="6" w:space="0" w:color="000000"/>
-            <w:right w:val="single" w:sz="6" w:space="0" w:color="000000"/>
-            <w:insideH w:val="single" w:sz="6" w:space="0" w:color="000000"/>
-            <w:insideV w:val="single" w:sz="6" w:space="0" w:color="000000"/>
-          </w:tblBorders>
-        </w:tblPr>
-    `;
+    /* RECORD DELETION LOGIC ROUTINES */
+    function triggerProfileDeletion(id = null) { activeDeletionStagedId = id || viewingProfileId; document.getElementById('modal-backdrop').classList.add('open'); }
+    function closeModal() { document.getElementById('modal-backdrop').classList.remove('open'); activeDeletionStagedId = null; }
+    function confirmDelete() {
+      if (!activeDeletionStagedId) return;
+      const target = activeDeletionStagedId; closeModal();
+      deletedProfileSnapshot = JSON.parse(JSON.stringify(profiles.find(x => x.id === target)));
+      profiles = profiles.filter(x => x.id !== target);
+      localStorage.setItem('nsl_profiles_v3', JSON.stringify(profiles));
+      if (viewingProfileId === target) showDirectory(); else renderDirectoryProfiles();
+      startUndoCountdown();
+    }
 
-    // Generate table header columns configuration markup rows
-    bodyMarkup += `
-        <w:tr>
-          <w:tc><w:tcPr><w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/></w:tcPr><w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:b/></w:rPr><w:t>Project</w:t></w:r></w:p></w:tc>
-          <w:tc><w:tcPr><w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/></w:tcPr><w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:b/></w:rPr><w:t>Goal</w:t></w:r></w:p></w:tc>
-          <w:tc><w:tcPr><w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/></w:tcPr><w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:b/></w:rPr><w:t>Technology</w:t></w:r></w:p></w:tc>
-          <w:tc><w:tcPr><w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/></w:tcPr><w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:b/></w:rPr><w:t>Achievement</w:t></w:r></w:p></w:tc>
-        </w:tr>
-    `;
+    function startUndoCountdown() {
+      if (undoInterval) clearInterval(undoInterval);
+      undoSecondsRemaining = 60;
+      const bar = document.getElementById('undo-bar');
+      document.getElementById('undo-timer').textContent = '60s';
+      bar.classList.add('show');
+      undoInterval = setInterval(() => {
+        undoSecondsRemaining--;
+        document.getElementById('undo-timer').textContent = undoSecondsRemaining + 's';
+        if (undoSecondsRemaining <= 0) { clearInterval(undoInterval); bar.classList.remove('show'); deletedProfileSnapshot = null; }
+      }, 1000);
+    }
 
-    // Dynamic row items compilation injection loop
-    list.forEach(item => {
-      bodyMarkup += `
-        <w:tr>
-          <w:tc><w:tcPr><w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/></w:tcPr><w:p><w:r><w:t>${escapeXml(item.projectName)}</w:t></w:r></w:p></w:tc>
-          <w:tc><w:tcPr><w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/></w:tcPr>${buildWmlBulletsList(item.goal)}</w:tc>
-          <w:tc><w:tcPr><w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/></w:tcPr><w:p><w:r><w:t>${escapeXml(item.processNode)}</w:t></w:r></w:p></w:tc>
-          <w:tc><w:tcPr><w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/></w:tcPr>${buildWmlBulletsList(item.keyAchievements)}</w:tc>
-        </w:tr>
-      `;
-    });
+    function undoDelete() {
+      if (!deletedProfileSnapshot) return;
+      profiles.push(deletedProfileSnapshot);
+      localStorage.setItem('nsl_profiles_v3', JSON.stringify(profiles));
+      deletedProfileSnapshot = null; clearInterval(undoInterval);
+      document.getElementById('undo-bar').classList.remove('show');
+      showSystemToast('✓ Profile State Vectors Restored');
+      renderDirectoryProfiles();
+    }
 
-    bodyMarkup += `</w:tbl>`;
+    function showSystemToast(txt, err = false) {
+      const el = document.getElementById('toast'); el.textContent = txt;
+      el.style.borderColor = err ? 'var(--warn)' : 'var(--accent3)';
+      el.style.color = err ? 'var(--warn)' : 'var(--accent3)';
+      el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 3000);
+    }
 
-    triggerNativeDocxSave(`Portfolio_${teamName.replace(/\s+/g, '_')}.docx`, bodyMarkup);
-    showSystemToast("✓ Team specifications table extracted");
-  }
+    function escapeHtmlStrings(str) {
+      if(!str) return '';
+      return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
 
-  /* DOWNLOAD SYSTEM HANDLER 2: INDIVIDUAL COLLABORATOR DOSSIERS */
-  function downloadEngineerDocx(engineerObj) {
-    let bodyMarkup = `
-      <w:p>
-        <w:pPr><w:jc w:val="center"/><w:spacing w:after="200"/></w:pPr>
-        <w:r><w:rPr><w:b/><w:sz w:val="36"/></w:rPr><w:t>${escapeXml(engineerObj.name.toUpperCase())}</w:t></w:r>
-      </w:p>
-      <w:p><w:r><w:rPr><w:b/></w:rPr><w:t>Experience Parameters: </w:t></w:r><w:r><w:t>${escapeXml(engineerObj.yoe)}</w:t></w:r></w:p>
-      <w:p><w:r><w:rPr><w:b/></w:rPr><w:t>University Framework: </w:t></w:r><w:r><w:t>${escapeXml(engineerObj.uni || '—')}</w:t></w:r></w:p>
-      <w:p><w:r><w:rPr><w:b/></w:rPr><w:t>Education Level: </w:t></w:r><w:r><w:t>${escapeXml(engineerObj.edu || '—')}</w:t></w:r></w:p>
-      <w:p><w:r><w:rPr><w:b/></w:rPr><w:t>Key Professional Expertise: </w:t></w:r><w:r><w:t>${escapeXml(engineerObj.keyexp)}</w:t></w:r></w:p>
-      <w:p><w:spacing w:after="300"/></w:p>
+    /* =========================================================================
+       NATIVE DOCUMENT WRAPPER GENERATOR — PLAIN WHITE BG WITH Crisp BLACK BORDERS
+       ========================================================================= */
+
+    /* Parses multi-line inputs cleanly into matching bullet layouts for documents */
+    function buildHtmlBulletsList(textRaw) {
+      if(!textRaw) return '—';
+      const lines = textRaw.split('\n').map(l => l.trim()).filter(Boolean);
       
-      <w:p><w:r><w:rPr><w:b/><w:sz w:val="24"/></w:rPr><w:t>TRACKED LAYOUT PROJECT RECORDS</w:t></w:r></w:p>
-    `;
+      if (lines.length <= 1) {
+        return escapeHtmlStrings(textRaw);
+      }
 
-    if(!engineerObj.experienceLogs || engineerObj.experienceLogs.length === 0) {
-      bodyMarkup += `<w:p><w:r><w:t>No localized data rows currently compiled for this analyst.</w:t></w:r></w:p>`;
-    } else {
-      bodyMarkup += `
-        <w:tbl>
-          <w:tblPr>
-            <w:tblW w:w="5000" w:type="pct"/>
-            <w:tblBorders>
-              <w:top w:val="single" w:sz="6" w:space="0" w:color="000000"/>
-              <w:left w:val="single" w:sz="6" w:space="0" w:color="000000"/>
-              <w:bottom w:val="single" w:sz="6" w:space="0" w:color="000000"/>
-              <w:right w:val="single" w:sz="6" w:space="0" w:color="000000"/>
-              <w:insideH w:val="single" w:sz="6" w:space="0" w:color="000000"/>
-              <w:insideV w:val="single" w:sz="6" w:space="0" w:color="000000"/>
-            </w:tblBorders>
-          </w:tblPr>
-          <w:tr>
-            <w:tc><w:tcPr><w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/></w:tcPr><w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:b/></w:rPr><w:t>Project Name</w:t></w:r></w:p></w:tc>
-            <w:tc><w:tcPr><w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/></w:tcPr><w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:b/></w:rPr><w:t>Technology Node</w:t></w:r></w:p></w:tc>
-            <w:tc><w:tcPr><w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/></w:tcPr><w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:b/></w:rPr><w:t>Duration</w:t></w:r></w:p></w:tc>
-            <w:tc><w:tcPr><w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/></w:tcPr><w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:b/></w:rPr><w:t>Experience Description Scope</w:t></w:r></w:p></w:tc>
-          </w:tr>
+      return `<ul style="margin: 0; padding-left: 20px; font-family: 'Arial', sans-serif; font-size: 11pt;">` + 
+        lines.map(line => `<li style="margin-bottom: 3px;">${escapeHtmlStrings(line)}</li>`).join('') + 
+      `</ul>`;
+    }
+
+    /* Compiles table models into a valid Office transport container format */
+    function triggerNativeDocxSave(filename, innerTableHtml) {
+      const documentHtml = `
+        <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+        <head>
+          <meta charset="utf-8">
+          <title>Export Matrix</title>
+          <style>
+            body { font-family: 'Arial', sans-serif; font-size: 11pt; line-height: 1.4; color: #000000; background-color: #ffffff; padding: 20px; }
+            h1 { font-family: 'Arial', sans-serif; font-size: 16pt; font-weight: bold; text-align: center; margin-bottom: 18pt; color: #000000; }
+            h2 { font-family: 'Arial', sans-serif; font-size: 13pt; font-weight: bold; margin-top: 20pt; margin-bottom: 8pt; color: #000000; }
+            table { width: 100%; border-collapse: collapse; background-color: #ffffff; margin-top: 12pt; margin-bottom: 12pt; }
+            th, td { border: 1px solid #000000; padding: 10px; text-align: left; vertical-align: top; background-color: #ffffff; color: #000000; font-size: 10.5pt; }
+            th { font-weight: bold; text-align: center; }
+            p { margin: 0 0 6px 0; }
+          </style>
+        </head>
+        <body>
+          ${innerTableHtml}
+        </body>
+        </html>
       `;
 
-      engineerObj.experienceLogs.forEach(log => {
-        bodyMarkup += `
-          <w:tr>
-            <w:tc><w:tcPr><w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/></w:tcPr><w:p><w:r><w:t>${escapeXml(log.name)}</w:t></w:r></w:p></w:tc>
-            <w:tc><w:tcPr><w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/></w:tcPr><w:p><w:r><w:t>${escapeXml(log.tech)}</w:t></w:r></w:p></w:tc>
-            <w:tc><w:tcPr><w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/></w:tcPr><w:p><w:r><w:t>${escapeXml(log.duration)}</w:t></w:r></w:p></w:tc>
-            <w:tc><w:tcPr><w:shd w:val="clear" w:color="auto" w:fill="FFFFFF"/></w:tcPr>${buildWmlBulletsList(log.desc)}</w:tc>
-          </w:tr>
+      const containerBlob = new Blob([documentHtml], { type: 'application/msword;charset=utf-8' });
+      const url = URL.createObjectURL(containerBlob);
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.href = url;
+      downloadAnchor.download = filename;
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      document.body.removeChild(downloadAnchor);
+      URL.revokeObjectURL(url);
+    }
+
+    /* SPEC DATA EXPORT METHOD 1: EXTRACT TEAM CHANNELS */
+    function downloadTeamDocx(teamName) {
+      const list = teamProjects.filter(p => p.teamName.toLowerCase() === teamName.toLowerCase());
+      if(list.length === 0) {
+        showSystemToast("No active data records to pull for this segment.", true);
+        return;
+      }
+
+      let tableRows = `
+        <tr>
+          <th style="width: 20%;">Project</th>
+          <th style="width: 35%;">Goal</th>
+          <th style="width: 15%;">Technology</th>
+          <th style="width: 30%;">Achievement</th>
+        </tr>
+      `;
+
+      list.forEach(item => {
+        tableRows += `
+          <tr>
+            <td><strong>${escapeHtmlStrings(item.projectName)}</strong></td>
+            <td>${buildHtmlBulletsList(item.goal)}</td>
+            <td style="text-align: center;">${escapeHtmlStrings(item.processNode)}</td>
+            <td>${buildHtmlBulletsList(item.keyAchievements)}</td>
+          </tr>
         `;
       });
 
-      bodyMarkup += `</w:tbl>`;
+      const innerContent = `
+        <h1>PORTFOLIO (${escapeHtmlStrings(teamName.toUpperCase())})</h1>
+        <table>
+          ${tableRows}
+        </table>
+      `;
+
+      triggerNativeDocxSave(`Portfolio_${teamName.replace(/\s+/g, '_')}.doc`, innerContent);
+      showSystemToast("✓ Team specifications table extracted");
     }
 
-    triggerNativeDocxSave(`Profile_${engineerObj.name.replace(/\s+/g, '_')}.docx`, bodyMarkup);
-    showSystemToast("✓ Profile document extracted with clean layout grids");
-  }
-</script>
+    /* SPEC DATA EXPORT METHOD 2: EXTRACT INDIVIDUAL DOSSIERS */
+    function downloadEngineerDocx(engineerObj) {
+      let innerContent = `
+        <h1>ENGINEER SYSTEM PROFILE: ${escapeHtmlStrings(engineerObj.name.toUpperCase())}</h1>
+        <p style="font-size: 11pt; margin-bottom: 4px;"><strong>Experience Parameters:</strong> ${escapeHtmlStrings(engineerObj.yoe)}</p>
+        <p style="font-size: 11pt; margin-bottom: 4px;"><strong>University Framework:</strong> ${escapeHtmlStrings(engineerObj.uni || '—')}</p>
+        <p style="font-size: 11pt; margin-bottom: 4px;"><strong>Education Level:</strong> ${escapeHtmlStrings(engineerObj.edu || '—')}</p>
+        <p style="font-size: 11pt; margin-bottom: 12px;"><strong>Key Professional Expertise:</strong> ${escapeHtmlStrings(engineerObj.keyexp)}</p>
+        
+        <h2>TRACKED LAYOUT PROJECT RECORDS</h2>
+      `;
+
+      if(!engineerObj.experienceLogs || engineerObj.experienceLogs.length === 0) {
+        innerContent += `<p style="font-style: italic; color: #555555;">No localized project log data rows currently compiled for this engineer.</p>`;
+      } else {
+        let tableRows = `
+          <tr>
+            <th style="width: 25%;">Project Name</th>
+            <th style="width: 15%;">Technology Node</th>
+            <th style="width: 15%;">Duration</th>
+            <th style="width: 45%;">Experience Description Scope</th>
+          </tr>
+        `;
+
+        engineerObj.experienceLogs.forEach(log => {
+          tableRows += `
+            <tr>
+              <td><strong>${escapeHtmlStrings(log.name)}</strong></td>
+              <td style="text-align: center;">${escapeHtmlStrings(log.tech)}</td>
+              <td style="text-align: center;">${escapeHtmlStrings(log.duration)}</td>
+              <td>${buildHtmlBulletsList(log.desc)}</td>
+            </tr>
+          `;
+        });
+
+        innerContent += `
+          <table>
+            ${tableRows}
+          </table>
+        `;
+      }
+
+      triggerNativeDocxSave(`Profile_${engineerObj.name.replace(/\s+/g, '_')}.doc`, innerContent);
+      showSystemToast("✓ Profile document extracted with clean layout grids");
+    }
+  </script>
 </body>
 </html>
