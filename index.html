@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NSL Connect</title>
 
+  <!-- GOOGLE FONTS -->
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <style>
@@ -98,8 +99,8 @@
     }
 
     .logo { display: flex; align-items: center; gap: 12px; cursor: pointer; }
-    .logo-icon { width: 36px; height: 36px; }
-    .logo-icon svg { width: 100%; height: 100%; }
+    .logo-icon { width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; }
+    .logo-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; }
 
     .logo-text {
       font-family: 'Barlow Condensed', sans-serif;
@@ -107,6 +108,7 @@
       font-size: 1.4rem;
       letter-spacing: 0.08em;
       color: var(--text);
+      line-height: 1.1;
     }
     .logo-text span { color: var(--accent); }
 
@@ -940,16 +942,12 @@
 </head>
 <body>
 
+<!-- STICKY TOP BRAND BAR -->
 <header>
   <div class="logo" onclick="showProjectsHome()">
     <div class="logo-icon">
-      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="1" y="1" width="34" height="34" rx="3" stroke="var(--border2)" stroke-width="1.5"/>
-        <rect x="7" y="7" width="10" height="10" rx="1" fill="none" stroke="var(--accent)"  stroke-width="1.2"/>
-        <rect x="19" y="7" width="10" height="10" rx="1" fill="none" stroke="var(--accent)"  stroke-width="1.2"/>
-        <rect x="7" y="19" width="10" height="10" rx="1" fill="none" stroke="var(--accent3)" stroke-width="1.2"/>
-        <rect x="19" y="19" width="10" height="10" rx="1" fill="none" stroke="var(--accent3)" stroke-width="1.2"/>
-      </svg>
+      <!-- LINKED YOUR DEDICATED ARCHITECTURE PHOTO HERE -->
+      <img src="image_8afb22.png" alt="NSL Connect Logo" />
     </div>
     <div>
       <div class="logo-text">NSL <span>Connect</span></div>
@@ -970,6 +968,7 @@
 
 <div class="app">
 
+  <!-- VIEW 1: HOMEPAGE WITH NATIVE TEAM GROUPS -->
   <div id="view-projects-home" class="view active">
     <div class="page-header">
       <div>
@@ -982,6 +981,7 @@
     <div id="teams-distribution-wrapper"></div>
   </div>
 
+  <!-- VIEW 2: TEAM PROJECT LOG FORM -->
   <div id="view-project-upload-form" class="view">
     <div class="form-container">
       <button class="back-btn" onclick="showProjectsHome()">← BACK TO ALL PROJECTS</button>
@@ -1054,6 +1054,7 @@
     </div>
   </div>
 
+  <!-- VIEW 3: ENGINE REGISTER DIRECTORY -->
   <div id="view-directory" class="view">
     <div class="page-header">
       <div>
@@ -1075,11 +1076,13 @@
       </div>
     </div>
 
+    <!-- TARGET EXTRACTED CLICKABLE NODES BAR -->
     <div class="nodes-filter-bar" id="directory-nodes-filter"></div>
 
     <div class="profile-grid" id="profile-grid"></div>
   </div>
 
+  <!-- VIEW 4: INTERACTIVE PROFILE SETUP INTERFACE -->
   <div id="view-profile-form" class="view">
     <div class="form-container">
       <button class="back-btn" onclick="showDirectory()">← BACK TO DIRECTORY</button>
@@ -1193,6 +1196,7 @@
     </div>
   </div>
 
+  <!-- VIEW 5: READ-ONLY TECHNICAL DISPLAYS -->
   <div id="view-profile-detail" class="view">
     <div class="profile-detail">
       <button class="back-btn" onclick="showDirectory()">← BACK TO DIRECTORY</button>
@@ -1249,6 +1253,9 @@
 
 </div>
 
+<!-- HIGH TECH POPUP MODAL PANELS -->
+
+<!-- POPUP MODAL 1: HOMEPAGE PROJECT DATA SPECS -->
 <div class="modal-backdrop" id="project-popup-backdrop">
   <div class="modal">
     <div class="modal-icon">📁</div>
@@ -1269,6 +1276,7 @@
   </div>
 </div>
 
+<!-- POPUP MODAL 2: 60-SECOND ENGINE DELETION SAFETY CHECKS -->
 <div class="modal-backdrop" id="modal-backdrop">
   <div class="modal">
     <div class="modal-icon">🗑️</div>
@@ -1284,8 +1292,10 @@
   </div>
 </div>
 
+<!-- FLOATING TRANSACTION ALERTS -->
 <div class="toast" id="toast"></div>
 
+<!-- COUNTDOWN UNDO ENGAGEMENT BAR -->
 <div class="undo-bar" id="undo-bar">
   <span class="undo-msg">Profile data extracted.</span>
   <span class="undo-timer" id="undo-timer">60s</span>
