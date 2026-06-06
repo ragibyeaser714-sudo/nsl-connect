@@ -1011,640 +1011,222 @@
   <button class="btn-undo" onclick="undoDelete()">UNDO ACTIONS</button>
 </div>
 
+<script type="module">
 
-<script>
 /* ================================================================
-   NSL CONNECT — JAVASCRIPT
-   ----------------------------------------------------------------
-   A. AUTH SYSTEM     — sign-up, login, session, logout
-   B. THEME           — dark / light toggle with persistence
-   C. NAVIGATION      — view switching
-   D. TAG INPUT       — tech node pill inputs
-   E. ALL PROJECTS    — team project CRUD + grouped display
-   F. ENGINEER DIR    — profile CRUD, filter, detail view
-   G. DOC EXPORT      — Word .doc downloads
-   H. UTILITIES       — toast, HTML escape, bullet parser
+   NSL CONNECT — FIREBASE VERSION
+   - Auth (Google Login)
+   - Firestore (shared database)
+   - Real-time updates
+   - Delete / Update synced
 ================================================================ */
 
+/* ---------------- FIREBASE IMPORTS ---------------- */
 
-/* ----------------------------------------------------------------
-   A. AUTH SYSTEM
-   Accounts stored in localStorage key 'nsl_accounts'
-   as an array of { email, hash, firstName, lastName }.
-   Session stored in localStorage key 'nsl_session' as email string.
-   On every page load, checkSession() auto-logs in if valid session exists.
----------------------------------------------------------------- */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js";
 
-/* Load all registered accounts */
-let accounts = JSON.parse(localStorage.getItem('nsl_accounts') || '[]');
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  onSnapshot,
+  deleteDoc,
+  doc,
+  updateDoc
+} from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
 
-/* Currently active session email (null = not logged in) */
-let sessionEmail = localStorage.getItem('nsl_session') || null;
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
 
-/* Simple deterministic hash — adequate for internal org tool */
-function hashStr(s) {
-  let h = 5381;
-  for (let i = 0; i < s.length; i++) h = (Math.imul(33, h) ^ s.charCodeAt(i)) >>> 0;
-  return h.toString(16);
-}
+/* ---------------- FIREBASE INIT ---------------- */
 
-/* Switch which auth panel is visible */
-function switchPanel(panel) {
-  document.getElementById('panel-login').classList.toggle('active', panel === 'login');
-  document.getElementById('panel-signup').classList.toggle('active', panel === 'signup');
-  /* Clear errors when switching */
-  ['login-err','signup-err'].forEach(id => document.getElementById(id).classList.remove('show'));
-}
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
 
-/* Show / hide password characters */
-function toggleEye(inputId, btn) {
-  const el = document.getElementById(inputId);
-  el.type = el.type === 'password' ? 'text' : 'password';
-  btn.style.opacity = el.type === 'text' ? '1' : '0.5';
-}
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const db = getFirestore(app);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
-/* Password strength meter on signup */
-function evalStrength(pwd) {
-  const wrap = document.getElementById('strength-wrap');
-  const fill = document.getElementById('strength-fill');
-  const lbl  = document.getElementById('strength-lbl');
-  if (!pwd) { wrap.classList.remove('show'); return; }
-  wrap.classList.add('show');
-  let sc = 0;
-  if (pwd.length >= 6)  sc++;
-  if (pwd.length >= 10) sc++;
-  if (/[A-Z]/.test(pwd)) sc++;
-  if (/[0-9]/.test(pwd)) sc++;
-  if (/[^A-Za-z0-9]/.test(pwd)) sc++;
-  const lvl = [
-    {p:'20%',c:'#f87171',t:'Very weak'},
-    {p:'40%',c:'#fb923c',t:'Weak'},
-    {p:'60%',c:'#facc15',t:'Fair'},
-    {p:'80%',c:'#34d399',t:'Strong'},
-    {p:'100%',c:'#22c55e',t:'Very strong'}
-  ][Math.max(0, Math.min(sc - 1, 4))];
-  fill.style.width = lvl.p; fill.style.background = lvl.c;
-  lbl.textContent = lvl.t; lbl.style.color = lvl.c;
-}
+/* ---------------- GLOBAL STATE ---------------- */
 
-/* Show an error message inside the specified auth panel */
-function showAuthErr(id, msg) {
-  const el = document.getElementById(id);
-  el.textContent = msg;
-  el.classList.add('show');
-}
+let profiles = [];
+let teamProjects = [];
+let currentUser = null;
 
-/* LOGIN */
-function doLogin() {
-  document.getElementById('login-err').classList.remove('show');
-  const email = document.getElementById('login-email').value.trim().toLowerCase();
-  const pwd   = document.getElementById('login-pwd').value;
-  if (!email || !pwd) { showAuthErr('login-err', 'Please enter your email and password.'); return; }
-  const acc = accounts.find(a => a.email === email);
-  if (!acc) { showAuthErr('login-err', 'No account found with that email address.'); return; }
-  if (acc.hash !== hashStr(pwd)) { showAuthErr('login-err', 'Incorrect password. Please try again.'); return; }
-  /* Success */
-  sessionEmail = email;
-  localStorage.setItem('nsl_session', email);
-  unlockApp(acc);
-}
+/* ================================================================
+   🔐 AUTH SYSTEM
+================================================================ */
 
-/* SIGN-UP */
-function doSignup() {
-  document.getElementById('signup-err').classList.remove('show');
-  const fn    = document.getElementById('su-fname').value.trim();
-  const ln    = document.getElementById('su-lname').value.trim();
-  const email = document.getElementById('su-email').value.trim().toLowerCase();
-  const pwd   = document.getElementById('su-pwd').value;
-  const pwd2  = document.getElementById('su-pwd2').value;
-  if (!fn || !ln) { showAuthErr('signup-err', 'Please enter your first and last name.'); return; }
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showAuthErr('signup-err', 'Please enter a valid email address.'); return; }
-  if (accounts.find(a => a.email === email)) { showAuthErr('signup-err', 'An account with this email already exists.'); return; }
-  if (pwd.length < 6) { showAuthErr('signup-err', 'Password must be at least 6 characters.'); return; }
-  if (pwd !== pwd2)   { showAuthErr('signup-err', 'Passwords do not match.'); return; }
-  /* Create account */
-  const acc = { email, hash: hashStr(pwd), firstName: fn, lastName: ln };
-  accounts.push(acc);
-  localStorage.setItem('nsl_accounts', JSON.stringify(accounts));
-  sessionEmail = email;
-  localStorage.setItem('nsl_session', email);
-  unlockApp(acc);
-}
+window.login = async function () {
+  const result = await signInWithPopup(auth, provider);
+  currentUser = result.user;
+  console.log("Logged in:", currentUser.email);
+};
 
-/* Reveal main app, dismiss auth overlay */
-function unlockApp(acc) {
-  const overlay = document.getElementById('auth-overlay');
-  overlay.classList.add('hidden');
-  setTimeout(() => { overlay.style.display = 'none'; }, 450);
-  document.getElementById('main-app').classList.add('visible');
-  /* Populate user pill */
-  const initials = (acc.firstName[0] + acc.lastName[0]).toUpperCase();
-  document.getElementById('user-av').textContent = initials;
-  document.getElementById('user-nm').textContent = acc.firstName + ' ' + acc.lastName;
-  /* Boot the app */
-  renderGroupedTeamProjects();
-  initTagEvents('ep-b-tech', 'ep-b-tech-tags', 'ENG');
-  initTagEvents('proj-node-input', 'proj-node-tags', 'PROJ');
-}
+window.logout = async function () {
+  await signOut(auth);
+};
 
-/* LOGOUT — clear session, reload page */
-function doLogout() {
-  localStorage.removeItem('nsl_session');
-  window.location.reload();
-}
+onAuthStateChanged(auth, (user) => {
+  currentUser = user;
 
-/* On page load: check for an existing valid session */
-(function checkSession() {
-  if (!sessionEmail) return;
-  const acc = accounts.find(a => a.email === sessionEmail);
-  if (!acc) { localStorage.removeItem('nsl_session'); return; }
-  /* Valid — skip straight to app */
-  document.getElementById('auth-overlay').style.display = 'none';
-  unlockApp(acc);
-})();
-
-
-/* ----------------------------------------------------------------
-   B. THEME
----------------------------------------------------------------- */
-function toggleTheme() {
-  const html = document.documentElement;
-  const dark = html.getAttribute('data-theme') === 'dark';
-  html.setAttribute('data-theme', dark ? 'light' : 'dark');
-  document.getElementById('theme-toggle-btn').textContent = dark ? '\u2600\uFE0F' : '\uD83C\uDF19';
-  localStorage.setItem('nsl_theme', dark ? 'light' : 'dark');
-}
-(function initTheme() {
-  const t = localStorage.getItem('nsl_theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', t);
-  document.getElementById('theme-toggle-btn').textContent = t === 'dark' ? '\uD83C\uDF19' : '\u2600\uFE0F';
-})();
-
-
-/* ----------------------------------------------------------------
-   C. NAVIGATION
----------------------------------------------------------------- */
-let profiles     = JSON.parse(localStorage.getItem('nsl_profiles_v3')      || '[]');
-let teamProjects = JSON.parse(localStorage.getItem('nsl_team_projects_v3') || '[]');
-
-let editingProfileId       = null;
-let viewingProfileId       = null;
-let engineerTechTags       = [];
-let projectNodeTags        = [];
-let selectedNodeFilter     = 'ALL';
-let deletedProfileSnapshot = null;
-let undoInterval           = null;
-let undoSecondsRemaining   = 60;
-let activeDeletionStagedId = null;
-
-function navToView(viewId) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById(viewId).classList.add('active');
-  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function showProjectsHome() {
-  document.getElementById('tab-projects').classList.add('active');
-  navToView('view-projects-home');
-  renderGroupedTeamProjects();
-}
-
-function showDirectory() {
-  document.getElementById('tab-directory').classList.add('active');
-  navToView('view-directory');
-  selectedNodeFilter = 'ALL';
-  renderDirectoryProfiles();
-}
-
-
-/* ----------------------------------------------------------------
-   D. TAG INPUT ENGINE
-   Handles tech-node pill inputs in both the engineer and project forms.
-   category: 'ENG' | 'PROJ'
----------------------------------------------------------------- */
-function initTagEvents(inputId, containerId, category) {
-  const el = document.getElementById(inputId);
-  if (!el) return;
-  const commit = () => {
-    const v = el.value.trim().replace(/,/g, '');
-    if (v) {
-      const arr = category === 'ENG' ? engineerTechTags : projectNodeTags;
-      if (!arr.includes(v)) { arr.push(v); renderTagPills(inputId, containerId, category); }
-    }
-    el.value = '';
-  };
-  el.addEventListener('keydown', e => {
-    if (e.key === ',' || e.key === ' ') { e.preventDefault(); commit(); }
-    else if (e.key === 'Backspace' && el.value === '') {
-      const arr = category === 'ENG' ? engineerTechTags : projectNodeTags;
-      arr.pop(); renderTagPills(inputId, containerId, category);
-    }
-  });
-  el.addEventListener('blur', commit);
-}
-
-function renderTagPills(inputId, containerId, category) {
-  const box = document.getElementById(containerId);
-  const arr = category === 'ENG' ? engineerTechTags : projectNodeTags;
-  box.innerHTML = '';
-  arr.forEach((tag, i) => {
-    const s = document.createElement('span');
-    s.className = 'input-tag-pill';
-    s.innerHTML = escHtml(tag) +
-      ' <b onclick="removeTagPill(\'' + inputId + '\',\'' + containerId + '\',\'' + category + '\',' + i + ')">&#215;</b>';
-    box.appendChild(s);
-  });
-}
-
-function removeTagPill(inputId, containerId, category, idx) {
-  const arr = category === 'ENG' ? engineerTechTags : projectNodeTags;
-  arr.splice(idx, 1);
-  renderTagPills(inputId, containerId, category);
-}
-
-
-/* ----------------------------------------------------------------
-   E. ALL PROJECTS
----------------------------------------------------------------- */
-function showTeamProjectForm() {
-  navToView('view-project-upload-form');
-  document.getElementById('proj-team-select').value = 'Analog Mixed Signal';
-  document.getElementById('custom-team-field-block').style.display = 'none';
-  ['proj-custom-team','proj-title-input','proj-node-input','proj-goal-input','proj-achv-input']
-    .forEach(id => { const e = document.getElementById(id); if (e) e.value = ''; });
-  projectNodeTags = [];
-  renderTagPills('proj-node-input', 'proj-node-tags', 'PROJ');
-}
-
-function toggleCustomTeamField() {
-  const v = document.getElementById('proj-team-select').value;
-  document.getElementById('custom-team-field-block').style.display = v === 'Others' ? 'block' : 'none';
-}
-
-function saveTeamProject() {
-  const sel  = document.getElementById('proj-team-select').value;
-  const team = sel === 'Others' ? document.getElementById('proj-custom-team').value.trim() : sel;
-  const title = document.getElementById('proj-title-input').value.trim();
-  const goal  = document.getElementById('proj-goal-input').value.trim();
-  const achv  = document.getElementById('proj-achv-input').value.trim();
-  if (!team || !title || !projectNodeTags.length || !goal || !achv) {
-    showToast('Complete all project parameters \u2736', true); return;
+  if (user) {
+    console.log("User active:", user.email);
+    document.getElementById("auth-overlay").style.display = "none";
+    document.getElementById("main-app").classList.add("visible");
+  } else {
+    document.getElementById("auth-overlay").style.display = "block";
+    document.getElementById("main-app").classList.remove("visible");
   }
-  teamProjects.push({
-    id: 'proj-' + Date.now().toString(36),
-    teamName: team, projectName: title,
-    processNode: projectNodeTags.join(', '),
-    goal, keyAchievements: achv,
-    timestamp: Date.now()
-  });
-  localStorage.setItem('nsl_team_projects_v3', JSON.stringify(teamProjects));
-  showToast('\u2713 Project Specifications Captured');
-  showProjectsHome();
-}
+});
 
-function renderGroupedTeamProjects() {
-  const c = document.getElementById('teams-distribution-wrapper');
-  c.innerHTML = '';
-  if (!teamProjects.length) {
-    c.innerHTML = '<div class="empty-state"><h3>No project specifications tracked</h3><p>Click + Add Project Detail to get started.</p></div>';
+/* ================================================================
+   🌍 REAL-TIME DATA SYNC
+================================================================ */
+
+/* PROFILES */
+onSnapshot(collection(db, "profiles"), (snap) => {
+  profiles = snap.docs.map(d => ({
+    id: d.id,
+    ...d.data()
+  }));
+
+  renderDirectoryProfiles();
+});
+
+/* TEAM PROJECTS */
+onSnapshot(collection(db, "teamProjects"), (snap) => {
+  teamProjects = snap.docs.map(d => ({
+    id: d.id,
+    ...d.data()
+  }));
+
+  renderGroupedTeamProjects();
+});
+
+/* ================================================================
+   ➕ SAVE PROFILE (REPLACE localStorage)
+================================================================ */
+
+window.saveEngineerProfile = async function () {
+
+  const name = document.getElementById('ep-name').value.trim();
+  const yoe = document.getElementById('ep-yoe').value.trim();
+  const keyexp = document.getElementById('ep-keyexp').value.trim();
+
+  if (!name || !yoe || !keyexp) {
+    showToast("Fill required fields", true);
     return;
   }
-  const cats = new Set(['Analog Mixed Signal','Layout','RF','Memory','GPIO']);
-  teamProjects.forEach(p => { if (p.teamName) cats.add(p.teamName); });
-  cats.forEach(team => {
-    const recs = teamProjects.filter(p => p.teamName === team);
-    if (!recs.length) return;
-    const sec = document.createElement('div');
-    sec.className = 'team-section';
-    let cards = recs.map(p =>
-      '<div class="profile-card" onclick="openProjectPopup(\'' + p.id + '\')">' +
-        '<div class="card-name" style="margin-bottom:6px;">' + escHtml(p.projectName) + '</div>' +
-        '<div class="node-tag" style="margin-bottom:8px;">' + escHtml(p.processNode) + '</div>' +
-        '<div class="card-desc"><strong>Goals:</strong> ' + bulletify(p.goal) + '</div>' +
-        '<div class="card-desc" style="margin-top:6px;"><strong>Achievements:</strong> ' + bulletify(p.keyAchievements) + '</div>' +
-      '</div>'
-    ).join('');
-    sec.innerHTML =
-      '<div class="team-header-container">' +
-        '<div class="team-banner-title">' + escHtml(team) + '</div>' +
-        '<button class="btn-download-sec" onclick="event.stopPropagation();dlTeamDoc(\'' + escHtml(team) + '\')">&#11015; Download ' + escHtml(team) + ' data</button>' +
-      '</div>' +
-      '<div class="profile-grid">' + cards + '</div>';
-    c.appendChild(sec);
-  });
-}
 
-function openProjectPopup(id) {
-  const p = teamProjects.find(x => x.id === id);
-  if (!p) return;
-  document.getElementById('pop-project-name').textContent = p.projectName;
-  document.getElementById('pop-project-team').textContent = p.teamName;
-  document.getElementById('pop-project-node').textContent = p.processNode;
-  document.getElementById('pop-project-goal-container').innerHTML = bulletify(p.goal);
-  document.getElementById('pop-project-achv-container').innerHTML = bulletify(p.keyAchievements);
-  document.getElementById('project-popup-backdrop').classList.add('open');
-}
-function closeProjectPopup() { document.getElementById('project-popup-backdrop').classList.remove('open'); }
-
-
-/* ----------------------------------------------------------------
-   F. ENGINEER DIRECTORY & PROFILES
----------------------------------------------------------------- */
-function showEngineerForm(id) {
-  navToView('view-profile-form');
-  resetProfileFields();
-  editingProfileId = null;
-  if (id) {
-    editingProfileId = id;
-    const t = profiles.find(p => p.id === id);
-    if (t) populateFormFields(t);
-    document.getElementById('profile-form-heading').textContent = 'Modify Technical Profile';
-  } else {
-    document.getElementById('profile-form-heading').textContent = 'Initialize Technical Profile';
-    addEngineerProjectFormBlock();
-  }
-}
-
-function addEngineerProjectFormBlock(data) {
-  const box = document.getElementById('dynamic-engineer-projects-box');
-  const uid = data ? data.uid : 'epb-' + Math.random().toString(36).slice(2, 7);
-  const div = document.createElement('div');
-  div.className = 'project-block'; div.id = uid;
-  div.innerHTML =
-    '<div class="project-header">' +
-      '<span class="project-num">// DETAILED PROJECT LOG</span>' +
-      '<button class="project-remove-btn" type="button" onclick="removeProjBlock(\'' + uid + '\')">&#215;</button>' +
-    '</div>' +
-    '<div class="project-body">' +
-      '<div class="field"><label>Project Name</label>' +
-        '<input type="text" class="field-p-name" value="' + (data ? escHtml(data.name) : '') + '"/></div>' +
-      '<div class="field"><label>Technology Nodes</label>' +
-        '<input type="text" class="field-p-tech" value="' + (data ? escHtml(data.tech) : '') + '"/></div>' +
-      '<div class="field"><label>Duration Tracking</label>' +
-        '<input type="text" class="field-p-duration" value="' + (data ? escHtml(data.duration) : '') + '"/></div>' +
-      '<div class="field" style="grid-column:1/-1"><label>Description Parameters (separate lines = bullets)</label>' +
-        '<textarea class="field-p-desc" rows="4">' + (data ? escHtml(data.desc) : '') + '</textarea></div>' +
-    '</div>';
-  box.appendChild(div);
-}
-
-function removeProjBlock(id) { const e = document.getElementById(id); if (e) e.remove(); }
-
-function resetProfileFields() {
-  ['ep-name','ep-yoe','ep-uni','ep-edu','ep-keyexp','ep-t-circuit','ep-t-layout',
-   'ep-t-phys','ep-t-parasitic','ep-t-reliability','ep-t-pm','ep-b-tech','ep-b-foundry','ep-b-process']
-    .forEach(id => { const e = document.getElementById(id); if (e) e.value = ''; });
-  document.getElementById('dynamic-engineer-projects-box').innerHTML = '';
-  engineerTechTags = [];
-  renderTagPills('ep-b-tech', 'ep-b-tech-tags', 'ENG');
-}
-
-function populateFormFields(p) {
-  const s = (id, v) => { const e = document.getElementById(id); if (e) e.value = v || ''; };
-  s('ep-name', p.name); s('ep-yoe', p.yoe); s('ep-uni', p.uni); s('ep-edu', p.edu);
-  s('ep-keyexp', p.keyexp); s('ep-t-circuit', p.tools?.circuit); s('ep-t-layout', p.tools?.layout);
-  s('ep-t-phys', p.tools?.phys); s('ep-t-parasitic', p.tools?.parasitic);
-  s('ep-t-reliability', p.tools?.reliability); s('ep-t-pm', p.tools?.pm);
-  s('ep-b-foundry', p.base?.foundry); s('ep-b-process', p.base?.process);
-  engineerTechTags = p.base?.tech ? [...p.base.tech] : [];
-  renderTagPills('ep-b-tech', 'ep-b-tech-tags', 'ENG');
-  if (p.experienceLogs) p.experienceLogs.forEach(l => addEngineerProjectFormBlock(l));
-}
-
-function saveEngineerProfile() {
-  const name   = document.getElementById('ep-name').value.trim();
-  const yoe    = document.getElementById('ep-yoe').value.trim();
-  const keyexp = document.getElementById('ep-keyexp').value.trim();
-  if (!name || !yoe || !keyexp || !engineerTechTags.length) {
-    showToast('Complete required background rows \u2736', true); return;
-  }
-  const logs = [];
-  document.querySelectorAll('#dynamic-engineer-projects-box .project-block').forEach(blk => {
-    logs.push({
-      uid:      blk.id,
-      name:     blk.querySelector('.field-p-name').value.trim(),
-      tech:     blk.querySelector('.field-p-tech').value.trim(),
-      duration: blk.querySelector('.field-p-duration').value.trim(),
-      desc:     blk.querySelector('.field-p-desc').value.trim()
-    });
-  });
-  const g = id => document.getElementById(id)?.value.trim() || '';
-  const pkt = {
-    id: editingProfileId || 'eng-' + Math.random().toString(36).slice(2, 8),
-    name, yoe, uni: g('ep-uni'), edu: g('ep-edu'), keyexp,
-    tools: { circuit: g('ep-t-circuit'), layout: g('ep-t-layout'), phys: g('ep-t-phys'),
-             parasitic: g('ep-t-parasitic'), reliability: g('ep-t-reliability'), pm: g('ep-t-pm') },
-    base:  { tech: engineerTechTags, foundry: g('ep-b-foundry'), process: g('ep-b-process') },
-    experienceLogs: logs, updatedAt: Date.now()
+  const data = {
+    name,
+    yoe,
+    keyexp,
+    uni: document.getElementById('ep-uni').value,
+    edu: document.getElementById('ep-edu').value,
+    base: {
+      tech: engineerTechTags || []
+    },
+    createdBy: currentUser?.email || "anonymous",
+    createdAt: Date.now()
   };
-  if (editingProfileId) {
-    const i = profiles.findIndex(p => p.id === editingProfileId);
-    if (i !== -1) profiles[i] = pkt;
-  } else { profiles.push(pkt); }
-  localStorage.setItem('nsl_profiles_v3', JSON.stringify(profiles));
-  showToast('\u2713 Profile Tracked Safely');
+
+  await addDoc(collection(db, "profiles"), data);
+
+  showToast("✓ Profile saved to cloud");
   showDirectory();
-}
+};
 
-function renderDirectoryProfiles() {
-  const nodes = new Set();
-  profiles.forEach(p => { (p.base?.tech || []).forEach(n => nodes.add(n.trim())); });
-  document.getElementById('stat-nodes').textContent = nodes.size ? [...nodes].join(', ') : 'None Linked';
-  const fb = document.getElementById('directory-nodes-filter');
-  fb.innerHTML = '';
-  if (profiles.length) {
-    const all = document.createElement('div');
-    all.className = 'node-filter-pill' + (selectedNodeFilter === 'ALL' ? ' active' : '');
-    all.textContent = 'ALL NODES';
-    all.onclick = () => { selectedNodeFilter = 'ALL'; filterProfiles(); };
-    fb.appendChild(all);
-    nodes.forEach(n => {
-      const btn = document.createElement('div');
-      btn.className = 'node-filter-pill' + (selectedNodeFilter === n ? ' active' : '');
-      btn.textContent = n;
-      btn.onclick = () => { selectedNodeFilter = n; filterProfiles(); };
-      fb.appendChild(btn);
-    });
-  }
-  filterProfiles();
-}
+/* ================================================================
+   ➕ SAVE TEAM PROJECT
+================================================================ */
 
-function filterProfiles() {
-  const q = document.getElementById('search-input').value.toLowerCase();
-  let m = profiles.filter(p =>
-    p.name.toLowerCase().includes(q) ||
-    p.keyexp.toLowerCase().includes(q) ||
-    (p.uni && p.uni.toLowerCase().includes(q))
-  );
-  if (selectedNodeFilter !== 'ALL') {
-    m = m.filter(p => p.base?.tech?.some(n => n.toLowerCase() === selectedNodeFilter.toLowerCase()));
-  }
-  document.getElementById('stat-count').textContent = m.length;
-  const grid = document.getElementById('profile-grid');
-  if (!m.length) { grid.innerHTML = '<div class="empty-state"><h3>No matching structural nodes located</h3></div>'; return; }
-  grid.innerHTML = m.map(p =>
-    '<div class="profile-card" onclick="viewProfileDetails(\'' + p.id + '\')">' +
-      '<div class="card-top"><div class="avatar">' + p.name.substring(0,2).toUpperCase() + '</div>' +
-        '<div><div class="card-name">' + escHtml(p.name) + '</div>' +
-        '<div class="card-desig">' + escHtml(p.keyexp) + '</div></div></div>' +
-      '<div class="nodes-wrap">' + (p.base?.tech||[]).map(n => '<span class="node-tag">' + escHtml(n) + '</span>').join(' ') + '</div>' +
-      '<div class="card-desc"><strong>Experience:</strong> ' + escHtml(p.yoe) + '</div>' +
-      '<div class="card-footer">' +
-        '<span class="card-updated">Collaborator Register</span>' +
-        '<div class="card-actions">' +
-          '<button class="btn-ghost" onclick="event.stopPropagation();showEngineerForm(\'' + p.id + '\')">EDIT</button>' +
-          '<button class="btn-ghost btn-danger" onclick="event.stopPropagation();triggerProfileDeletion(\'' + p.id + '\')">DELETE</button>' +
-        '</div></div>' +
-    '</div>'
-  ).join('');
-}
+window.saveTeamProject = async function () {
 
-function viewProfileDetails(id) {
-  viewingProfileId = id;
-  const p = profiles.find(x => x.id === id);
-  if (!p) return;
-  navToView('view-profile-detail');
-  const s = (id2, v) => { const e = document.getElementById(id2); if (e) e.textContent = v || '\u2014'; };
-  document.getElementById('d-avatar').textContent = p.name.substring(0,2).toUpperCase();
-  s('d-name', p.name); s('d-yoe', p.yoe); s('d-uni', p.uni); s('d-edu', p.edu); s('d-keyexp', p.keyexp);
-  s('d-t-circuit', p.tools?.circuit); s('d-t-layout', p.tools?.layout); s('d-t-phys', p.tools?.phys);
-  s('d-t-parasitic', p.tools?.parasitic); s('d-t-rel', p.tools?.reliability); s('d-t-pm', p.tools?.pm);
-  s('d-b-tech', (p.base?.tech||[]).join(', ')); s('d-b-foundry', p.base?.foundry); s('d-b-process', p.base?.process);
-  document.getElementById('d-nodes-box').innerHTML = (p.base?.tech||[]).map(n => '<span class="node-tag">' + escHtml(n) + '</span>').join(' ');
-  const tgt = document.getElementById('d-projects-accordion-target');
-  tgt.innerHTML = '';
-  if (!p.experienceLogs?.length) { tgt.innerHTML = '<div class="card-desc">No layout verification project tracks saved.</div>'; }
-  else p.experienceLogs.forEach(l => {
-    tgt.innerHTML +=
-      '<div class="proj-item">' +
-        '<div class="proj-item-header">' +
-          '<span class="node-tag">' + escHtml(l.tech) + '</span>' +
-          '<span class="proj-item-name">' + escHtml(l.name) + (l.duration ? ' (' + escHtml(l.duration) + ')' : '') + '</span>' +
-        '</div>' +
-        '<div class="proj-item-body"><div class="card-desc">' + bulletify(l.desc) + '</div></div>' +
-      '</div>';
-  });
-  document.getElementById('btn-profile-docx').onclick = () => dlEngDoc(p);
-}
+  const sel = document.getElementById('proj-team-select').value;
+  const team = sel === 'Others'
+    ? document.getElementById('proj-custom-team').value.trim()
+    : sel;
 
-function editProfileDirectly() { if (viewingProfileId) showEngineerForm(viewingProfileId); }
+  const title = document.getElementById('proj-title-input').value.trim();
+  const goal = document.getElementById('proj-goal-input').value.trim();
+  const achv = document.getElementById('proj-achv-input').value.trim();
 
-function triggerProfileDeletion(id) {
-  activeDeletionStagedId = id || viewingProfileId;
-  document.getElementById('modal-backdrop').classList.add('open');
-}
-function closeModal() { document.getElementById('modal-backdrop').classList.remove('open'); activeDeletionStagedId = null; }
-function confirmDelete() {
-  if (!activeDeletionStagedId) return;
-  const target = activeDeletionStagedId;
-  closeModal();
-  deletedProfileSnapshot = JSON.parse(JSON.stringify(profiles.find(x => x.id === target)));
-  profiles = profiles.filter(x => x.id !== target);
-  localStorage.setItem('nsl_profiles_v3', JSON.stringify(profiles));
-  if (viewingProfileId === target) showDirectory(); else renderDirectoryProfiles();
-  startUndo();
-}
-function startUndo() {
-  if (undoInterval) clearInterval(undoInterval);
-  undoSecondsRemaining = 60;
-  document.getElementById('undo-timer').textContent = '60s';
-  document.getElementById('undo-bar').classList.add('show');
-  undoInterval = setInterval(() => {
-    undoSecondsRemaining--;
-    document.getElementById('undo-timer').textContent = undoSecondsRemaining + 's';
-    if (undoSecondsRemaining <= 0) {
-      clearInterval(undoInterval);
-      document.getElementById('undo-bar').classList.remove('show');
-      deletedProfileSnapshot = null;
-    }
-  }, 1000);
-}
-function undoDelete() {
-  if (!deletedProfileSnapshot) return;
-  profiles.push(deletedProfileSnapshot);
-  localStorage.setItem('nsl_profiles_v3', JSON.stringify(profiles));
-  deletedProfileSnapshot = null; clearInterval(undoInterval);
-  document.getElementById('undo-bar').classList.remove('show');
-  showToast('\u2713 Profile State Vectors Restored');
-  renderDirectoryProfiles();
-}
+  const data = {
+    teamName: team,
+    projectName: title,
+    processNode: projectNodeTags || [],
+    goal,
+    keyAchievements: achv,
+    createdBy: currentUser?.email || "anonymous",
+    createdAt: Date.now()
+  };
 
+  await addDoc(collection(db, "teamProjects"), data);
 
-/* ----------------------------------------------------------------
-   G. DOC EXPORT — Word .doc downloads
----------------------------------------------------------------- */
-function docWrap(body) {
-  return '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">' +
-    '<head><meta charset="utf-8"><title>Export</title>' +
-    '<style>body{font-family:Arial,sans-serif;font-size:11pt;line-height:1.4;color:#000;background:#fff;padding:20px;}' +
-    'h1{font-size:16pt;font-weight:bold;text-align:center;margin-bottom:18pt;}h2{font-size:13pt;font-weight:bold;margin-top:20pt;}' +
-    'table{width:100%;border-collapse:collapse;margin:12pt 0;}th,td{border:1px solid #000;padding:10px;text-align:left;vertical-align:top;font-size:10.5pt;}' +
-    'th{font-weight:bold;text-align:center;}</style></head><body>' + body + '</body></html>';
-}
-function triggerDl(filename, html) {
-  const b = new Blob([html], { type:'application/msword;charset=utf-8' });
-  const u = URL.createObjectURL(b);
-  const a = document.createElement('a'); a.href = u; a.download = filename;
-  document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(u);
-}
-function bulletsDoc(text) {
-  if (!text) return '\u2014';
-  const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
-  if (lines.length <= 1) return escHtml(text);
-  return '<ul style="margin:0;padding-left:20px;font-size:11pt;">' + lines.map(l => '<li>' + escHtml(l) + '</li>').join('') + '</ul>';
-}
-function dlTeamDoc(team) {
-  const list = teamProjects.filter(p => p.teamName.toLowerCase() === team.toLowerCase());
-  if (!list.length) { showToast('No data for this team.', true); return; }
-  let rows = '<tr><th style="width:20%">Project</th><th style="width:35%">Goal</th><th style="width:15%">Technology</th><th style="width:30%">Achievement</th></tr>';
-  list.forEach(p => { rows += '<tr><td><strong>' + escHtml(p.projectName) + '</strong></td><td>' + bulletsDoc(p.goal) + '</td><td style="text-align:center">' + escHtml(p.processNode) + '</td><td>' + bulletsDoc(p.keyAchievements) + '</td></tr>'; });
-  triggerDl('Portfolio_' + team.replace(/\s+/g,'_') + '.doc', docWrap('<h1>PORTFOLIO (' + escHtml(team.toUpperCase()) + ')</h1><table>' + rows + '</table>'));
-  showToast('\u2713 Team specifications extracted');
-}
-function dlEngDoc(p) {
-  let inner = '<h1>ENGINEER SYSTEM PROFILE: ' + escHtml(p.name.toUpperCase()) + '</h1>' +
-    '<p><strong>Experience:</strong> ' + escHtml(p.yoe) + '</p>' +
-    '<p><strong>University:</strong> ' + escHtml(p.uni||'\u2014') + '</p>' +
-    '<p><strong>Education:</strong> ' + escHtml(p.edu||'\u2014') + '</p>' +
-    '<p><strong>Key Expertise:</strong> ' + escHtml(p.keyexp) + '</p><h2>LAYOUT PROJECT RECORDS</h2>';
-  if (!p.experienceLogs?.length) { inner += '<p style="font-style:italic;color:#555">No project logs compiled.</p>'; }
-  else {
-    let rows = '<tr><th style="width:25%">Project Name</th><th style="width:15%">Node</th><th style="width:15%">Duration</th><th style="width:45%">Description</th></tr>';
-    p.experienceLogs.forEach(l => { rows += '<tr><td><strong>' + escHtml(l.name) + '</strong></td><td style="text-align:center">' + escHtml(l.tech) + '</td><td style="text-align:center">' + escHtml(l.duration) + '</td><td>' + bulletsDoc(l.desc) + '</td></tr>'; });
-    inner += '<table>' + rows + '</table>';
-  }
-  triggerDl('Profile_' + p.name.replace(/\s+/g,'_') + '.doc', docWrap(inner));
-  showToast('\u2713 Profile document extracted');
-}
+  showToast("✓ Project saved to cloud");
+  showProjectsHome();
+};
 
+/* ================================================================
+   🗑 DELETE (SYNCED)
+================================================================ */
 
-/* ----------------------------------------------------------------
-   H. UTILITIES
----------------------------------------------------------------- */
-/* Convert newline-separated text to bullet list HTML */
-function bulletify(text) {
-  if (!text) return '\u2014';
-  const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
-  if (lines.length <= 1) return escHtml(text);
-  return '<ul class="bullet-container-list">' + lines.map(l => '<li>' + escHtml(l) + '</li>').join('') + '</ul>';
-}
+window.deleteProfile = async function (id) {
+  await deleteDoc(doc(db, "profiles", id));
+  showToast("Deleted");
+};
 
-/* Show a brief toast notification. isErr = true = orange/red styling */
-function showToast(msg, isErr) {
-  const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.style.borderColor = isErr ? 'var(--warn)' : 'var(--accent3)';
-  el.style.color       = isErr ? 'var(--warn)' : 'var(--accent3)';
-  el.classList.add('show');
-  setTimeout(() => el.classList.remove('show'), 3000);
-}
+window.deleteProject = async function (id) {
+  await deleteDoc(doc(db, "teamProjects", id));
+  showToast("Deleted");
+};
 
-/* Prevent XSS when injecting user content into innerHTML */
-function escHtml(s) {
-  if (!s) return '';
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
+/* ================================================================
+   ✏️ UPDATE (BASIC EXAMPLE)
+================================================================ */
+
+window.updateProfile = async function (id, newData) {
+  await updateDoc(doc(db, "profiles", id), newData);
+  showToast("Updated");
+};
+
+/* ================================================================
+   🚀 KEEP YOUR EXISTING FUNCTIONS
+   (UNCHANGED)
+================================================================ */
+
+/*
+KEEP THESE AS THEY ARE IN YOUR CODE:
+- renderDirectoryProfiles()
+- renderGroupedTeamProjects()
+- showToast()
+- initTagEvents()
+- all UI/navigation functions
+*/
+
+/* ================================================================
+   ⚡ OPTIONAL DEBUG
+================================================================ */
+
+console.log("🔥 Firebase App Loaded Successfully");
+
 </script>
 </body>
 </html>
