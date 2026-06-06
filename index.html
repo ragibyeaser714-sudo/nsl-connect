@@ -81,8 +81,7 @@
        SECTION 3 — AUTH OVERLAY
        Fullscreen gate shown before the user is authenticated.
        Contains two panels: #panel-login and #panel-signup.
-       Both live inside a single .auth-card; only the .active one
-       is visible at any time.
+       Both live inside a single .auth-card; only the .active one is visible at any time.
     ============================================================ */
     #auth-overlay {
       position:fixed; inset:0; z-index:9999;
@@ -231,8 +230,7 @@
       border-radius:20px; padding:4px 12px 4px 6px;
     }
     .user-av {
-      width:26px; height:26px; border-radius:50%;
-      background:var(--accent2);
+      width:26px; height:26px; border-radius:50%; background:var(--accent2);
       display:flex; align-items:center; justify-content:center;
       font-family:'Barlow Condensed',sans-serif; font-size:0.75rem; font-weight:700; color:#fff;
     }
@@ -258,8 +256,7 @@
     header {
       position:sticky; top:0; z-index:100;
       background:var(--header-bg); backdrop-filter:blur(14px);
-      border-bottom:1px solid var(--border);
-      padding:0 2rem; height:64px;
+      border-bottom:1px solid var(--border); padding:0 2rem; height:64px;
       display:flex; align-items:center; justify-content:space-between;
     }
     .logo { display:flex; align-items:center; gap:12px; cursor:pointer; }
@@ -330,8 +327,8 @@
     }
     .btn-download-sec {
       font-family:'Share Tech Mono',monospace; font-size:0.7rem;
-      background:var(--panel); border:1px solid var(--border);
-      color:var(--text2); padding:4px 10px; border-radius:4px; cursor:pointer; transition:all 0.2s;
+      background:var(--panel); border:1px solid var(--border); color:var(--text2);
+      padding:4px 10px; border-radius:4px; cursor:pointer; transition:all 0.2s;
     }
     .btn-download-sec:hover { border-color:var(--accent3); color:var(--accent3); }
     .bullet-container-list { margin-left:16px; margin-top:4px; }
@@ -346,24 +343,20 @@
     .directory-toolbar { display:flex; align-items:center; gap:1rem; margin-bottom:1rem; flex-wrap:wrap; }
     .search-wrap { flex:1; min-width:220px; position:relative; }
     .search-wrap input {
-      width:100%; background:var(--panel); border:1px solid var(--border);
-      color:var(--text); font-family:'Share Tech Mono',monospace; font-size:0.8rem;
+      width:100%; background:var(--panel); border:1px solid var(--border); color:var(--text);
+      font-family:'Share Tech Mono',monospace; font-size:0.8rem;
       padding:0.6rem 0.8rem 0.6rem 2.4rem; border-radius:4px; outline:none;
     }
     .search-icon { position:absolute; left:0.75rem; top:50%; transform:translateY(-50%); color:var(--text3); font-size:1rem; }
     .nodes-filter-bar { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:1.4rem; padding:4px 0; }
     .node-filter-pill {
-      font-family:'Share Tech Mono',monospace; font-size:0.7rem; padding:5px 12px;
-      background:var(--panel); border:1px solid var(--border);
-      color:var(--text2); border-radius:4px; cursor:pointer; transition:all 0.2s; text-transform:uppercase;
+      font-family:'Share Tech Mono',monospace; font-size:0.7rem; padding:5px 12px; background:var(--panel);
+      border:1px solid var(--border); color:var(--text2); border-radius:4px; cursor:pointer; transition:all 0.2s; text-transform:uppercase;
     }
-    .node-filter-pill:hover, .node-filter-pill.active {
-      background:rgba(56,189,248,0.12); border-color:var(--accent); color:var(--accent);
-    }
+    .node-filter-pill:hover, .node-filter-pill.active { background:rgba(56,189,248,0.12); border-color:var(--accent); color:var(--accent); }
     .tags-input-style-container {
-      display:flex; flex-wrap:wrap; align-items:center; gap:6px;
-      background:var(--bg3); border:1px solid var(--border);
-      padding:0.4rem 0.6rem; border-radius:3px; min-height:38px;
+      display:flex; flex-wrap:wrap; align-items:center; gap:6px; background:var(--bg3);
+      border:1px solid var(--border); padding:0.4rem 0.6rem; border-radius:3px; min-height:38px;
     }
     .tags-input-style-container input {
       border:none !important; padding:0 !important; background:transparent !important;
@@ -372,16 +365,14 @@
     .input-tag-pill {
       display:inline-flex; align-items:center; gap:6px;
       font-family:'Share Tech Mono',monospace; font-size:0.7rem;
-      padding:3px 8px; background:var(--panel2); border:1px solid var(--border2);
-      color:var(--accent); border-radius:3px;
+      padding:3px 8px; background:var(--panel2); border:1px solid var(--border2); color:var(--accent); border-radius:3px;
     }
     .input-tag-pill b { cursor:pointer; color:var(--text3); }
     .input-tag-pill b:hover { color:var(--warn); }
     .btn-primary {
       font-family:'Barlow Condensed',sans-serif; font-size:0.9rem;
-      font-weight:700; letter-spacing:0.1em; padding:0.55rem 1.3rem;
-      background:var(--accent); color:#000; border:none; border-radius:3px;
-      cursor:pointer; transition:all 0.2s;
+      font-weight:700; letter-spacing:0.1em; padding:0.55rem 1.3rem; background:var(--accent); color:#000;
+      border:none; border-radius:3px; cursor:pointer; transition:all 0.2s;
     }
     .btn-primary:hover { filter:brightness(1.12); box-shadow:var(--glow); }
     .profile-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:1rem; }
@@ -392,8 +383,8 @@
     .profile-card:hover { border-color:var(--border2); background:var(--panel2); transform:translateY(-2px); }
     .card-top { display:flex; align-items:center; gap:0.85rem; margin-bottom:0.8rem; }
     .avatar {
-      width:44px; height:44px; border-radius:4px; background:var(--bg3);
-      border:1px solid var(--border2); display:flex; align-items:center; justify-content:center;
+      width:44px; height:44px; border-radius:4px; background:var(--bg3); border:1px solid var(--border2);
+      display:flex; align-items:center; justify-content:center;
       font-family:'Barlow Condensed',sans-serif; font-size:1.1rem; font-weight:700; color:var(--accent);
     }
     .card-name { font-family:'Barlow Condensed',sans-serif; font-size:1.05rem; font-weight:700; color:var(--text); }
@@ -401,8 +392,7 @@
     .nodes-wrap { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:0.7rem; }
     .node-tag {
       font-family:'Share Tech Mono',monospace; font-size:0.6rem; padding:2px 7px;
-      background:rgba(0,150,200,0.08); border:1px solid rgba(0,150,200,0.22);
-      color:var(--accent); border-radius:2px; text-transform:uppercase;
+      background:rgba(0,150,200,0.08); border:1px solid rgba(0,150,200,0.22); color:var(--accent); border-radius:2px; text-transform:uppercase;
     }
     .card-desc { font-size:0.78rem; color:var(--text2); line-height:1.55; }
     .card-footer {
@@ -412,8 +402,8 @@
     .card-updated { font-family:'Share Tech Mono',monospace; font-size:0.6rem; color:var(--text3); }
     .card-actions { display:flex; gap:0.35rem; }
     .btn-ghost {
-      font-family:'Share Tech Mono',monospace; font-size:0.62rem; color:var(--text2);
-      background:none; border:1px solid var(--border); padding:3px 10px; border-radius:2px; cursor:pointer;
+      font-family:'Share Tech Mono',monospace; font-size:0.62rem; color:var(--text2); background:none; border:1px solid var(--border);
+      padding:3px 10px; border-radius:2px; cursor:pointer;
     }
     .btn-ghost:hover { border-color:var(--accent); color:var(--accent); }
     .btn-ghost.btn-danger:hover { border-color:var(--warn); color:var(--warn); }
@@ -424,68 +414,46 @@
     ============================================================ */
     .form-container { max-width:780px; width:100%; }
     .back-btn {
-      display:inline-flex; align-items:center; gap:6px;
-      font-family:'Share Tech Mono',monospace; font-size:0.7rem; color:var(--text2);
+      display:inline-flex; align-items:center; gap:6px; font-family:'Share Tech Mono',monospace; font-size:0.7rem; color:var(--text2);
       background:none; border:none; cursor:pointer; margin-bottom:1.4rem;
     }
-    .form-section {
-      background:var(--panel); border:1px solid var(--border); border-radius:6px;
-      padding:1.5rem; margin-bottom:1rem;
-    }
+    .form-section { background:var(--panel); border:1px solid var(--border); border-radius:6px; padding:1.5rem; margin-bottom:1rem; }
     .form-section-title {
-      font-family:'Share Tech Mono',monospace; font-size:0.64rem;
-      letter-spacing:0.2em; text-transform:uppercase; color:var(--accent);
+      font-family:'Share Tech Mono',monospace; font-size:0.64rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent);
       margin-bottom:1.2rem; padding-bottom:0.6rem; border-bottom:1px solid var(--border);
     }
     .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem; }
     .field { margin-bottom:1rem; }
-    .field label {
-      display:block; font-family:'Share Tech Mono',monospace; font-size:0.62rem;
-      color:var(--text3); text-transform:uppercase; margin-bottom:6px;
-    }
+    .field label { display:block; font-family:'Share Tech Mono',monospace; font-size:0.62rem; color:var(--text3); text-transform:uppercase; margin-bottom:6px; }
     .field label .req { color:var(--accent); }
     .field input, .field select, .field textarea {
       width:100%; background:var(--bg3); border:1px solid var(--border); color:var(--text);
-      font-family:'Barlow',sans-serif; font-size:0.85rem; padding:0.6rem 0.8rem;
-      border-radius:3px; outline:none;
+      font-family:'Barlow',sans-serif; font-size:0.85rem; padding:0.6rem 0.8rem; border-radius:3px; outline:none;
     }
     .nda-banner {
-      display:flex; align-items:flex-start; gap:0.75rem;
-      background:var(--warn2); border:1px solid rgba(200,100,50,0.28);
+      display:flex; align-items:flex-start; gap:0.75rem; background:var(--warn2); border:1px solid rgba(200,100,50,0.28);
       border-radius:4px; padding:0.85rem 1rem; margin-bottom:1rem;
     }
     .nda-text { font-size:0.75rem; color:var(--text2); line-height:1.55; }
     .project-block { background:var(--bg3); border:1px solid var(--border); border-radius:5px; margin-bottom:0.85rem; }
-    .project-header {
-      display:flex; align-items:center; justify-content:space-between;
-      padding:0.85rem 1rem; background:var(--panel); border-bottom:1px solid var(--border);
-    }
+    .project-header { display:flex; align-items:center; justify-content:space-between; padding:0.85rem 1rem; background:var(--panel); border-bottom:1px solid var(--border); }
     .project-num { font-family:'Share Tech Mono',monospace; font-size:0.65rem; color:var(--text2); }
     .project-remove-btn { background:none; border:none; color:var(--text3); cursor:pointer; }
     .project-body { display:grid; grid-template-columns:1fr 1fr; gap:1rem; padding:1.1rem; }
     .btn-add-project {
-      display:flex; align-items:center; justify-content:center;
-      font-family:'Share Tech Mono',monospace; font-size:0.72rem; color:var(--accent);
-      background:rgba(0,140,200,0.04); border:1px dashed rgba(0,150,200,0.3);
-      border-radius:4px; padding:0.7rem 1rem; width:100%; cursor:pointer;
+      display:flex; align-items:center; justify-content:center; font-family:'Share Tech Mono',monospace; font-size:0.72rem; color:var(--accent);
+      background:rgba(0,140,200,0.04); border:1px dashed rgba(0,150,200,0.3); border-radius:4px; padding:0.7rem 1rem; width:100%; cursor:pointer;
     }
     .form-actions { display:flex; gap:0.75rem; justify-content:flex-end; margin-top:1.5rem; }
-    .btn-cancel {
-      font-family:'Barlow Condensed',sans-serif; padding:0.6rem 1.4rem;
-      background:none; border:1px solid var(--border); color:var(--text2); cursor:pointer;
-    }
-    .btn-save {
-      font-family:'Barlow Condensed',sans-serif; padding:0.6rem 1.4rem;
-      background:var(--accent3); color:#000; border:none; cursor:pointer;
-    }
+    .btn-cancel { font-family:'Barlow Condensed',sans-serif; padding:0.6rem 1.4rem; background:none; border:1px solid var(--border); color:var(--text2); cursor:pointer; }
+    .btn-save { font-family:'Barlow Condensed',sans-serif; padding:0.6rem 1.4rem; background:var(--accent3); color:#000; border:none; cursor:pointer; }
 
     /* ============================================================
        SECTION 9 — DETAIL / READ-ONLY PANELS
     ============================================================ */
     .detail-header {
-      display:flex; align-items:flex-start; gap:1.5rem;
-      background:var(--panel); border:1px solid var(--border);
-      border-radius:6px; padding:1.5rem; margin-bottom:1rem;
+      display:flex; align-items:flex-start; gap:1.5rem; background:var(--panel);
+      border:1px solid var(--border); border-radius:6px; padding:1.5rem; margin-bottom:1rem;
       position:relative; flex-wrap:wrap;
     }
     .detail-avatar {
@@ -505,7 +473,7 @@
     .proj-detail-row { margin-bottom:0.75rem; }
     .proj-detail-label { font-family:'Share Tech Mono',monospace; font-size:0.58rem; color:var(--text3); text-transform:uppercase; margin-bottom:5px; }
     .proj-detail-val { font-size:0.82rem; color:var(--text); line-height:1.55; }
-    .meta-grid-display { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1.2rem; }
+    .meta-grid-display { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; }
 
     /* ============================================================
        SECTION 10 — MODALS, TOASTS & UNDO BAR
@@ -516,29 +484,26 @@
     }
     .modal-backdrop.open { display:flex; }
     .modal {
-      background:var(--panel); border:1px solid var(--border2); border-radius:8px;
-      padding:2rem; max-width:500px; width:100%;
-      box-shadow:0 24px 80px rgba(0,0,0,0.65); max-height:90vh; overflow-y:auto;
+      background:var(--panel); border:1px solid var(--border2); border-radius:8px; padding:2rem;
+      max-width:500px; width:100%; box-shadow:0 24px 80px rgba(0,0,0,0.65); max-height:90vh; overflow-y:auto;
     }
     .modal-icon { font-size:2rem; margin-bottom:0.75rem; }
     .modal h3 { font-family:'Barlow Condensed',sans-serif; font-size:1.5rem; font-weight:700; margin-bottom:0.5rem; }
     .modal p { font-size:0.85rem; color:var(--text2); margin-bottom:1.5rem; line-height:1.5; }
     .modal-actions { display:flex; justify-content:flex-end; gap:0.75rem; }
+    
     .toast {
-      position:fixed; bottom:2rem; right:2rem;
-      background:var(--panel); border:1px solid var(--accent3); color:var(--accent3);
-      font-family:'Share Tech Mono',monospace; font-size:0.74rem;
-      padding:0.8rem 1.2rem; border-radius:4px; z-index:999;
-      transform:translateY(80px); opacity:0; transition:all 0.3s ease;
+      position:fixed; bottom:2rem; right:2rem; background:var(--panel); border:1px solid var(--accent3);
+      color:var(--accent3); font-family:'Share Tech Mono',monospace; font-size:0.74rem; padding:0.8rem 1.2rem;
+      border-radius:4px; z-index:999; transform:translateY(80px); opacity:0; transition:all 0.3s ease;
     }
     .toast.show { transform:translateY(0); opacity:1; }
+
     .undo-bar {
-      position:fixed; bottom:2rem; left:50%;
-      transform:translateX(-50%) translateY(80px);
-      background:var(--panel); border:1px solid var(--warn); color:var(--text);
-      font-family:'Share Tech Mono',monospace; font-size:0.74rem;
-      padding:0.75rem 1.2rem; border-radius:4px; z-index:998;
-      display:flex; align-items:center; gap:1rem; opacity:0; transition:all 0.35s ease;
+      position:fixed; bottom:2rem; left:50%; transform:translateX(-50%) translateY(80px);
+      background:var(--panel); border:1px solid var(--warn); color:var(--text); font-family:'Share Tech Mono',monospace;
+      font-size:0.74rem; padding:0.75rem 1.2rem; border-radius:4px; z-index:998; display:flex; align-items:center; gap:1rem;
+      opacity:0; transition:all 0.35s ease;
     }
     .undo-bar.show { transform:translateX(-50%) translateY(0); opacity:1; }
     .btn-undo { font-family:'Barlow Condensed',sans-serif; padding:4px 14px; background:var(--warn); color:#fff; border:none; cursor:pointer; }
@@ -571,1099 +536,1279 @@
 </head>
 <body>
 
-<!-- ================================================================
-     AUTH OVERLAY
-     Fullscreen gate. Shown until the user logs in.
-     #panel-login  — shown by default
-     #panel-signup — shown when user clicks "Create account"
-================================================================ -->
-<div id="auth-overlay">
-  <div class="auth-card">
-
-    <!-- Logo inside auth card -->
-    <div class="auth-logo">
-      <div class="auth-logo-chip">
-        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="1" y="1" width="34" height="34" rx="3" stroke="var(--border2)" stroke-width="1.5"/>
-          <rect x="7" y="7" width="10" height="10" rx="1" fill="none" stroke="var(--accent)" stroke-width="1.2"/>
-          <rect x="19" y="7" width="10" height="10" rx="1" fill="none" stroke="var(--accent)" stroke-width="1.2"/>
-          <rect x="7" y="19" width="10" height="10" rx="1" fill="none" stroke="var(--accent3)" stroke-width="1.2"/>
-          <rect x="19" y="19" width="10" height="10" rx="1" fill="none" stroke="var(--accent3)" stroke-width="1.2"/>
-          <line x1="12" y1="17" x2="12" y2="19" stroke="var(--accent)" stroke-width="1"/>
-          <line x1="24" y1="17" x2="24" y2="19" stroke="var(--accent)" stroke-width="1"/>
-          <line x1="17" y1="12" x2="19" y2="12" stroke="var(--accent)" stroke-width="1"/>
-          <line x1="17" y1="24" x2="19" y2="24" stroke="var(--accent3)" stroke-width="1"/>
-        </svg>
-      </div>
-      <div>
-        <div class="auth-logo-text">NSL <em>Connect</em></div>
-        <div class="auth-logo-sub">VLSI Collaborative Hub</div>
-      </div>
-    </div>
-
-    <!-- ── LOGIN PANEL ── -->
-    <div class="auth-panel active" id="panel-login">
-      <div class="auth-eyebrow">// secure_access</div>
-      <div class="auth-heading">Sign In</div>
-
-      <!-- Error message shown on bad credentials -->
-      <div class="auth-err" id="login-err"></div>
-
-      <div class="auth-field">
-        <label>Email Address</label>
-        <input type="email" id="login-email" placeholder="you@company.com"
-               onkeydown="if(event.key==='Enter') doLogin()" autocomplete="email"/>
-      </div>
-
-      <div class="auth-field">
-        <label>Password</label>
-        <div class="pwd-wrap">
-          <input type="password" id="login-pwd" placeholder="Enter your password"
-                 onkeydown="if(event.key==='Enter') doLogin()" autocomplete="current-password"/>
-          <button class="pwd-eye" type="button" onclick="toggleEye('login-pwd',this)"
-                  title="Show / hide password">&#128065;</button>
+  <div id="auth-overlay">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <div class="auth-logo-chip">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="34" height="34" rx="3" stroke="var(--border2)" stroke-width="1.5"/>
+            <rect x="7" y="7" width="10" height="10" rx="1" fill="none" stroke="var(--accent)" stroke-width="1.2"/>
+            <rect x="19" y="7" width="10" height="10" rx="1" fill="none" stroke="var(--accent)" stroke-width="1.2"/>
+            <rect x="7" y="19" width="10" height="10" rx="1" fill="none" stroke="var(--accent3)" stroke-width="1.2"/>
+            <rect x="19" y="19" width="10" height="10" rx="1" fill="none" stroke="var(--accent3)" stroke-width="1.2"/>
+            <line x1="12" y1="17" x2="12" y2="19" stroke="var(--accent)" stroke-width="1"/>
+            <line x1="24" y1="17" x2="24" y2="19" stroke="var(--accent)" stroke-width="1"/>
+            <line x1="17" y1="12" x2="19" y2="12" stroke="var(--accent)" stroke-width="1"/>
+            <line x1="17" y1="24" x2="19" y2="24" stroke="var(--accent3)" stroke-width="1"/>
+          </svg>
         </div>
-      </div>
-
-      <button class="btn-auth" onclick="doLogin()">Sign In</button>
-
-      <div class="auth-divider">
-        <hr/><span>NEW TO NSL CONNECT?</span><hr/>
-      </div>
-      <div class="auth-switch">
-        Don't have an account?
-        <button onclick="switchPanel('signup')">Create one here</button>
-      </div>
-    </div>
-
-    <!-- ── SIGN-UP PANEL ── -->
-    <div class="auth-panel" id="panel-signup">
-      <div class="auth-eyebrow">// register_account</div>
-      <div class="auth-heading">Create Account</div>
-
-      <!-- Error message shown on bad signup input -->
-      <div class="auth-err" id="signup-err"></div>
-
-      <div class="auth-row">
-        <div class="auth-field">
-          <label>First Name</label>
-          <input type="text" id="su-fname" placeholder="e.g. Tariq"
-                 onkeydown="if(event.key==='Enter') doSignup()" autocomplete="given-name"/>
-        </div>
-        <div class="auth-field">
-          <label>Last Name</label>
-          <input type="text" id="su-lname" placeholder="e.g. Rahman"
-                 onkeydown="if(event.key==='Enter') doSignup()" autocomplete="family-name"/>
-        </div>
-      </div>
-
-      <div class="auth-field">
-        <label>Email Address</label>
-        <input type="email" id="su-email" placeholder="you@company.com"
-               onkeydown="if(event.key==='Enter') doSignup()" autocomplete="email"/>
-      </div>
-
-      <div class="auth-field">
-        <label>Password</label>
-        <div class="pwd-wrap">
-          <input type="password" id="su-pwd" placeholder="Min. 6 characters"
-                 oninput="evalStrength(this.value)"
-                 onkeydown="if(event.key==='Enter') doSignup()" autocomplete="new-password"/>
-          <button class="pwd-eye" type="button" onclick="toggleEye('su-pwd',this)"
-                  title="Show / hide password">&#128065;</button>
-        </div>
-        <!-- Strength bar (hidden until user starts typing) -->
-        <div class="strength-wrap" id="strength-wrap">
-          <div class="strength-bar">
-            <div class="strength-fill" id="strength-fill"></div>
-          </div>
-          <div class="strength-lbl" id="strength-lbl">Weak</div>
-        </div>
-      </div>
-
-      <div class="auth-field">
-        <label>Confirm Password</label>
-        <div class="pwd-wrap">
-          <input type="password" id="su-pwd2" placeholder="Re-enter your password"
-                 onkeydown="if(event.key==='Enter') doSignup()" autocomplete="new-password"/>
-          <button class="pwd-eye" type="button" onclick="toggleEye('su-pwd2',this)"
-                  title="Show / hide password">&#128065;</button>
-        </div>
-      </div>
-
-      <button class="btn-auth" onclick="doSignup()">Create Account</button>
-
-      <div class="auth-divider">
-        <hr/><span>ALREADY REGISTERED?</span><hr/>
-      </div>
-      <div class="auth-switch">
-        Already have an account?
-        <button onclick="switchPanel('login')">Sign in here</button>
-      </div>
-    </div>
-
-  </div><!-- /.auth-card -->
-</div><!-- /#auth-overlay -->
-
-
-<!-- ================================================================
-     MAIN APPLICATION
-     Hidden until the user authenticates. Revealed by unlockApp().
-================================================================ -->
-<div id="main-app">
-
-  <header>
-    <!-- Logo click goes to All Projects home -->
-    <div class="logo" onclick="showProjectsHome()">
-      <div class="logo-icon">
-        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="1" y="1" width="34" height="34" rx="3" stroke="var(--border2)" stroke-width="1.5"/>
-          <rect x="7" y="7" width="10" height="10" rx="1" fill="none" stroke="var(--accent)" stroke-width="1.2"/>
-          <rect x="19" y="7" width="10" height="10" rx="1" fill="none" stroke="var(--accent)" stroke-width="1.2"/>
-          <rect x="7" y="19" width="10" height="10" rx="1" fill="none" stroke="var(--accent3)" stroke-width="1.2"/>
-          <rect x="19" y="19" width="10" height="10" rx="1" fill="none" stroke="var(--accent3)" stroke-width="1.2"/>
-          <line x1="12" y1="17" x2="12" y2="19" stroke="var(--accent)" stroke-width="1"/>
-          <line x1="24" y1="17" x2="24" y2="19" stroke="var(--accent)" stroke-width="1"/>
-          <line x1="17" y1="12" x2="19" y2="12" stroke="var(--accent)" stroke-width="1"/>
-          <line x1="17" y1="24" x2="19" y2="24" stroke="var(--accent3)" stroke-width="1"/>
-        </svg>
-      </div>
-      <div>
-        <div class="logo-text">NSL <span>Connect</span></div>
-        <div class="logo-sub">VLSI Collaborative Hub</div>
-      </div>
-    </div>
-
-    <div class="nav-tabs">
-      <button class="nav-item active" id="tab-projects"   onclick="showProjectsHome()">All Projects</button>
-      <button class="nav-item"        id="tab-directory"  onclick="showDirectory()">Engineers Directory</button>
-    </div>
-
-    <div class="header-right">
-      <div class="header-status"><div class="status-dot"></div>SYSTEM ONLINE</div>
-
-      <!-- User pill — shown when logged in -->
-      <div class="user-pill" id="user-pill">
-        <div class="user-av" id="user-av">??</div>
-        <span class="user-nm" id="user-nm">User</span>
-        <button class="btn-signout" onclick="doLogout()">Sign Out</button>
-      </div>
-
-      <button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()">&#127769;</button>
-    </div>
-  </header>
-
-  <div class="app">
-
-    <!-- VIEW: All Projects Home -->
-    <div id="view-projects-home" class="view active">
-      <div class="page-header">
         <div>
-          <div class="page-eyebrow">// team_specifications</div>
-          <h2 class="page-heading">All Team Projects</h2>
+          <div class="auth-logo-text">NSL <em>Connect</em></div>
+          <div class="auth-logo-sub">VLSI Collaborative Hub</div>
         </div>
-        <button class="btn-primary" onclick="showTeamProjectForm()">+ Add Project Detail</button>
       </div>
-      <div id="teams-distribution-wrapper"></div>
-    </div>
 
-    <!-- VIEW: Add / Edit Project Form -->
-    <div id="view-project-upload-form" class="view">
-      <div class="form-container">
-        <button class="back-btn" onclick="showProjectsHome()">&#8592; BACK TO ALL PROJECTS</button>
-        <div class="page-header" style="margin-bottom:1.2rem;">
+      <div class="auth-panel active" id="panel-login">
+        <div class="auth-eyebrow">// secure_access</div>
+        <div class="auth-heading">Sign In</div>
+
+        <div class="auth-err" id="login-err"></div>
+
+        <div class="auth-field">
+          <label>Identity Network Mail</label>
+          <input type="email" id="login-email" placeholder="alias@neural-semiconductor.com" />
+        </div>
+        <div class="auth-field">
+          <label>Security Keyphrase</label>
+          <div class="pwd-wrap">
+            <input type="password" id="login-pwd" placeholder="••••••••" />
+            <button class="pwd-eye" onclick="togglePwdVisibility('login-pwd')">👁</button>
+          </div>
+        </div>
+        <button class="btn-auth" onclick="handleLogin()">Authorize Entry</button>
+
+        <div class="auth-divider">
+          <hr/><span>or</span><hr/>
+        </div>
+        <div class="auth-switch">
+          New node? <button onclick="switchAuthPanel('panel-signup')">Create account</button>
+        </div>
+      </div>
+
+      <div class="auth-panel" id="panel-signup">
+        <div class="auth-eyebrow">// register_node</div>
+        <div class="auth-heading">Create Account</div>
+
+        <div class="auth-err" id="signup-err"></div>
+
+        <div id="signup-form-fields">
+          <div class="auth-row">
+            <div class="auth-field">
+              <label>First Name</label>
+              <input type="text" id="signup-fname" placeholder="John" />
+            </div>
+            <div class="auth-field">
+              <label>Last Name</label>
+              <input type="text" id="signup-lname" placeholder="Doe" />
+            </div>
+          </div>
+          <div class="auth-field">
+            <label>Neural Mail Registry (<span style="color:var(--accent)">Strict</span>)</label>
+            <input type="email" id="signup-email" placeholder="username@neural-semiconductor.com" />
+          </div>
+          <div class="auth-field">
+            <label>Security Keyphrase</label>
+            <div class="pwd-wrap">
+              <input type="password" id="signup-pwd" placeholder="Choose a strong password" oninput="checkPwdStrength(this.value)" />
+              <button class="pwd-eye" onclick="togglePwdVisibility('signup-pwd')">👁</button>
+            </div>
+            <div class="strength-wrap" id="pwd-strength-container">
+              <div class="strength-bar"><div class="strength-fill" id="strength-bar-fill"></div></div>
+              <div class="strength-lbl" id="strength-bar-lbl">Entropy level: weak</div>
+            </div>
+          </div>
+          <button class="btn-auth" onclick="initiateEmailVerification()">Register Node</button>
+        </div>
+
+        <div id="signup-otp-fields" style="display: none; margin-top: 1rem; border-top: 1px dashed var(--border2); padding-top: 1.2rem;">
+          <div class="auth-field">
+            <label style="color: var(--accent3);">Enter 6-Digit Registry OTP</label>
+            <input type="text" id="signup-otp-input" maxlength="6" placeholder="000000" style="text-align: center; font-family: 'Share Tech Mono', monospace; font-size: 1.2rem; letter-spacing: 0.3em;" />
+          </div>
+          <div style="font-family: 'Share Tech Mono', monospace; font-size: 0.6rem; color: var(--text3); margin-bottom: 1rem; text-transform: uppercase; text-align: center;">
+            An active OTP was dispatched to your Neural Network Mail.
+          </div>
+          <button class="btn-auth" style="background: var(--accent3);" onclick="completeFinalizedSignup()">Verify &amp; Instantiate Account</button>
+          <button class="btn-auth" style="background: transparent; border: 1px solid var(--border); color: var(--text2); margin-top: 0.5rem;" onclick="cancelOtpVerificationState()">Back to details</button>
+        </div>
+
+        <div class="auth-divider">
+          <hr/><span>or</span><hr/>
+        </div>
+        <div class="auth-switch">
+          Existing node? <button onclick="switchAuthPanel('panel-login')">Sign in instead</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div id="main-app">
+    <header>
+      <div class="logo" onclick="switchView('directory')">
+        <div class="logo-icon">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="34" height="34" rx="3" stroke="var(--border2)" stroke-width="1.5"/>
+            <rect x="7" y="7" width="10" height="10" rx="1" fill="none" stroke="var(--accent)" stroke-width="1.2"/>
+            <rect x="19" y="7" width="10" height="10" rx="1" fill="none" stroke="var(--accent)" stroke-width="1.2"/>
+            <rect x="7" y="19" width="10" height="10" rx="1" fill="none" stroke="var(--accent3)" stroke-width="1.2"/>
+            <rect x="19" y="19" width="10" height="10" rx="1" fill="none" stroke="var(--accent3)" stroke-width="1.2"/>
+            <line x1="12" y1="17" x2="12" y2="19" stroke="var(--accent)" stroke-width="1"/>
+            <line x1="24" y1="17" x2="24" y2="19" stroke="var(--accent)" stroke-width="1"/>
+            <line x1="17" y1="12" x2="19" y2="12" stroke="var(--accent)" stroke-width="1"/>
+            <line x1="17" y1="24" x2="19" y2="24" stroke="var(--accent3)" stroke-width="1"/>
+          </svg>
+        </div>
+        <div>
+          <div class="logo-text">NSL <span>Connect</span></div>
+          <div class="logo-sub">VLSI Collaborative Hub</div>
+        </div>
+      </div>
+
+      <nav class="nav-tabs">
+        <button class="nav-item active" id="nav-directory" onclick="switchView('directory')">Directory</button>
+        <button class="nav-item" id="nav-myprofile" onclick="handleMyProfileNavigation()">My Profile</button>
+      </nav>
+
+      <div class="header-right">
+        <div class="header-status">
+          <div class="status-dot"></div>
+          <span id="uptime-display">CORE ONLINE</span>
+        </div>
+
+        <button class="theme-toggle" onclick="toggleThemeSystem()" title="Toggle system theme">🌓</button>
+
+        <div class="user-pill">
+          <div class="user-av" id="user-pill-avatar">??</div>
+          <div class="user-nm" id="user-pill-name">Unknown Node</div>
+          <button class="btn-signout" onclick="handleSignOut()">Sign Out</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="app">
+
+      <div class="view active" id="view-directory">
+        <div class="page-header">
           <div>
-            <div class="page-eyebrow">// project_logger</div>
-            <h2 class="page-heading">Describe Project Specifications</h2>
+            <div class="page-eyebrow">// node_registry_database</div>
+            <div class="page-heading">Personnel Directory</div>
+          </div>
+          <button class="btn-primary" onclick="triggerProfileCreationForm()">+ Instantiate Node Profile</button>
+        </div>
+
+        <div class="directory-toolbar">
+          <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="search-input" placeholder="Query registry by name, role, technology cluster..." oninput="handleSearchFilter()" />
           </div>
         </div>
-        <div class="nda-banner">
-          <div class="nda-text">
-            <strong>NDA Preservation Rule:</strong> Describe layout parameters at a high level.
-            Use separate lines to automatically present text blocks as neat bullet configurations.
-          </div>
+
+        <div class="nodes-filter-bar" id="filter-bar-nodes">
+          <button class="node-filter-pill active" onclick="filterByNodeCluster('ALL')">All Subsystems</button>
+          <button class="node-filter-pill" onclick="filterByNodeCluster('Digital Design')">Digital Design</button>
+          <button class="node-filter-pill" onclick="filterByNodeCluster('Physical Design')">Physical Design</button>
+          <button class="node-filter-pill" onclick="filterByNodeCluster('Analog Mixed Signal')">Analog &amp; Mixed Signal</button>
+          <button class="node-filter-pill" onclick="filterByNodeCluster('CAD / Automation')">CAD Automation</button>
+          <button class="node-filter-pill" onclick="filterByNodeCluster('Software Cluster')">Software Engineering</button>
         </div>
-        <div class="form-section">
-          <div class="form-section-title">Project Context &amp; Parameters</div>
-          <div class="form-row">
-            <div class="field">
-              <label>Select Originating Team <span class="req">*</span></label>
-              <select id="proj-team-select" onchange="toggleCustomTeamField()">
-                <option value="Analog Mixed Signal">Analog Mixed Signal</option>
-                <option value="Layout">Layout</option>
-                <option value="RF">RF</option>
-                <option value="Memory">Memory</option>
-                <option value="GPIO">GPIO</option>
-                <option value="Others">Others</option>
-              </select>
+
+        <div class="stats-bar">
+          <div class="stat-pill">Total Active Interconnects: <span id="stat-total">0</span></div>
+          <div class="stat-pill">Fabrication Ready Layers: <span id="stat-projects">0</span></div>
+        </div>
+
+        <div class="profile-grid" id="directory-grid-target"></div>
+      </div>
+
+
+      <div class="view" id="view-form">
+        <div class="page-header">
+          <div>
+            <div class="page-eyebrow">// compute_node_parameters</div>
+            <div class="page-heading" id="form-title-heading">Configure Engineering Parameters</div>
+          </div>
+          <button class="back-btn" onclick="switchView('directory')">◀ Back to Node Core Directory</button>
+        </div>
+
+        <div class="form-container">
+          <div class="form-section">
+            <div class="form-section-title">Block 01: Core Demographics</div>
+            <div class="form-row">
+              <div class="field">
+                <label>Node Designation Name <span class="req">*</span></label>
+                <input type="text" id="field-name" placeholder="E.g., Dr. Alan Turing" />
+              </div>
+              <div class="field">
+                <label>Operational Domain Node Segment <span class="req">*</span></label>
+                <select id="field-node">
+                  <option value="">-- Select Functional Subsystem Layer --</option>
+                  <option value="Digital Design">Digital Design</option>
+                  <option value="Physical Design">Physical Design</option>
+                  <option value="Analog Mixed Signal">Analog Mixed Signal</option>
+                  <option value="CAD / Automation">CAD / Automation</option>
+                  <option value="Software Cluster">Software Cluster</option>
+                </select>
+              </div>
             </div>
-            <div class="field" id="custom-team-field-block" style="display:none;">
-              <label>Provide Team Name <span class="req">*</span></label>
-              <input type="text" id="proj-custom-team" placeholder="e.g., Standard I/O Team"/>
+            <div class="form-row">
+              <div class="field">
+                <label>Corporate Tier Assignment Role <span class="req">*</span></label>
+                <input type="text" id="field-designation" placeholder="E.g., Senior RTL Architect" />
+              </div>
+              <div class="field">
+                <label>Corporate Interconnect Email <span class="req">*</span></label>
+                <input type="email" id="field-email" placeholder="alias@neural-semiconductor.com" readonly style="opacity: 0.7; cursor: not-allowed;" />
+              </div>
+            </div>
+            <div class="field">
+              <label>Technical Node Summary Objective</label>
+              <textarea id="field-bio" rows="3" placeholder="Brief statement regarding architectural layout proficiencies, tape-out history, etc..."></textarea>
             </div>
           </div>
-          <div class="form-row">
+
+          <div class="form-section">
+            <div class="form-section-title">Block 02: Core Technology Vectors</div>
             <div class="field">
-              <label>Project Name <span class="req">*</span></label>
-              <input type="text" id="proj-title-input" placeholder="e.g., Low Power Bandgap Setup"/>
-            </div>
-            <div class="field">
-              <label>Process Node <span class="req">*</span></label>
-              <div class="tags-input-style-container">
-                <div id="proj-node-tags" style="display:flex;flex-wrap:wrap;gap:4px;"></div>
-                <input type="text" id="proj-node-input" placeholder="Type node &amp; press Space or Comma"/>
+              <label>Skill Interconnect Tags (Press Space or Comma to tokenize layout nodes)</label>
+              <div class="tags-input-style-container" id="skills-pill-wrap">
+                <input type="text" id="skills-raw-input" placeholder="Verilog, Genus, ICC2, Python..." />
               </div>
             </div>
           </div>
-          <div class="field">
-            <label>Goal (Supports Multi-line bullets) <span class="req">*</span></label>
-            <textarea id="proj-goal-input" rows="4" placeholder="Type each individual design target on a fresh line..."></textarea>
-          </div>
-          <div class="field">
-            <label>Key Achievements (Supports Multi-line bullets) <span class="req">*</span></label>
-            <textarea id="proj-achv-input" rows="4" placeholder="Type each single milestone on a separate line to bullet it..."></textarea>
-          </div>
-        </div>
-        <div class="form-actions">
-          <button class="btn-cancel" onclick="showProjectsHome()">Cancel</button>
-          <button class="btn-save"   onclick="saveTeamProject()">UPLOAD SPECIFICATION</button>
-        </div>
-      </div>
-    </div>
 
-    <!-- VIEW: Engineers Directory -->
-    <div id="view-directory" class="view">
-      <div class="page-header">
-        <div>
-          <div class="page-eyebrow">// engineer_registry</div>
-          <h2 class="page-heading">Team Directory</h2>
-        </div>
-        <button class="btn-primary" onclick="showEngineerForm()">+ Add Engineer Profile</button>
-      </div>
-      <div class="stats-bar">
-        <div class="stat-pill">Engineers Counted: <span id="stat-count">0</span></div>
-        <div class="stat-pill">Active Nodes Logged: <span id="stat-nodes">&#8212;</span></div>
-      </div>
-      <div class="directory-toolbar">
-        <div class="search-wrap">
-          <span class="search-icon">&#8981;</span>
-          <input type="text" id="search-input"
-                 placeholder="Search profiles by name, background expertise..."
-                 oninput="filterProfiles()"/>
-        </div>
-      </div>
-      <div class="nodes-filter-bar" id="directory-nodes-filter"></div>
-      <div class="profile-grid" id="profile-grid"></div>
-    </div>
-
-    <!-- VIEW: Profile Form (Add / Edit) -->
-    <div id="view-profile-form" class="view">
-      <div class="form-container">
-        <button class="back-btn" onclick="showDirectory()">&#8592; BACK TO DIRECTORY</button>
-        <div class="page-header" style="margin-bottom:1.2rem;">
-          <div>
-            <div class="page-eyebrow">// profile_format_builder</div>
-            <h2 class="page-heading" id="profile-form-heading">New Profile Setup</h2>
-          </div>
-        </div>
-        <div class="form-section">
-          <div class="form-section-title">01 &middot; Background Information</div>
-          <div class="form-row">
-            <div class="field">
-              <label>Full Name <span class="req">*</span></label>
-              <input type="text" id="ep-name" placeholder="Ragib Yeaser"/>
-            </div>
-            <div class="field">
-              <label>Years of Experience <span class="req">*</span></label>
-              <input type="text" id="ep-yoe" placeholder="e.g., 5 Years 5 Months"/>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="field">
-              <label>University <span class="req">*</span></label>
-              <input type="text" id="ep-uni" placeholder="Engineering Institution"/>
-            </div>
-            <div class="field">
-              <label>Education Background <span class="req">*</span></label>
-              <input type="text" id="ep-edu" placeholder="e.g., Master of Science"/>
-            </div>
-          </div>
-          <div class="field">
-            <label>Key Expertise <span class="req">*</span></label>
-            <input type="text" id="ep-keyexp" placeholder="e.g., AMS Custom Layout, FinFET Layout"/>
-          </div>
-        </div>
-        <div class="form-section">
-          <div class="form-section-title">02 &middot; Tool Ecosystem Focus</div>
-          <div class="form-row">
-            <div class="field"><label>Circuit Design &amp; Simulation</label><input type="text" id="ep-t-circuit" placeholder="e.g., Cadence Virtuoso"/></div>
-            <div class="field"><label>Layout Design</label><input type="text" id="ep-t-layout" placeholder="e.g., Virtuoso Layout Editor"/></div>
-          </div>
-          <div class="form-row">
-            <div class="field"><label>Physical Verification</label><input type="text" id="ep-t-phys" placeholder="e.g., Calibre, PVS"/></div>
-            <div class="field"><label>Parasitic Extraction</label><input type="text" id="ep-t-parasitic" placeholder="e.g., StarRC, Quantus"/></div>
-          </div>
-          <div class="form-row">
-            <div class="field"><label>Reliability Validation</label><input type="text" id="ep-t-reliability" placeholder="e.g., Totem"/></div>
-            <div class="field"><label>Project Management</label><input type="text" id="ep-t-pm" placeholder="e.g., ClioSoft SOS"/></div>
-          </div>
-        </div>
-        <div class="form-section">
-          <div class="form-section-title">03 &middot; Base Foundations</div>
-          <div class="form-row">
-            <div class="field">
-              <label>Technology Base Nodes <span class="req">*</span></label>
-              <div class="tags-input-style-container">
-                <div id="ep-b-tech-tags" style="display:flex;flex-wrap:wrap;gap:4px;"></div>
-                <input type="text" id="ep-b-tech" placeholder="Press Space or Comma"/>
+          <div class="form-section">
+            <div class="form-section-title">Block 03: Tape-Out History Matrix</div>
+            <div class="nda-banner">
+              <div style="font-size:1.1rem; color:var(--warn)">⚠️</div>
+              <div class="nda-text">
+                <strong>NDA SECURITY PROTOCOL NOTICE:</strong> Do not submit raw customer codeNames or classified geometry metrics. Abstract configurations to general microarchitecture parameters (e.g., "Project Ultra-FinFET 4nm Base Node").
               </div>
             </div>
-            <div class="field"><label>Foundry Background</label><input type="text" id="ep-b-foundry" placeholder="e.g., TSMC, Samsung"/></div>
-            <div class="field"><label>Process Types</label><input type="text" id="ep-b-process" placeholder="e.g., FinFET, BCD"/></div>
+
+            <div id="form-projects-list-target"></div>
+
+            <button class="btn-add-project" onclick="appendEmptyProjectRowToForm()">+ Append New Matrix Layer Segment</button>
           </div>
-        </div>
-        <div class="form-section">
-          <div class="form-section-title">04 &middot; Layout Project Experience Logs</div>
-          <div id="dynamic-engineer-projects-box"></div>
-          <button class="btn-add-project" onclick="addEngineerProjectFormBlock()">&#xff0b; ADD DETAILED PROJECT RECORD</button>
-        </div>
-        <div class="form-actions">
-          <button class="btn-cancel" onclick="showDirectory()">Cancel</button>
-          <button class="btn-save"   onclick="saveEngineerProfile()">SAVE PROFILE SYSTEM</button>
+
+          <div class="form-actions">
+            <button class="btn-cancel" onclick="switchView('directory')">Terminate Modification</button>
+            <button class="btn-save" onclick="handleFormSaveSubmission()">Commit Matrix Values to Silicon</button>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- VIEW: Profile Detail -->
-    <div id="view-profile-detail" class="view">
-      <div class="profile-detail">
-        <button class="back-btn" onclick="showDirectory()">&#8592; BACK TO DIRECTORY</button>
-        <div class="detail-header">
-          <div class="detail-avatar" id="d-avatar">RY</div>
-          <div style="flex:1;min-width:0;">
-            <div class="detail-name"  id="d-name">Engineer Name</div>
-            <div class="detail-desig" id="d-yoe">Experience Parameters</div>
-            <div class="nodes-wrap"   id="d-nodes-box"></div>
+
+      <div class="view" id="view-detail">
+        <div class="page-header" style="margin-bottom: 1.2rem;">
+          <div>
+            <div class="page-eyebrow">// inspection_schematic_overlay</div>
+            <div class="page-heading">Node Structural Blueprint</div>
           </div>
+          <button class="back-btn" onclick="switchView('directory')">◀ Return to Grid Directory</button>
+        </div>
+
+        <div class="form-container" id="detail-view-mount-target">
+          </div>
+      </div>
+
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="modal-delete-gate" onclick="closeConfirmationModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-icon">☣️</div>
+      <h3 style="color:var(--warn)">De-instantiate Personnel Node?</h3>
+      <p>This action detaches the profile permanently from the active silicon layout layer directory matrix. Proceed with destruction sequence?</p>
+      <div class="modal-actions">
+        <button class="btn-cancel" style="border-radius:3px;" onclick="closeConfirmationModal()">Abort Execution</button>
+        <button class="btn-save" style="background:var(--warn); color:#fff; border-radius:3px;" id="modal-confirm-delete-trigger">Purge Node Permanently</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">✓ Layout state successfully synchronized</div>
+
+  <div class="undo-bar" id="undo-bar">
+    <span id="undo-bar-msg">Operational step deleted.</span>
+    <button class="btn-undo" onclick="triggerRestoreAction()">Restore Matrix State</button>
+  </div>
+
+
+  <script>
+    /* ----------------------------------------------------------------
+       A. IN-MEMORY DATABASE & LOCAL STORAGE DEFAULTS
+    ---------------------------------------------------------------- */
+    let currentAuthUser = null;
+    let profilesDatabase = [];
+    let activeDeletedBackup = null; 
+    let activeUndoTimeoutId = null;
+
+    let systemActiveView = 'directory';
+    let currentSelectedFilterCluster = 'ALL';
+    let activeProfileDetailId = null;
+
+    // Local Storage identification key names
+    const KEY_PROFILES = 'NSL_CONNECT_PROFILES_V2';
+    const KEY_AUTH_USER = 'NSL_CONNECT_ACTIVE_USER_V2';
+    const KEY_CREDENTIALS = 'NSL_CONNECT_CREDENTIALS_V2';
+
+    // Seed dummy datasets if local cache holds blank registers
+    const initialSeedRegistryData = [
+      {
+        id: "p-seed-01",
+        name: "Sabbir Rahman",
+        node: "Digital Design",
+        designation: "Principal RTL Architect",
+        email: "sabbir@neural-semiconductor.com",
+        bio: "Specializing in high-throughput RISC-V compute microarchitectures. Expert in advanced synthesis setups and timing closures across sub-7nm parameters.",
+        skills: ["Verilog", "SystemVerilog", "RISC-V", "Synopsys Design Compiler", "PrimeTime", "ASIC Synthesis"],
+        updatedAt: new Date().toISOString(),
+        projects: [
+          { name: "Project Core-V64", tech: "TSMC 5nm FinFET", duration: "18 Months", desc: "Led architectural description framework design for custom 64-bit multi-core configurations executing scalar expansions." },
+          { name: "Crypto-Accelerator IPs", tech: "Intel 16 Layer", duration: "8 Months", desc: "Engineered pipelined structures optimizing AES/SHA throughput metrics under low-power criteria restrictions." }
+        ]
+      },
+      {
+        id: "p-seed-02",
+        name: "Tanzina Islam",
+        node: "Physical Design",
+        designation: "Senior P&R Engineer",
+        email: "tanzina@neural-semiconductor.com",
+        bio: "Focussed execution profiles covering Floorplanning, Clock Tree Synthesis (CTS), and Full-chip Routing convergence strategies.",
+        skills: ["Innovus", "ICC2", "CTS Optimization", "IR Drop Analysis", "Calibre DRC/LVS", "Static Timing Analysis"],
+        updatedAt: new Date().toISOString(),
+        projects: [
+          { name: "Mobile AP Modem Top-Level", tech: "Samsung 4nm LPP", duration: "22 Months", desc: "Converged multi-instantiation partition models containing up to 14M raw instances avoiding congestions." }
+        ]
+      },
+      {
+        id: "p-seed-03",
+        name: "Asif Mustafa",
+        node: "Analog Mixed Signal",
+        designation: "Lead Layout Specialist",
+        email: "asif@neural-semiconductor.com",
+        bio: "Deep specialization across analog cell architectures, matching techniques for precision tracking, and noise guard optimizations.",
+        skills: ["Cadence Virtuoso", "Spectre", "Custom Compiler", "PLL Layout", "High-Speed SerDes"],
+        updatedAt: new Date().toISOString(),
+        projects: [
+          { name: "Giga-SerDes PHY Macro", tech: "TSMC 7nm Node", duration: "14 Months", desc: "Balanced symmetrical differential wire routing configurations maintaining phase delays under 1.2 picoseconds." }
+        ]
+      }
+    ];
+
+    const fallbackUserAuthenticationRegistry = [
+      { email: "admin@neural-semiconductor.com", pwd: "Password123!", fname: "Admin", lname: "Node" }
+    ];
+
+    // Global simulation state variable to track the generated registration OTP
+    let activeVerificationOtpCode = null;
+    let pendingSignUpDataCache = null;
+
+    /* Initialize client data layer constraints on engine launch */
+    (function initializeStorageSubsystemOnBoot() {
+      if (!localStorage.getItem(KEY_PROFILES)) {
+        localStorage.setItem(KEY_PROFILES, JSON.stringify(initialSeedRegistryData));
+      }
+      profilesDatabase = JSON.parse(localStorage.getItem(KEY_PROFILES));
+
+      if (!localStorage.getItem(KEY_CREDENTIALS)) {
+        localStorage.setItem(KEY_CREDENTIALS, JSON.stringify(fallbackUserAuthenticationRegistry));
+      }
+
+      const cachedUserToken = localStorage.getItem(KEY_AUTH_USER);
+      if (cachedUserToken) {
+        currentAuthUser = JSON.parse(cachedUserToken);
+      }
+    })();
+
+
+    /* ----------------------------------------------------------------
+       B. AUTHENTICATION & INTERCONNECT CONTROL HANDLERS
+    ---------------------------------------------------------------- */
+    window.addEventListener('DOMContentLoaded', () => {
+      evaluateAuthVisibilityState();
+      renderDirectoryGrid();
+      initializeUptimeDisplayCounter();
+
+      // Enforce systemic dark theme state as programmatic application foundation setting
+      if (!localStorage.getItem('theme')) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        const selectedSavedTheme = localStorage.getItem('theme');
+        document.documentElement.setAttribute('data-theme', selectedSavedTheme);
+      }
+    });
+
+    function evaluateAuthVisibilityState() {
+      const overlayEl = document.getElementById('auth-overlay');
+      const appMainWindowEl = document.getElementById('main-app');
+
+      if (currentAuthUser) {
+        overlayEl.classList.add('hidden');
+        appMainWindowEl.classList.add('visible');
+
+        // Populate metadata chips
+        document.getElementById('user-pill-name').textContent = `${currentAuthUser.fname} ${currentAuthUser.lname}`;
+        const userInitialsCalculated = (currentAuthUser.fname.charAt(0) + currentAuthUser.lname.charAt(0)).toUpperCase();
+        document.getElementById('user-pill-avatar').textContent = userInitialsCalculated;
+      } else {
+        overlayEl.classList.remove('hidden');
+        appMainWindowEl.classList.remove('visible');
+      }
+    }
+
+    function switchAuthPanel(targetPanelIdName) {
+      document.querySelectorAll('.auth-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById(targetPanelIdName).classList.add('active');
+      clearAuthErrorMessageBlocks();
+      cancelOtpVerificationState(); // Clear OTP layout if user switches away
+    }
+
+    function clearAuthErrorMessageBlocks() {
+      const errLogin = document.getElementById('login-err');
+      const errSignup = document.getElementById('signup-err');
+      errLogin.textContent = ''; errLogin.classList.remove('show');
+      errSignup.textContent = ''; errSignup.classList.remove('show');
+    }
+
+    function displayAuthErrorNotification(targetContainerId, errorMessageText) {
+      const targetBox = document.getElementById(targetContainerId);
+      targetBox.textContent = `[CRITICAL_ERR]: ${errorMessageText}`;
+      targetBox.classList.add('show');
+    }
+
+    function togglePwdVisibility(targetInputElementId) {
+      const fieldElement = document.getElementById(targetInputElementId);
+      fieldElement.type = (fieldElement.type === 'password') ? 'text' : 'password';
+    }
+
+    function checkPwdStrength(passwordRawInputString) {
+      const strengthContainer = document.getElementById('pwd-strength-container');
+      const fillBar = document.getElementById('strength-bar-fill');
+      const textLabel = document.getElementById('strength-bar-lbl');
+
+      if (!passwordRawInputString) {
+        strengthContainer.classList.remove('show');
+        return;
+      }
+      strengthContainer.classList.add('show');
+
+      let currentStrengthPointsScore = 0;
+      if (passwordRawInputString.length >= 6) currentStrengthPointsScore++;
+      if (passwordRawInputString.length >= 10) currentStrengthPointsScore++;
+      if (/[A-Z]/.test(passwordRawInputString)) currentStrengthPointsScore++;
+      if (/[0-9]/.test(passwordRawInputString)) currentStrengthPointsScore++;
+      if (/[^A-Za-z0-9]/.test(passwordRawInputString)) currentStrengthPointsScore++;
+
+      if (currentStrengthPointsScore <= 2) {
+        fillBar.style.width = '25%'; fillBar.style.background = 'var(--warn)';
+        textLabel.textContent = "Entropy Level: Critical Weakness";
+      } else if (currentStrengthPointsScore <= 4) {
+        fillBar.style.width = '65%'; fillBar.style.background = 'var(--accent)';
+        textLabel.textContent = "Entropy Level: Standard Functional";
+      } else {
+        fillBar.style.width = '100%'; fillBar.style.background = 'var(--accent3)';
+        textLabel.textContent = "Entropy Level: Military Core Grade";
+      }
+    }
+
+    function handleLogin() {
+      clearAuthErrorMessageBlocks();
+      const inputEmail = document.getElementById('login-email').value.trim();
+      const inputPassword = document.getElementById('login-pwd').value;
+
+      if (!inputEmail || !inputPassword) {
+        displayAuthErrorNotification('login-err', 'All data matrix links must be specified.');
+        return;
+      }
+
+      const registeredUsersList = JSON.parse(localStorage.getItem(KEY_CREDENTIALS)) || [];
+      const identifiedUserMatch = registeredUsersList.find(u => u.email.toLowerCase() === inputEmail.toLowerCase() && u.pwd === inputPassword);
+
+      if (identifiedUserMatch) {
+        currentAuthUser = identifiedUserMatch;
+        localStorage.setItem(KEY_AUTH_USER, JSON.stringify(currentAuthUser));
+        showToast('✓ Security token initialized. Welcome back.');
+        evaluateAuthVisibilityState();
+      } else {
+        displayAuthErrorNotification('login-err', 'Invalid system identity or keyphrase credentials.');
+      }
+    }
+
+    /* EMAIL VERIFICATION IMPLEMENTATION LAYER
+       Triggers an automated generation of simulated verification codes.
+       Strictly filters to evaluate if strings match target corporate domain context.
+    */
+    function initiateEmailVerification() {
+      clearAuthErrorMessageBlocks();
+      const firstName = document.getElementById('signup-fname').value.trim();
+      const lastName = document.getElementById('signup-lname').value.trim();
+      const rawEmail = document.getElementById('signup-email').value.trim();
+      const password = document.getElementById('signup-pwd').value;
+
+      if (!firstName || !lastName || !rawEmail || !password) {
+        displayAuthErrorNotification('signup-err', 'All entry fields must be parameterized.');
+        return;
+      }
+
+      // Explicit Corporate Domain Regulation Enforcement Check
+      const targetedSecureCorporateDomain = "@neural-semiconductor.com";
+      if (!rawEmail.toLowerCase().endsWith(targetedSecureCorporateDomain)) {
+        displayAuthErrorNotification('signup-err', 'Access Restricted: Registry accepts strictly @neural-semiconductor.com extensions.');
+        return;
+      }
+
+      if (password.length < 6) {
+        displayAuthErrorNotification('signup-err', 'Security Constraint: Passwords must exceed 5 characters minimum.');
+        return;
+      }
+
+      const existingUsersList = JSON.parse(localStorage.getItem(KEY_CREDENTIALS)) || [];
+      const isUserAlreadyRegistered = existingUsersList.some(u => u.email.toLowerCase() === rawEmail.toLowerCase());
+      if (isUserAlreadyRegistered) {
+        displayAuthErrorNotification('signup-err', 'This identity node is already registered inside the array loop.');
+        return;
+      }
+
+      // Generate random simulated 6-digit verification sequence
+      activeVerificationOtpCode = Math.floor(100000 + Math.random() * 900000).toString();
+      
+      // Store current parameters inside state cache
+      pendingSignUpDataCache = {
+        fname: firstName,
+        lname: lastName,
+        email: rawEmail,
+        pwd: password
+      };
+
+      // Output mock confirmation layer to local terminal logs to assist operations
+      console.log(`[NSL_CONNECT NETWORK MOCK INTEGRATION] Sending Email to ${rawEmail}...`);
+      console.log(`[REGISTRY AUTHENTICATION OTP]: ${activeVerificationOtpCode}`);
+
+      // Smooth programmatic UI transition to view step code fields
+      document.getElementById('signup-form-fields').style.display = 'none';
+      document.getElementById('signup-otp-fields').style.display = 'block';
+      showToast('⚡ OTP Registry Code Dispatched');
+    }
+
+    function cancelOtpVerificationState() {
+      activeVerificationOtpCode = null;
+      pendingSignUpDataCache = null;
+      document.getElementById('signup-otp-input').value = '';
+      document.getElementById('signup-otp-fields').style.display = 'none';
+      document.getElementById('signup-form-fields').style.display = 'block';
+    }
+
+    function completeFinalizedSignup() {
+      clearAuthErrorMessageBlocks();
+      const providedOtpValue = document.getElementById('signup-otp-input').value.trim();
+
+      if (!providedOtpValue) {
+        displayAuthErrorNotification('signup-err', 'Please enter verification OTP.');
+        return;
+      }
+
+      if (providedOtpValue !== activeVerificationOtpCode) {
+        displayAuthErrorNotification('signup-err', 'Invalid token synchronization sequence matching code.');
+        return;
+      }
+
+      // Verification fully authenticated. Write data to persistent tracking frames.
+      const existingUserRegistryList = JSON.parse(localStorage.getItem(KEY_CREDENTIALS)) || [];
+      existingUserRegistryList.push(pendingSignUpDataCache);
+      localStorage.setItem(KEY_CREDENTIALS, JSON.stringify(existingUserRegistryList));
+
+      // Programmatically establish system user authentication parameters context
+      currentAuthUser = pendingSignUpDataCache;
+      localStorage.setItem(KEY_AUTH_USER, JSON.stringify(currentAuthUser));
+
+      // Cleanup local cache instances
+      activeVerificationOtpCode = null;
+      pendingSignUpDataCache = null;
+
+      showToast('✓ Identity Instantiation Verification Complete.');
+      evaluateAuthVisibilityState();
+
+      // Reset dynamic element visibility defaults
+      document.getElementById('signup-fname').value = '';
+      document.getElementById('signup-lname').value = '';
+      document.getElementById('signup-email').value = '';
+      document.getElementById('signup-pwd').value = '';
+      document.getElementById('signup-otp-input').value = '';
+      document.getElementById('pwd-strength-container').classList.remove('show');
+      cancelOtpVerificationState();
+    }
+
+    function handleSignOut() {
+      localStorage.removeItem(KEY_AUTH_USER);
+      currentAuthUser = null;
+      evaluateAuthVisibilityState();
+      switchView('directory');
+      showToast('✓ Session closed. Interface locked.');
+    }
+
+
+    /* ----------------------------------------------------------------
+       C. APPLICATION ROUTING & VIEW CONTROLLER MAPPING SYSTEM
+    ---------------------------------------------------------------- */
+    function switchView(targetViewRouteName) {
+      systemActiveView = targetViewRouteName;
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+      const dynamicTargetDomNode = document.getElementById(`view-${targetViewRouteName}`);
+      if (dynamicTargetDomNode) dynamicTargetDomNode.classList.add('active');
+
+      const dynamicTabDomNode = document.getElementById(`nav-${targetViewRouteName}`);
+      if (dynamicTabDomNode) dynamicTabDomNode.classList.add('active');
+
+      if (targetViewRouteName === 'directory') {
+        document.getElementById('nav-directory').classList.add('active');
+        renderDirectoryGrid();
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function handleMyProfileNavigation() {
+      if (!currentAuthUser) return;
+      const linkedDbProfileNode = profilesDatabase.find(p => p.email.toLowerCase() === currentAuthUser.email.toLowerCase());
+
+      if (linkedDbProfileNode) {
+        viewProfileDetailsSchematic(linkedDbProfileNode.id);
+      } else {
+        triggerProfileCreationForm(currentAuthUser.email);
+      }
+    }
+
+
+    /* ----------------------------------------------------------------
+       D. DOM PROFILE COMPONENT RENDER ENGINE (VIEW DIRECTORY)
+    ---------------------------------------------------------------- */
+    function renderDirectoryGrid() {
+      const displayGridTargetBox = document.getElementById('directory-grid-target');
+      displayGridTargetBox.innerHTML = '';
+
+      const parsingRawSearchQueryString = document.getElementById('search-input').value.toLowerCase().trim();
+
+      // Filter pipeline parameters matching system configurations
+      let evaluationProfileOutputArray = profilesDatabase;
+
+      if (currentSelectedFilterCluster !== 'ALL') {
+        evaluationProfileOutputArray = evaluationProfileOutputArray.filter(p => p.node === currentSelectedFilterCluster);
+      }
+
+      if (parsingRawSearchQueryString) {
+        evaluationProfileOutputArray = evaluationProfileOutputArray.filter(p => {
+          const matchName = p.name.toLowerCase().includes(parsingRawSearchQueryString);
+          const matchDesig = p.designation.toLowerCase().includes(parsingRawSearchQueryString);
+          const matchBio = p.bio ? p.bio.toLowerCase().includes(parsingRawSearchQueryString) : false;
+          const matchSkills = p.skills.some(s => s.toLowerCase().includes(parsingRawSearchQueryString));
+          return matchName || matchDesig || matchBio || matchSkills;
+        });
+      }
+
+      // Synchronize dashboard global indicator fields
+      document.getElementById('stat-total').textContent = profilesDatabase.length;
+      let calculatedCombinedActiveProjectsCount = 0;
+      profilesDatabase.forEach(p => { if(p.projects) calculatedCombinedActiveProjectsCount += p.projects.length; });
+      document.getElementById('stat-projects').textContent = calculatedCombinedActiveProjectsCount;
+
+      if (evaluationProfileOutputArray.length === 0) {
+        displayGridTargetBox.innerHTML = `
+          <div class="empty-state">
+            <p style="font-family:'Share Tech Mono', monospace; font-size:0.85rem;">[WARN]: Zero interconnect nodes matched current matrix search definitions.</p>
+          </div>
+        `;
+        return;
+      }
+
+      evaluationProfileOutputArray.forEach(p => {
+        const componentCardOuterBox = document.createElement('div');
+        componentCardOuterBox.className = 'profile-card';
+        componentCardOuterBox.onclick = () => viewProfileDetailsSchematic(p.id);
+
+        const shortInitials = p.name.split(' ').map(n => n[0]).join('').substring(0,2).toUpperCase();
+
+        let tagChipsHtmlString = '';
+        if (p.skills && p.skills.length > 0) {
+          p.skills.slice(0, 4).forEach(s => {
+            tagChipsHtmlString += `<span class="node-tag">${escHtml(s)}</span>`;
+          });
+          if (p.skills.length > 4) {
+            tagChipsHtmlString += `<span class="node-tag" style="background:transparent; border-style:dashed;">+${p.skills.length - 4} More</span>`;
+          }
+        }
+
+        const formattedDateStamp = new Date(p.updatedAt).toLocaleDateString(undefined, {month:'short', day:'numeric', year:'numeric'});
+
+        // Contextual checking matching deletion authority configuration states
+        let administrativeControlButtonsPanelHtml = '';
+        if (currentAuthUser && (currentAuthUser.email.toLowerCase() === p.email.toLowerCase() || currentAuthUser.email.toLowerCase() === 'admin@neural-semiconductor.com')) {
+          administrativeControlButtonsPanelHtml = `
+            <div class="card-actions" onclick="event.stopPropagation()">
+              <button class="btn-ghost" onclick="initializeProfileModificationForm('${p.id}')">Modify</button>
+              <button class="btn-ghost btn-danger" onclick="triggerProfilePurgeVerificationSequence('${p.id}')">Purge</button>
+            </div>
+          `;
+        }
+
+        componentCardOuterBox.innerHTML = `
+          <div class="card-top">
+            <div class="avatar">${escHtml(shortInitials)}</div>
+            <div style="flex:1; min-width:0;">
+              <div class="card-name" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escHtml(p.name)}</div>
+              <div class="card-desig" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escHtml(p.designation)}</div>
+            </div>
+          </div>
+          <div style="font-family:'Share Tech Mono', monospace; font-size:0.58rem; color:var(--accent3); margin-bottom:0.6rem; text-transform:uppercase;">
+            ⚡ Subsystem: ${escHtml(p.node)}
+          </div>
+          <div class="nodes-wrap">${tagChipsHtmlString}</div>
+          <p class="card-desc" style="display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">
+            ${p.bio ? escHtml(p.bio) : 'No operational node log telemetry submitted.'}
+          </p>
+          <div class="card-footer">
+            <div class="card-updated">SYNC: ${formattedDateStamp}</div>
+            ${administrativeControlButtonsPanelHtml}
+          </div>
+        `;
+
+        displayGridTargetBox.appendChild(componentCardOuterBox);
+      });
+    }
+
+    function filterByNodeCluster(selectedSubsystemClusterNodeString) {
+      currentSelectedFilterCluster = selectedSubsystemClusterNodeString;
+      document.querySelectorAll('#filter-bar-nodes .node-filter-pill').forEach(btn => {
+        if (btn.textContent.toLowerCase() === selectedSubsystemClusterNodeString.toLowerCase() || 
+           (selectedSubsystemClusterNodeString === 'ALL' && btn.textContent.toLowerCase().includes('all'))) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+      renderDirectoryGrid();
+    }
+
+    function handleSearchFilter() {
+      renderDirectoryGrid();
+    }
+
+
+    /* ----------------------------------------------------------------
+       E. INTERACTIVE MATRIX FORM ENGINE (WRITE / DATA INPUT MODIFICATIONS)
+    ---------------------------------------------------------------- */
+    let workingFormSkillsTrackingArray = [];
+    let currentEditingProfileEntityId = null; 
+
+    function triggerProfileCreationForm(prefilledEmailString = '') {
+      currentEditingProfileEntityId = null;
+      document.getElementById('form-title-heading').textContent = "Instantiate Node Parameters Block";
+      
+      // Flush field values
+      document.getElementById('field-name').value = '';
+      document.getElementById('field-node').value = '';
+      document.getElementById('field-designation').value = '';
+      document.getElementById('field-bio').value = '';
+      
+      const emailField = document.getElementById('field-email');
+      emailField.value = prefilledEmailString ? prefilledEmailString : (currentAuthUser ? currentAuthUser.email : '');
+
+      workingFormSkillsTrackingArray = [];
+      rebuildSkillsTokenInputPillDisplayStructure();
+
+      const dynamicProjectMountTargetBox = document.getElementById('form-projects-list-target');
+      dynamicProjectMountTargetBox.innerHTML = '';
+      appendEmptyProjectRowToForm(); // Seed at least one dynamic entry row layer
+
+      switchView('form');
+    }
+
+    function initializeProfileModificationForm(existingTargetProfileId) {
+      const matchProfileNode = profilesDatabase.find(p => p.id === existingTargetProfileId);
+      if (!matchProfileNode) return;
+
+      currentEditingProfileEntityId = existingTargetProfileId;
+      document.getElementById('form-title-heading').textContent = `Re-configure Profile Specifications // Node: ${matchProfileNode.name}`;
+
+      document.getElementById('field-name').value = matchProfileNode.name;
+      document.getElementById('field-node').value = matchProfileNode.node;
+      document.getElementById('field-designation').value = matchProfileNode.designation;
+      document.getElementById('field-email').value = matchProfileNode.email;
+      document.getElementById('field-bio').value = matchProfileNode.bio || '';
+
+      workingFormSkillsTrackingArray = [...matchProfileNode.skills];
+      rebuildSkillsTokenInputPillDisplayStructure();
+
+      const dynamicProjectMountTargetBox = document.getElementById('form-projects-list-target');
+      dynamicProjectMountTargetBox.innerHTML = '';
+
+      if (matchProfileNode.projects && matchProfileNode.projects.length > 0) {
+        matchProfileNode.projects.forEach(p => {
+          appendEmptyProjectRowToForm(p.name, p.tech, p.duration, p.desc);
+        });
+      } else {
+        appendEmptyProjectRowToForm();
+      }
+
+      switchView('form');
+    }
+
+    // Skills dynamic token input construction adjustments
+    const trackingWrapperOuterInputBoxContainer = document.getElementById('skills-pill-wrap');
+    const skillsRawTextAreaInputElement = document.getElementById('skills-raw-input');
+
+    skillsRawTextAreaInputElement.addEventListener('keydown', (e) => {
+      if (e.key === ' ' || e.key === ',') {
+        e.preventDefault();
+        const extractedCleanValueToken = skillsRawTextAreaInputElement.value.replace(/,/g, '').trim();
+        if (extractedCleanValueToken && !workingFormSkillsTrackingArray.includes(extractedCleanValueToken)) {
+          workingFormSkillsTrackingArray.push(extractedCleanValueToken);
+          rebuildSkillsTokenInputPillDisplayStructure();
+        }
+        skillsRawTextAreaInputElement.value = '';
+      }
+    });
+
+    function rebuildSkillsTokenInputPillDisplayStructure() {
+      // Retain tracking of subnodes without purging active element inputs
+      document.querySelectorAll('#skills-pill-wrap .input-tag-pill').forEach(el => el.remove());
+
+      workingFormSkillsTrackingArray.forEach((token, indexValue) => {
+        const pillDomElementNode = document.createElement('span');
+        pillDomElementNode.className = 'input-tag-pill';
+        pillDomElementNode.innerHTML = `${escHtml(token)}<b onclick="removeSkillTokenElementByIndex(${indexValue})">×</b>`;
+        trackingWrapperOuterInputBoxContainer.insertBefore(pillDomElementNode, skillsRawTextAreaInputElement);
+      });
+    }
+
+    function removeSkillTokenElementByIndex(indexTarget) {
+      workingFormSkillsTrackingArray.splice(indexTarget, 1);
+      rebuildSkillsTokenInputPillDisplayStructure();
+    }
+
+    function appendEmptyProjectRowToForm(pName='', pTech='', pDuration='', pDesc='') {
+      const mountWrapperBox = document.getElementById('form-projects-list-target');
+      const sequentialElementLayerIdCount = mountWrapperBox.children.length + 1;
+
+      const blockBox = document.createElement('div');
+      blockBox.className = 'project-block';
+      blockBox.innerHTML = `
+        <div class="project-header">
+          <span class="project-num">// Layout Matrix Index Segment Layers: 0${sequentialElementLayerIdCount}</span>
+          <button class="project-remove-btn" onclick="this.closest('.project-block').remove(); reIndexFormProjectRowLabelDisplayNumbers();">✕ Remove Block</button>
+        </div>
+        <div class="project-body">
+          <div class="field">
+            <label>Project Conceptual CodeName</label>
+            <input type="text" class="proj-input-name" placeholder="E.g., Project Neo-Gate" value="${escHtml(pName)}" />
+          </div>
+          <div class="field">
+            <label>Silicon Geometry Integration Technology Node Cluster</label>
+            <input type="text" class="proj-input-tech" placeholder="E.g., 4nm FinFET Architecture" value="${escHtml(pTech)}" />
+          </div>
+          <div class="field">
+            <label>Timeline Lifecycle Span Duration</label>
+            <input type="text" class="proj-input-duration" placeholder="E.g., 14 Months" value="${escHtml(pDuration)}" />
+          </div>
+          <div class="field">
+            <label>Functional Engineering Mission Objective Scope Summary</label>
+            <input type="text" class="proj-input-desc" placeholder="Summary statement outlining architecture responsibilities..." value="${escHtml(pDesc)}" />
+          </div>
+        </div>
+      `;
+      mountWrapperBox.appendChild(blockBox);
+    }
+
+    function reIndexFormProjectRowLabelDisplayNumbers() {
+      document.querySelectorAll('#form-projects-list-target .project-block').forEach((block, indexValue) => {
+        block.querySelector('.project-num').textContent = `// Layout Matrix Index Segment Layers: 0${indexValue + 1}`;
+      });
+    }
+
+    function handleFormSaveSubmission() {
+      const name = document.getElementById('field-name').value.trim();
+      const node = document.getElementById('field-node').value;
+      const designation = document.getElementById('field-designation').value.trim();
+      const email = document.getElementById('field-email').value.trim();
+      const bio = document.getElementById('field-bio').value.trim();
+
+      if (!name || !node || !designation || !email) {
+        alert("[INTEGRATION ERROR]: All primary parameters flagged with asterisk identifiers must be supplied.");
+        return;
+      }
+
+      // Read dynamic array states from custom project node DOM elements
+      const trackingCompiledProjectsOutputArray = [];
+      document.querySelectorAll('#form-projects-list-target .project-block').forEach(block => {
+        const pName = block.querySelector('.proj-input-name').value.trim();
+        const pTech = block.querySelector('.proj-input-tech').value.trim();
+        const pDuration = block.querySelector('.proj-input-duration').value.trim();
+        const pDesc = block.querySelector('.proj-input-desc').value.trim();
+
+        if (pName || pTech || pDuration || pDesc) {
+          trackingCompiledProjectsOutputArray.push({
+            name: pName || 'Unspecified Name Layer',
+            tech: pTech || 'Generic Silicon Stack',
+            duration: pDuration || 'Variable Span',
+            desc: pDesc || 'No summary parameters mapped.'
+          });
+        }
+      });
+
+      if (currentEditingProfileEntityId) {
+        // Run update query routine sequence
+        const targetDbIndexId = profilesDatabase.findIndex(p => p.id === currentEditingProfileEntityId);
+        if (targetDbIndexId !== -1) {
+          profilesDatabase[targetDbIndexId].name = name;
+          profilesDatabase[targetDbIndexId].node = node;
+          profilesDatabase[targetDbIndexId].designation = designation;
+          profilesDatabase[targetDbIndexId].bio = bio;
+          profilesDatabase[targetDbIndexId].skills = workingFormSkillsTrackingArray;
+          profilesDatabase[targetDbIndexId].projects = trackingCompiledProjectsOutputArray;
+          profilesDatabase[targetDbIndexId].updatedAt = new Date().toISOString();
+        }
+      } else {
+        // Execute insertion allocation workflow mapping parameters
+        const synthesizedProfileIdMarker = `p-node-${Math.floor(100000 + Math.random() * 900000)}`;
+        const newlyCompiledProfileDatasetModel = {
+          id: synthesizedProfileIdMarker,
+          name, node, designation, email, bio,
+          skills: workingFormSkillsTrackingArray,
+          projects: trackingCompiledProjectsOutputArray,
+          updatedAt: new Date().toISOString()
+        };
+        profilesDatabase.push(newlyCompiledProfileDatasetModel);
+      }
+
+      saveProfilesToCacheStorageArray();
+      showToast('✓ Silicon system configuration logs successfully structuralized.');
+      switchView('directory');
+    }
+
+    function saveProfilesToCacheStorageArray() {
+      localStorage.setItem(KEY_PROFILES, JSON.stringify(profilesDatabase));
+    }
+
+
+    /* ----------------------------------------------------------------
+       F. DISPLAY LAYOUT MATRIX READING LAYERS (VIEW DETAILS SCHEMATIC)
+    ---------------------------------------------------------------- */
+    function viewProfileDetailsSchematic(profileIdentifierKeyString) {
+      activeProfileDetailId = profileIdentifierKeyString;
+      const structuralProfileModelMatch = profilesDatabase.find(p => p.id === profileIdentifierKeyString);
+      if (!structuralProfileModelMatch) return;
+
+      const dynamicDisplayMountBox = document.getElementById('detail-view-mount-target');
+      dynamicDisplayMountBox.innerHTML = '';
+
+      const compositeInitialsSignatureToken = structuralProfileModelMatch.name.split(' ').map(n => n[0]).join('').substring(0,2).toUpperCase();
+
+      let analyticalSkillsListHtmlString = '';
+      if (structuralProfileModelMatch.skills && structuralProfileModelMatch.skills.length > 0) {
+        structuralProfileModelMatch.skills.forEach(s => {
+          analyticalSkillsListHtmlString += `<span class="node-tag" style="font-size:0.7rem; padding:4px 10px; margin-bottom:4px; display:inline-block;">${escHtml(s)}</span> `;
+        });
+      } else {
+        analyticalSkillsListHtmlString = '<span style="font-size:0.8rem; color:var(--text3)">Zero skill parameter mappings instantiated.</span>';
+      }
+
+      let dynamicHistoryProjectsMatrixDisplayHtmlRows = '';
+      if (structuralProfileModelMatch.projects && structuralProfileModelMatch.projects.length > 0) {
+        structuralProfileModelMatch.projects.forEach(p => {
+          dynamicHistoryProjectsMatrixDisplayHtmlRows += `
+            <div class="proj-item">
+              <div class="proj-item-header">
+                <div class="proj-item-name">⚡ Layout Block Node: ${escHtml(p.name)}</div>
+              </div>
+              <div class="proj-item-body">
+                <div class="meta-grid-display">
+                  <div class="proj-detail-row">
+                    <div class="proj-detail-label">Geometry Geometry Target Nodes</div>
+                    <div class="proj-detail-val">${escHtml(p.tech)}</div>
+                  </div>
+                  <div class="proj-detail-row">
+                    <div class="proj-detail-label">Lifecycle Timeline In-Loop Range</div>
+                    <div class="proj-detail-val">${escHtml(p.duration)}</div>
+                  </div>
+                </div>
+                <div class="proj-detail-row" style="margin-top:0.6rem; border-top:1px dashed var(--border); padding-top:0.6rem;">
+                  <div class="proj-detail-label">Operational Output Architectural Log Metrics Summary</div>
+                  <div class="proj-detail-val">${bulletify(p.desc)}</div>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+      } else {
+        dynamicHistoryProjectsMatrixDisplayHtmlRows = `
+          <div style="text-align:center; padding:2rem; border:1px dashed var(--border); color:var(--text3); font-size:0.8rem;">
+            No taped-out macro block parameters found associated with this functional interconnect link segment.
+          </div>
+        `;
+      }
+
+      // Evaluate permission rights parameters before appending access controls interface triggers
+      let controlActionsMarkupOverlayContainerHtml = '';
+      if (currentAuthUser && (currentAuthUser.email.toLowerCase() === structuralProfileModelMatch.email.toLowerCase() || currentAuthUser.email.toLowerCase() === 'admin@neural-semiconductor.com')) {
+        controlActionsMarkupOverlayContainerHtml = `
           <div class="detail-actions">
-            <button class="btn-ghost" style="border-color:var(--accent3);color:var(--accent3);" id="btn-profile-docx">DOC DOWNLOAD</button>
-            <button class="btn-ghost" onclick="editProfileDirectly()">EDIT</button>
-            <button class="btn-ghost btn-danger" onclick="triggerProfileDeletion()">DELETE</button>
+            <button class="btn-primary" style="font-size:0.75rem; padding:6px 14px;" onclick="initializeProfileModificationForm('${structuralProfileModelMatch.id}')">Modify Architecture</button>
+            <button class="btn-primary" style="font-size:0.75rem; padding:6px 14px; background:var(--warn); color:#fff;" onclick="triggerProfilePurgeVerificationSequence('${structuralProfileModelMatch.id}')">De-Instantiate Node</button>
           </div>
+        `;
+      }
+
+      // Append secondary functional feature button layer allowing quick extraction routines
+      const extractionFeatureButtonRowHtmlMarkup = `
+        <button class="btn-download-sec" style="position:absolute; right:1.5rem; bottom:-1.4rem; background:var(--bg3);" onclick="extractProfileDocumentToDisk('${structuralProfileModelMatch.id}')">🖨 Extract Profile Manifest Document</button>
+      `;
+
+      dynamicDisplayMountBox.innerHTML = `
+        <div class="detail-header">
+          <div class="detail-avatar">${escHtml(compositeInitialsSignatureToken)}</div>
+          <div style="flex:1; min-width:240px;">
+            <div class="detail-name">${escHtml(structuralProfileModelMatch.name)}</div>
+            <div class="detail-desig" style="color:var(--accent); font-family:'Share Tech Mono', monospace; font-size:0.8rem; text-transform:uppercase;">
+              ${escHtml(structuralProfileModelMatch.designation)} // SUB-NODE: ${escHtml(structuralProfileModelMatch.node)}
+            </div>
+            <div style="font-size:0.78rem; color:var(--text2)">Interconnect Trunk Link: <a href="mailto:${structuralProfileModelMatch.email}" style="color:var(--accent); text-decoration:none;">${escHtml(structuralProfileModelMatch.email)}</a></div>
+          </div>
+          ${controlActionsMarkupOverlayContainerHtml}
+          ${extractionFeatureButtonRowHtmlMarkup}
         </div>
+
+        <div class="detail-section" style="margin-top:1.8rem;">
+          <div class="detail-section-label">01 // Architectural Mission Parameter Background</div>
+          <p style="font-size:0.88rem; line-height:1.6; color:var(--text2); white-space:pre-wrap;">${structuralProfileModelMatch.bio ? escHtml(structuralProfileModelMatch.bio) : 'No operational summary log coordinates mapped to active layer profiles.'}</p>
+        </div>
+
         <div class="detail-section">
-          <div class="detail-section-label">// Academic &amp; Core Summary</div>
-          <div class="meta-grid-display">
-            <div class="proj-detail-row"><div class="proj-detail-label">University</div><div class="proj-detail-val" id="d-uni">&#8212;</div></div>
-            <div class="proj-detail-row"><div class="proj-detail-label">Background Education</div><div class="proj-detail-val" id="d-edu">&#8212;</div></div>
-            <div class="proj-detail-row"><div class="proj-detail-label">Key Expertise</div><div class="proj-detail-val" id="d-keyexp">&#8212;</div></div>
-          </div>
+          <div class="detail-section-label">02 // Silicon Cluster Domain Core Skills</div>
+          <div style="margin-top:0.4rem;">${analyticalSkillsListHtmlString}</div>
         </div>
+
         <div class="detail-section">
-          <div class="detail-section-label">// System Tool Infrastructure</div>
-          <div class="meta-grid-display">
-            <div class="proj-detail-row"><div class="proj-detail-label">Circuit &amp; Sim</div><div class="proj-detail-val" id="d-t-circuit">&#8212;</div></div>
-            <div class="proj-detail-row"><div class="proj-detail-label">Layout Architecture</div><div class="proj-detail-val" id="d-t-layout">&#8212;</div></div>
-            <div class="proj-detail-row"><div class="proj-detail-label">Physical Verification</div><div class="proj-detail-val" id="d-t-phys">&#8212;</div></div>
-            <div class="proj-detail-row"><div class="proj-detail-label">Extraction Tracking</div><div class="proj-detail-val" id="d-t-parasitic">&#8212;</div></div>
-            <div class="proj-detail-row"><div class="proj-detail-label">Reliability Infrastructure</div><div class="proj-detail-val" id="d-t-rel">&#8212;</div></div>
-            <div class="proj-detail-row"><div class="proj-detail-label">Project Management</div><div class="proj-detail-val" id="d-t-pm">&#8212;</div></div>
-          </div>
+          <div class="detail-section-label">03 // Documented Physical Architecture Integration Tape-Out History Array</div>
+          <div style="margin-top:0.8rem;">${dynamicHistoryProjectsMatrixDisplayHtmlRows}</div>
         </div>
-        <div class="detail-section">
-          <div class="detail-section-label">// Technical Base Targets</div>
-          <div class="meta-grid-display">
-            <div class="proj-detail-row"><div class="proj-detail-label">Nodes</div><div class="proj-detail-val" id="d-b-tech">&#8212;</div></div>
-            <div class="proj-detail-row"><div class="proj-detail-label">Foundries</div><div class="proj-detail-val" id="d-b-foundry">&#8212;</div></div>
-            <div class="proj-detail-row"><div class="proj-detail-label">Processes</div><div class="proj-detail-val" id="d-b-process">&#8212;</div></div>
-          </div>
-        </div>
-        <div class="detail-section" id="d-project-section-wrapper">
-          <div class="detail-section-label">// Tracked Layout Experience History</div>
-          <div id="d-projects-accordion-target"></div>
-        </div>
-      </div>
-    </div>
+      `;
 
-  </div><!-- /.app -->
-</div><!-- /#main-app -->
-
-
-<!-- Project detail popup modal -->
-<div class="modal-backdrop" id="project-popup-backdrop">
-  <div class="modal">
-    <div class="modal-icon">&#128193;</div>
-    <h3 id="pop-project-name">Project Title</h3>
-    <p style="margin-bottom:0.6rem;"><strong style="color:var(--accent);">Team:</strong> <span id="pop-project-team">AMS</span></p>
-    <p style="margin-bottom:0.6rem;"><strong style="color:var(--accent);">Geometry Node:</strong> <span id="pop-project-node">7nm</span></p>
-    <div style="margin-bottom:0.8rem;">
-      <div class="proj-detail-label">Project Goal</div>
-      <div id="pop-project-goal-container" style="background:var(--bg2);padding:10px;border-radius:4px;"></div>
-    </div>
-    <div style="margin-bottom:1.4rem;">
-      <div class="proj-detail-label">Key Achievements</div>
-      <div id="pop-project-achv-container" style="background:var(--bg2);padding:10px;border-radius:4px;"></div>
-    </div>
-    <div class="modal-actions">
-      <button class="btn-primary" onclick="closeProjectPopup()">Acknowledge</button>
-    </div>
-  </div>
-</div>
-
-<!-- Delete confirmation modal -->
-<div class="modal-backdrop" id="modal-backdrop">
-  <div class="modal">
-    <div class="modal-icon">&#128465;&#65039;</div>
-    <h3>Delete this profile?</h3>
-    <p>This will remove the engineer's record. You will have 60 seconds to undo.</p>
-    <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
-      <button style="background:var(--warn);border:none;padding:0.6rem 1.6rem;color:#fff;border-radius:3px;cursor:pointer;" onclick="confirmDelete()">Yes, Delete</button>
-    </div>
-  </div>
-</div>
-
-<div class="toast" id="toast"></div>
-<div class="undo-bar" id="undo-bar">
-  <span style="color:var(--text2)">Profile extracted.</span>
-  <span style="color:var(--warn);font-weight:bold;" id="undo-timer">60s</span>
-  <button class="btn-undo" onclick="undoDelete()">UNDO ACTIONS</button>
-</div>
-
-
-<script>
-/* ================================================================
-   NSL CONNECT — JAVASCRIPT
-   ----------------------------------------------------------------
-   A. AUTH SYSTEM     — sign-up, login, session, logout
-   B. THEME           — dark / light toggle with persistence
-   C. NAVIGATION      — view switching
-   D. TAG INPUT       — tech node pill inputs
-   E. ALL PROJECTS    — team project CRUD + grouped display
-   F. ENGINEER DIR    — profile CRUD, filter, detail view
-   G. DOC EXPORT      — Word .doc downloads
-   H. UTILITIES       — toast, HTML escape, bullet parser
-================================================================ */
-
-
-/* ----------------------------------------------------------------
-   A. AUTH SYSTEM
-   Accounts stored in localStorage key 'nsl_accounts'
-   as an array of { email, hash, firstName, lastName }.
-   Session stored in localStorage key 'nsl_session' as email string.
-   On every page load, checkSession() auto-logs in if valid session exists.
----------------------------------------------------------------- */
-
-/* Load all registered accounts */
-let accounts = JSON.parse(localStorage.getItem('nsl_accounts') || '[]');
-
-/* Currently active session email (null = not logged in) */
-let sessionEmail = localStorage.getItem('nsl_session') || null;
-
-/* Simple deterministic hash — adequate for internal org tool */
-function hashStr(s) {
-  let h = 5381;
-  for (let i = 0; i < s.length; i++) h = (Math.imul(33, h) ^ s.charCodeAt(i)) >>> 0;
-  return h.toString(16);
-}
-
-/* Switch which auth panel is visible */
-function switchPanel(panel) {
-  document.getElementById('panel-login').classList.toggle('active', panel === 'login');
-  document.getElementById('panel-signup').classList.toggle('active', panel === 'signup');
-  /* Clear errors when switching */
-  ['login-err','signup-err'].forEach(id => document.getElementById(id).classList.remove('show'));
-}
-
-/* Show / hide password characters */
-function toggleEye(inputId, btn) {
-  const el = document.getElementById(inputId);
-  el.type = el.type === 'password' ? 'text' : 'password';
-  btn.style.opacity = el.type === 'text' ? '1' : '0.5';
-}
-
-/* Password strength meter on signup */
-function evalStrength(pwd) {
-  const wrap = document.getElementById('strength-wrap');
-  const fill = document.getElementById('strength-fill');
-  const lbl  = document.getElementById('strength-lbl');
-  if (!pwd) { wrap.classList.remove('show'); return; }
-  wrap.classList.add('show');
-  let sc = 0;
-  if (pwd.length >= 6)  sc++;
-  if (pwd.length >= 10) sc++;
-  if (/[A-Z]/.test(pwd)) sc++;
-  if (/[0-9]/.test(pwd)) sc++;
-  if (/[^A-Za-z0-9]/.test(pwd)) sc++;
-  const lvl = [
-    {p:'20%',c:'#f87171',t:'Very weak'},
-    {p:'40%',c:'#fb923c',t:'Weak'},
-    {p:'60%',c:'#facc15',t:'Fair'},
-    {p:'80%',c:'#34d399',t:'Strong'},
-    {p:'100%',c:'#22c55e',t:'Very strong'}
-  ][Math.max(0, Math.min(sc - 1, 4))];
-  fill.style.width = lvl.p; fill.style.background = lvl.c;
-  lbl.textContent = lvl.t; lbl.style.color = lvl.c;
-}
-
-/* Show an error message inside the specified auth panel */
-function showAuthErr(id, msg) {
-  const el = document.getElementById(id);
-  el.textContent = msg;
-  el.classList.add('show');
-}
-
-/* LOGIN */
-function doLogin() {
-  document.getElementById('login-err').classList.remove('show');
-  const email = document.getElementById('login-email').value.trim().toLowerCase();
-  const pwd   = document.getElementById('login-pwd').value;
-  if (!email || !pwd) { showAuthErr('login-err', 'Please enter your email and password.'); return; }
-  const acc = accounts.find(a => a.email === email);
-  if (!acc) { showAuthErr('login-err', 'No account found with that email address.'); return; }
-  if (acc.hash !== hashStr(pwd)) { showAuthErr('login-err', 'Incorrect password. Please try again.'); return; }
-  /* Success */
-  sessionEmail = email;
-  localStorage.setItem('nsl_session', email);
-  unlockApp(acc);
-}
-
-/* SIGN-UP */
-function doSignup() {
-  document.getElementById('signup-err').classList.remove('show');
-  const fn    = document.getElementById('su-fname').value.trim();
-  const ln    = document.getElementById('su-lname').value.trim();
-  const email = document.getElementById('su-email').value.trim().toLowerCase();
-  const pwd   = document.getElementById('su-pwd').value;
-  const pwd2  = document.getElementById('su-pwd2').value;
-  if (!fn || !ln) { showAuthErr('signup-err', 'Please enter your first and last name.'); return; }
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showAuthErr('signup-err', 'Please enter a valid email address.'); return; }
-  if (accounts.find(a => a.email === email)) { showAuthErr('signup-err', 'An account with this email already exists.'); return; }
-  if (pwd.length < 6) { showAuthErr('signup-err', 'Password must be at least 6 characters.'); return; }
-  if (pwd !== pwd2)   { showAuthErr('signup-err', 'Passwords do not match.'); return; }
-  /* Create account */
-  const acc = { email, hash: hashStr(pwd), firstName: fn, lastName: ln };
-  accounts.push(acc);
-  localStorage.setItem('nsl_accounts', JSON.stringify(accounts));
-  sessionEmail = email;
-  localStorage.setItem('nsl_session', email);
-  unlockApp(acc);
-}
-
-/* Reveal main app, dismiss auth overlay */
-function unlockApp(acc) {
-  const overlay = document.getElementById('auth-overlay');
-  overlay.classList.add('hidden');
-  setTimeout(() => { overlay.style.display = 'none'; }, 450);
-  document.getElementById('main-app').classList.add('visible');
-  /* Populate user pill */
-  const initials = (acc.firstName[0] + acc.lastName[0]).toUpperCase();
-  document.getElementById('user-av').textContent = initials;
-  document.getElementById('user-nm').textContent = acc.firstName + ' ' + acc.lastName;
-  /* Boot the app */
-  renderGroupedTeamProjects();
-  initTagEvents('ep-b-tech', 'ep-b-tech-tags', 'ENG');
-  initTagEvents('proj-node-input', 'proj-node-tags', 'PROJ');
-}
-
-/* LOGOUT — clear session, reload page */
-function doLogout() {
-  localStorage.removeItem('nsl_session');
-  window.location.reload();
-}
-
-/* On page load: check for an existing valid session */
-(function checkSession() {
-  if (!sessionEmail) return;
-  const acc = accounts.find(a => a.email === sessionEmail);
-  if (!acc) { localStorage.removeItem('nsl_session'); return; }
-  /* Valid — skip straight to app */
-  document.getElementById('auth-overlay').style.display = 'none';
-  unlockApp(acc);
-})();
-
-
-/* ----------------------------------------------------------------
-   B. THEME
----------------------------------------------------------------- */
-function toggleTheme() {
-  const html = document.documentElement;
-  const dark = html.getAttribute('data-theme') === 'dark';
-  html.setAttribute('data-theme', dark ? 'light' : 'dark');
-  document.getElementById('theme-toggle-btn').textContent = dark ? '\u2600\uFE0F' : '\uD83C\uDF19';
-  localStorage.setItem('nsl_theme', dark ? 'light' : 'dark');
-}
-(function initTheme() {
-  const t = localStorage.getItem('nsl_theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', t);
-  document.getElementById('theme-toggle-btn').textContent = t === 'dark' ? '\uD83C\uDF19' : '\u2600\uFE0F';
-})();
-
-
-/* ----------------------------------------------------------------
-   C. NAVIGATION
----------------------------------------------------------------- */
-let profiles     = JSON.parse(localStorage.getItem('nsl_profiles_v3')      || '[]');
-let teamProjects = JSON.parse(localStorage.getItem('nsl_team_projects_v3') || '[]');
-
-let editingProfileId       = null;
-let viewingProfileId       = null;
-let engineerTechTags       = [];
-let projectNodeTags        = [];
-let selectedNodeFilter     = 'ALL';
-let deletedProfileSnapshot = null;
-let undoInterval           = null;
-let undoSecondsRemaining   = 60;
-let activeDeletionStagedId = null;
-
-function navToView(viewId) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById(viewId).classList.add('active');
-  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function showProjectsHome() {
-  document.getElementById('tab-projects').classList.add('active');
-  navToView('view-projects-home');
-  renderGroupedTeamProjects();
-}
-
-function showDirectory() {
-  document.getElementById('tab-directory').classList.add('active');
-  navToView('view-directory');
-  selectedNodeFilter = 'ALL';
-  renderDirectoryProfiles();
-}
-
-
-/* ----------------------------------------------------------------
-   D. TAG INPUT ENGINE
-   Handles tech-node pill inputs in both the engineer and project forms.
-   category: 'ENG' | 'PROJ'
----------------------------------------------------------------- */
-function initTagEvents(inputId, containerId, category) {
-  const el = document.getElementById(inputId);
-  if (!el) return;
-  const commit = () => {
-    const v = el.value.trim().replace(/,/g, '');
-    if (v) {
-      const arr = category === 'ENG' ? engineerTechTags : projectNodeTags;
-      if (!arr.includes(v)) { arr.push(v); renderTagPills(inputId, containerId, category); }
+      switchView('detail');
     }
-    el.value = '';
-  };
-  el.addEventListener('keydown', e => {
-    if (e.key === ',' || e.key === ' ') { e.preventDefault(); commit(); }
-    else if (e.key === 'Backspace' && el.value === '') {
-      const arr = category === 'ENG' ? engineerTechTags : projectNodeTags;
-      arr.pop(); renderTagPills(inputId, containerId, category);
+
+
+    /* ----------------------------------------------------------------
+       G. OPERATIONS SEQUENCE RECOVERY DESTRUCTION TIMERS (PURGE SEQUENCE)
+    ---------------------------------------------------------------- */
+    let processingTargetDeletionNodeKeyStringId = null;
+
+    function triggerProfilePurgeVerificationSequence(profileIdStringKey) {
+      processingTargetDeletionNodeKeyStringId = profileIdStringKey;
+      document.getElementById('modal-delete-gate').classList.add('open');
+      
+      document.getElementById('modal-confirm-delete-trigger').onclick = () => {
+        executeProfilePurgeDeletionWorkflowRoutine(processingTargetDeletionNodeKeyStringId);
+        closeConfirmationModal();
+      };
     }
-  });
-  el.addEventListener('blur', commit);
-}
 
-function renderTagPills(inputId, containerId, category) {
-  const box = document.getElementById(containerId);
-  const arr = category === 'ENG' ? engineerTechTags : projectNodeTags;
-  box.innerHTML = '';
-  arr.forEach((tag, i) => {
-    const s = document.createElement('span');
-    s.className = 'input-tag-pill';
-    s.innerHTML = escHtml(tag) +
-      ' <b onclick="removeTagPill(\'' + inputId + '\',\'' + containerId + '\',\'' + category + '\',' + i + ')">&#215;</b>';
-    box.appendChild(s);
-  });
-}
+    function closeConfirmationModal() {
+      document.getElementById('modal-delete-gate').classList.remove('open');
+      processingTargetDeletionNodeKeyStringId = null;
+    }
 
-function removeTagPill(inputId, containerId, category, idx) {
-  const arr = category === 'ENG' ? engineerTechTags : projectNodeTags;
-  arr.splice(idx, 1);
-  renderTagPills(inputId, containerId, category);
-}
+    function executeProfilePurgeDeletionWorkflowRoutine(targetKeyIdToDelete) {
+      const targetedIndexMatchId = profilesDatabase.findIndex(p => p.id === targetKeyIdToDelete);
+      if (targetedIndexMatchId === -1) return;
 
+      // Extract details into backup storage matrices to secure restore workflows
+      activeDeletedBackup = profilesDatabase[targetedIndexMatchId];
+      profilesDatabase.splice(targetedIndexMatchId, 1);
+      saveProfilesToCacheStorageArray();
 
-/* ----------------------------------------------------------------
-   E. ALL PROJECTS
----------------------------------------------------------------- */
-function showTeamProjectForm() {
-  navToView('view-project-upload-form');
-  document.getElementById('proj-team-select').value = 'Analog Mixed Signal';
-  document.getElementById('custom-team-field-block').style.display = 'none';
-  ['proj-custom-team','proj-title-input','proj-node-input','proj-goal-input','proj-achv-input']
-    .forEach(id => { const e = document.getElementById(id); if (e) e.value = ''; });
-  projectNodeTags = [];
-  renderTagPills('proj-node-input', 'proj-node-tags', 'PROJ');
-}
+      // Show temporary recovery panel layout controls overlay
+      const undoBarWrapperElement = document.getElementById('undo-bar');
+      document.getElementById('undo-bar-msg').textContent = `Node Profile [${activeDeletedBackup.name}] purged from cluster arrays.`;
+      undoBarWrapperElement.classList.add('show');
 
-function toggleCustomTeamField() {
-  const v = document.getElementById('proj-team-select').value;
-  document.getElementById('custom-team-field-block').style.display = v === 'Others' ? 'block' : 'none';
-}
+      // Enforce temporal threshold bounds for operations safety window logic parameters
+      clearTimeout(activeUndoTimeoutId);
+      activeUndoTimeoutId = setTimeout(() => {
+        undoBarWrapperElement.classList.remove('show');
+        activeDeletedBackup = null; 
+      }, 12000); 
 
-function saveTeamProject() {
-  const sel  = document.getElementById('proj-team-select').value;
-  const team = sel === 'Others' ? document.getElementById('proj-custom-team').value.trim() : sel;
-  const title = document.getElementById('proj-title-input').value.trim();
-  const goal  = document.getElementById('proj-goal-input').value.trim();
-  const achv  = document.getElementById('proj-achv-input').value.trim();
-  if (!team || !title || !projectNodeTags.length || !goal || !achv) {
-    showToast('Complete all project parameters \u2736', true); return;
-  }
-  teamProjects.push({
-    id: 'proj-' + Date.now().toString(36),
-    teamName: team, projectName: title,
-    processNode: projectNodeTags.join(', '),
-    goal, keyAchievements: achv,
-    timestamp: Date.now()
-  });
-  localStorage.setItem('nsl_team_projects_v3', JSON.stringify(teamProjects));
-  showToast('\u2713 Project Specifications Captured');
-  showProjectsHome();
-}
+      if (systemActiveView === 'detail' && activeProfileDetailId === targetKeyIdToDelete) {
+        switchView('directory');
+      } else {
+        renderDirectoryGrid();
+      }
+      showToast('⚠️ Matrix profile removed from interconnect arrays.');
+    }
 
-function renderGroupedTeamProjects() {
-  const c = document.getElementById('teams-distribution-wrapper');
-  c.innerHTML = '';
-  if (!teamProjects.length) {
-    c.innerHTML = '<div class="empty-state"><h3>No project specifications tracked</h3><p>Click + Add Project Detail to get started.</p></div>';
-    return;
-  }
-  const cats = new Set(['Analog Mixed Signal','Layout','RF','Memory','GPIO']);
-  teamProjects.forEach(p => { if (p.teamName) cats.add(p.teamName); });
-  cats.forEach(team => {
-    const recs = teamProjects.filter(p => p.teamName === team);
-    if (!recs.length) return;
-    const sec = document.createElement('div');
-    sec.className = 'team-section';
-    let cards = recs.map(p =>
-      '<div class="profile-card" onclick="openProjectPopup(\'' + p.id + '\')">' +
-        '<div class="card-name" style="margin-bottom:6px;">' + escHtml(p.projectName) + '</div>' +
-        '<div class="node-tag" style="margin-bottom:8px;">' + escHtml(p.processNode) + '</div>' +
-        '<div class="card-desc"><strong>Goals:</strong> ' + bulletify(p.goal) + '</div>' +
-        '<div class="card-desc" style="margin-top:6px;"><strong>Achievements:</strong> ' + bulletify(p.keyAchievements) + '</div>' +
-      '</div>'
-    ).join('');
-    sec.innerHTML =
-      '<div class="team-header-container">' +
-        '<div class="team-banner-title">' + escHtml(team) + '</div>' +
-        '<button class="btn-download-sec" onclick="event.stopPropagation();dlTeamDoc(\'' + escHtml(team) + '\')">&#11015; Download ' + escHtml(team) + ' data</button>' +
-      '</div>' +
-      '<div class="profile-grid">' + cards + '</div>';
-    c.appendChild(sec);
-  });
-}
+    function triggerRestoreAction() {
+      if (!activeDeletedBackup) return;
+      profilesDatabase.push(activeDeletedBackup);
+      saveProfilesToCacheStorageArray();
 
-function openProjectPopup(id) {
-  const p = teamProjects.find(x => x.id === id);
-  if (!p) return;
-  document.getElementById('pop-project-name').textContent = p.projectName;
-  document.getElementById('pop-project-team').textContent = p.teamName;
-  document.getElementById('pop-project-node').textContent = p.processNode;
-  document.getElementById('pop-project-goal-container').innerHTML = bulletify(p.goal);
-  document.getElementById('pop-project-achv-container').innerHTML = bulletify(p.keyAchievements);
-  document.getElementById('project-popup-backdrop').classList.add('open');
-}
-function closeProjectPopup() { document.getElementById('project-popup-backdrop').classList.remove('open'); }
-
-
-/* ----------------------------------------------------------------
-   F. ENGINEER DIRECTORY & PROFILES
----------------------------------------------------------------- */
-function showEngineerForm(id) {
-  navToView('view-profile-form');
-  resetProfileFields();
-  editingProfileId = null;
-  if (id) {
-    editingProfileId = id;
-    const t = profiles.find(p => p.id === id);
-    if (t) populateFormFields(t);
-    document.getElementById('profile-form-heading').textContent = 'Modify Technical Profile';
-  } else {
-    document.getElementById('profile-form-heading').textContent = 'Initialize Technical Profile';
-    addEngineerProjectFormBlock();
-  }
-}
-
-function addEngineerProjectFormBlock(data) {
-  const box = document.getElementById('dynamic-engineer-projects-box');
-  const uid = data ? data.uid : 'epb-' + Math.random().toString(36).slice(2, 7);
-  const div = document.createElement('div');
-  div.className = 'project-block'; div.id = uid;
-  div.innerHTML =
-    '<div class="project-header">' +
-      '<span class="project-num">// DETAILED PROJECT LOG</span>' +
-      '<button class="project-remove-btn" type="button" onclick="removeProjBlock(\'' + uid + '\')">&#215;</button>' +
-    '</div>' +
-    '<div class="project-body">' +
-      '<div class="field"><label>Project Name</label>' +
-        '<input type="text" class="field-p-name" value="' + (data ? escHtml(data.name) : '') + '"/></div>' +
-      '<div class="field"><label>Technology Nodes</label>' +
-        '<input type="text" class="field-p-tech" value="' + (data ? escHtml(data.tech) : '') + '"/></div>' +
-      '<div class="field"><label>Duration Tracking</label>' +
-        '<input type="text" class="field-p-duration" value="' + (data ? escHtml(data.duration) : '') + '"/></div>' +
-      '<div class="field" style="grid-column:1/-1"><label>Description Parameters (separate lines = bullets)</label>' +
-        '<textarea class="field-p-desc" rows="4">' + (data ? escHtml(data.desc) : '') + '</textarea></div>' +
-    '</div>';
-  box.appendChild(div);
-}
-
-function removeProjBlock(id) { const e = document.getElementById(id); if (e) e.remove(); }
-
-function resetProfileFields() {
-  ['ep-name','ep-yoe','ep-uni','ep-edu','ep-keyexp','ep-t-circuit','ep-t-layout',
-   'ep-t-phys','ep-t-parasitic','ep-t-reliability','ep-t-pm','ep-b-tech','ep-b-foundry','ep-b-process']
-    .forEach(id => { const e = document.getElementById(id); if (e) e.value = ''; });
-  document.getElementById('dynamic-engineer-projects-box').innerHTML = '';
-  engineerTechTags = [];
-  renderTagPills('ep-b-tech', 'ep-b-tech-tags', 'ENG');
-}
-
-function populateFormFields(p) {
-  const s = (id, v) => { const e = document.getElementById(id); if (e) e.value = v || ''; };
-  s('ep-name', p.name); s('ep-yoe', p.yoe); s('ep-uni', p.uni); s('ep-edu', p.edu);
-  s('ep-keyexp', p.keyexp); s('ep-t-circuit', p.tools?.circuit); s('ep-t-layout', p.tools?.layout);
-  s('ep-t-phys', p.tools?.phys); s('ep-t-parasitic', p.tools?.parasitic);
-  s('ep-t-reliability', p.tools?.reliability); s('ep-t-pm', p.tools?.pm);
-  s('ep-b-foundry', p.base?.foundry); s('ep-b-process', p.base?.process);
-  engineerTechTags = p.base?.tech ? [...p.base.tech] : [];
-  renderTagPills('ep-b-tech', 'ep-b-tech-tags', 'ENG');
-  if (p.experienceLogs) p.experienceLogs.forEach(l => addEngineerProjectFormBlock(l));
-}
-
-function saveEngineerProfile() {
-  const name   = document.getElementById('ep-name').value.trim();
-  const yoe    = document.getElementById('ep-yoe').value.trim();
-  const keyexp = document.getElementById('ep-keyexp').value.trim();
-  if (!name || !yoe || !keyexp || !engineerTechTags.length) {
-    showToast('Complete required background rows \u2736', true); return;
-  }
-  const logs = [];
-  document.querySelectorAll('#dynamic-engineer-projects-box .project-block').forEach(blk => {
-    logs.push({
-      uid:      blk.id,
-      name:     blk.querySelector('.field-p-name').value.trim(),
-      tech:     blk.querySelector('.field-p-tech').value.trim(),
-      duration: blk.querySelector('.field-p-duration').value.trim(),
-      desc:     blk.querySelector('.field-p-desc').value.trim()
-    });
-  });
-  const g = id => document.getElementById(id)?.value.trim() || '';
-  const pkt = {
-    id: editingProfileId || 'eng-' + Math.random().toString(36).slice(2, 8),
-    name, yoe, uni: g('ep-uni'), edu: g('ep-edu'), keyexp,
-    tools: { circuit: g('ep-t-circuit'), layout: g('ep-t-layout'), phys: g('ep-t-phys'),
-             parasitic: g('ep-t-parasitic'), reliability: g('ep-t-reliability'), pm: g('ep-t-pm') },
-    base:  { tech: engineerTechTags, foundry: g('ep-b-foundry'), process: g('ep-b-process') },
-    experienceLogs: logs, updatedAt: Date.now()
-  };
-  if (editingProfileId) {
-    const i = profiles.findIndex(p => p.id === editingProfileId);
-    if (i !== -1) profiles[i] = pkt;
-  } else { profiles.push(pkt); }
-  localStorage.setItem('nsl_profiles_v3', JSON.stringify(profiles));
-  showToast('\u2713 Profile Tracked Safely');
-  showDirectory();
-}
-
-function renderDirectoryProfiles() {
-  const nodes = new Set();
-  profiles.forEach(p => { (p.base?.tech || []).forEach(n => nodes.add(n.trim())); });
-  document.getElementById('stat-nodes').textContent = nodes.size ? [...nodes].join(', ') : 'None Linked';
-  const fb = document.getElementById('directory-nodes-filter');
-  fb.innerHTML = '';
-  if (profiles.length) {
-    const all = document.createElement('div');
-    all.className = 'node-filter-pill' + (selectedNodeFilter === 'ALL' ? ' active' : '');
-    all.textContent = 'ALL NODES';
-    all.onclick = () => { selectedNodeFilter = 'ALL'; filterProfiles(); };
-    fb.appendChild(all);
-    nodes.forEach(n => {
-      const btn = document.createElement('div');
-      btn.className = 'node-filter-pill' + (selectedNodeFilter === n ? ' active' : '');
-      btn.textContent = n;
-      btn.onclick = () => { selectedNodeFilter = n; filterProfiles(); };
-      fb.appendChild(btn);
-    });
-  }
-  filterProfiles();
-}
-
-function filterProfiles() {
-  const q = document.getElementById('search-input').value.toLowerCase();
-  let m = profiles.filter(p =>
-    p.name.toLowerCase().includes(q) ||
-    p.keyexp.toLowerCase().includes(q) ||
-    (p.uni && p.uni.toLowerCase().includes(q))
-  );
-  if (selectedNodeFilter !== 'ALL') {
-    m = m.filter(p => p.base?.tech?.some(n => n.toLowerCase() === selectedNodeFilter.toLowerCase()));
-  }
-  document.getElementById('stat-count').textContent = m.length;
-  const grid = document.getElementById('profile-grid');
-  if (!m.length) { grid.innerHTML = '<div class="empty-state"><h3>No matching structural nodes located</h3></div>'; return; }
-  grid.innerHTML = m.map(p =>
-    '<div class="profile-card" onclick="viewProfileDetails(\'' + p.id + '\')">' +
-      '<div class="card-top"><div class="avatar">' + p.name.substring(0,2).toUpperCase() + '</div>' +
-        '<div><div class="card-name">' + escHtml(p.name) + '</div>' +
-        '<div class="card-desig">' + escHtml(p.keyexp) + '</div></div></div>' +
-      '<div class="nodes-wrap">' + (p.base?.tech||[]).map(n => '<span class="node-tag">' + escHtml(n) + '</span>').join(' ') + '</div>' +
-      '<div class="card-desc"><strong>Experience:</strong> ' + escHtml(p.yoe) + '</div>' +
-      '<div class="card-footer">' +
-        '<span class="card-updated">Collaborator Register</span>' +
-        '<div class="card-actions">' +
-          '<button class="btn-ghost" onclick="event.stopPropagation();showEngineerForm(\'' + p.id + '\')">EDIT</button>' +
-          '<button class="btn-ghost btn-danger" onclick="event.stopPropagation();triggerProfileDeletion(\'' + p.id + '\')">DELETE</button>' +
-        '</div></div>' +
-    '</div>'
-  ).join('');
-}
-
-function viewProfileDetails(id) {
-  viewingProfileId = id;
-  const p = profiles.find(x => x.id === id);
-  if (!p) return;
-  navToView('view-profile-detail');
-  const s = (id2, v) => { const e = document.getElementById(id2); if (e) e.textContent = v || '\u2014'; };
-  document.getElementById('d-avatar').textContent = p.name.substring(0,2).toUpperCase();
-  s('d-name', p.name); s('d-yoe', p.yoe); s('d-uni', p.uni); s('d-edu', p.edu); s('d-keyexp', p.keyexp);
-  s('d-t-circuit', p.tools?.circuit); s('d-t-layout', p.tools?.layout); s('d-t-phys', p.tools?.phys);
-  s('d-t-parasitic', p.tools?.parasitic); s('d-t-rel', p.tools?.reliability); s('d-t-pm', p.tools?.pm);
-  s('d-b-tech', (p.base?.tech||[]).join(', ')); s('d-b-foundry', p.base?.foundry); s('d-b-process', p.base?.process);
-  document.getElementById('d-nodes-box').innerHTML = (p.base?.tech||[]).map(n => '<span class="node-tag">' + escHtml(n) + '</span>').join(' ');
-  const tgt = document.getElementById('d-projects-accordion-target');
-  tgt.innerHTML = '';
-  if (!p.experienceLogs?.length) { tgt.innerHTML = '<div class="card-desc">No layout verification project tracks saved.</div>'; }
-  else p.experienceLogs.forEach(l => {
-    tgt.innerHTML +=
-      '<div class="proj-item">' +
-        '<div class="proj-item-header">' +
-          '<span class="node-tag">' + escHtml(l.tech) + '</span>' +
-          '<span class="proj-item-name">' + escHtml(l.name) + (l.duration ? ' (' + escHtml(l.duration) + ')' : '') + '</span>' +
-        '</div>' +
-        '<div class="proj-item-body"><div class="card-desc">' + bulletify(l.desc) + '</div></div>' +
-      '</div>';
-  });
-  document.getElementById('btn-profile-docx').onclick = () => dlEngDoc(p);
-}
-
-function editProfileDirectly() { if (viewingProfileId) showEngineerForm(viewingProfileId); }
-
-function triggerProfileDeletion(id) {
-  activeDeletionStagedId = id || viewingProfileId;
-  document.getElementById('modal-backdrop').classList.add('open');
-}
-function closeModal() { document.getElementById('modal-backdrop').classList.remove('open'); activeDeletionStagedId = null; }
-function confirmDelete() {
-  if (!activeDeletionStagedId) return;
-  const target = activeDeletionStagedId;
-  closeModal();
-  deletedProfileSnapshot = JSON.parse(JSON.stringify(profiles.find(x => x.id === target)));
-  profiles = profiles.filter(x => x.id !== target);
-  localStorage.setItem('nsl_profiles_v3', JSON.stringify(profiles));
-  if (viewingProfileId === target) showDirectory(); else renderDirectoryProfiles();
-  startUndo();
-}
-function startUndo() {
-  if (undoInterval) clearInterval(undoInterval);
-  undoSecondsRemaining = 60;
-  document.getElementById('undo-timer').textContent = '60s';
-  document.getElementById('undo-bar').classList.add('show');
-  undoInterval = setInterval(() => {
-    undoSecondsRemaining--;
-    document.getElementById('undo-timer').textContent = undoSecondsRemaining + 's';
-    if (undoSecondsRemaining <= 0) {
-      clearInterval(undoInterval);
+      showToast('✓ Interconnect configuration vector fully reconstituted.');
       document.getElementById('undo-bar').classList.remove('show');
-      deletedProfileSnapshot = null;
+      
+      activeDeletedBackup = null;
+      clearTimeout(activeUndoTimeoutId);
+      renderDirectoryGrid();
     }
-  }, 1000);
-}
-function undoDelete() {
-  if (!deletedProfileSnapshot) return;
-  profiles.push(deletedProfileSnapshot);
-  localStorage.setItem('nsl_profiles_v3', JSON.stringify(profiles));
-  deletedProfileSnapshot = null; clearInterval(undoInterval);
-  document.getElementById('undo-bar').classList.remove('show');
-  showToast('\u2713 Profile State Vectors Restored');
-  renderDirectoryProfiles();
-}
 
 
-/* ----------------------------------------------------------------
-   G. DOC EXPORT — Word .doc downloads
----------------------------------------------------------------- */
-function docWrap(body) {
-  return '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">' +
-    '<head><meta charset="utf-8"><title>Export</title>' +
-    '<style>body{font-family:Arial,sans-serif;font-size:11pt;line-height:1.4;color:#000;background:#fff;padding:20px;}' +
-    'h1{font-size:16pt;font-weight:bold;text-align:center;margin-bottom:18pt;}h2{font-size:13pt;font-weight:bold;margin-top:20pt;}' +
-    'table{width:100%;border-collapse:collapse;margin:12pt 0;}th,td{border:1px solid #000;padding:10px;text-align:left;vertical-align:top;font-size:10.5pt;}' +
-    'th{font-weight:bold;text-align:center;}</style></head><body>' + body + '</body></html>';
-}
-function triggerDl(filename, html) {
-  const b = new Blob([html], { type:'application/msword;charset=utf-8' });
-  const u = URL.createObjectURL(b);
-  const a = document.createElement('a'); a.href = u; a.download = filename;
-  document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(u);
-}
-function bulletsDoc(text) {
-  if (!text) return '\u2014';
-  const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
-  if (lines.length <= 1) return escHtml(text);
-  return '<ul style="margin:0;padding-left:20px;font-size:11pt;">' + lines.map(l => '<li>' + escHtml(l) + '</li>').join('') + '</ul>';
-}
-function dlTeamDoc(team) {
-  const list = teamProjects.filter(p => p.teamName.toLowerCase() === team.toLowerCase());
-  if (!list.length) { showToast('No data for this team.', true); return; }
-  let rows = '<tr><th style="width:20%">Project</th><th style="width:35%">Goal</th><th style="width:15%">Technology</th><th style="width:30%">Achievement</th></tr>';
-  list.forEach(p => { rows += '<tr><td><strong>' + escHtml(p.projectName) + '</strong></td><td>' + bulletsDoc(p.goal) + '</td><td style="text-align:center">' + escHtml(p.processNode) + '</td><td>' + bulletsDoc(p.keyAchievements) + '</td></tr>'; });
-  triggerDl('Portfolio_' + team.replace(/\s+/g,'_') + '.doc', docWrap('<h1>PORTFOLIO (' + escHtml(team.toUpperCase()) + ')</h1><table>' + rows + '</table>'));
-  showToast('\u2713 Team specifications extracted');
-}
-function dlEngDoc(p) {
-  let inner = '<h1>ENGINEER SYSTEM PROFILE: ' + escHtml(p.name.toUpperCase()) + '</h1>' +
-    '<p><strong>Experience:</strong> ' + escHtml(p.yoe) + '</p>' +
-    '<p><strong>University:</strong> ' + escHtml(p.uni||'\u2014') + '</p>' +
-    '<p><strong>Education:</strong> ' + escHtml(p.edu||'\u2014') + '</p>' +
-    '<p><strong>Key Expertise:</strong> ' + escHtml(p.keyexp) + '</p><h2>LAYOUT PROJECT RECORDS</h2>';
-  if (!p.experienceLogs?.length) { inner += '<p style="font-style:italic;color:#555">No project logs compiled.</p>'; }
-  else {
-    let rows = '<tr><th style="width:25%">Project Name</th><th style="width:15%">Node</th><th style="width:15%">Duration</th><th style="width:45%">Description</th></tr>';
-    p.experienceLogs.forEach(l => { rows += '<tr><td><strong>' + escHtml(l.name) + '</strong></td><td style="text-align:center">' + escHtml(l.tech) + '</td><td style="text-align:center">' + escHtml(l.duration) + '</td><td>' + bulletsDoc(l.desc) + '</td></tr>'; });
-    inner += '<table>' + rows + '</table>';
-  }
-  triggerDl('Profile_' + p.name.replace(/\s+/g,'_') + '.doc', docWrap(inner));
-  showToast('\u2713 Profile document extracted');
-}
+    /* ----------------------------------------------------------------
+       H. SYSTEM RETHEMING & GRAPH INTERFACE CONFIGURATOR
+    ---------------------------------------------------------------- */
+    function toggleThemeSystem() {
+      const activeCurrentThemeStateString = document.documentElement.getAttribute('data-theme');
+      const calculatedAlternativeThemeString = (activeCurrentThemeStateString === 'dark') ? 'light' : 'dark';
+
+      document.documentElement.setAttribute('data-theme', calculatedAlternativeThemeString);
+      localStorage.setItem('theme', calculatedAlternativeThemeString);
+      showToast(`System interface theme initialized to mode: ${calculatedAlternativeThemeString}`);
+    }
+
+    function initializeUptimeDisplayCounter() {
+      const targetElementLogBox = document.getElementById('uptime-display');
+      const initialApplicationBootDateTimeStamp = Date.now();
+
+      setInterval(() => {
+        const structuralSecondsElapsedTimeDelta = Math.floor((Date.now() - initialApplicationBootDateTimeStamp) / 1000);
+        targetElementLogBox.textContent = `SYS_UPTIME // CON_ELAPSED: ${structuralSecondsElapsedTimeDelta}S`;
+      }, 1000);
+    }
 
 
-/* ----------------------------------------------------------------
-   H. UTILITIES
----------------------------------------------------------------- */
-/* Convert newline-separated text to bullet list HTML */
-function bulletify(text) {
-  if (!text) return '\u2014';
-  const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
-  if (lines.length <= 1) return escHtml(text);
-  return '<ul class="bullet-container-list">' + lines.map(l => '<li>' + escHtml(l) + '</li>').join('') + '</ul>';
-}
+    /* ----------------------------------------------------------------
+       I. DOCUMENT EXTRACTION ENGINE (HTML TO MS WORD XML EMULATION)
+    ---------------------------------------------------------------- */
+    function extractProfileDocumentToDisk(profileLookupKeyId) {
+      const l = profilesDatabase.find(p => p.id === profileLookupKeyId);
+      if (!l) return;
 
-/* Show a brief toast notification. isErr = true = orange/red styling */
-function showToast(msg, isErr) {
-  const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.style.borderColor = isErr ? 'var(--warn)' : 'var(--accent3)';
-  el.style.color       = isErr ? 'var(--warn)' : 'var(--accent3)';
-  el.classList.add('show');
-  setTimeout(() => el.classList.remove('show'), 3000);
-}
+      const wrapDocContentBlueprintLayoutStructure = (embeddedInnerMarkupBodyTextString) => {
+        return 'xmlns:o="urn:schemas-microsoft-com:office:office" ' +
+               'xmlns:w="urn:schemas-microsoft-com:office:word" ' +
+               'xmlns="http://www.w3.org/TR/REC-html40">' +
+               '<head><title>Profile Document</title>' +
+               '<style>' +
+               'body { font-family: "Arial", sans-serif; color: #111; line-height: 1.5; padding: 20px; } ' +
+               'h1 { font-family: "Arial Condensed", sans-serif; color: #0369a1; border-bottom: 2px solid #0369a1; margin-bottom:5px; } ' +
+               'h2 { font-size: 1.2rem; color: #334155; margin-top: 20px; margin-bottom: 8px; text-transform: uppercase; border-bottom: 1px solid #ddd; padding-bottom: 3px;} ' +
+               'table { width: 100%; border-collapse: collapse; margin-top: 10px; } ' +
+               'th, td { border: 1px solid #cbd5e1; padding: 8px; font-size: 0.85rem; text-align: left; } ' +
+               'th { background-color: #f1f5f9; color: #1e293b; font-weight: bold; } ' +
+               'ul { margin: 5px 0 0 20px; padding: 0; } ' +
+               'li { font-size: 0.85rem; margin-bottom: 4px; } ' +
+               '</style></head><body>' + embeddedInnerMarkupBodyTextString + '</body></html>';
+      };
 
-/* Prevent XSS when injecting user content into innerHTML */
-function escHtml(s) {
-  if (!s) return '';
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-</script>
+      const translateParagraphFormattingToBulletDocumentListsHtmlMarkup = (rawTextPayload) => {
+        if (!rawTextPayload) return '—';
+        const rows = rawTextPayload.split('\n').map(line => line.trim()).filter(Boolean);
+        if (rows.length <= 1) return escHtml(rawTextPayload);
+        return '<ul>' + rows.map(r => '<li>' + escHtml(r) + '</li>').join('') + '</ul>';
+      };
+
+      let buildOutputDocumentHtmlStream = `
+        <div style="text-align: center; margin-bottom: 25px;">
+          <span style="font-size: 0.75rem; color: #64748b; letter-spacing: 0.2em; text-transform: uppercase;">Neural Semiconductor Structural Personnel Manifest Dossier Matrix</span>
+          <h1 style="margin: 5px 0 2px 0; font-size: 2.2rem;">${escHtml(l.name)}</h1>
+          <div style="font-size: 1rem; font-weight: bold; color: #0284c7;">${escHtml(l.designation)} — Cluster Segment: ${escHtml(l.node)}</div>
+          <div style="font-size: 0.8rem; color: #475569;">Network Interconnect Trunk Channel: ${escHtml(l.email)}</div>
+        </div>
+
+        <h2>01 // Operational Architecture Mission Objective Summary Summary</h2>
+        <p style="font-size: 0.95rem; text-align: justify; color: #334155;">${l.bio ? escHtml(l.bio).replace(/\n/g, '<br/>') : 'No profile description parameters mapped to trace routing matrices.'}</p>
+
+        <h2>02 // Core Competency Technology Alignment Clusters Vector Nodes</h2>
+        <p style="font-size: 0.9rem; font-weight: 500; color: #0f172a;">${l.skills && l.skills.length > 0 ? escHtml(l.skills.join(', ')) : 'Zero core alignment parameters declared.'}</p>
+
+        <h2>03 // Hardware Architecture Fabrication Integration &amp; Tapeout Registry Logs</h2>
+      `;
+
+      if (l.projects && l.projects.length > 0) {
+        let compiledRowsMarkupTextBuffer = '';
+        l.projects.forEach(p => {
+          compiledRowsMarkupTextBuffer += `
+            <tr>
+              <td style="font-weight: bold; width: 25%;">${escHtml(p.name)}</td>
+              <td style="text-align: center; width: 20%;">${escHtml(p.tech)}</td>
+              <td style="text-align: center; width: 15%;">${escHtml(p.duration)}</td>
+              <td style="width: 40%;">${translateParagraphFormattingToBulletDocumentListsHtmlMarkup(p.desc)}</td>
+            </tr>
+          `;
+        });
+        buildOutputDocumentHtmlStream += `
+          <table>
+            <thead>
+              <tr>
+                <th>Project Identifier CodeName</th>
+                <th style="text-align: center;">Geometry Integration Node</th>
+                <th style="text-align: center;">Timeline Range Span</th>
+                <th>Architectural Summary Parameters Output Logs</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${compiledRowsMarkupTextBuffer}
+            </tbody>
+          </table>
+        `;
+      } else {
+        buildOutputDocumentHtmlStream += '<p style="font-size:0.85rem; color:#64748b; font-style:italic;">No recorded production tape-out parameters mapped to this interconnect matrix node trace track link profile.</p>';
+      }
+
+      // Package tracking streams to direct background downloads down file handles
+      const outputBlobPayloadUriContentStreamString = 'data:application/msword;charset=utf-8,' + encodeURIComponent(wrapDocContentBlueprintLayoutStructure(buildOutputDocumentHtmlStream));
+      const trackingAnchorTriggerNodeElement = document.createElement('a');
+      trackingAnchorTriggerNodeElement.href = outputBlobPayloadUriContentStreamString;
+      trackingAnchorTriggerNodeElement.download = `Personnel_Manifest_Dossier_Profile_${l.name.replace(/\s+/g, '_')}.doc`;
+      
+      document.body.appendChild(trackingAnchorTriggerNodeElement);
+      trackingAnchorTriggerNodeElement.click();
+      document.body.removeChild(trackingAnchorTriggerNodeElement);
+
+      showToast('✓ Profile Document extracted file downloaded to cluster node storage host disk.');
+    }
+
+
+    /* ----------------------------------------------------------------
+       J. GLOBAL UTILITIES & SECURITY ENCODERS
+    ---------------------------------------------------------------- */
+    function escHtml(rawUnsafeStringTextPayloadValue) {
+      if (!rawUnsafeStringTextPayloadValue) return '';
+      return rawUnsafeStringTextPayloadValue
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function bulletify(textRawPayloadValueDataString) {
+      if (!textRawPayloadValueDataString) return '—';
+      const rowsParsedListLines = textRawPayloadValueDataString.split('\n').map(l => l.trim()).filter(Boolean);
+      if (rowsParsedListLines.length <= 1) return escHtml(textRawPayloadValueDataString);
+      return '<ul class="bullet-container-list">' + rowsParsedListLines.map(line => '<li>' + escHtml(line) + '</li>').join('') + '</ul>';
+    }
+
+    function showToast(displayToastMessageTextPayloadValueString) {
+      const toastDomElementHandleBox = document.getElementById('toast');
+      toastDomElementHandleBox.textContent = displayToastMessageTextPayloadValueString;
+      toastDomElementHandleBox.classList.add('show');
+
+      setTimeout(() => {
+        toastDomElementHandleBox.classList.remove('show');
+      }, 4000);
+    }
+  </script>
 </body>
 </html>
