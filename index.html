@@ -121,7 +121,7 @@
       gap:12px; margin-bottom:1.8rem;
     }
     .auth-logo-chip { width:40px; height:40px; }
-    .auth-logo-chip svg { width:100%; height:100%; }
+    .auth-logo-chip img { width:100%; height:100%; object-fit:contain; }
     .auth-logo-text {
       font-family:'Barlow Condensed',sans-serif;
       font-weight:700; font-size:1.55rem; letter-spacing:0.08em;
@@ -264,7 +264,7 @@
     }
     .logo { display:flex; align-items:center; gap:12px; cursor:pointer; }
     .logo-icon { width:38px; height:38px; display:flex; align-items:center; justify-content:center; }
-    .logo-icon svg { width:100%; height:100%; }
+    .logo-icon img { width:100%; height:100%; object-fit:contain; }
     .logo-text {
       font-family:'Barlow Condensed',sans-serif; font-weight:700;
       font-size:1.4rem; letter-spacing:0.08em; color:var(--text); line-height:1.1;
@@ -274,6 +274,7 @@
       font-family:'Share Tech Mono',monospace; font-size:0.6rem;
       color:var(--text3); letter-spacing:0.15em; text-transform:uppercase; margin-top:2px;
     }
+    .nav-tabs { display:flex; gap:1.5rem; margin-left:2rem; margin-right:auto; }
     .nav-tabs { display:flex; gap:1.5rem; margin-left:2rem; margin-right:auto; }
     .nav-item {
       font-family:'Barlow Condensed',sans-serif; font-size:1rem; font-weight:600;
@@ -583,17 +584,7 @@
     <!-- Logo inside auth card -->
     <div class="auth-logo">
       <div class="auth-logo-chip">
-        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="1" y="1" width="34" height="34" rx="3" stroke="var(--border2)" stroke-width="1.5"/>
-          <rect x="7" y="7" width="10" height="10" rx="1" fill="none" stroke="var(--accent)" stroke-width="1.2"/>
-          <rect x="19" y="7" width="10" height="10" rx="1" fill="none" stroke="var(--accent)" stroke-width="1.2"/>
-          <rect x="7" y="19" width="10" height="10" rx="1" fill="none" stroke="var(--accent3)" stroke-width="1.2"/>
-          <rect x="19" y="19" width="10" height="10" rx="1" fill="none" stroke="var(--accent3)" stroke-width="1.2"/>
-          <line x1="12" y1="17" x2="12" y2="19" stroke="var(--accent)" stroke-width="1"/>
-          <line x1="24" y1="17" x2="24" y2="19" stroke="var(--accent)" stroke-width="1"/>
-          <line x1="17" y1="12" x2="19" y2="12" stroke="var(--accent)" stroke-width="1"/>
-          <line x1="17" y1="24" x2="19" y2="24" stroke="var(--accent3)" stroke-width="1"/>
-        </svg>
+        <img src="image_8afb22.png" alt="NSL Connect Logo" />
       </div>
       <div>
         <div class="auth-logo-text">NSL <em>Connect</em></div>
@@ -716,17 +707,7 @@
     <!-- Logo click goes to All Projects home -->
     <div class="logo" onclick="showProjectsHome()">
       <div class="logo-icon">
-        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="1" y="1" width="34" height="34" rx="3" stroke="var(--border2)" stroke-width="1.5"/>
-          <rect x="7" y="7" width="10" height="10" rx="1" fill="none" stroke="var(--accent)" stroke-width="1.2"/>
-          <rect x="19" y="7" width="10" height="10" rx="1" fill="none" stroke="var(--accent)" stroke-width="1.2"/>
-          <rect x="7" y="19" width="10" height="10" rx="1" fill="none" stroke="var(--accent3)" stroke-width="1.2"/>
-          <rect x="19" y="19" width="10" height="10" rx="1" fill="none" stroke="var(--accent3)" stroke-width="1.2"/>
-          <line x1="12" y1="17" x2="12" y2="19" stroke="var(--accent)" stroke-width="1"/>
-          <line x1="24" y1="17" x2="24" y2="19" stroke="var(--accent)" stroke-width="1"/>
-          <line x1="17" y1="12" x2="19" y2="12" stroke="var(--accent)" stroke-width="1"/>
-          <line x1="17" y1="24" x2="19" y2="24" stroke="var(--accent3)" stroke-width="1"/>
-        </svg>
+        <img src="image_8afb22.png" alt="NSL Connect Logo" />
       </div>
       <div>
         <div class="logo-text">NSL <span>Connect</span></div>
@@ -1031,63 +1012,27 @@
 </div>
 
 
-<!-- Firebase SDK (modular via CDN compat build) -->
-<script type="module">
+<script>
 /* ================================================================
-   NSL CONNECT — JAVASCRIPT (Firebase Edition)
+   NSL CONNECT — JAVASCRIPT
    ----------------------------------------------------------------
-   A. FIREBASE INIT   — config + Firestore setup
-   B. AUTH SYSTEM     — sign-up, login, session, logout (localStorage)
-                        NOTE: accounts/session stay in localStorage.
-                        To upgrade to Firebase Auth later, replace
-                        doLogin/doSignup with signInWithEmailAndPassword
-                        / createUserWithEmailAndPassword.
-   C. THEME           — dark / light toggle with persistence
-   D. NAVIGATION      — view switching
-   E. TAG INPUT       — tech node pill inputs
-   F. ALL PROJECTS    — team project CRUD + Firestore (real-time)
-   G. ENGINEER DIR    — profile CRUD + Firestore (real-time)
-   H. DOC EXPORT      — Word .doc downloads
-   I. UTILITIES       — toast, HTML escape, bullet parser
+   A. AUTH SYSTEM     — sign-up, login, session, logout
+   B. THEME           — dark / light toggle with persistence
+   C. NAVIGATION      — view switching
+   D. TAG INPUT       — tech node pill inputs
+   E. ALL PROJECTS    — team project CRUD + grouped display
+   F. ENGINEER DIR    — profile CRUD, filter, detail view
+   G. DOC EXPORT      — Word .doc downloads
+   H. UTILITIES       — toast, HTML escape, bullet parser
 ================================================================ */
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {
-  getFirestore, collection, addDoc, setDoc, deleteDoc,
-  doc, onSnapshot, query, orderBy
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
 
 /* ----------------------------------------------------------------
-   A. FIREBASE INIT
-   *** REPLACE the firebaseConfig below with YOUR project's config ***
-   Get it from: Firebase Console → Project Settings → Your apps → SDK setup
----------------------------------------------------------------- */
-const firebaseConfig = {
-  apiKey:            "REPLACE_WITH_YOUR_API_KEY",
-  authDomain:        "REPLACE_WITH_YOUR_AUTH_DOMAIN",
-  projectId:         "REPLACE_WITH_YOUR_PROJECT_ID",
-  storageBucket:     "REPLACE_WITH_YOUR_STORAGE_BUCKET",
-  messagingSenderId: "REPLACE_WITH_YOUR_MESSAGING_SENDER_ID",
-  appId:             "REPLACE_WITH_YOUR_APP_ID"
-};
-
-const app = initializeApp(firebaseConfig);
-const db  = getFirestore(app);
-
-/* Firestore collection references */
-const profilesCol     = collection(db, 'nsl_profiles');
-const teamProjectsCol = collection(db, 'nsl_team_projects');
-
-
-/* ----------------------------------------------------------------
-   B. AUTH SYSTEM
+   A. AUTH SYSTEM
    Accounts stored in localStorage key 'nsl_accounts'
    as an array of { email, hash, firstName, lastName }.
    Session stored in localStorage key 'nsl_session' as email string.
    On every page load, checkSession() auto-logs in if valid session exists.
-   NOTE: This is a lightweight internal-tool auth. Upgrade to Firebase
-   Auth (signInWithEmailAndPassword) for production security.
 ---------------------------------------------------------------- */
 
 /* Load all registered accounts */
@@ -1107,9 +1052,9 @@ function hashStr(s) {
 function switchPanel(panel) {
   document.getElementById('panel-login').classList.toggle('active', panel === 'login');
   document.getElementById('panel-signup').classList.toggle('active', panel === 'signup');
+  /* Clear errors when switching */
   ['login-err','signup-err'].forEach(id => document.getElementById(id).classList.remove('show'));
 }
-window.switchPanel = switchPanel;
 
 /* Show / hide password characters */
 function toggleEye(inputId, btn) {
@@ -1117,7 +1062,6 @@ function toggleEye(inputId, btn) {
   el.type = el.type === 'password' ? 'text' : 'password';
   btn.style.opacity = el.type === 'text' ? '1' : '0.5';
 }
-window.toggleEye = toggleEye;
 
 /* Password strength meter on signup */
 function evalStrength(pwd) {
@@ -1142,7 +1086,6 @@ function evalStrength(pwd) {
   fill.style.width = lvl.p; fill.style.background = lvl.c;
   lbl.textContent = lvl.t; lbl.style.color = lvl.c;
 }
-window.evalStrength = evalStrength;
 
 /* Show an error message inside the specified auth panel */
 function showAuthErr(id, msg) {
@@ -1160,11 +1103,11 @@ function doLogin() {
   const acc = accounts.find(a => a.email === email);
   if (!acc) { showAuthErr('login-err', 'No account found with that email address.'); return; }
   if (acc.hash !== hashStr(pwd)) { showAuthErr('login-err', 'Incorrect password. Please try again.'); return; }
+  /* Success */
   sessionEmail = email;
   localStorage.setItem('nsl_session', email);
   unlockApp(acc);
 }
-window.doLogin = doLogin;
 
 /* SIGN-UP */
 function doSignup() {
@@ -1179,6 +1122,7 @@ function doSignup() {
   if (accounts.find(a => a.email === email)) { showAuthErr('signup-err', 'An account with this email already exists.'); return; }
   if (pwd.length < 6) { showAuthErr('signup-err', 'Password must be at least 6 characters.'); return; }
   if (pwd !== pwd2)   { showAuthErr('signup-err', 'Passwords do not match.'); return; }
+  /* Create account */
   const acc = { email, hash: hashStr(pwd), firstName: fn, lastName: ln };
   accounts.push(acc);
   localStorage.setItem('nsl_accounts', JSON.stringify(accounts));
@@ -1186,19 +1130,19 @@ function doSignup() {
   localStorage.setItem('nsl_session', email);
   unlockApp(acc);
 }
-window.doSignup = doSignup;
 
-/* Reveal main app, dismiss auth overlay, start Firestore listeners */
+/* Reveal main app, dismiss auth overlay */
 function unlockApp(acc) {
   const overlay = document.getElementById('auth-overlay');
   overlay.classList.add('hidden');
   setTimeout(() => { overlay.style.display = 'none'; }, 450);
   document.getElementById('main-app').classList.add('visible');
+  /* Populate user pill */
   const initials = (acc.firstName[0] + acc.lastName[0]).toUpperCase();
   document.getElementById('user-av').textContent = initials;
   document.getElementById('user-nm').textContent = acc.firstName + ' ' + acc.lastName;
-  /* Start real-time Firestore listeners — all users see live updates */
-  startFirestoreListeners();
+  /* Boot the app */
+  renderGroupedTeamProjects();
   initTagEvents('ep-b-tech', 'ep-b-tech-tags', 'ENG');
   initTagEvents('proj-node-input', 'proj-node-tags', 'PROJ');
 }
@@ -1208,20 +1152,20 @@ function doLogout() {
   localStorage.removeItem('nsl_session');
   window.location.reload();
 }
-window.doLogout = doLogout;
 
 /* On page load: check for an existing valid session */
 (function checkSession() {
   if (!sessionEmail) return;
   const acc = accounts.find(a => a.email === sessionEmail);
   if (!acc) { localStorage.removeItem('nsl_session'); return; }
+  /* Valid — skip straight to app */
   document.getElementById('auth-overlay').style.display = 'none';
   unlockApp(acc);
 })();
 
 
 /* ----------------------------------------------------------------
-   C. THEME
+   B. THEME
 ---------------------------------------------------------------- */
 function toggleTheme() {
   const html = document.documentElement;
@@ -1230,8 +1174,6 @@ function toggleTheme() {
   document.getElementById('theme-toggle-btn').textContent = dark ? '\u2600\uFE0F' : '\uD83C\uDF19';
   localStorage.setItem('nsl_theme', dark ? 'light' : 'dark');
 }
-window.toggleTheme = toggleTheme;
-
 (function initTheme() {
   const t = localStorage.getItem('nsl_theme') || 'dark';
   document.documentElement.setAttribute('data-theme', t);
@@ -1240,12 +1182,10 @@ window.toggleTheme = toggleTheme;
 
 
 /* ----------------------------------------------------------------
-   D. NAVIGATION
+   C. NAVIGATION
 ---------------------------------------------------------------- */
-
-/* In-memory arrays — populated and kept in sync by Firestore listeners */
-let profiles     = [];
-let teamProjects = [];
+let profiles     = JSON.parse(localStorage.getItem('nsl_profiles_v3')      || '[]');
+let teamProjects = JSON.parse(localStorage.getItem('nsl_team_projects_v3') || '[]');
 
 let editingProfileId       = null;
 let viewingProfileId       = null;
@@ -1256,38 +1196,6 @@ let deletedProfileSnapshot = null;
 let undoInterval           = null;
 let undoSecondsRemaining   = 60;
 let activeDeletionStagedId = null;
-
-/* ----------------------------------------------------------------
-   FIRESTORE REAL-TIME LISTENERS
-   Called once after login. onSnapshot fires immediately with current
-   data, then again whenever any user adds/edits/deletes a document.
-   This means every user sees live updates without refreshing.
----------------------------------------------------------------- */
-function startFirestoreListeners() {
-  /* Listen to team projects, ordered by timestamp */
-  const projectsQ = query(teamProjectsCol, orderBy('timestamp', 'asc'));
-  onSnapshot(projectsQ, (snap) => {
-    teamProjects = snap.docs.map(d => ({ ...d.data(), _firestoreId: d.id }));
-    renderGroupedTeamProjects();
-  }, (err) => {
-    console.error('Projects listener error:', err);
-    showToast('Error loading projects', true);
-  });
-
-  /* Listen to engineer profiles, ordered by updatedAt */
-  const profilesQ = query(profilesCol, orderBy('updatedAt', 'asc'));
-  onSnapshot(profilesQ, (snap) => {
-    profiles = snap.docs.map(d => ({ ...d.data(), _firestoreId: d.id }));
-    /* Refresh directory if it's currently visible */
-    const dirView = document.getElementById('view-directory');
-    if (dirView && dirView.classList.contains('active')) {
-      renderDirectoryProfiles();
-    }
-  }, (err) => {
-    console.error('Profiles listener error:', err);
-    showToast('Error loading profiles', true);
-  });
-}
 
 function navToView(viewId) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
@@ -1301,7 +1209,6 @@ function showProjectsHome() {
   navToView('view-projects-home');
   renderGroupedTeamProjects();
 }
-window.showProjectsHome = showProjectsHome;
 
 function showDirectory() {
   document.getElementById('tab-directory').classList.add('active');
@@ -1309,11 +1216,10 @@ function showDirectory() {
   selectedNodeFilter = 'ALL';
   renderDirectoryProfiles();
 }
-window.showDirectory = showDirectory;
 
 
 /* ----------------------------------------------------------------
-   E. TAG INPUT ENGINE
+   D. TAG INPUT ENGINE
    Handles tech-node pill inputs in both the engineer and project forms.
    category: 'ENG' | 'PROJ'
 ---------------------------------------------------------------- */
@@ -1356,11 +1262,10 @@ function removeTagPill(inputId, containerId, category, idx) {
   arr.splice(idx, 1);
   renderTagPills(inputId, containerId, category);
 }
-window.removeTagPill = removeTagPill;
 
 
 /* ----------------------------------------------------------------
-   F. ALL PROJECTS — Firestore backed
+   E. ALL PROJECTS
 ---------------------------------------------------------------- */
 function showTeamProjectForm() {
   navToView('view-project-upload-form');
@@ -1371,15 +1276,13 @@ function showTeamProjectForm() {
   projectNodeTags = [];
   renderTagPills('proj-node-input', 'proj-node-tags', 'PROJ');
 }
-window.showTeamProjectForm = showTeamProjectForm;
 
 function toggleCustomTeamField() {
   const v = document.getElementById('proj-team-select').value;
   document.getElementById('custom-team-field-block').style.display = v === 'Others' ? 'block' : 'none';
 }
-window.toggleCustomTeamField = toggleCustomTeamField;
 
-async function saveTeamProject() {
+function saveTeamProject() {
   const sel  = document.getElementById('proj-team-select').value;
   const team = sel === 'Others' ? document.getElementById('proj-custom-team').value.trim() : sel;
   const title = document.getElementById('proj-title-input').value.trim();
@@ -1388,24 +1291,17 @@ async function saveTeamProject() {
   if (!team || !title || !projectNodeTags.length || !goal || !achv) {
     showToast('Complete all project parameters \u2736', true); return;
   }
-  try {
-    await addDoc(teamProjectsCol, {
-      id:              'proj-' + Date.now().toString(36), /* kept for compatibility */
-      teamName:        team,
-      projectName:     title,
-      processNode:     projectNodeTags.join(', '),
-      goal,
-      keyAchievements: achv,
-      timestamp:       Date.now()
-    });
-    showToast('\u2713 Project Specifications Captured');
-    showProjectsHome();
-  } catch (err) {
-    console.error('saveTeamProject error:', err);
-    showToast('Error saving project — check console', true);
-  }
+  teamProjects.push({
+    id: 'proj-' + Date.now().toString(36),
+    teamName: team, projectName: title,
+    processNode: projectNodeTags.join(', '),
+    goal, keyAchievements: achv,
+    timestamp: Date.now()
+  });
+  localStorage.setItem('nsl_team_projects_v3', JSON.stringify(teamProjects));
+  showToast('\u2713 Project Specifications Captured');
+  showProjectsHome();
 }
-window.saveTeamProject = saveTeamProject;
 
 function renderGroupedTeamProjects() {
   const c = document.getElementById('teams-distribution-wrapper');
@@ -1422,7 +1318,7 @@ function renderGroupedTeamProjects() {
     const sec = document.createElement('div');
     sec.className = 'team-section';
     let cards = recs.map(p =>
-      '<div class="profile-card" onclick="openProjectPopup(\'' + (p._firestoreId || p.id) + '\')">' +
+      '<div class="profile-card" onclick="openProjectPopup(\'' + p.id + '\')">' +
         '<div class="card-name" style="margin-bottom:6px;">' + escHtml(p.projectName) + '</div>' +
         '<div class="node-tag" style="margin-bottom:8px;">' + escHtml(p.processNode) + '</div>' +
         '<div class="card-desc"><strong>Goals:</strong> ' + bulletify(p.goal) + '</div>' +
@@ -1439,8 +1335,8 @@ function renderGroupedTeamProjects() {
   });
 }
 
-function openProjectPopup(firestoreId) {
-  const p = teamProjects.find(x => (x._firestoreId || x.id) === firestoreId);
+function openProjectPopup(id) {
+  const p = teamProjects.find(x => x.id === id);
   if (!p) return;
   document.getElementById('pop-project-name').textContent = p.projectName;
   document.getElementById('pop-project-team').textContent = p.teamName;
@@ -1449,14 +1345,11 @@ function openProjectPopup(firestoreId) {
   document.getElementById('pop-project-achv-container').innerHTML = bulletify(p.keyAchievements);
   document.getElementById('project-popup-backdrop').classList.add('open');
 }
-window.openProjectPopup = openProjectPopup;
-
 function closeProjectPopup() { document.getElementById('project-popup-backdrop').classList.remove('open'); }
-window.closeProjectPopup = closeProjectPopup;
 
 
 /* ----------------------------------------------------------------
-   G. ENGINEER DIRECTORY & PROFILES — Firestore backed
+   F. ENGINEER DIRECTORY & PROFILES
 ---------------------------------------------------------------- */
 function showEngineerForm(id) {
   navToView('view-profile-form');
@@ -1464,7 +1357,7 @@ function showEngineerForm(id) {
   editingProfileId = null;
   if (id) {
     editingProfileId = id;
-    const t = profiles.find(p => (p._firestoreId || p.id) === id);
+    const t = profiles.find(p => p.id === id);
     if (t) populateFormFields(t);
     document.getElementById('profile-form-heading').textContent = 'Modify Technical Profile';
   } else {
@@ -1472,7 +1365,6 @@ function showEngineerForm(id) {
     addEngineerProjectFormBlock();
   }
 }
-window.showEngineerForm = showEngineerForm;
 
 function addEngineerProjectFormBlock(data) {
   const box = document.getElementById('dynamic-engineer-projects-box');
@@ -1496,10 +1388,8 @@ function addEngineerProjectFormBlock(data) {
     '</div>';
   box.appendChild(div);
 }
-window.addEngineerProjectFormBlock = addEngineerProjectFormBlock;
 
 function removeProjBlock(id) { const e = document.getElementById(id); if (e) e.remove(); }
-window.removeProjBlock = removeProjBlock;
 
 function resetProfileFields() {
   ['ep-name','ep-yoe','ep-uni','ep-edu','ep-keyexp','ep-t-circuit','ep-t-layout',
@@ -1522,7 +1412,7 @@ function populateFormFields(p) {
   if (p.experienceLogs) p.experienceLogs.forEach(l => addEngineerProjectFormBlock(l));
 }
 
-async function saveEngineerProfile() {
+function saveEngineerProfile() {
   const name   = document.getElementById('ep-name').value.trim();
   const yoe    = document.getElementById('ep-yoe').value.trim();
   const keyexp = document.getElementById('ep-keyexp').value.trim();
@@ -1548,26 +1438,14 @@ async function saveEngineerProfile() {
     base:  { tech: engineerTechTags, foundry: g('ep-b-foundry'), process: g('ep-b-process') },
     experienceLogs: logs, updatedAt: Date.now()
   };
-  try {
-    if (editingProfileId) {
-      /* Find the Firestore document ID for this profile */
-      const existing = profiles.find(p => (p._firestoreId || p.id) === editingProfileId);
-      if (existing && existing._firestoreId) {
-        await setDoc(doc(db, 'nsl_profiles', existing._firestoreId), pkt);
-      } else {
-        await addDoc(profilesCol, pkt);
-      }
-    } else {
-      await addDoc(profilesCol, pkt);
-    }
-    showToast('\u2713 Profile Tracked Safely');
-    showDirectory();
-  } catch (err) {
-    console.error('saveEngineerProfile error:', err);
-    showToast('Error saving profile — check console', true);
-  }
+  if (editingProfileId) {
+    const i = profiles.findIndex(p => p.id === editingProfileId);
+    if (i !== -1) profiles[i] = pkt;
+  } else { profiles.push(pkt); }
+  localStorage.setItem('nsl_profiles_v3', JSON.stringify(profiles));
+  showToast('\u2713 Profile Tracked Safely');
+  showDirectory();
 }
-window.saveEngineerProfile = saveEngineerProfile;
 
 function renderDirectoryProfiles() {
   const nodes = new Set();
@@ -1605,9 +1483,8 @@ function filterProfiles() {
   document.getElementById('stat-count').textContent = m.length;
   const grid = document.getElementById('profile-grid');
   if (!m.length) { grid.innerHTML = '<div class="empty-state"><h3>No matching structural nodes located</h3></div>'; return; }
-  grid.innerHTML = m.map(p => {
-    const pid = p._firestoreId || p.id;
-    return '<div class="profile-card" onclick="viewProfileDetails(\'' + pid + '\')">' +
+  grid.innerHTML = m.map(p =>
+    '<div class="profile-card" onclick="viewProfileDetails(\'' + p.id + '\')">' +
       '<div class="card-top"><div class="avatar">' + p.name.substring(0,2).toUpperCase() + '</div>' +
         '<div><div class="card-name">' + escHtml(p.name) + '</div>' +
         '<div class="card-desig">' + escHtml(p.keyexp) + '</div></div></div>' +
@@ -1616,17 +1493,16 @@ function filterProfiles() {
       '<div class="card-footer">' +
         '<span class="card-updated">Collaborator Register</span>' +
         '<div class="card-actions">' +
-          '<button class="btn-ghost" onclick="event.stopPropagation();showEngineerForm(\'' + pid + '\')">EDIT</button>' +
-          '<button class="btn-ghost btn-danger" onclick="event.stopPropagation();triggerProfileDeletion(\'' + pid + '\')">DELETE</button>' +
+          '<button class="btn-ghost" onclick="event.stopPropagation();showEngineerForm(\'' + p.id + '\')">EDIT</button>' +
+          '<button class="btn-ghost btn-danger" onclick="event.stopPropagation();triggerProfileDeletion(\'' + p.id + '\')">DELETE</button>' +
         '</div></div>' +
-    '</div>';
-  }).join('');
+    '</div>'
+  ).join('');
 }
-window.filterProfiles = filterProfiles;
 
 function viewProfileDetails(id) {
   viewingProfileId = id;
-  const p = profiles.find(x => (x._firestoreId || x.id) === id);
+  const p = profiles.find(x => x.id === id);
   if (!p) return;
   navToView('view-profile-detail');
   const s = (id2, v) => { const e = document.getElementById(id2); if (e) e.textContent = v || '\u2014'; };
@@ -1651,47 +1527,24 @@ function viewProfileDetails(id) {
   });
   document.getElementById('btn-profile-docx').onclick = () => dlEngDoc(p);
 }
-window.viewProfileDetails = viewProfileDetails;
 
 function editProfileDirectly() { if (viewingProfileId) showEngineerForm(viewingProfileId); }
-window.editProfileDirectly = editProfileDirectly;
 
 function triggerProfileDeletion(id) {
   activeDeletionStagedId = id || viewingProfileId;
   document.getElementById('modal-backdrop').classList.add('open');
 }
-window.triggerProfileDeletion = triggerProfileDeletion;
-
 function closeModal() { document.getElementById('modal-backdrop').classList.remove('open'); activeDeletionStagedId = null; }
-window.closeModal = closeModal;
-
-async function confirmDelete() {
+function confirmDelete() {
   if (!activeDeletionStagedId) return;
   const target = activeDeletionStagedId;
   closeModal();
-  /* Snapshot the profile for undo (in-memory only) */
-  const snap = profiles.find(x => (x._firestoreId || x.id) === target);
-  if (!snap) return;
-  deletedProfileSnapshot = JSON.parse(JSON.stringify(snap));
-  /* Optimistic UI: remove from local array immediately */
-  profiles = profiles.filter(x => (x._firestoreId || x.id) !== target);
+  deletedProfileSnapshot = JSON.parse(JSON.stringify(profiles.find(x => x.id === target)));
+  profiles = profiles.filter(x => x.id !== target);
+  localStorage.setItem('nsl_profiles_v3', JSON.stringify(profiles));
   if (viewingProfileId === target) showDirectory(); else renderDirectoryProfiles();
   startUndo();
-  /* Actual Firestore delete */
-  try {
-    if (snap._firestoreId) {
-      await deleteDoc(doc(db, 'nsl_profiles', snap._firestoreId));
-    }
-  } catch (err) {
-    console.error('confirmDelete error:', err);
-    showToast('Delete failed — restoring profile', true);
-    profiles.push(deletedProfileSnapshot);
-    deletedProfileSnapshot = null;
-    renderDirectoryProfiles();
-  }
 }
-window.confirmDelete = confirmDelete;
-
 function startUndo() {
   if (undoInterval) clearInterval(undoInterval);
   undoSecondsRemaining = 60;
@@ -1707,32 +1560,19 @@ function startUndo() {
     }
   }, 1000);
 }
-
-async function undoDelete() {
+function undoDelete() {
   if (!deletedProfileSnapshot) return;
-  const snap = deletedProfileSnapshot;
-  deletedProfileSnapshot = null;
-  clearInterval(undoInterval);
+  profiles.push(deletedProfileSnapshot);
+  localStorage.setItem('nsl_profiles_v3', JSON.stringify(profiles));
+  deletedProfileSnapshot = null; clearInterval(undoInterval);
   document.getElementById('undo-bar').classList.remove('show');
-  try {
-    /* Re-add to Firestore. If original _firestoreId exists, restore with setDoc */
-    if (snap._firestoreId) {
-      const { _firestoreId, ...data } = snap;
-      await setDoc(doc(db, 'nsl_profiles', _firestoreId), data);
-    } else {
-      await addDoc(profilesCol, snap);
-    }
-    showToast('\u2713 Profile State Vectors Restored');
-  } catch (err) {
-    console.error('undoDelete error:', err);
-    showToast('Undo failed — check console', true);
-  }
+  showToast('\u2713 Profile State Vectors Restored');
+  renderDirectoryProfiles();
 }
-window.undoDelete = undoDelete;
 
 
 /* ----------------------------------------------------------------
-   H. DOC EXPORT — Word .doc downloads
+   G. DOC EXPORT — Word .doc downloads
 ---------------------------------------------------------------- */
 function docWrap(body) {
   return '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">' +
@@ -1762,8 +1602,6 @@ function dlTeamDoc(team) {
   triggerDl('Portfolio_' + team.replace(/\s+/g,'_') + '.doc', docWrap('<h1>PORTFOLIO (' + escHtml(team.toUpperCase()) + ')</h1><table>' + rows + '</table>'));
   showToast('\u2713 Team specifications extracted');
 }
-window.dlTeamDoc = dlTeamDoc;
-
 function dlEngDoc(p) {
   let inner = '<h1>ENGINEER SYSTEM PROFILE: ' + escHtml(p.name.toUpperCase()) + '</h1>' +
     '<p><strong>Experience:</strong> ' + escHtml(p.yoe) + '</p>' +
@@ -1782,7 +1620,7 @@ function dlEngDoc(p) {
 
 
 /* ----------------------------------------------------------------
-   I. UTILITIES
+   H. UTILITIES
 ---------------------------------------------------------------- */
 /* Convert newline-separated text to bullet list HTML */
 function bulletify(text) {
@@ -1807,7 +1645,6 @@ function escHtml(s) {
   if (!s) return '';
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
-
 </script>
 </body>
 </html>
