@@ -972,7 +972,7 @@
           </div>
         </div>
         <div class="form-section">
-          <div class="form-section-title">04 &middot; Project Experience Logs</div>
+          <div class="form-section-title">04 &middot; Layout Project Experience Logs</div>
           <div id="dynamic-engineer-projects-box"></div>
           <button class="btn-add-project" onclick="addEngineerProjectFormBlock()">&#xff0b; ADD DETAILED PROJECT RECORD</button>
         </div>
@@ -2049,6 +2049,8 @@ async function undoDelete() {
 /* ================================================================
    G. DOC EXPORT
 ================================================================ */
+
+/* ---- Team portfolio export (unchanged .doc approach) ---- */
 function docWrap(body) {
   return '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">' +
     '<head><meta charset="utf-8"><title>Export</title>' +
@@ -2057,7 +2059,7 @@ function docWrap(body) {
     'table{width:100%;border-collapse:collapse;margin:12pt 0;}th,td{border:1px solid #000;padding:10px;text-align:left;vertical-align:top;font-size:10.5pt;}' +
     'th{font-weight:bold;text-align:center;}</style></head><body>' + body + '</body></html>';
 }
-function triggerDl(filename, html) {
+function triggerDlDoc(filename, html) {
   const b = new Blob([html], { type:'application/msword;charset=utf-8' });
   const u = URL.createObjectURL(b);
   const a = document.createElement('a'); a.href = u; a.download = filename;
@@ -2075,25 +2077,317 @@ function dlTeamDoc(team) {
   list.forEach(p => {
     rows += '<tr><td><strong>' + escHtml(p.projectName) + '</strong></td><td>' + bulletsDoc(p.goal) + '</td><td style="text-align:center">' + escHtml(p.processNode) + '</td><td>' + bulletsDoc(p.keyAchievements) + '</td></tr>';
   });
-  triggerDl('Portfolio_' + team.replace(/\s+/g,'_') + '.doc', docWrap('<h1>PORTFOLIO (' + escHtml(team.toUpperCase()) + ')</h1><table>' + rows + '</table>'));
+  triggerDlDoc('Portfolio_' + team.replace(/\s+/g,'_') + '.doc', docWrap('<h1>PORTFOLIO (' + escHtml(team.toUpperCase()) + ')</h1><table>' + rows + '</table>'));
   showToast('\u2713 Team specifications extracted');
 }
-function dlEngDoc(p) {
-  let inner = '<h1>ENGINEER SYSTEM PROFILE: ' + escHtml(p.name.toUpperCase()) + '</h1>' +
-    '<p><strong>Experience:</strong> ' + escHtml(p.yoe) + '</p>' +
-    '<p><strong>University:</strong> ' + escHtml(p.uni||'\u2014') + '</p>' +
-    '<p><strong>Education:</strong> ' + escHtml(p.edu||'\u2014') + '</p>' +
-    '<p><strong>Key Expertise:</strong> ' + escHtml(p.keyexp) + '</p><h2>PROJECT RECORDS</h2>';
-  if (!p.experienceLogs?.length) { inner += '<p style="font-style:italic;color:#555">No project logs compiled.</p>'; }
-  else {
-    let rows = '<tr><th style="width:25%">Project Name</th><th style="width:15%">Node</th><th style="width:15%">Duration</th><th style="width:45%">Description</th></tr>';
-    p.experienceLogs.forEach(l => {
-      rows += '<tr><td><strong>' + escHtml(l.name) + '</strong></td><td style="text-align:center">' + escHtml(l.tech) + '</td><td style="text-align:center">' + escHtml(l.duration) + '</td><td>' + bulletsDoc(l.desc) + '</td></tr>';
-    });
-    inner += '<table>' + rows + '</table>';
+
+/* ---- Engineer profile export — proper .docx matching the NSL template ---- */
+
+/* Lazy-load the docx IIFE library from CDN the first time it is needed */
+let _docxLibPromise = null;
+function loadDocxLib() {
+  if (_docxLibPromise) return _docxLibPromise;
+  _docxLibPromise = new Promise((resolve, reject) => {
+    if (window.docx) { resolve(window.docx); return; }
+    const s = document.createElement('script');
+    s.src = 'https://unpkg.com/docx@9.6.1/dist/index.iife.js';
+    s.onload  = () => resolve(window.docx);
+    s.onerror = () => reject(new Error('Failed to load docx library'));
+    document.head.appendChild(s);
+  });
+  return _docxLibPromise;
+}
+
+async function dlEngDoc(p) {
+  showToast('Preparing document\u2026');
+  let docxLib;
+  try {
+    docxLib = await loadDocxLib();
+  } catch(e) {
+    showToast('Cannot load docx library. Check your connection. \u2736', true);
+    return;
   }
-  triggerDl('Profile_' + p.name.replace(/\s+/g,'_') + '.doc', docWrap(inner));
-  showToast('\u2713 Profile document extracted');
+
+  const {
+    Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell,
+    AlignmentType, BorderStyle, WidthType, ShadingType, VerticalAlign, LevelFormat
+  } = docxLib;
+
+  /* ── Shared constants (mirrors template: Lato 11pt) ── */
+  const FONT   = 'Lato';
+  const SZ     = 22;      /* 11 pt in half-points */
+  const NAME_SZ = 36;     /* 18 pt for the name   */
+
+  const BORDER_DEF = { style: BorderStyle.SINGLE, size: 6, color: 'auto' };
+  const ALL_BORDERS = { top: BORDER_DEF, bottom: BORDER_DEF, left: BORDER_DEF, right: BORDER_DEF };
+  const NO_BORDER   = { style: BorderStyle.NONE,   size: 0, color: 'FFFFFF' };
+  const NO_BORDERS  = { top: NO_BORDER, bottom: NO_BORDER, left: NO_BORDER, right: NO_BORDER };
+
+  /* ── Helper: plain paragraph ── */
+  function mkPara(text, { bold = false, size = SZ } = {}) {
+    return new Paragraph({
+      spacing: { after: 0, line: 240, lineRule: 'auto' },
+      children: [new TextRun({ text: text || '', font: FONT, size, bold, color: '000000' })]
+    });
+  }
+
+  /* ── Helper: bullet paragraphs from newline-separated text ── */
+  function mkBullets(text) {
+    if (!text) return [mkPara('\u2014')];
+    const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+    if (!lines.length) return [mkPara('\u2014')];
+    return lines.map(line => new Paragraph({
+      spacing: { after: 0, line: 240, lineRule: 'auto' },
+      numbering: { reference: 'bullets', level: 0 },
+      children: [new TextRun({ text: line, font: FONT, size: SZ, color: '000000' })]
+    }));
+  }
+
+  /* ── Helper: simple single-paragraph cell ── */
+  function mkCell(text, width, { bold = false, borders = ALL_BORDERS, align = 'left', vAlign = VerticalAlign.CENTER } = {}) {
+    return new TableCell({
+      width: { size: width, type: WidthType.DXA },
+      borders,
+      margins: { top: 80, bottom: 80, left: 105, right: 105 },
+      verticalAlign: vAlign,
+      children: [new Paragraph({
+        alignment: align === 'center' ? AlignmentType.CENTER : AlignmentType.LEFT,
+        spacing: { after: 0, line: 240, lineRule: 'auto' },
+        children: [new TextRun({ text: text || '\u2014', font: FONT, size: SZ, bold, color: '000000' })]
+      })]
+    });
+  }
+
+  /* ── Helper: multi-paragraph cell (for bullet content) ── */
+  function mkCellMulti(paragraphs, width, { borders = ALL_BORDERS, vAlign = VerticalAlign.TOP } = {}) {
+    return new TableCell({
+      width: { size: width, type: WidthType.DXA },
+      borders,
+      margins: { top: 80, bottom: 80, left: 105, right: 105 },
+      verticalAlign: vAlign,
+      children: paragraphs
+    });
+  }
+
+  /* ================================================================
+     TABLE 1 — Info table (no visible borders, 2 cols)
+     Template widths: col1=2605 dxa, col2=6745 dxa  (total 9350)
+  ================================================================ */
+  const INFO_W  = 9350;
+  const INFO_C1 = 2605;
+  const INFO_C2 = 6745;
+
+  function mkInfoRow(label, value) {
+    return new TableRow({
+      children: [
+        new TableCell({
+          width: { size: INFO_C1, type: WidthType.DXA },
+          borders: NO_BORDERS,
+          margins: { top: 60, bottom: 60, left: 0, right: 120 },
+          verticalAlign: VerticalAlign.CENTER,
+          children: [new Paragraph({
+            spacing: { after: 0, line: 240, lineRule: 'auto' },
+            children: [new TextRun({ text: label, font: FONT, size: SZ, bold: true, color: '000000' })]
+          })]
+        }),
+        new TableCell({
+          width: { size: INFO_C2, type: WidthType.DXA },
+          borders: NO_BORDERS,
+          margins: { top: 60, bottom: 60, left: 120, right: 0 },
+          verticalAlign: VerticalAlign.CENTER,
+          children: [new Paragraph({
+            spacing: { after: 0, line: 240, lineRule: 'auto' },
+            children: [new TextRun({ text: value || '\u2014', font: FONT, size: SZ, color: '000000' })]
+          })]
+        })
+      ]
+    });
+  }
+
+  const infoTable = new Table({
+    width: { size: INFO_W, type: WidthType.DXA },
+    columnWidths: [INFO_C1, INFO_C2],
+    rows: [
+      mkInfoRow('Years of Experience', p.yoe || ''),
+      mkInfoRow('Education Background', p.edu || ''),
+      mkInfoRow('University',           p.uni || ''),
+      mkInfoRow('Key Expertise',        p.keyexp || '')
+    ]
+  });
+
+  /* ================================================================
+     TABLE 2 — Tool Expertise (bordered, 2 cols)
+     Template widths: col1=3045 dxa, col2=6480 dxa  (total 9525)
+  ================================================================ */
+  const TOOL_W  = 9525;
+  const TOOL_C1 = 3045;
+  const TOOL_C2 = 6480;
+  const techStr = (p.base?.tech || []).join(', ') || '\u2014';
+
+  function mkToolRow(label, value) {
+    return new TableRow({
+      height: { value: 300, rule: 'atLeast' },
+      children: [
+        mkCell(label, TOOL_C1, { bold: true }),
+        mkCell(value || '\u2014', TOOL_C2)
+      ]
+    });
+  }
+
+  const toolTable = new Table({
+    width: { size: TOOL_W, type: WidthType.DXA },
+    columnWidths: [TOOL_C1, TOOL_C2],
+    rows: [
+      mkToolRow('Circuit Design & Simulation', p.tools?.circuit  || ''),
+      mkToolRow('Layout Design',               p.tools?.layout   || ''),
+      mkToolRow('Physical Verification',       p.tools?.phys     || ''),
+      mkToolRow('Parasitic Extraction',        p.tools?.parasitic|| ''),
+      mkToolRow('Reliability Validation',      p.tools?.reliability || ''),
+      mkToolRow('Project Management',          p.tools?.pm       || ''),
+      mkToolRow('Technology',                  techStr),
+      mkToolRow('Foundry',                     p.base?.foundry   || ''),
+      mkToolRow('Process',                     p.base?.process   || '')
+    ]
+  });
+
+  /* ================================================================
+     TABLE 3 — Layout Project Experience (bordered, 4 cols)
+     Template widths: Project=2100, Tech=1500, Desc=4425, Duration=1500 (total 9525)
+  ================================================================ */
+  const PROJ_W   = 9525;
+  const PROJ_COLS = [2100, 1500, 4425, 1500]; /* Project | Technology | Description | Duration */
+
+  /* Header row with grey shading */
+  function mkProjHeaderCell(text, width) {
+    return new TableCell({
+      width: { size: width, type: WidthType.DXA },
+      borders: ALL_BORDERS,
+      margins: { top: 80, bottom: 80, left: 105, right: 105 },
+      shading: { fill: 'D9D9D9', type: ShadingType.CLEAR },
+      verticalAlign: VerticalAlign.CENTER,
+      children: [new Paragraph({
+        alignment: AlignmentType.CENTER,
+        spacing: { after: 0 },
+        children: [new TextRun({ text, font: FONT, size: SZ, bold: true, color: '000000' })]
+      })]
+    });
+  }
+
+  const projHeaderRow = new TableRow({
+    children: [
+      mkProjHeaderCell('Project',     PROJ_COLS[0]),
+      mkProjHeaderCell('Technology',  PROJ_COLS[1]),
+      mkProjHeaderCell('Description', PROJ_COLS[2]),
+      mkProjHeaderCell('Duration',    PROJ_COLS[3])
+    ]
+  });
+
+  const logs = p.experienceLogs || [];
+  const projDataRows = logs.length
+    ? logs.map(log => new TableRow({
+        children: [
+          /* Project name — bold */
+          mkCell(log.name || '\u2014', PROJ_COLS[0], { bold: true, vAlign: VerticalAlign.TOP }),
+          /* Technology */
+          mkCell(log.tech || '\u2014', PROJ_COLS[1], { vAlign: VerticalAlign.TOP }),
+          /* Description — bullet list */
+          mkCellMulti(mkBullets(log.desc), PROJ_COLS[2]),
+          /* Duration */
+          mkCell(log.duration || '\u2014', PROJ_COLS[3], { vAlign: VerticalAlign.TOP })
+        ]
+      }))
+    /* One blank row when no projects logged */
+    : [new TableRow({
+        children: PROJ_COLS.map(w => new TableCell({
+          width: { size: w, type: WidthType.DXA },
+          borders: ALL_BORDERS,
+          margins: { top: 80, bottom: 80, left: 105, right: 105 },
+          children: [new Paragraph({ children: [new TextRun({ text: '', font: FONT, size: SZ })] })]
+        }))
+      })];
+
+  const projTable = new Table({
+    width: { size: PROJ_W, type: WidthType.DXA },
+    columnWidths: PROJ_COLS,
+    rows: [projHeaderRow, ...projDataRows]
+  });
+
+  /* ================================================================
+     BUILD DOCUMENT
+  ================================================================ */
+  const doc = new Document({
+    numbering: {
+      config: [{
+        reference: 'bullets',
+        levels: [{
+          level: 0,
+          format: LevelFormat.BULLET,
+          text: '\u2022',
+          alignment: AlignmentType.LEFT,
+          style: { paragraph: { indent: { left: 360, hanging: 180 } } }
+        }]
+      }]
+    },
+    sections: [{
+      properties: {
+        page: {
+          size:   { width: 12240, height: 15840 },          /* US Letter */
+          margin: { top: 1080, right: 900, bottom: 1080, left: 900 } /* ~0.75" margins */
+        }
+      },
+      children: [
+        /* Engineer name — 18pt bold */
+        new Paragraph({
+          spacing: { after: 0, line: 240, lineRule: 'auto' },
+          children: [new TextRun({ text: p.name || '', font: FONT, size: NAME_SZ, bold: true, color: '000000' })]
+        }),
+        new Paragraph({ spacing: { after: 0 }, children: [] }),
+
+        /* Table 1 – basic info */
+        infoTable,
+        new Paragraph({ spacing: { after: 0 }, children: [] }),
+
+        /* "Tool Expertise" heading */
+        mkPara('Tool Expertise', { bold: true }),
+        new Paragraph({ spacing: { after: 0 }, children: [] }),
+
+        /* Table 2 – tools */
+        toolTable,
+        new Paragraph({ spacing: { after: 0 }, children: [] }),
+
+        /* "Layout Project Experience" heading + note */
+        mkPara('Layout Project Experience', { bold: true }),
+        new Paragraph({
+          spacing: { after: 0, line: 240, lineRule: 'auto' },
+          children: [new TextRun({
+            text: '(If you have done one project on multiple technology nodes, mention it sequentially)',
+            font: FONT, size: SZ, color: '000000'
+          })]
+        }),
+        new Paragraph({ spacing: { after: 0 }, children: [] }),
+
+        /* Table 3 – projects */
+        projTable
+      ]
+    }]
+  });
+
+  try {
+    const buf  = await Packer.toBuffer(doc);
+    const blob = new Blob([buf], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href     = url;
+    a.download = 'Profile_' + (p.name || 'Engineer').replace(/\s+/g, '_') + '.docx';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast('\u2713 Profile document extracted');
+  } catch(e) {
+    console.error('DOCX generation error:', e);
+    showToast('Document generation failed \u2736', true);
+  }
 }
 
 
