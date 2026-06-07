@@ -309,40 +309,97 @@
     }
 
     /* ============================================================
-       SECTION 7 — TEAM SECTIONS & PROJECT CARDS
+       SECTION 7 — TEAM SECTIONS & PROJECT CARDS (Tile Design)
     ============================================================ */
-    .team-section { margin-bottom:2rem; border:1px solid var(--border); border-radius:8px; overflow:hidden; }
-    .team-section-header {
+
+    /* ---- Team Overview Tiles Row ---- */
+    .team-tiles-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));
+      gap:0.85rem; margin-bottom:2rem;
+    }
+    .team-tile {
+      background:var(--panel); border:1px solid var(--border);
+      border-radius:8px; padding:1.1rem 1rem 0.9rem;
+      cursor:pointer; transition:all 0.22s; user-select:none;
+      position:relative; overflow:hidden;
+    }
+    .team-tile::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:3px;
+      background:var(--accent); opacity:0;
+      transition:opacity 0.22s;
+    }
+    .team-tile:hover, .team-tile.active {
+      border-color:var(--border2); background:var(--panel2);
+      transform:translateY(-2px); box-shadow:var(--glow);
+    }
+    .team-tile:hover::before, .team-tile.active::before { opacity:1; }
+    .team-tile.active { border-color:var(--accent); }
+    .team-tile-count {
+      font-family:'Share Tech Mono',monospace; font-size:1.7rem;
+      font-weight:700; color:var(--accent); line-height:1; margin-bottom:6px;
+    }
+    .team-tile-name {
+      font-family:'Barlow Condensed',sans-serif; font-size:0.85rem;
+      font-weight:700; color:var(--text); letter-spacing:0.04em;
+      text-transform:uppercase; line-height:1.2;
+    }
+    .team-tile-label {
+      font-family:'Share Tech Mono',monospace; font-size:0.55rem;
+      color:var(--text3); letter-spacing:0.1em; text-transform:uppercase;
+      margin-top:3px;
+    }
+    .team-tile-arrow {
+      position:absolute; bottom:0.75rem; right:0.9rem;
+      font-size:0.8rem; color:var(--text3); transition:all 0.22s;
+    }
+    .team-tile.active .team-tile-arrow { color:var(--accent); transform:rotate(90deg); }
+
+    /* ---- Expanded Team Panel ---- */
+    .team-panel-expanded {
+      background:var(--panel); border:1px solid var(--border);
+      border-radius:8px; margin-bottom:2rem; overflow:hidden;
+      animation:teamPanelIn 0.22s ease both;
+    }
+    @keyframes teamPanelIn {
+      from { opacity:0; transform:translateY(-8px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    .team-panel-header {
       display:flex; align-items:center; justify-content:space-between;
-      padding:0.9rem 1.2rem; background:var(--panel2);
-      border-bottom:1px solid var(--border); cursor:pointer;
-      user-select:none; transition:background 0.18s;
+      padding:0.85rem 1.2rem; background:var(--panel2);
+      border-bottom:1px solid var(--border);
     }
-    .team-section-header:hover { background:var(--bg3); }
-    .team-header-left { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
-    .team-banner-title {
-      font-family:'Barlow Condensed',sans-serif; font-size:1.25rem;
-      font-weight:700; color:var(--accent); letter-spacing:0.05em; text-transform:uppercase;
+    .team-panel-title {
+      font-family:'Barlow Condensed',sans-serif; font-size:1.15rem;
+      font-weight:700; color:var(--accent); letter-spacing:0.06em; text-transform:uppercase;
     }
-    .team-count-badge {
-      font-family:'Share Tech Mono',monospace; font-size:0.62rem;
-      background:rgba(56,189,248,0.12); border:1px solid rgba(56,189,248,0.3);
-      color:var(--accent); padding:2px 8px; border-radius:20px; white-space:nowrap;
+    .team-panel-meta {
+      font-family:'Share Tech Mono',monospace; font-size:0.6rem;
+      color:var(--text3); margin-top:2px;
     }
-    .team-section-right { display:flex; align-items:center; gap:0.6rem; }
-    .team-collapse-icon {
-      font-family:'Share Tech Mono',monospace; font-size:0.9rem; color:var(--text3);
-      transition:transform 0.25s;
-    }
-    .team-section.collapsed .team-collapse-icon { transform:rotate(-90deg); }
+    .team-panel-actions { display:flex; align-items:center; gap:0.6rem; }
     .btn-download-sec {
       font-family:'Share Tech Mono',monospace; font-size:0.7rem;
       background:var(--panel); border:1px solid var(--border);
       color:var(--text2); padding:4px 10px; border-radius:4px; cursor:pointer; transition:all 0.2s;
     }
     .btn-download-sec:hover { border-color:var(--accent3); color:var(--accent3); }
-    .team-section-body { padding:1rem; }
-    .team-section.collapsed .team-section-body { display:none; }
+    .btn-close-panel {
+      font-family:'Share Tech Mono',monospace; font-size:0.7rem;
+      background:none; border:1px solid var(--border);
+      color:var(--text3); padding:4px 10px; border-radius:4px; cursor:pointer; transition:all 0.2s;
+    }
+    .btn-close-panel:hover { border-color:var(--warn); color:var(--warn); }
+    .team-panel-body { padding:1rem; }
+
+    /* legacy – keep for backward-compat in other places */
+    .team-section { margin-bottom:2rem; border:1px solid var(--border); border-radius:8px; overflow:hidden; }
+    .team-count-badge {
+      font-family:'Share Tech Mono',monospace; font-size:0.62rem;
+      background:rgba(56,189,248,0.12); border:1px solid rgba(56,189,248,0.3);
+      color:var(--accent); padding:2px 8px; border-radius:20px; white-space:nowrap;
+    }
 
     /* ---- bullet list ---- */
     .bullet-container-list { margin-left:16px; margin-top:4px; padding-left:4px; }
@@ -820,8 +877,7 @@
         </div>
         <div class="nda-banner">
           <div class="nda-text">
-            <strong>NDA Preservation Rule:</strong> Describe layout parameters at a high level.
-            Each line in Goal / Achievement will be shown as a bullet point automatically.
+            <strong>⚠ NDA Reminder:</strong> Do not disclose confidential project names, client identities, proprietary circuit details, or foundry-specific information. Use generalized descriptions and avoid any content that may violate your NDA obligations. Each line in Goal / Achievement will be displayed as a bullet point automatically.
           </div>
         </div>
         <div class="form-section">
@@ -830,7 +886,7 @@
             <div class="field">
               <label>Select Originating Team <span class="req">*</span></label>
               <select id="proj-team-select" onchange="toggleCustomTeamField()">
-                <option value="Analog Mixed Signal">Analog Mixed Signal</option>
+                <option value="Analog & Mixed Signal">Analog & Mixed Signal</option>
                 <option value="GPIO">GPIO</option>
                 <option value="Layout">Layout</option>
                 <option value="Memory">Memory</option>
@@ -964,7 +1020,7 @@
           </div>
         </div>
         <div class="form-section">
-          <div class="form-section-title">04 &middot; Layout Project Experience Logs</div>
+          <div class="form-section-title">04 &middot; Project Experience Logs</div>
           <div id="dynamic-engineer-projects-box"></div>
           <button class="btn-add-project" onclick="addEngineerProjectFormBlock()">&#xff0b; ADD DETAILED PROJECT RECORD</button>
         </div>
@@ -1020,7 +1076,7 @@
           </div>
         </div>
         <div class="detail-section" id="d-project-section-wrapper">
-          <div class="detail-section-label">// Tracked Layout Experience History</div>
+          <div class="detail-section-label">// Project Experience History</div>
           <div id="d-projects-accordion-target"></div>
         </div>
       </div>
@@ -1569,7 +1625,7 @@ function showTeamProjectForm(editId) {
     heading.textContent = 'Edit Project Specifications';
     const p = teamProjects.find(x => x.id === editId);
     if (p) {
-      document.getElementById('proj-team-select').value = ['Analog Mixed Signal','GPIO','Layout','Memory','RF'].includes(p.teamName) ? p.teamName : 'Others';
+      document.getElementById('proj-team-select').value = ['Analog & Mixed Signal','GPIO','Layout','Memory','RF'].includes(p.teamName) ? p.teamName : 'Others';
       toggleCustomTeamField();
       if (document.getElementById('custom-team-field-block').style.display !== 'none') {
         document.getElementById('proj-custom-team').value = p.teamName;
@@ -1582,7 +1638,7 @@ function showTeamProjectForm(editId) {
     }
   } else {
     heading.textContent = 'Describe Project Specifications';
-    document.getElementById('proj-team-select').value = 'Analog Mixed Signal';
+    document.getElementById('proj-team-select').value = 'Analog & Mixed Signal';
     document.getElementById('custom-team-field-block').style.display = 'none';
     ['proj-custom-team','proj-title-input','proj-node-input','proj-goal-input','proj-achv-input']
       .forEach(id => { const e = document.getElementById(id); if (e) e.value = ''; });
@@ -1640,7 +1696,9 @@ async function saveTeamProject() {
   }
 }
 
-/* ---- RENDER: grouped, collapsible team sections ---- */
+/* ---- RENDER: Tile-based team overview + expandable panel ---- */
+let activeTeamPanel = null; // currently open team name
+
 window.renderGroupedTeamProjects = function() {
   const c     = document.getElementById('teams-distribution-wrapper');
   const query = projectSearchQuery.toLowerCase();
@@ -1656,66 +1714,123 @@ window.renderGroupedTeamProjects = function() {
 
   if (!filtered.length) {
     if (query) {
-      c.innerHTML = '<div class="empty-state"><h3>No projects match "' + escHtml(query) + '"</h3><p>Try a different name or process node.</p></div>';
+      c.innerHTML = '<div class="empty-state"><h3>No projects match &ldquo;' + escHtml(query) + '&rdquo;</h3><p>Try a different name or process node.</p></div>';
     } else {
       c.innerHTML = '<div class="empty-state"><h3>No project specifications tracked</h3><p>Click + Add Project Detail to get started.</p></div>';
     }
     return;
   }
 
-  // Determine category order: fixed order + any extras
-  const fixedOrder = ['Analog Mixed Signal','GPIO','Layout','Memory','RF'];
+  // Build team → projects map in fixed order + extras
+  const fixedOrder = ['Analog & Mixed Signal','GPIO','Layout','Memory','RF'];
   const allTeams   = new Set(fixedOrder);
   filtered.forEach(p => { if (p.teamName) allTeams.add(p.teamName); });
 
+  // Build per-team data
+  const teamData = [];
   allTeams.forEach(team => {
     const recs = filtered.filter(p => p.teamName === team);
-    if (!recs.length) return;
-
-    const sec = document.createElement('div');
-    sec.className = 'team-section';
-    sec.id = 'team-sec-' + team.replace(/\s+/g,'-');
-
-    const cards = recs.map(p => {
-      const isOwner = window.currentUserEmail && p.createdBy === window.currentUserEmail;
-      const ownerBtns = isOwner
-        ? '<div class="card-actions">' +
-            '<button class="btn-ghost" onclick="event.stopPropagation();editProjectFromCard(\'' + p.id + '\')">EDIT</button>' +
-            '<button class="btn-ghost btn-danger" onclick="event.stopPropagation();deleteProjectCard(\'' + p.id + '\')">DELETE</button>' +
-          '</div>'
-        : '';
-      return (
-        '<div class="profile-card" onclick="openProjectPopup(\'' + p.id + '\')">' +
-          '<div class="card-name" style="margin-bottom:6px;">' + escHtml(p.projectName) + '</div>' +
-          '<div class="node-tag" style="margin-bottom:8px;">' + escHtml(p.processNode) + '</div>' +
-          '<div class="card-desc"><strong>Goals:</strong> ' + bulletify(p.goal) + '</div>' +
-          '<div class="card-desc" style="margin-top:6px;"><strong>Achievements:</strong> ' + bulletify(p.keyAchievements) + '</div>' +
-          (isOwner ? '<div class="card-footer"><span class="card-updated" style="color:var(--accent3);font-size:0.58rem;">✓ Your entry</span>' + ownerBtns + '</div>' : '') +
-        '</div>'
-      );
-    }).join('');
-
-    sec.innerHTML =
-      '<div class="team-section-header" onclick="toggleTeamSection(\'' + sec.id + '\')">' +
-        '<div class="team-header-left">' +
-          '<div class="team-banner-title">' + escHtml(team) + '</div>' +
-          '<span class="team-count-badge">' + recs.length + ' project' + (recs.length !== 1 ? 's' : '') + '</span>' +
-        '</div>' +
-        '<div class="team-section-right">' +
-          '<button class="btn-download-sec" onclick="event.stopPropagation();dlTeamDoc(\'' + escHtml(team) + '\')">&#11015; Export</button>' +
-          '<span class="team-collapse-icon">&#9660;</span>' +
-        '</div>' +
-      '</div>' +
-      '<div class="team-section-body">' +
-        '<div class="profile-grid">' + cards + '</div>' +
-      '</div>';
-    c.appendChild(sec);
+    if (recs.length) teamData.push({ team, recs });
   });
+
+  if (!teamData.length) {
+    c.innerHTML = '<div class="empty-state"><h3>No matching teams</h3></div>';
+    return;
+  }
+
+  // ---- Tile row ----
+  const tilesRow = document.createElement('div');
+  tilesRow.className = 'team-tiles-grid';
+  tilesRow.id = 'team-tiles-row';
+
+  teamData.forEach(({ team, recs }) => {
+    const tile = document.createElement('div');
+    tile.className = 'team-tile' + (activeTeamPanel === team ? ' active' : '');
+    tile.id = 'tile-' + team.replace(/\W+/g,'-');
+    tile.innerHTML =
+      '<div class="team-tile-count">' + recs.length + '</div>' +
+      '<div class="team-tile-name">' + escHtml(team) + '</div>' +
+      '<div class="team-tile-label">' + (recs.length === 1 ? 'project' : 'projects') + '</div>' +
+      '<span class="team-tile-arrow">&#9654;</span>';
+    tile.onclick = () => toggleTeamPanel(team, teamData);
+    tilesRow.appendChild(tile);
+  });
+
+  c.appendChild(tilesRow);
+
+  // ---- Expanded panel placeholder ----
+  const panelSlot = document.createElement('div');
+  panelSlot.id = 'team-panel-slot';
+  c.appendChild(panelSlot);
+
+  // If a team was previously open and still exists, re-render its panel
+  if (activeTeamPanel) {
+    const found = teamData.find(d => d.team === activeTeamPanel);
+    if (found) renderTeamPanel(found.team, found.recs);
+    else activeTeamPanel = null;
+  }
 };
 
-function toggleTeamSection(secId) {
-  const sec = document.getElementById(secId);
-  if (sec) sec.classList.toggle('collapsed');
+function toggleTeamPanel(team, teamData) {
+  if (activeTeamPanel === team) {
+    // Close
+    activeTeamPanel = null;
+    const slot = document.getElementById('team-panel-slot');
+    if (slot) slot.innerHTML = '';
+    // deactivate tile
+    document.querySelectorAll('.team-tile').forEach(t => t.classList.remove('active'));
+  } else {
+    activeTeamPanel = team;
+    document.querySelectorAll('.team-tile').forEach(t => {
+      t.classList.toggle('active', t.id === 'tile-' + team.replace(/\W+/g,'-'));
+    });
+    const found = teamData ? teamData.find(d => d.team === team) : null;
+    const recs  = found ? found.recs : teamProjects.filter(p => p.teamName === team);
+    renderTeamPanel(team, recs);
+  }
+}
+
+function renderTeamPanel(team, recs) {
+  const slot = document.getElementById('team-panel-slot');
+  if (!slot) return;
+
+  const cards = recs.map(p => {
+    const isOwner = window.currentUserEmail && p.createdBy === window.currentUserEmail;
+    const ownerBtns = isOwner
+      ? '<div class="card-actions">' +
+          '<button class="btn-ghost" onclick="event.stopPropagation();editProjectFromCard(\'' + p.id + '\')">EDIT</button>' +
+          '<button class="btn-ghost btn-danger" onclick="event.stopPropagation();deleteProjectCard(\'' + p.id + '\')">DELETE</button>' +
+        '</div>'
+      : '';
+    return (
+      '<div class="profile-card" onclick="openProjectPopup(\'' + p.id + '\')">' +
+        '<div class="card-name" style="margin-bottom:6px;">' + escHtml(p.projectName) + '</div>' +
+        '<div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px;">' +
+          p.processNode.split(',').map(n => '<span class="node-tag">' + escHtml(n.trim()) + '</span>').join('') +
+        '</div>' +
+        '<div class="card-desc"><strong>Goals:</strong> ' + bulletify(p.goal) + '</div>' +
+        '<div class="card-desc" style="margin-top:6px;"><strong>Achievements:</strong> ' + bulletify(p.keyAchievements) + '</div>' +
+        (isOwner ? '<div class="card-footer"><span class="card-updated" style="color:var(--accent3);font-size:0.58rem;">\u2713 Your entry</span>' + ownerBtns + '</div>' : '') +
+      '</div>'
+    );
+  }).join('');
+
+  slot.innerHTML =
+    '<div class="team-panel-expanded">' +
+      '<div class="team-panel-header">' +
+        '<div>' +
+          '<div class="team-panel-title">' + escHtml(team) + '</div>' +
+          '<div class="team-panel-meta">' + recs.length + ' project' + (recs.length !== 1 ? 's' : '') + ' recorded</div>' +
+        '</div>' +
+        '<div class="team-panel-actions">' +
+          '<button class="btn-download-sec" onclick="dlTeamDoc(\'' + escHtml(team) + '\')">&#11015; Export</button>' +
+          '<button class="btn-close-panel" onclick="toggleTeamPanel(\'' + escHtml(team) + '\', null)">&#10005; Close</button>' +
+        '</div>' +
+      '</div>' +
+      '<div class="team-panel-body">' +
+        '<div class="profile-grid">' + cards + '</div>' +
+      '</div>' +
+    '</div>';
 }
 
 function filterProjects() {
@@ -1958,7 +2073,7 @@ function viewProfileDetails(id) {
   const tgt = document.getElementById('d-projects-accordion-target');
   tgt.innerHTML = '';
   if (!p.experienceLogs?.length) {
-    tgt.innerHTML = '<div class="card-desc">No layout verification project tracks saved.</div>';
+    tgt.innerHTML = '<div class="card-desc">No project experience logs saved.</div>';
   } else {
     p.experienceLogs.forEach(l => {
       tgt.innerHTML +=
@@ -2073,51 +2188,129 @@ async function undoDelete() {
 /* ================================================================
    G. DOC EXPORT
 ================================================================ */
+
+/* shared CSS for both doc types — Lato font, 11pt, matches NSL template */
+const DOC_CSS = `
+  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+  body { font-family:'Lato',Arial,sans-serif; font-size:11pt; line-height:1.45; color:#000; background:#fff; margin:0; padding:28px 36px; }
+  h1 { font-size:16pt; font-weight:700; color:#000; margin:0 0 14pt 0; }
+  h2 { font-size:12pt; font-weight:700; color:#000; margin:18pt 0 8pt 0; border-bottom:1.5pt solid #000; padding-bottom:4pt; }
+  p  { margin:0 0 4pt 0; font-size:11pt; }
+  table { width:100%; border-collapse:collapse; margin:8pt 0 16pt 0; }
+  th, td { border:1pt solid #000; padding:6pt 8pt; font-size:10.5pt; vertical-align:top; text-align:left; }
+  th { font-weight:700; background:#f0f0f0; }
+  td strong { font-weight:700; }
+  ul { margin:2pt 0; padding-left:18pt; }
+  li { font-size:10.5pt; line-height:1.45; margin-bottom:2pt; }
+  .name-heading { font-size:15pt; font-weight:700; margin-bottom:10pt; }
+  .section-label { font-weight:700; }
+`;
+
 function docWrap(body) {
-  return '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">' +
+  return '<!DOCTYPE html><html xmlns:o="urn:schemas-microsoft-com:office:office" ' +
+    'xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">' +
     '<head><meta charset="utf-8"><title>Export</title>' +
-    '<style>body{font-family:Arial,sans-serif;font-size:11pt;line-height:1.4;color:#000;background:#fff;padding:20px;}' +
-    'h1{font-size:16pt;font-weight:bold;text-align:center;margin-bottom:18pt;}h2{font-size:13pt;font-weight:bold;margin-top:20pt;}' +
-    'table{width:100%;border-collapse:collapse;margin:12pt 0;}th,td{border:1px solid #000;padding:10px;text-align:left;vertical-align:top;font-size:10.5pt;}' +
-    'th{font-weight:bold;text-align:center;}</style></head><body>' + body + '</body></html>';
+    '<style>' + DOC_CSS + '</style></head><body>' + body + '</body></html>';
 }
+
 function triggerDl(filename, html) {
-  const b = new Blob([html], { type:'application/msword;charset=utf-8' });
+  const b = new Blob(['\ufeff' + html], { type: 'application/msword;charset=utf-8' });
   const u = URL.createObjectURL(b);
-  const a = document.createElement('a'); a.href = u; a.download = filename;
-  document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(u);
+  const a = document.createElement('a');
+  a.href = u; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(u);
 }
+
 function bulletsDoc(text) {
   if (!text) return '\u2014';
   const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
-  return '<ul style="margin:0;padding-left:20px;font-size:11pt;">' + lines.map(l => '<li>' + escHtml(l) + '</li>').join('') + '</ul>';
+  if (!lines.length) return '\u2014';
+  return '<ul>' + lines.map(l => '<li>' + escHtml(l) + '</li>').join('') + '</ul>';
 }
+
 function dlTeamDoc(team) {
   const list = teamProjects.filter(p => p.teamName.toLowerCase() === team.toLowerCase());
   if (!list.length) { showToast('No data for this team.', true); return; }
-  let rows = '<tr><th style="width:20%">Project</th><th style="width:35%">Goal</th><th style="width:15%">Technology</th><th style="width:30%">Achievement</th></tr>';
+  let rows = '<tr><th style="width:20%">Project</th><th style="width:35%">Goal</th>' +
+    '<th style="width:15%">Technology</th><th style="width:30%">Achievement</th></tr>';
   list.forEach(p => {
-    rows += '<tr><td><strong>' + escHtml(p.projectName) + '</strong></td><td>' + bulletsDoc(p.goal) + '</td><td style="text-align:center">' + escHtml(p.processNode) + '</td><td>' + bulletsDoc(p.keyAchievements) + '</td></tr>';
+    rows += '<tr>' +
+      '<td><strong>' + escHtml(p.projectName) + '</strong></td>' +
+      '<td>' + bulletsDoc(p.goal) + '</td>' +
+      '<td style="text-align:center">' + escHtml(p.processNode) + '</td>' +
+      '<td>' + bulletsDoc(p.keyAchievements) + '</td>' +
+      '</tr>';
   });
-  triggerDl('Portfolio_' + team.replace(/\s+/g,'_') + '.doc', docWrap('<h1>PORTFOLIO (' + escHtml(team.toUpperCase()) + ')</h1><table>' + rows + '</table>'));
+  const body = '<h1>PORTFOLIO &mdash; ' + escHtml(team.toUpperCase()) + '</h1>' +
+    '<table>' + rows + '</table>';
+  triggerDl('Portfolio_' + team.replace(/\s+/g,'_') + '.doc', docWrap(body));
   showToast('\u2713 Team specifications extracted');
 }
+
+/* Engineer CV — matches NSL Profile Format template exactly */
 function dlEngDoc(p) {
-  let inner = '<h1>ENGINEER SYSTEM PROFILE: ' + escHtml(p.name.toUpperCase()) + '</h1>' +
-    '<p><strong>Experience:</strong> ' + escHtml(p.yoe) + '</p>' +
-    '<p><strong>University:</strong> ' + escHtml(p.uni||'\u2014') + '</p>' +
-    '<p><strong>Education:</strong> ' + escHtml(p.edu||'\u2014') + '</p>' +
-    '<p><strong>Key Expertise:</strong> ' + escHtml(p.keyexp) + '</p><h2>LAYOUT PROJECT RECORDS</h2>';
-  if (!p.experienceLogs?.length) { inner += '<p style="font-style:italic;color:#555">No project logs compiled.</p>'; }
-  else {
-    let rows = '<tr><th style="width:25%">Project Name</th><th style="width:15%">Node</th><th style="width:15%">Duration</th><th style="width:45%">Description</th></tr>';
+  const val = v => escHtml(v || '\u2014');
+
+  /* ---- SECTION 1: Header + Overview Table ---- */
+  let body = '<p class="name-heading">' + val(p.name) + '</p>';
+
+  /* Overview table (matches template: Years of Experience, Education, University, Key Expertise) */
+  body += '<table>' +
+    '<tr><td style="width:35%"><strong>Years of Experience</strong></td><td>' + val(p.yoe) + '</td></tr>' +
+    '<tr><td><strong>Education Background</strong></td><td>' + val(p.edu) + '</td></tr>' +
+    '<tr><td><strong>University</strong></td><td>' + val(p.uni) + '</td></tr>' +
+    '<tr><td><strong>Key Expertise</strong></td><td>' + val(p.keyexp) + '</td></tr>' +
+    '</table>';
+
+  /* ---- SECTION 2: Tool Expertise ---- */
+  body += '<h2>Tool Expertise</h2>';
+  body += '<table>';
+  const tools = [
+    ['Circuit Design &amp; Simulation', p.tools?.circuit],
+    ['Layout Design',                   p.tools?.layout],
+    ['Physical Verification',           p.tools?.phys],
+    ['Parasitic Extraction',            p.tools?.parasitic],
+    ['Reliability Validation',          p.tools?.reliability],
+    ['Project Management',              p.tools?.pm],
+    ['Technology',                      (p.base?.tech || []).join(', ')],
+    ['Foundry',                         p.base?.foundry],
+    ['Process',                         p.base?.process],
+  ];
+  tools.forEach(([label, value]) => {
+    body += '<tr><td style="width:35%"><strong>' + label + '</strong></td><td>' + val(value) + '</td></tr>';
+  });
+  body += '</table>';
+
+  /* ---- SECTION 3: Project Experience ---- */
+  body += '<h2>Project Experience</h2>';
+  body += '<p style="font-size:9.5pt;color:#555;margin-bottom:8pt;">' +
+    '(If you have done one project on multiple technology nodes, mention it sequentially. ' +
+    'Do not use any confidential project name.)</p>';
+
+  if (!p.experienceLogs?.length) {
+    body += '<p style="font-style:italic;color:#555">No project experience logs compiled.</p>';
+  } else {
+    body += '<table>';
+    body += '<tr>' +
+      '<th style="width:22%">Project</th>' +
+      '<th style="width:18%">Technology</th>' +
+      '<th style="width:13%">Duration</th>' +
+      '<th style="width:47%">Description</th>' +
+      '</tr>';
     p.experienceLogs.forEach(l => {
-      rows += '<tr><td><strong>' + escHtml(l.name) + '</strong></td><td style="text-align:center">' + escHtml(l.tech) + '</td><td style="text-align:center">' + escHtml(l.duration) + '</td><td>' + bulletsDoc(l.desc) + '</td></tr>';
+      body += '<tr>' +
+        '<td><strong>' + val(l.name) + '</strong></td>' +
+        '<td style="text-align:center">' + val(l.tech) + '</td>' +
+        '<td style="text-align:center">' + val(l.duration) + '</td>' +
+        '<td>' + bulletsDoc(l.desc) + '</td>' +
+        '</tr>';
     });
-    inner += '<table>' + rows + '</table>';
+    body += '</table>';
   }
-  triggerDl('Profile_' + p.name.replace(/\s+/g,'_') + '.doc', docWrap(inner));
-  showToast('\u2713 Profile document extracted');
+
+  triggerDl('Profile_' + p.name.replace(/\s+/g,'_') + '.docx', docWrap(body));
+  showToast('\u2713 Profile document downloaded');
 }
 
 
