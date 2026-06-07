@@ -275,7 +275,6 @@
       color:var(--text3); letter-spacing:0.15em; text-transform:uppercase; margin-top:2px;
     }
     .nav-tabs { display:flex; gap:1.5rem; margin-left:2rem; margin-right:auto; }
-    .nav-tabs { display:flex; gap:1.5rem; margin-left:2rem; margin-right:auto; }
     .nav-item {
       font-family:'Barlow Condensed',sans-serif; font-size:1rem; font-weight:600;
       letter-spacing:0.05em; color:var(--text2); cursor:pointer; text-transform:uppercase;
@@ -319,6 +318,44 @@
     /* ============================================================
        SECTION 7 — TEAM SECTIONS & PROJECT CARDS
     ============================================================ */
+    /* SUB-NAVIGATION SYSTEM (TEAM MATRIX CONTROLS) */
+    .matrix-tabs-container {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      overflow-x: auto;
+    }
+    .matrix-tab-btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      padding: 6px 14px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      color: var(--text2);
+      border-radius: 4px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+    }
+    .matrix-tab-btn:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+    .matrix-tab-btn.active {
+      background: rgba(56, 189, 248, 0.1);
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: var(--glow);
+    }
+    .matrix-tab-btn span {
+      font-size: 0.65rem;
+      opacity: 0.6;
+      margin-left: 4px;
+    }
+
     .team-section { margin-bottom:2.5rem; }
     .team-header-container {
       display:flex; align-items:center; justify-content:space-between;
@@ -1303,20 +1340,58 @@ function saveTeamProject() {
   showProjectsHome();
 }
 
+let activeTeamMatrixTab = 'ALL';
+
 function renderGroupedTeamProjects() {
-  const c = document.getElementById('teams-distribution-wrapper');
-  c.innerHTML = '';
+  const wrapper = document.getElementById('teams-distribution-wrapper');
+  wrapper.innerHTML = '';
+  
   if (!teamProjects.length) {
-    c.innerHTML = '<div class="empty-state"><h3>No project specifications tracked</h3><p>Click + Add Project Detail to get started.</p></div>';
+    wrapper.innerHTML = '<div class="empty-state"><h3>No project specifications tracked</h3><p>Click + Add Project Detail to get started.</p></div>';
     return;
   }
-  const cats = new Set(['Analog Mixed Signal','Layout','RF','Memory','GPIO']);
-  teamProjects.forEach(p => { if (p.teamName) cats.add(p.teamName); });
-  cats.forEach(team => {
+
+  // 1. Gather all core teams dynamically
+  const defaultCats = ['Analog Mixed Signal', 'Layout', 'RF', 'Memory', 'GPIO'];
+  const catsSet = new Set(defaultCats);
+  teamProjects.forEach(p => { if (p.teamName) catsSet.add(p.teamName); });
+  const finalTeamsList = Array.from(catsSet);
+
+  // 2. Build the Matrix Control Tab Row
+  const tabsContainer = document.createElement('div');
+  tabsContainer.className = 'matrix-tabs-container';
+  
+  // "Show All" Control
+  const allBtn = document.createElement('button');
+  allBtn.className = 'matrix-tab-btn' + (activeTeamMatrixTab === 'ALL' ? ' active' : '');
+  allBtn.innerHTML = 'ALL DOMAINS <span>(' + teamProjects.length + ')</span>';
+  allBtn.onclick = () => { activeTeamMatrixTab = 'ALL'; renderGroupedTeamProjects(); };
+  tabsContainer.appendChild(allBtn);
+
+  // Individual Team Controls
+  finalTeamsList.forEach(team => {
+    const count = teamProjects.filter(p => p.teamName === team).length;
+    if (count === 0 && !defaultCats.includes(team)) return; // skip custom empty teams
+    
+    const btn = document.createElement('button');
+    btn.className = 'matrix-tab-btn' + (activeTeamMatrixTab === team ? ' active' : '');
+    btn.innerHTML = escHtml(team) + ' <span>(' + count + ')</span>';
+    btn.onclick = () => { activeTeamMatrixTab = team; renderGroupedTeamProjects(); };
+    tabsContainer.appendChild(btn);
+  });
+  
+  wrapper.appendChild(tabsContainer);
+
+  // 3. Render Sections based on active layout filter selection
+  finalTeamsList.forEach(team => {
+    if (activeTeamMatrixTab !== 'ALL' && activeTeamMatrixTab !== team) return;
+    
     const recs = teamProjects.filter(p => p.teamName === team);
-    if (!recs.length) return;
+    if (!recs.length) return; // don't show empty sections
+
     const sec = document.createElement('div');
     sec.className = 'team-section';
+    
     let cards = recs.map(p =>
       '<div class="profile-card" onclick="openProjectPopup(\'' + p.id + '\')">' +
         '<div class="card-name" style="margin-bottom:6px;">' + escHtml(p.projectName) + '</div>' +
@@ -1325,13 +1400,15 @@ function renderGroupedTeamProjects() {
         '<div class="card-desc" style="margin-top:6px;"><strong>Achievements:</strong> ' + bulletify(p.keyAchievements) + '</div>' +
       '</div>'
     ).join('');
+
     sec.innerHTML =
       '<div class="team-header-container">' +
         '<div class="team-banner-title">' + escHtml(team) + '</div>' +
         '<button class="btn-download-sec" onclick="event.stopPropagation();dlTeamDoc(\'' + escHtml(team) + '\')">&#11015; Download ' + escHtml(team) + ' data</button>' +
       '</div>' +
       '<div class="profile-grid">' + cards + '</div>';
-    c.appendChild(sec);
+      
+    wrapper.appendChild(sec);
   });
 }
 
