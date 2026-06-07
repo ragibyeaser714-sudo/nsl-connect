@@ -169,6 +169,17 @@
       color:var(--warn); margin-bottom:1rem; display:none;
     }
     .auth-err.show { display:block; }
+    .auth-ok {
+      background:rgba(52,211,153,0.08); border:1px solid rgba(52,211,153,0.3);
+      border-radius:4px; padding:0.6rem 0.9rem;
+      font-family:'Share Tech Mono',monospace; font-size:0.67rem;
+      color:var(--accent3); margin-bottom:1rem; display:none;
+    }
+    .auth-ok.show { display:block; }
+    .auth-domain-hint {
+      font-family:'Share Tech Mono',monospace; font-size:0.55rem;
+      color:var(--text3); letter-spacing:0.08em; margin-top:4px;
+    }
     .btn-auth {
       width:100%; font-family:'Barlow Condensed',sans-serif;
       font-weight:700; font-size:1rem; letter-spacing:0.1em; text-transform:uppercase;
@@ -585,7 +596,7 @@
 
       <div class="auth-field">
         <label>Email Address</label>
-        <input type="email" id="login-email" placeholder="you@company.com"
+        <input type="email" id="login-email" placeholder="you@neural-semiconductor.com"
                onkeydown="if(event.key==='Enter') doLogin()" autocomplete="email"/>
       </div>
       <div class="auth-field">
@@ -598,6 +609,14 @@
       </div>
 
       <button class="btn-auth" id="btn-login" onclick="doLogin()">Sign In</button>
+
+      <div style="text-align:right;margin-top:8px;">
+        <button onclick="switchPanel('forgot')"
+                style="background:none;border:none;color:var(--text3);font-family:'Share Tech Mono',monospace;
+                       font-size:0.62rem;cursor:pointer;letter-spacing:0.08em;text-decoration:underline;">
+          Forgot password?
+        </button>
+      </div>
 
       <div class="auth-divider">
         <hr/><span>NEW TO NSL CONNECT?</span><hr/>
@@ -627,8 +646,8 @@
         </div>
       </div>
       <div class="auth-field">
-        <label>Email Address</label>
-        <input type="email" id="su-email" placeholder="you@company.com"
+        <label>Email Address <span style="color:var(--accent);font-size:0.55rem;letter-spacing:0.05em;">(@neural-semiconductor.com only)</span></label>
+        <input type="email" id="su-email" placeholder="you@neural-semiconductor.com"
                onkeydown="if(event.key==='Enter') doSignup()" autocomplete="email"/>
       </div>
       <div class="auth-field">
@@ -664,8 +683,33 @@
       </div>
     </div>
 
-  </div>
-</div>
+    <!-- FORGOT PASSWORD PANEL -->
+    <div class="auth-panel" id="panel-forgot">
+      <div class="auth-eyebrow">// password_recovery</div>
+      <div class="auth-heading">Reset Password</div>
+      <div class="auth-err" id="forgot-err"></div>
+      <div class="auth-ok"  id="forgot-ok">&#10003; Reset link sent. Check your inbox (and spam folder).</div>
+
+      <p style="font-size:0.8rem;color:var(--text2);margin-bottom:1.2rem;line-height:1.6;">
+        Enter your registered email and we'll send you a reset link.
+      </p>
+
+      <div class="auth-field">
+        <label>Email Address <span style="color:var(--accent);font-size:0.55rem;letter-spacing:0.05em;">(@neural-semiconductor.com only)</span></label>
+        <input type="email" id="forgot-email" placeholder="you@neural-semiconductor.com"
+               onkeydown="if(event.key==='Enter') doForgotPassword()" autocomplete="email"/>
+      </div>
+
+      <button class="btn-auth" id="btn-forgot" onclick="doForgotPassword()">Send Reset Link</button>
+
+      <div class="auth-divider"><hr/><span>REMEMBERED IT?</span><hr/></div>
+      <div class="auth-switch">
+        <button onclick="switchPanel('login')">&#8592; Back to Sign In</button>
+      </div>
+    </div>
+
+  </div><!-- /.auth-card -->
+</div><!-- /#auth-overlay -->
 
 
 <!-- ================================================================
@@ -710,6 +754,14 @@
           <h2 class="page-heading">All Team Projects</h2>
         </div>
         <button class="btn-primary" onclick="showTeamProjectForm()">+ Add Project Detail</button>
+      </div>
+      <div class="directory-toolbar" style="margin-bottom:1.4rem;">
+        <div class="search-wrap">
+          <span class="search-icon">&#8981;</span>
+          <input type="text" id="projects-search-input"
+                 placeholder="Search by project name or process node..."
+                 oninput="filterProjects()"/>
+        </div>
       </div>
       <div id="teams-distribution-wrapper"></div>
     </div>
@@ -1115,9 +1167,12 @@ window.loadAllData = async function() {
 ---------------------------------------------------------------- */
 
 function switchPanel(panel) {
-  document.getElementById('panel-login').classList.toggle('active', panel === 'login');
-  document.getElementById('panel-signup').classList.toggle('active', panel === 'signup');
-  ['login-err','signup-err'].forEach(id => document.getElementById(id).classList.remove('show'));
+  document.querySelectorAll('.auth-panel').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('panel-' + panel);
+  if (target) target.classList.add('active');
+  ['login-err','signup-err','forgot-err','forgot-ok'].forEach(id => {
+    const el = document.getElementById(id); if (el) el.classList.remove('show');
+  });
 }
 
 function toggleEye(inputId, btn) {
@@ -1176,6 +1231,9 @@ async function doLogin() {
   const email = document.getElementById('login-email').value.trim();
   const pwd   = document.getElementById('login-pwd').value;
   if (!email || !pwd) { showAuthErr('login-err', 'Please enter your email and password.'); return; }
+  if (!email.endsWith('@neural-semiconductor.com')) {
+    showAuthErr('login-err', 'Only @neural-semiconductor.com accounts are permitted.'); return;
+  }
 
   const btn = document.getElementById('btn-login');
   btn.disabled = true; btn.textContent = 'Signing in…';
@@ -1199,6 +1257,9 @@ async function doSignup() {
 
   if (!fn || !ln) { showAuthErr('signup-err', 'Please enter your first and last name.'); return; }
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showAuthErr('signup-err', 'Please enter a valid email address.'); return; }
+  if (!email.endsWith('@neural-semiconductor.com')) {
+    showAuthErr('signup-err', 'Only @neural-semiconductor.com email addresses are permitted.'); return;
+  }
   if (pwd.length < 6) { showAuthErr('signup-err', 'Password must be at least 6 characters.'); return; }
   if (pwd !== pwd2)   { showAuthErr('signup-err', 'Passwords do not match.'); return; }
 
@@ -1219,6 +1280,35 @@ async function doLogout() {
   await fb().signOut(auth());
   // onAuthStateChanged re-shows the auth overlay automatically
   profiles = []; teamProjects = [];
+}
+
+/* FORGOT PASSWORD */
+async function doForgotPassword() {
+  const errEl = document.getElementById('forgot-err');
+  const okEl  = document.getElementById('forgot-ok');
+  errEl.classList.remove('show');
+  okEl.classList.remove('show');
+  const email = document.getElementById('forgot-email').value.trim();
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    showAuthErr('forgot-err', 'Please enter a valid email address.'); return;
+  }
+  if (!email.endsWith('@neural-semiconductor.com')) {
+    showAuthErr('forgot-err', 'Only @neural-semiconductor.com accounts are permitted.'); return;
+  }
+  const btn = document.getElementById('btn-forgot');
+  btn.disabled = true; btn.textContent = 'Sending\u2026';
+  try {
+    const { sendPasswordResetEmail } = await import(
+      'https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js'
+    );
+    await sendPasswordResetEmail(auth(), email);
+    okEl.classList.add('show');
+    document.getElementById('forgot-email').value = '';
+  } catch(e) {
+    showAuthErr('forgot-err', friendlyAuthError(e.code));
+  } finally {
+    btn.disabled = false; btn.textContent = 'Send Reset Link';
+  }
 }
 
 
