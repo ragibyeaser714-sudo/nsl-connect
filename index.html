@@ -972,7 +972,7 @@
           </div>
         </div>
         <div class="form-section">
-          <div class="form-section-title">04 &middot; Layout Project Experience Logs</div>
+          <div class="form-section-title">04 &middot; Project Experience Logs</div>
           <div id="dynamic-engineer-projects-box"></div>
           <button class="btn-add-project" onclick="addEngineerProjectFormBlock()">&#xff0b; ADD DETAILED PROJECT RECORD</button>
         </div>
@@ -2083,7 +2083,7 @@ function dlEngDoc(p) {
     '<p><strong>Experience:</strong> ' + escHtml(p.yoe) + '</p>' +
     '<p><strong>University:</strong> ' + escHtml(p.uni||'\u2014') + '</p>' +
     '<p><strong>Education:</strong> ' + escHtml(p.edu||'\u2014') + '</p>' +
-    '<p><strong>Key Expertise:</strong> ' + escHtml(p.keyexp) + '</p><h2>LAYOUT PROJECT RECORDS</h2>';
+    '<p><strong>Key Expertise:</strong> ' + escHtml(p.keyexp) + '</p><h2>PROJECT RECORDS</h2>';
   if (!p.experienceLogs?.length) { inner += '<p style="font-style:italic;color:#555">No project logs compiled.</p>'; }
   else {
     let rows = '<tr><th style="width:25%">Project Name</th><th style="width:15%">Node</th><th style="width:15%">Duration</th><th style="width:45%">Description</th></tr>';
