@@ -168,15 +168,13 @@
     .strength-lbl { font-family:'Share Tech Mono',monospace; font-size:0.56rem; color:var(--text3); }
     .auth-err {
       background:rgba(248,113,113,0.08); border:1px solid rgba(248,113,113,0.3);
-      border-radius:4px; padding:0.6rem 0.9rem;
-      font-family:'Share Tech Mono',monospace; font-size:0.67rem;
+      border-radius:4px; padding:0.6rem 0.9rem; font-family:'Share Tech Mono',monospace; font-size:0.67rem;
       color:var(--warn); margin-bottom:1rem; display:none;
     }
     .auth-err.show { display:block; }
     .auth-ok {
       background:rgba(52,211,153,0.08); border:1px solid rgba(52,211,153,0.3);
-      border-radius:4px; padding:0.6rem 0.9rem;
-      font-family:'Share Tech Mono',monospace; font-size:0.67rem;
+      border-radius:4px; padding:0.6rem 0.9rem; font-family:'Share Tech Mono',monospace; font-size:0.67rem;
       color:var(--accent3); margin-bottom:1rem; display:none;
     }
     .auth-ok.show { display:block; }
@@ -194,15 +192,11 @@
     .btn-auth:disabled { opacity:0.6; cursor:not-allowed; filter:none; }
     .auth-divider { display:flex; align-items:center; gap:0.75rem; margin:1.2rem 0; }
     .auth-divider hr { flex:1; border:none; border-top:1px solid var(--border); }
-    .auth-divider span {
-      font-family:'Share Tech Mono',monospace; font-size:0.56rem;
-      color:var(--text3); white-space:nowrap;
-    }
+    .auth-divider span { font-family:'Share Tech Mono',monospace; font-size:0.56rem; color:var(--text3); white-space:nowrap; }
     .auth-switch { text-align:center; font-size:0.8rem; color:var(--text2); }
     .auth-switch button {
       background:none; border:none; color:var(--accent); cursor:pointer;
-      font-size:0.8rem; font-family:'Barlow',sans-serif;
-      text-decoration:underline; padding:0; margin-left:4px;
+      font-size:0.8rem; font-family:'Barlow',sans-serif; text-decoration:underline; padding:0; margin-left:4px;
     }
 
     /* Email link verification panel */
@@ -228,8 +222,7 @@
       border-radius:20px; padding:4px 12px 4px 6px;
     }
     .user-av {
-      width:26px; height:26px; border-radius:50%;
-      background:var(--accent2);
+      width:26px; height:26px; border-radius:50%; background:var(--accent2);
       display:flex; align-items:center; justify-content:center;
       font-family:'Barlow Condensed',sans-serif; font-size:0.75rem; font-weight:700; color:#fff;
     }
@@ -252,8 +245,7 @@
     header {
       position:sticky; top:0; z-index:100;
       background:var(--header-bg); backdrop-filter:blur(14px);
-      border-bottom:1px solid var(--border);
-      padding:0 2rem; height:64px;
+      border-bottom:1px solid var(--border); padding:0 2rem; height:64px;
       display:flex; align-items:center; justify-content:space-between;
     }
     .logo { display:flex; align-items:center; gap:12px; cursor:pointer; }
@@ -406,8 +398,8 @@
     .profile-card:hover { border-color:var(--border2); background:var(--panel2); transform:translateY(-2px); }
     .card-top { display:flex; align-items:center; gap:0.85rem; margin-bottom:0.8rem; }
     .avatar {
-      width:44px; height:44px; border-radius:4px; background:var(--bg3);
-      border:1px solid var(--border2); display:flex; align-items:center; justify-content:center;
+      width:44px; height:44px; border-radius:4px; background:var(--bg3); border:1px solid var(--border2);
+      display:flex; align-items:center; justify-content:center;
       font-family:'Barlow Condensed',sans-serif; font-size:1.1rem; font-weight:700; color:var(--accent);
     }
     .card-name { font-family:'Barlow Condensed',sans-serif; font-size:1.05rem; font-weight:700; color:var(--text); }
@@ -431,7 +423,6 @@
     }
     .btn-ghost:hover { border-color:var(--accent); color:var(--accent); }
     .btn-ghost.btn-danger:hover { border-color:var(--warn); color:var(--warn); }
-    /* hidden by default — shown by JS based on ownership */
     .btn-ghost.owner-only { display:none; }
     .empty-state { text-align:center; padding:4rem 2rem; color:var(--text3); width:100%; }
 
@@ -444,10 +435,7 @@
       font-family:'Share Tech Mono',monospace; font-size:0.7rem; color:var(--text2);
       background:none; border:none; cursor:pointer; margin-bottom:1.4rem;
     }
-    .form-section {
-      background:var(--panel); border:1px solid var(--border); border-radius:6px;
-      padding:1.5rem; margin-bottom:1rem;
-    }
+    .form-section { background:var(--panel); border:1px solid var(--border); border-radius:6px; padding:1.5rem; margin-bottom:1rem; }
     .form-section-title {
       font-family:'Share Tech Mono',monospace; font-size:0.64rem;
       letter-spacing:0.2em; text-transform:uppercase; color:var(--accent);
@@ -455,258 +443,134 @@
     }
     .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem; }
     .field { margin-bottom:1rem; }
-    .field label {
-      display:block; font-family:'Share Tech Mono',monospace; font-size:0.62rem;
-      color:var(--text3); text-transform:uppercase; margin-bottom:6px;
-    }
+    .field label { display:block; font-family:'Share Tech Mono',monospace; font-size:0.62rem; color:var(--text3); text-transform:uppercase; margin-bottom:6px; }
     .field label .req { color:var(--accent); }
     .field input, .field select, .field textarea {
       width:100%; background:var(--bg3); border:1px solid var(--border); color:var(--text);
-      font-family:'Barlow',sans-serif; font-size:0.85rem; padding:0.6rem 0.8rem;
-      border-radius:3px; outline:none;
+      font-family:'Barlow',sans-serif; font-size:0.85rem; padding:0.6rem 0.8rem; border-radius:4px; outline:none; transition:border-color 0.18s;
     }
     .field input:focus, .field select:focus, .field textarea:focus { border-color:var(--accent2); }
-    .nda-banner {
-      display:flex; align-items:flex-start; gap:0.75rem;
-      background:var(--warn2); border:1px solid rgba(200,100,50,0.28);
-      border-radius:4px; padding:0.85rem 1rem; margin-bottom:1rem;
-    }
-    .nda-text { font-size:0.75rem; color:var(--text2); line-height:1.55; }
-    .project-block { background:var(--bg3); border:1px solid var(--border); border-radius:5px; margin-bottom:0.85rem; }
-    .project-header {
-      display:flex; align-items:center; justify-content:space-between;
-      padding:0.85rem 1rem; background:var(--panel); border-bottom:1px solid var(--border);
-    }
-    .project-num { font-family:'Share Tech Mono',monospace; font-size:0.65rem; color:var(--text2); }
-    .project-remove-btn { background:none; border:none; color:var(--text3); cursor:pointer; font-size:1rem; }
-    .project-remove-btn:hover { color:var(--warn); }
-    .project-body { display:grid; grid-template-columns:1fr 1fr; gap:1rem; padding:1.1rem; }
-    .btn-add-project {
-      display:flex; align-items:center; justify-content:center;
-      font-family:'Share Tech Mono',monospace; font-size:0.72rem; color:var(--accent);
-      background:rgba(0,140,200,0.04); border:1px dashed rgba(0,150,200,0.3);
-      border-radius:4px; padding:0.7rem 1rem; width:100%; cursor:pointer;
-    }
-    .form-actions { display:flex; gap:0.75rem; justify-content:flex-end; margin-top:1.5rem; }
+    .form-actions { display:flex; justify-content:flex-end; gap:0.75rem; margin-top:1.5rem; }
     .btn-cancel {
-      font-family:'Barlow Condensed',sans-serif; padding:0.6rem 1.4rem;
-      background:none; border:1px solid var(--border); color:var(--text2); cursor:pointer;
-      border-radius:3px;
+      font-family:'Barlow Condensed',sans-serif; font-size:0.9rem; font-weight:600; letter-spacing:0.04em;
+      padding:0.55rem 1.4rem; background:none; border:1px solid var(--border2); color:var(--text2); border-radius:3px; cursor:pointer;
     }
+    .btn-cancel:hover { border-color:var(--text3); color:var(--text); }
     .btn-save {
-      font-family:'Barlow Condensed',sans-serif; padding:0.6rem 1.4rem;
-      background:var(--accent3); color:#000; border:none; cursor:pointer; border-radius:3px;
+      font-family:'Barlow Condensed',sans-serif; font-size:0.9rem; font-weight:700; letter-spacing:0.06em;
+      padding:0.55rem 1.6rem; background:var(--accent3); color:#000; border:none; border-radius:3px; cursor:pointer; transition:all 0.2s;
     }
-    .btn-save:disabled { opacity:0.6; cursor:not-allowed; }
+    .btn-save:hover { filter:brightness(1.1); box-shadow:0 0 16px rgba(52,211,153,0.2); }
+    .btn-add-project {
+      width:100%; font-family:'Share Tech Mono',monospace; font-size:0.7rem; letter-spacing:0.05em;
+      padding:0.7rem; background:var(--bg3); border:1px dashed var(--border2); color:var(--accent); border-radius:4px; cursor:pointer; transition:all 0.15s;
+    }
+    .btn-add-project:hover { background:var(--panel); border-color:var(--accent); }
+    .project-block { background:var(--bg2); border:1px solid var(--border); border-radius:4px; margin-bottom:0.8rem; overflow:hidden; }
+    .project-header { display:flex; align-items:center; justify-content:space-between; padding:0.5rem 0.8rem; background:var(--panel2); border-bottom:1px solid var(--border); }
+    .project-num { font-family:'Share Tech Mono',monospace; font-size:0.58rem; color:var(--text3); letter-spacing:0.05em; }
+    .project-remove-btn { background:none; border:none; color:var(--warn); font-size:1.1rem; cursor:pointer; line-height:1; }
+    .project-body { padding:0.85rem; display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.75rem; }
 
     /* ============================================================
-       SECTION 9 — PROFILE DETAIL VIEW
+       SECTION 9 — PROFILE VIEW STYLES
     ============================================================ */
-    .detail-header {
-      display:flex; align-items:flex-start; gap:1.5rem;
-      background:var(--panel); border:1px solid var(--border);
-      border-radius:6px; padding:1.5rem; margin-bottom:1rem;
-      position:relative; flex-wrap:wrap;
-    }
-    .detail-avatar {
-      width:72px; height:72px; border-radius:6px; background:var(--bg3);
-      border:1px solid var(--border2); display:flex; align-items:center; justify-content:center;
-      font-family:'Barlow Condensed',sans-serif; font-size:1.8rem; font-weight:700; color:var(--accent);
-    }
-    .detail-name { font-family:'Barlow Condensed',sans-serif; font-size:1.6rem; font-weight:700; color:var(--text); }
-    .detail-desig { font-size:0.85rem; color:var(--text2); margin-bottom:0.7rem; }
-    .detail-actions { margin-left:auto; display:flex; gap:0.5rem; flex-wrap:wrap; }
-    .detail-section { background:var(--panel); border:1px solid var(--border); border-radius:6px; padding:1.25rem; margin-bottom:1rem; }
-    .detail-section-label { font-family:'Share Tech Mono',monospace; font-size:0.62rem; color:var(--text3); text-transform:uppercase; margin-bottom:0.85rem; }
-    .proj-item { border:1px solid var(--border); border-radius:4px; margin-bottom:0.7rem; }
+    .profile-detail { max-width:880px; width:100%; }
+    .detail-header { display:flex; align-items:center; gap:1.5rem; background:var(--panel); border:1px solid var(--border); border-radius:8px; padding:1.5rem; margin-bottom:1.2rem; flex-wrap:wrap; }
+    .detail-avatar { width:72px; height:72px; border-radius:6px; background:var(--bg3); border:1px solid var(--border2); display:flex; align-items:center; justify-content:center; font-family:'Barlow Condensed',sans-serif; font-size:1.8rem; font-weight:700; color:var(--accent); }
+    .detail-name { font-family:'Barlow Condensed',sans-serif; font-size:1.75rem; font-weight:700; color:var(--text); letter-spacing:0.01em; }
+    .detail-desig { font-size:0.88rem; color:var(--text2); margin-top:2px; }
+    .detail-actions-top { display:flex; gap:0.5rem; margin-top:0.5rem; }
+    .grid-two { display:grid; grid-template-columns:1.1fr 0.9fr; gap:1.2rem; }
+    @media(max-width:768px){ .grid-two { grid-template-columns:1fr; } }
+    .detail-panel { background:var(--panel); border:1px solid var(--border); border-radius:6px; padding:1.25rem; margin-bottom:1.2rem; }
+    .detail-title { font-family:'Share Tech Mono',monospace; font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border); display:flex; justify-content:between; align-items:center; }
+    .meta-list { list-style:none; }
+    .meta-row { display:grid; grid-template-columns:110px 1fr; gap:0.5rem; margin-bottom:0.75rem; font-size:0.82rem; line-height:1.5; }
+    .meta-lbl { font-family:'Share Tech Mono',monospace; color:var(--text3); text-transform:uppercase; font-size:0.66rem; margin-top:2px; }
+    .meta-val { color:var(--text); font-weight:500; }
+    .tools-list { list-style:none; }
+    .tools-row { display:grid; grid-template-columns:135px 1fr; gap:0.6rem; margin-bottom:0.85rem; font-size:0.82rem; line-height:1.45; }
+    .tools-lbl { font-family:'Barlow Condensed',sans-serif; font-weight:600; color:var(--text2); text-transform:uppercase; font-size:0.85rem; letter-spacing:0.02em; }
+    .tools-val { color:var(--text); background:var(--bg3); border:1px solid var(--border); padding:4px 8px; border-radius:3px; font-size:0.8rem; }
+    .proj-item { background:var(--bg2); border:1px solid var(--border); border-radius:4px; margin-bottom:0.7rem; }
     .proj-item-header { display:flex; align-items:center; padding:0.75rem 1rem; background:var(--bg3); flex-wrap:wrap; gap:0.5rem; }
     .proj-item-name { font-family:'Barlow Condensed',sans-serif; font-size:0.95rem; font-weight:600; color:var(--text); }
     .proj-item-body { padding:0.85rem 1rem; background:var(--panel); border-top:1px solid var(--border); }
-    .proj-detail-row { margin-bottom:0.75rem; }
-    .proj-detail-label { font-family:'Share Tech Mono',monospace; font-size:0.58rem; color:var(--text3); text-transform:uppercase; margin-bottom:5px; }
-    .proj-detail-val { font-size:0.82rem; color:var(--text); line-height:1.55; }
-    .meta-grid-display { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1.2rem; }
 
     /* ============================================================
-       SECTION 10 — MODALS, TOASTS & UNDO BAR
+       SECTION 10 — MODAL & TOAST LAYOUTS
     ============================================================ */
-    .modal-backdrop {
-      position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:200;
-      display:none; align-items:center; justify-content:center; padding:1rem; backdrop-filter:blur(3px);
-    }
-    .modal-backdrop.open { display:flex; }
-    .modal {
-      background:var(--panel); border:1px solid var(--border2); border-radius:8px;
-      padding:2rem; max-width:500px; width:100%;
-      box-shadow:0 24px 80px rgba(0,0,0,0.65); max-height:90vh; overflow-y:auto;
-    }
-    .modal-icon { font-size:2rem; margin-bottom:0.75rem; }
-    .modal h3 { font-family:'Barlow Condensed',sans-serif; font-size:1.5rem; font-weight:700; margin-bottom:0.5rem; }
-    .modal p { font-size:0.85rem; color:var(--text2); margin-bottom:1.5rem; line-height:1.5; }
-    .modal-actions { display:flex; justify-content:flex-end; gap:0.75rem; }
-    .toast {
-      position:fixed; bottom:2rem; right:2rem;
-      background:var(--panel); border:1px solid var(--accent3); color:var(--accent3);
-      font-family:'Share Tech Mono',monospace; font-size:0.74rem;
-      padding:0.8rem 1.2rem; border-radius:4px; z-index:999;
-      transform:translateY(80px); opacity:0; transition:all 0.3s ease;
-    }
+    .modal-backdrop { position:fixed; inset:0; background:rgba(3,7,18,0.7); backdrop-filter:blur(4px); z-index:2000; display:none; align-items:center; justify-content:center; padding:1rem; }
+    .modal-backdrop.show { display:flex; }
+    .modal { background:var(--panel); border:1px solid var(--border2); border-radius:8px; padding:2rem; max-width:400px; width:100%; text-align:center; box-shadow:var(--shadow); }
+    .modal-icon { font-size:2.5rem; margin-bottom:0.8rem; }
+    .modal-actions { display:flex; justify-content:center; gap:0.75rem; margin-top:1.5rem; }
+    .toast { position:fixed; bottom:2rem; right:2rem; z-index:5000; background:var(--panel); border-left:4px solid var(--accent3); color:var(--text); font-family:'Share Tech Mono',monospace; font-size:0.75rem; padding:0.8rem 1.4rem; border-radius:4px; box-shadow:var(--shadow); transform:translateY(100px); opacity:0; transition:all 0.3s cubic-bezier(0.175,0.885,0.32,1.275); pointer-events:none; }
     .toast.show { transform:translateY(0); opacity:1; }
-    .undo-bar {
-      position:fixed; bottom:2rem; left:50%;
-      transform:translateX(-50%) translateY(80px);
-      background:var(--panel); border:1px solid var(--warn); color:var(--text);
-      font-family:'Share Tech Mono',monospace; font-size:0.74rem;
-      padding:0.75rem 1.2rem; border-radius:4px; z-index:998;
-      display:flex; align-items:center; gap:1rem; opacity:0; transition:all 0.35s ease;
-    }
-    .undo-bar.show { transform:translateX(-50%) translateY(0); opacity:1; }
-    .btn-undo { font-family:'Barlow Condensed',sans-serif; padding:4px 14px; background:var(--warn); color:#fff; border:none; cursor:pointer; border-radius:2px; }
-
-    /* Loading spinner */
-    #app-loading {
-      position:fixed; inset:0; z-index:9998;
-      background:var(--bg);
-      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem;
-    }
-    #app-loading.hidden { display:none; }
-    .spinner {
-      width:36px; height:36px; border:3px solid var(--border);
-      border-top-color:var(--accent); border-radius:50%;
-      animation:spin 0.75s linear infinite;
-    }
-    @keyframes spin { to { transform:rotate(360deg); } }
-    .loading-label {
-      font-family:'Share Tech Mono',monospace; font-size:0.7rem;
-      color:var(--text3); letter-spacing:0.15em; text-transform:uppercase;
-    }
-
-    /* ============================================================
-       SECTION 11 — RESPONSIVE OVERRIDES
-    ============================================================ */
-    @media (max-width:768px) {
-      header { height:auto; padding:0.8rem 1rem; flex-direction:column; gap:0.8rem; align-items:stretch; }
-      .nav-tabs { margin-left:0; justify-content:flex-start; gap:1rem; border-bottom:1px solid var(--border); padding-bottom:4px; }
-      .header-right { justify-content:space-between; }
-      .app { padding:1rem 1rem 5rem; }
-      .page-header { flex-direction:column; align-items:flex-start; gap:0.8rem; }
-      .btn-primary { width:100%; text-align:center; }
-      .profile-grid { grid-template-columns:1fr; }
-      .form-row, .project-body { grid-template-columns:1fr; gap:0; }
-      .form-section { padding:1rem; }
-      .form-actions { flex-direction:column-reverse; }
-      .form-actions button { width:100%; text-align:center; }
-      .detail-header { flex-direction:column; align-items:stretch; gap:1rem; }
-      .detail-actions { width:100%; justify-content:flex-start; }
-      .detail-actions button { flex:1; text-align:center; min-width:80px; }
-      .toast { left:1rem; right:1rem; bottom:1rem; text-align:center; }
-      .undo-bar { width:calc(100% - 2rem); bottom:1rem; }
-      .user-pill { padding:4px 8px 4px 6px; }
-      .user-nm { display:none; }
-      .auth-card { padding:2rem 1.25rem; }
-    }
+    .undo-bar { position:fixed; bottom:2rem; left:2rem; z-index:4900; background:var(--panel); border:1px solid var(--border2); padding:0.7rem 1.2rem; border-radius:6px; box-shadow:var(--shadow); display:none; align-items:center; gap:12px; font-family:'Share Tech Mono',monospace; font-size:0.72rem; }
+    .undo-bar.show { display:flex; }
+    .btn-undo { background:none; border:none; color:var(--accent); font-family:inherit; font-weight:bold; cursor:pointer; text-decoration:underline; }
   </style>
 </head>
 <body>
 
-<!-- App loading screen -->
-<div id="app-loading">
-  <div class="spinner"></div>
-  <div class="loading-label">Initializing secure connection...</div>
-</div>
-
-<!-- ================================================================
-     AUTH OVERLAY
-================================================================ -->
-<div id="auth-overlay" style="display:none;">
-  <div class="auth-card">
-
-    <div class="auth-logo" onclick="switchPanel('login')" style="cursor:pointer;" title="Back to Sign In">
-      <div class="auth-logo-chip">
-        <img src="image_8afb22.png" alt="NSL Connect Logo" onerror="this.style.display='none'" />
-      </div>
-      <div>
-        <div class="auth-logo-text">NSL <em>Connect</em></div>
-        <div class="auth-logo-sub">VLSI Collaborative Hub</div>
-      </div>
-    </div>
-
-    <!-- LOGIN PANEL -->
-    <div class="auth-panel active" id="panel-login">
-      <div class="auth-eyebrow">// secure_access</div>
-      <div class="auth-heading">Sign In</div>
-      <div class="auth-err" id="login-err"></div>
-      <div class="auth-field">
-        <label>Email Address</label>
-        <input type="email" id="login-email" placeholder="you@neural-semiconductor.com"
-               onkeydown="if(event.key==='Enter') doLogin()" autocomplete="email"/>
-      </div>
-      <div class="auth-field">
-        <label>Password</label>
-        <div class="pwd-wrap">
-          <input type="password" id="login-pwd" placeholder="Enter your password"
-                 onkeydown="if(event.key==='Enter') doLogin()" autocomplete="current-password"/>
-          <button class="pwd-eye" type="button" onclick="toggleEye('login-pwd',this)">&#128065;</button>
+  <div id="auth-overlay">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <div class="auth-logo-chip">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="40" rx="6" fill="#1e293b"/>
+            <path d="M12 14L20 10L28 14L20 18L12 14Z" fill="#38bdf8"/>
+            <path d="M12 21L20 25L28 21" stroke="#34d399" stroke-width="2"/>
+            <path d="M12 27L20 31L28 27" stroke="#0284c7" stroke-width="2"/>
+          </svg>
         </div>
-      </div>
-      <button class="btn-auth" id="btn-login" onclick="doLogin()">Sign In</button>
-      <div style="text-align:right;margin-top:8px;">
-        <button onclick="switchPanel('forgot')"
-          style="background:none;border:none;color:var(--text3);font-family:'Share Tech Mono',monospace;
-                 font-size:0.62rem;cursor:pointer;letter-spacing:0.08em;text-decoration:underline;">
-          Forgot password?
-        </button>
-      </div>
-      <div class="auth-divider"><hr/><span>NEW TO NSL CONNECT?</span><hr/></div>
-      <div class="auth-switch">Don't have an account? <button onclick="switchPanel('signup')">Create one here</button></div>
-    </div>
-
-    <!-- SIGN-UP PANEL — Step 1: provide email, receive verification link -->
-    <div class="auth-panel" id="panel-signup">
-      <div class="auth-eyebrow">// register_account</div>
-      <div class="auth-heading">Create Account</div>
-      <div class="auth-err" id="signup-err"></div>
-      <div class="auth-ok"  id="signup-ok"></div>
-
-      <!-- Step 1: Email entry -->
-      <div id="signup-step-email">
-        <p style="font-size:0.8rem;color:var(--text2);line-height:1.6;margin-bottom:1.1rem;">
-          Enter your NSL email address. A secure sign-up link will be sent to your inbox.
-          You must click it before you can set your name and password.
-        </p>
-        <div class="auth-field">
-          <label>Email Address <span style="color:var(--accent);font-size:0.55rem;">(@neural-semiconductor.com only)</span></label>
-          <input type="email" id="su-email" placeholder="you@neural-semiconductor.com"
-                 autocomplete="email" onkeydown="if(event.key==='Enter') doSendSignupLink()"/>
-        </div>
-        <button class="btn-auth" id="btn-send-link" onclick="doSendSignupLink()">Send Verification Link</button>
-      </div>
-
-      <!-- Step 1 success: tell user to check inbox (hidden until link sent) -->
-      <div id="signup-step-sent" style="display:none;">
-        <div class="verify-info-box">
-          <strong>&#9993; Verification link sent!</strong>
-          Check your inbox at:
-          <span class="verify-email-chip" id="sent-email-display"></span>
-          <br/><br/>
-          Click the link in that email. Once verified, you will be brought back here to complete your registration.
-        </div>
-        <div style="text-align:center;margin-top:0.75rem;">
-          <button onclick="cancelSignupLink()"
-            style="background:none;border:none;color:var(--text3);font-family:'Share Tech Mono',monospace;
-                   font-size:0.62rem;cursor:pointer;text-decoration:underline;">&#8592; Use a different email</button>
+        <div>
+          <div class="auth-logo-text">NSL <em>Connect</em></div>
+          <div class="auth-logo-sub">Custom IC Tracking Core</div>
         </div>
       </div>
 
-      <!-- Step 2: Complete registration (shown only after email link is confirmed) -->
-      <div id="signup-step-complete" style="display:none;">
-        <p style="font-size:0.8rem;color:var(--text2);line-height:1.6;margin-bottom:1rem;">
-          &#10003; Email verified. Now set your name and password to finish creating your account.
-        </p>
+      <div class="auth-panel active" id="panel-register-start">
+        <div class="auth-eyebrow">// identity_registration</div>
+        <h3 class="auth-heading">Create Account</h3>
+        <div class="auth-err" id="signup-err"></div>
+        <div class="auth-ok" id="signup-ok"></div>
+
+        <div id="signup-step-input">
+          <div class="auth-field">
+            <label>Corporate Access Email</label>
+            <input type="email" id="su-email" placeholder="username@neuralasiamachinery.com" autocomplete="email"/>
+            <div class="auth-domain-hint">Must match authorized corporate domain extensions.</div>
+          </div>
+          <button class="btn-auth" id="btn-send-link" onclick="sendAuthLink()">Send Verification Link</button>
+        </div>
+
+        <div id="signup-step-sent" style="display:none;">
+          <div class="verify-info-box">
+            <strong>Transmission Finalized</strong>
+            A magic authorization link was successfully dispatched. Click the button inside the email tracking log to unlock the portal vectors.
+          </div>
+          <button class="btn-auth" style="background:var(--bg3);border:1px solid var(--border2);color:var(--text2);" onclick="resetSignupStep()">← Back / Re-enter Email</button>
+        </div>
+
+        <div class="auth-divider"><hr/><span>OR LOGIN PROTOCOL</span><hr/></div>
+        <div class="auth-switch">Already registered? <button onclick="switchPanel('login')">Sign in here</button></div>
+      </div>
+
+      <div class="auth-panel" id="panel-register-complete">
+        <div class="auth-eyebrow">// security_profile_completion</div>
+        <h3 class="auth-heading">Complete Setup</h3>
+        <div class="auth-err" id="complete-err"></div>
+        <div class="verify-info-box" style="margin-bottom:1.2rem;">
+          Verified Session Vector:
+          <span class="verify-email-chip" id="complete-email-lbl">---</span>
+        </div>
         <div class="auth-row">
           <div class="auth-field">
             <label>First Name</label>
-            <input type="text" id="su-fname" placeholder="e.g. Tariq" autocomplete="given-name"/>
+            <input type="text" id="su-fname" placeholder="e.g. Arif" autocomplete="given-name"/>
           </div>
           <div class="auth-field">
             <label>Last Name</label>
@@ -716,9 +580,8 @@
         <div class="auth-field">
           <label>Password</label>
           <div class="pwd-wrap">
-            <input type="password" id="su-pwd" placeholder="Min. 6 characters"
-                   oninput="evalStrength(this.value)" autocomplete="new-password"/>
-            <button class="pwd-eye" type="button" onclick="toggleEye('su-pwd',this)">&#128065;</button>
+            <input type="password" id="su-pwd" placeholder="Min. 6 characters" oninput="evalStrength(this.value)" autocomplete="new-password"/>
+            <button class="pwd-eye" type="button" onclick="toggleEye('su-pwd',this)">👁</button>
           </div>
           <div class="strength-wrap" id="strength-wrap">
             <div class="strength-bar"><div class="strength-fill" id="strength-fill"></div></div>
@@ -729,114 +592,121 @@
           <label>Confirm Password</label>
           <div class="pwd-wrap">
             <input type="password" id="su-pwd2" placeholder="Re-enter your password" autocomplete="new-password"/>
-            <button class="pwd-eye" type="button" onclick="toggleEye('su-pwd2',this)">&#128065;</button>
+            <button class="pwd-eye" type="button" onclick="toggleEye('su-pwd2',this)">👁</button>
           </div>
         </div>
         <button class="btn-auth" id="btn-complete-signup" onclick="doCompleteSignup()">Complete Registration</button>
+        <div class="auth-divider"><hr/><span>ALREADY REGISTERED?</span><hr/></div>
+        <div class="auth-switch">Already have an account? <button onclick="switchPanel('login')">Sign in here</button></div>
       </div>
 
-      <div class="auth-divider"><hr/><span>ALREADY REGISTERED?</span><hr/></div>
-      <div class="auth-switch">Already have an account? <button onclick="switchPanel('login')">Sign in here</button></div>
-    </div>
-
-    <!-- FORGOT PASSWORD PANEL -->
-    <div class="auth-panel" id="panel-forgot">
-      <div class="auth-eyebrow">// password_recovery</div>
-      <div class="auth-heading">Reset Password</div>
-      <div class="auth-err" id="forgot-err"></div>
-      <div class="auth-ok"  id="forgot-ok">&#10003; Reset link sent. Check your inbox (and spam folder).</div>
-      <p style="font-size:0.8rem;color:var(--text2);margin-bottom:1.2rem;line-height:1.6;">
-        Enter your registered email and we'll send you a reset link.
-      </p>
-      <div class="auth-field">
-        <label>Email Address <span style="color:var(--accent);font-size:0.55rem;">(@neural-semiconductor.com only)</span></label>
-        <input type="email" id="forgot-email" placeholder="you@neural-semiconductor.com"
-               onkeydown="if(event.key==='Enter') doForgotPassword()" autocomplete="email"/>
+      <div class="auth-panel" id="panel-login">
+        <div class="auth-eyebrow">// user_login_gate</div>
+        <h3 class="auth-heading">Sign In Portal</h3>
+        <div class="auth-err" id="login-err"></div>
+        <div class="auth-field">
+          <label>Corporate Account Email</label>
+          <input type="email" id="li-email" placeholder="yourname@neuralasiamachinery.com" autocomplete="email"/>
+        </div>
+        <div class="auth-field">
+          <label style="display:flex;justify-content:space-between;">
+            <span>Password Vector</span>
+            <button onclick="switchPanel('forgot')" style="background:none;border:none;color:var(--accent);font-family:inherit;font-size:0.58rem;cursor:pointer;text-transform:uppercase;letter-spacing:0.05em;">Forgot?</button>
+          </label>
+          <div class="pwd-wrap">
+            <input type="password" id="li-pwd" placeholder="Enter security passphrase" autocomplete="current-password"/>
+            <button class="pwd-eye" type="button" onclick="toggleEye('li-pwd',this)">👁</button>
+          </div>
+        </div>
+        <button class="btn-auth" id="btn-login" onclick="doLogin()">Authorize Vector</button>
+        <div class="auth-divider"><hr/><span>NEW NODE ENTRY</span><hr/></div>
+        <div class="auth-switch">Need a workspace core? <button onclick="switchPanel('register-start')">Create account</button></div>
       </div>
-      <button class="btn-auth" id="btn-forgot" onclick="doForgotPassword()">Send Reset Link</button>
-      <div class="auth-divider"><hr/><span>REMEMBERED IT?</span><hr/></div>
-      <div class="auth-switch"><button onclick="switchPanel('login')">&#8592; Back to Sign In</button></div>
-    </div>
 
+      <div class="auth-panel" id="panel-forgot">
+        <div class="auth-eyebrow">// password_recovery</div>
+        <h3 class="auth-heading">Reset Password</h3>
+        <div class="auth-err" id="forgot-err"></div>
+        <div class="auth-ok" id="forgot-ok">✓ Reset link sent. Check your inbox (and spam folder).</div>
+        <p style="font-size:0.8rem;color:var(--text2);margin-bottom:1.2rem;line-height:1.6;">
+          Enter your registered email and we'll send you a reset link.
+        </p>
+        <div class="auth-field">
+          <label>Your Account Email</label>
+          <input type="email" id="forgot-email" placeholder="yourname@neuralasiamachinery.com"/>
+        </div>
+        <button class="btn-auth" id="btn-forgot" onclick="doForgotPassword()">Transmit Recover Link</button>
+        <div class="auth-divider"><hr/><span>RETURN VECTOR</span><hr/></div>
+        <div class="auth-switch">Remembered metrics? <button onclick="switchPanel('login')">Back to Sign in</button></div>
+      </div>
+
+    </div>
   </div>
-</div>
 
 
-<!-- ================================================================
-     MAIN APPLICATION
-================================================================ -->
-<div id="main-app">
-
-  <header>
-    <div class="logo" onclick="showProjectsHome()">
-      <div class="logo-icon">
-        <img src="image_8afb22.png" alt="NSL Connect Logo" onerror="this.style.display='none'" />
-      </div>
-      <div>
-        <div class="logo-text">NSL <span>Connect</span></div>
-        <div class="logo-sub">VLSI Collaborative Hub</div>
-      </div>
-    </div>
-
-    <div class="nav-tabs">
-      <button class="nav-item active" id="tab-projects"  onclick="showProjectsHome()">All Projects</button>
-      <button class="nav-item"        id="tab-directory" onclick="showDirectory()">Engineers Directory</button>
-    </div>
-
-    <div class="header-right">
-      <div class="header-status"><div class="status-dot"></div>SYSTEM ONLINE</div>
-      <div class="user-pill" id="user-pill">
-        <div class="user-av" id="user-av">??</div>
-        <span class="user-nm" id="user-nm">User</span>
-        <button class="btn-signout" onclick="doLogout()">Sign Out</button>
-      </div>
-      <button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()">&#127769;</button>
-    </div>
-  </header>
-
-  <div class="app">
-
-    <!-- VIEW: All Projects Home -->
-    <div id="view-projects-home" class="view active">
-      <div class="page-header">
+  <div id="main-app">
+    <header>
+      <div class="logo" onclick="showProjectsHome()">
+        <div class="logo-icon">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="40" rx="6" fill="#1e293b"/>
+            <path d="M12 14L20 10L28 14L20 18L12 14Z" fill="#38bdf8"/>
+            <path d="M12 21L20 25L28 21" stroke="#34d399" stroke-width="2"/>
+            <path d="M12 27L20 31L28 27" stroke="#0284c7" stroke-width="2"/>
+          </svg>
+        </div>
         <div>
-          <div class="page-eyebrow">// team_specifications</div>
-          <h2 class="page-heading">All Team Projects</h2>
-        </div>
-        <button class="btn-primary" onclick="showTeamProjectForm()">+ Add Project Detail</button>
-      </div>
-      <div class="directory-toolbar" style="margin-bottom:1.4rem;">
-        <div class="search-wrap">
-          <span class="search-icon">&#8981;</span>
-          <input type="text" id="projects-search-input"
-                 placeholder="Search by project name or process node..."
-                 oninput="filterProjects()"/>
+          <div class="logo-text">NSL <span>Connect</span></div>
+          <div class="logo-sub">Custom IC Tracking Core</div>
         </div>
       </div>
-      <div id="teams-distribution-wrapper"></div>
-    </div>
 
-    <!-- VIEW: Add / Edit Project Form -->
-    <div id="view-project-upload-form" class="view">
-      <div class="form-container">
-        <button class="back-btn" onclick="showProjectsHome()">&#8592; BACK TO ALL PROJECTS</button>
-        <div class="page-header" style="margin-bottom:1.2rem;">
+      <nav class="nav-tabs">
+        <button class="nav-item" id="tab-projects" onclick="showProjectsHome()">Specifications</button>
+        <button class="nav-item" id="tab-directory" onclick="showDirectory()">Engineers Directory</button>
+      </nav>
+
+      <div class="header-right">
+        <div class="header-status">
+          <div class="status-dot"></div>
+          <span>GRID_LIVE</span>
+        </div>
+        <button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()">🌙</button>
+        <div class="user-pill">
+          <div class="user-av" id="user-avatar-p">U</div>
+          <div class="user-nm" id="user-name-lbl">Loading...</div>
+          <button class="btn-signout" onclick="doSignout()">Signout</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="app">
+
+      <div id="view-projects-home" class="view">
+        <div class="page-header">
           <div>
-            <div class="page-eyebrow">// project_logger</div>
-            <h2 class="page-heading" id="project-form-heading">Describe Project Specifications</h2>
+            <div class="page-eyebrow">// project_specifications</div>
+            <h2 class="page-heading">IP Design Specifications</h2>
           </div>
+          <button class="btn-primary" onclick="showProjectForm()">+ Create Specification</button>
         </div>
-        <div class="nda-banner">
-          <div class="nda-text">
-            <strong>NDA Preservation Rule:</strong> Describe layout parameters at a high level.
-            Each line in Goal / Achievement will be shown as a bullet point automatically.
+        <div id="team-sections-container"></div>
+      </div>
+
+      <div id="view-project-form" class="view">
+        <div class="form-container">
+          <button class="back-btn" onclick="showProjectsHome()">← BACK TO LOG CORES</button>
+          <div class="page-header" style="margin-bottom:1.5rem;">
+            <div>
+              <div class="page-eyebrow" id="form-proj-eyebrow">// core_spec_init</div>
+              <h2 class="page-heading" id="form-proj-title">Initialize Specification</h2>
+            </div>
           </div>
-        </div>
-        <div class="form-section">
-          <div class="form-section-title">Project Context &amp; Parameters</div>
-          <div class="form-row">
+
+          <div class="form-section">
+            <div class="form-section-title">01 &middot; Core Team Anchor</div>
             <div class="field">
-              <label>Select Originating Team <span class="req">*</span></label>
+              <label>Select Team System <span class="req">*</span></label>
               <select id="proj-team-select" onchange="toggleCustomTeamField()">
                 <option value="Analog & Mixed Signal">Analog & Mixed Signal</option>
                 <option value="GPIO">GPIO</option>
@@ -851,6 +721,7 @@
               <input type="text" id="proj-custom-team" placeholder="e.g., Standard I/O Team"/>
             </div>
           </div>
+
           <div class="form-row">
             <div class="field">
               <label>Project Name <span class="req">*</span></label>
@@ -864,6 +735,7 @@
               </div>
             </div>
           </div>
+
           <div class="field">
             <label>Goal (each line = one bullet) <span class="req">*</span></label>
             <textarea id="proj-goal-input" rows="4" placeholder="Type each individual design target on a fresh line..."></textarea>
@@ -872,1552 +744,1279 @@
             <label>Key Achievements (each line = one bullet) <span class="req">*</span></label>
             <textarea id="proj-achv-input" rows="4" placeholder="Type each single milestone on a separate line..."></textarea>
           </div>
-        </div>
-        <div class="form-actions">
-          <button class="btn-cancel" onclick="showProjectsHome()">Cancel</button>
-          <button class="btn-save" id="btn-save-project" onclick="saveTeamProject()">UPLOAD SPECIFICATION</button>
-        </div>
-      </div>
-    </div>
 
-    <!-- VIEW: Engineers Directory -->
-    <div id="view-directory" class="view">
-      <div class="page-header">
-        <div>
-          <div class="page-eyebrow">// engineer_registry</div>
-          <h2 class="page-heading">Team Directory</h2>
-        </div>
-        <button class="btn-primary" onclick="showEngineerForm()">+ Add Engineer Profile</button>
-      </div>
-      <div class="stats-bar">
-        <div class="stat-pill">Engineers Counted: <span id="stat-count">0</span></div>
-        <div class="stat-pill">Active Nodes Logged: <span id="stat-nodes">&#8212;</span></div>
-      </div>
-      <div class="directory-toolbar">
-        <div class="search-wrap">
-          <span class="search-icon">&#8981;</span>
-          <input type="text" id="search-input"
-                 placeholder="Search profiles by name, background expertise..."
-                 oninput="filterProfiles()"/>
+          <div class="form-actions">
+            <button class="btn-cancel" onclick="showProjectsHome()">Cancel</button>
+            <button class="btn-save" id="btn-save-project" onclick="saveTeamProject()">UPLOAD SPECIFICATION</button>
+          </div>
         </div>
       </div>
-      <div class="nodes-filter-bar" id="directory-nodes-filter"></div>
-      <div class="profile-grid" id="profile-grid"></div>
-    </div>
 
-    <!-- VIEW: Profile Form (Add / Edit) -->
-    <div id="view-profile-form" class="view">
-      <div class="form-container">
-        <button class="back-btn" onclick="showDirectory()">&#8592; BACK TO DIRECTORY</button>
-        <div class="page-header" style="margin-bottom:1.2rem;">
+      <div id="view-directory" class="view">
+        <div class="page-header">
           <div>
-            <div class="page-eyebrow">// profile_format_builder</div>
-            <h2 class="page-heading" id="profile-form-heading">New Profile Setup</h2>
+            <div class="page-eyebrow">// engineer_registry</div>
+            <h2 class="page-heading">Team Directory</h2>
+          </div>
+          <button class="btn-primary" onclick="showEngineerForm()">+ Add Engineer Profile</button>
+        </div>
+
+        <div class="stats-bar">
+          <div class="stat-pill">Engineers Counted: <span id="stat-count">0</span></div>
+          <div class="stat-pill">Active Nodes Logged: <span id="stat-nodes">None</span></div>
+        </div>
+
+        <div class="directory-toolbar">
+          <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="search-input" placeholder="Search profiles by name, university, tracking tools..." oninput="filterProfiles()"/>
           </div>
         </div>
-        <div class="form-section">
-          <div class="form-section-title">01 &middot; Background Information</div>
-          <div class="form-row">
-            <div class="field">
-              <label>Full Name <span class="req">*</span></label>
-              <input type="text" id="ep-name" placeholder="Ragib Yeaser"/>
-            </div>
-            <div class="field">
-              <label>Years of Experience <span class="req">*</span></label>
-              <input type="text" id="ep-yoe" placeholder="e.g., 5 Years 5 Months"/>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="field">
-              <label>University <span class="req">*</span></label>
-              <input type="text" id="ep-uni" placeholder="Engineering Institution"/>
-            </div>
-            <div class="field">
-              <label>Education Background <span class="req">*</span></label>
-              <input type="text" id="ep-edu" placeholder="e.g., Master of Science"/>
+
+        <div class="nodes-filter-bar" id="directory-nodes-filter"></div>
+        <div class="profile-grid" id="directory-profiles-target"></div>
+      </div>
+
+      <div id="view-engineer-form" class="view">
+        <div class="form-container">
+          <button class="back-btn" onclick="showDirectory()">← BACK TO DIRECTORY MAP</button>
+          <div class="page-header" style="margin-bottom:1.5rem;">
+            <div>
+              <div class="page-eyebrow" id="form-eng-eyebrow">// custom_eng_init</div>
+              <h2 class="page-heading" id="form-eng-title">Add Engineer Matrix</h2>
             </div>
           </div>
-          <div class="field">
-            <label>Key Expertise <span class="req">*</span></label>
-            <input type="text" id="ep-keyexp" placeholder="e.g., AMS Custom Layout, FinFET Layout"/>
-          </div>
-        </div>
-        <div class="form-section">
-          <div class="form-section-title">02 &middot; Tool Ecosystem Focus</div>
-          <div class="form-row">
-            <div class="field"><label>Circuit Design &amp; Simulation</label><input type="text" id="ep-t-circuit" placeholder="e.g., Cadence Virtuoso"/></div>
-            <div class="field"><label>Layout Design</label><input type="text" id="ep-t-layout" placeholder="e.g., Virtuoso Layout Editor"/></div>
-          </div>
-          <div class="form-row">
-            <div class="field"><label>Physical Verification</label><input type="text" id="ep-t-phys" placeholder="e.g., Calibre, PVS"/></div>
-            <div class="field"><label>Parasitic Extraction</label><input type="text" id="ep-t-parasitic" placeholder="e.g., StarRC, Quantus"/></div>
-          </div>
-          <div class="form-row">
-            <div class="field"><label>Reliability Validation</label><input type="text" id="ep-t-reliability" placeholder="e.g., Totem"/></div>
-            <div class="field"><label>Project Management</label><input type="text" id="ep-t-pm" placeholder="e.g., ClioSoft SOS"/></div>
-          </div>
-        </div>
-        <div class="form-section">
-          <div class="form-section-title">03 &middot; Base Foundations</div>
-          <div class="form-row">
-            <div class="field">
-              <label>Technology Base Nodes <span class="req">*</span></label>
-              <div class="tags-input-style-container">
-                <div id="ep-b-tech-tags" style="display:flex;flex-wrap:wrap;gap:4px;"></div>
-                <input type="text" id="ep-b-tech" placeholder="Press Space or Comma"/>
+
+          <div class="form-section">
+            <div class="form-section-title">01 &middot; Core Parameters</div>
+            <div class="form-row">
+              <div class="field">
+                <label>Full Legal Name <span class="req">*</span></label>
+                <input type="text" id="ep-name" placeholder="e.g. Ragib Yeaser"/>
+              </div>
+              <div class="field">
+                <label>Years of Experience <span class="req">*</span></label>
+                <input type="text" id="ep-yoe" placeholder="e.g. 5 Years 5 Months"/>
               </div>
             </div>
-            <div class="field"><label>Foundry Background</label><input type="text" id="ep-b-foundry" placeholder="e.g., TSMC, Samsung"/></div>
-            <div class="field"><label>Process Types</label><input type="text" id="ep-b-process" placeholder="e.g., FinFET, BCD"/></div>
+            <div class="form-row">
+              <div class="field">
+                <label>University Institution <span class="req">*</span></label>
+                <input type="text" id="ep-uni" placeholder="University Name"/>
+              </div>
+              <div class="field">
+                <label>Educational Degree Background <span class="req">*</span></label>
+                <input type="text" id="ep-edu" placeholder="e.g. Master of Science in Electrical and Computer Engineering"/>
+              </div>
+            </div>
+            <div class="field">
+              <label>Key Expertise <span class="req">*</span></label>
+              <input type="text" id="ep-keyexp" placeholder="e.g. AMS Custom Layout, HV layout, FinFET Layout"/>
+            </div>
           </div>
-        </div>
-        <div class="form-section">
-          <div class="form-section-title">04 &middot; Layout Project Experience Logs</div>
-          <div id="dynamic-engineer-projects-box"></div>
-          <button class="btn-add-project" onclick="addEngineerProjectFormBlock()">&#xff0b; ADD DETAILED PROJECT RECORD</button>
-        </div>
-        <div class="form-actions">
-          <button class="btn-cancel" onclick="showDirectory()">Cancel</button>
-          <button class="btn-save" id="btn-save-profile" onclick="saveEngineerProfile()">SAVE PROFILE SYSTEM</button>
+
+          <div class="form-section">
+            <div class="form-section-title">02 &middot; Engineering Tool Matrix Systems</div>
+            <div class="form-row">
+              <div class="field"><label>Circuit Design &amp; Simulation</label><input type="text" id="ep-t-circuit" placeholder="e.g., Cadence Virtuoso, Spectre"/></div>
+              <div class="field"><label>Layout Design Suite</label><input type="text" id="ep-t-layout" placeholder="e.g., Virtuoso Layout Editor XL"/></div>
+            </div>
+            <div class="form-row">
+              <div class="field"><label>Physical Verification Engines</label><input type="text" id="ep-t-phys" placeholder="e.g., Calibre, Assura, PVS"/></div>
+              <div class="field"><label>Parasitic Extraction</label><input type="text" id="ep-t-parasitic" placeholder="e.g., StarRC, Quantus"/></div>
+            </div>
+            <div class="form-row">
+              <div class="field"><label>Reliability Validation</label><input type="text" id="ep-t-reliability" placeholder="e.g., Totem"/></div>
+              <div class="field"><label>Project Management</label><input type="text" id="ep-t-pm" placeholder="e.g., ClioSoft SOS"/></div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-title">03 &middot; Base Foundations</div>
+            <div class="form-row">
+              <div class="field">
+                <label>Technology Base Nodes <span class="req">*</span></label>
+                <div class="tags-input-style-container">
+                  <div id="ep-b-tech-tags" style="display:flex;flex-wrap:wrap;gap:4px;"></div>
+                  <input type="text" id="ep-b-tech" placeholder="Press Space or Comma"/>
+                </div>
+              </div>
+              <div class="field"><label>Foundry Background</label><input type="text" id="ep-b-foundry" placeholder="e.g., TSMC, Samsung"/></div>
+              <div class="field"><label>Process Types</label><input type="text" id="ep-b-process" placeholder="e.g., FinFET, BCD"/></div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-title">04 &middot; Layout Project Experience Logs</div>
+            <div id="dynamic-engineer-projects-box"></div>
+            <button class="btn-add-project" onclick="addEngineerProjectFormBlock()">＋ ADD DETAILED PROJECT RECORD</button>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn-cancel" onclick="showDirectory()">Cancel</button>
+            <button class="btn-save" id="btn-save-profile" onclick="saveEngineerProfile()">SAVE PROFILE SYSTEM</button>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- VIEW: Profile Detail -->
-    <div id="view-profile-detail" class="view">
-      <div class="profile-detail">
-        <button class="back-btn" onclick="showDirectory()">&#8592; BACK TO DIRECTORY</button>
-        <div class="detail-header">
-          <div class="detail-avatar" id="d-avatar">RY</div>
-          <div style="flex:1;min-width:0;">
-            <div class="detail-name"  id="d-name">Engineer Name</div>
-            <div class="detail-desig" id="d-yoe">Experience Parameters</div>
-            <div class="nodes-wrap"   id="d-nodes-box"></div>
+      <div id="view-profile-detail" class="view">
+        <div class="profile-detail">
+          <button class="back-btn" onclick="showDirectory()">← BACK TO DIRECTORY</button>
+
+          <div class="detail-header">
+            <div class="detail-avatar" id="d-avatar">RY</div>
+            <div style="flex:1;min-width:0;">
+              <div class="detail-name" id="d-name">Engineer Name</div>
+              <div class="detail-desig" id="d-yoe">Loading parameters...</div>
+              <div class="detail-actions-top" id="d-owner-actions" style="display:none;">
+                <button class="btn-ghost" onclick="editProfileInline()">Edit</button>
+                <button class="btn-ghost btn-danger" onclick="deleteProfileInline()">Delete</button>
+              </div>
+            </div>
+            <button class="btn-primary" id="btn-export-profile-doc" onclick="dlProfileDoc()">⬇ Download Document Profile</button>
           </div>
-          <div class="detail-actions">
-            <button class="btn-ghost" style="border-color:var(--accent3);color:var(--accent3);" id="btn-profile-docx">DOC DOWNLOAD</button>
-            <button class="btn-ghost owner-only" id="btn-detail-edit"   onclick="editProfileDirectly()">EDIT</button>
-            <button class="btn-ghost btn-danger owner-only" id="btn-detail-delete" onclick="triggerProfileDeletion()">DELETE</button>
+
+          <div class="grid-two">
+            <div>
+              <div class="detail-panel">
+                <div class="detail-title">Academic &amp; Core Expertise Vectors</div>
+                <ul class="meta-list">
+                  <li class="meta-row"><span class="meta-lbl">University</span><span class="meta-val" id="d-uni">---</span></li>
+                  <li class="meta-row"><span class="meta-lbl">Degree Core</span><span class="meta-val" id="d-edu">---</span></li>
+                  <li class="meta-row"><span class="meta-lbl">Key Expertise</span><span class="meta-val" id="d-keyexp" style="color:var(--accent);">---</span></li>
+                </ul>
+              </div>
+
+              <div class="detail-panel">
+                <div class="detail-title">Silicon Foundation Nodes</div>
+                <ul class="meta-list">
+                  <li class="meta-row">
+                    <span class="meta-lbl">Tech Clusters</span>
+                    <span class="meta-val" id="d-nodes-box"></span>
+                  </li>
+                  <li class="meta-row"><span class="meta-lbl">Foundries</span><span class="meta-val" id="d-b-foundry">---</span></li>
+                  <li class="meta-row"><span class="meta-lbl">Process Architecture</span><span class="meta-val" id="d-b-process">---</span></li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <div class="detail-panel">
+                <div class="detail-title">Electronic Automation Tool Matrix</div>
+                <ul class="tools-list">
+                  <li class="tools-row"><span class="tools-lbl">Schematic &amp; Sim</span><span class="tools-val" id="d-t-circuit">---</span></li>
+                  <li class="tools-row"><span class="tools-lbl">Layout Editor</span><span class="tools-val" id="d-t-layout">---</span></li>
+                  <li class="tools-row"><span class="tools-lbl">Physical Verif</span><span class="tools-val" id="d-t-phys">---</span></li>
+                  <li class="tools-row"><span class="tools-lbl">Extraction (RC)</span><span class="tools-val" id="d-t-parasitic">---</span></li>
+                  <li class="tools-row"><span class="tools-lbl">Reliability</span><span class="tools-val" id="d-t-rel">---</span></li>
+                  <li class="tools-row"><span class="tools-lbl">Project Control</span><span class="tools-val" id="d-t-pm">---</span></li>
+                </ul>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="detail-section">
-          <div class="detail-section-label">// Academic &amp; Core Summary</div>
-          <div class="meta-grid-display">
-            <div class="proj-detail-row"><div class="proj-detail-label">University</div><div class="proj-detail-val" id="d-uni">&#8212;</div></div>
-            <div class="proj-detail-row"><div class="proj-detail-label">Background Education</div><div class="proj-detail-val" id="d-edu">&#8212;</div></div>
-            <div class="proj-detail-row"><div class="proj-detail-label">Key Expertise</div><div class="proj-detail-val" id="d-keyexp">&#8212;</div></div>
+
+          <div class="detail-panel" style="margin-top:0.2rem;">
+            <div class="detail-title">Layout Project Experience Tracks</div>
+            <div id="d-projects-accordion-target"></div>
           </div>
-        </div>
-        <div class="detail-section">
-          <div class="detail-section-label">// System Tool Infrastructure</div>
-          <div class="meta-grid-display">
-            <div class="proj-detail-row"><div class="proj-detail-label">Circuit &amp; Sim</div><div class="proj-detail-val" id="d-t-circuit">&#8212;</div></div>
-            <div class="proj-detail-row"><div class="proj-detail-label">Layout Architecture</div><div class="proj-detail-val" id="d-t-layout">&#8212;</div></div>
-            <div class="proj-detail-row"><div class="proj-detail-label">Physical Verification</div><div class="proj-detail-val" id="d-t-phys">&#8212;</div></div>
-            <div class="proj-detail-row"><div class="proj-detail-label">Extraction Tracking</div><div class="proj-detail-val" id="d-t-parasitic">&#8212;</div></div>
-            <div class="proj-detail-row"><div class="proj-detail-label">Reliability Infrastructure</div><div class="proj-detail-val" id="d-t-rel">&#8212;</div></div>
-            <div class="proj-detail-row"><div class="proj-detail-label">Project Management</div><div class="proj-detail-val" id="d-t-pm">&#8212;</div></div>
-          </div>
-        </div>
-        <div class="detail-section">
-          <div class="detail-section-label">// Technical Base Targets</div>
-          <div class="meta-grid-display">
-            <div class="proj-detail-row"><div class="proj-detail-label">Nodes</div><div class="proj-detail-val" id="d-b-tech">&#8212;</div></div>
-            <div class="proj-detail-row"><div class="proj-detail-label">Foundries</div><div class="proj-detail-val" id="d-b-foundry">&#8212;</div></div>
-            <div class="proj-detail-row"><div class="proj-detail-label">Processes</div><div class="proj-detail-val" id="d-b-process">&#8212;</div></div>
-          </div>
-        </div>
-        <div class="detail-section" id="d-project-section-wrapper">
-          <div class="detail-section-label">// Tracked Layout Experience History</div>
-          <div id="d-projects-accordion-target"></div>
+
         </div>
       </div>
-    </div>
 
-  </div><!-- /.app -->
-</div><!-- /#main-app -->
-
-
-<!-- Project detail popup modal -->
-<div class="modal-backdrop" id="project-popup-backdrop">
-  <div class="modal">
-    <div class="modal-icon">&#128193;</div>
-    <h3 id="pop-project-name">Project Title</h3>
-    <p style="margin-bottom:0.6rem;"><strong style="color:var(--accent);">Team:</strong> <span id="pop-project-team">AMS</span></p>
-    <p style="margin-bottom:0.6rem;"><strong style="color:var(--accent);">Geometry Node:</strong> <span id="pop-project-node">7nm</span></p>
-    <div style="margin-bottom:0.8rem;">
-      <div class="proj-detail-label">Project Goal</div>
-      <div id="pop-project-goal-container" style="background:var(--bg2);padding:10px;border-radius:4px;"></div>
-    </div>
-    <div style="margin-bottom:1.4rem;">
-      <div class="proj-detail-label">Key Achievements</div>
-      <div id="pop-project-achv-container" style="background:var(--bg2);padding:10px;border-radius:4px;"></div>
-    </div>
-    <div id="popup-owner-actions" style="display:none;margin-bottom:1rem;display:flex;gap:0.5rem;">
-      <button class="btn-ghost" onclick="editProjectFromPopup()" style="flex:1;text-align:center;">EDIT</button>
-      <button class="btn-ghost btn-danger" onclick="deleteProjectFromPopup()" style="flex:1;text-align:center;">DELETE</button>
-    </div>
-    <div class="modal-actions">
-      <button class="btn-primary" onclick="closeProjectPopup()">Acknowledge</button>
     </div>
   </div>
-</div>
 
-<!-- Delete confirmation modal -->
-<div class="modal-backdrop" id="modal-backdrop">
-  <div class="modal">
-    <div class="modal-icon">&#128465;&#65039;</div>
-    <h3 id="delete-modal-title">Delete this profile?</h3>
-    <p id="delete-modal-body">This will remove the engineer's record. You will have 60 seconds to undo.</p>
-    <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
-      <button style="background:var(--warn);border:none;padding:0.6rem 1.6rem;color:#fff;border-radius:3px;cursor:pointer;" onclick="confirmDelete()">Yes, Delete</button>
+
+  <div class="modal-backdrop" id="modal-backdrop">
+    <div class="modal">
+      <div class="modal-icon">🗑️</div>
+      <h3 id="delete-modal-title">Delete this profile?</h3>
+      <p id="delete-modal-body">This will remove the engineer's record. You will have 60 seconds to undo.</p>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+        <button style="background:var(--warn);border:none;padding:0.6rem 1.6rem;color:#fff;border-radius:3px;cursor:pointer;" onclick="confirmDelete()">Yes, Delete</button>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="toast" id="toast"></div>
-<div class="undo-bar" id="undo-bar">
-  <span style="color:var(--text2)" id="undo-label">Profile extracted.</span>
-  <span style="color:var(--warn);font-weight:bold;" id="undo-timer">60s</span>
-  <button class="btn-undo" onclick="undoDelete()">UNDO ACTIONS</button>
-</div>
+  <div class="toast" id="toast"></div>
+
+  <div class="undo-bar" id="undo-bar">
+    <span style="color:var(--text2)" id="undo-label">Profile extracted.</span>
+    <span style="color:var(--warn);font-weight:bold;" id="undo-timer">60s</span>
+    <button class="btn-undo" onclick="undoDelete()">UNDO ACTIONS</button>
+  </div>
 
 
-<!-- ================================================================
-     FIREBASE SDK (ES Module)
-================================================================ -->
-<script type="module">
-import { initializeApp }  from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
-import { getAnalytics }   from "https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js";
-import {
-  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
-  signOut, onAuthStateChanged, updateProfile,
-  sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink,
-  updatePassword
-} from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
-import {
-  getFirestore, collection, doc, getDocs, setDoc, deleteDoc, query, orderBy
-} from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink, updatePassword } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+    import { getFirestore, collection, doc, setDoc, getDocs, deleteDoc, getDoc } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
 
-const firebaseConfig = {
-  apiKey:            "AIzaSyARxZGva553rx7MltS39-YKm003LY7LxnQ",
-  authDomain:        "nsl-connect-b3ae9.firebaseapp.com",
-  projectId:         "nsl-connect-b3ae9",
-  storageBucket:     "nsl-connect-b3ae9.firebasestorage.app",
-  messagingSenderId: "681420689807",
-  appId:             "1:681420689807:web:a32b973e09cac0b51cfbfa",
-  measurementId:     "G-5F7DS373JP"
-};
+    const config = {
+      apiKey: window._fba,
+      authDomain: "nsl-connect.firebaseapp.com",
+      projectId: "nsl-connect",
+      storageBucket: "nsl-connect.firebasestorage.app",
+      messagingSenderId: "1036070624021",
+      appId: "1:1036070624021:web:dd88b8e3ea970b4c803305",
+      measurementId: "G-DNYDED2GEL"
+    };
 
-const app       = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const auth      = getAuth(app);
-const db        = getFirestore(app);
+    const app = initializeApp(config);
+    const authInstance = getAuth(app);
+    const dbInstance = getFirestore(app);
 
-window._fb = {
-  auth, db,
-  createUserWithEmailAndPassword, signInWithEmailAndPassword,
-  signOut, updateProfile, updatePassword,
-  sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink,
-  collection, doc, getDocs, setDoc, deleteDoc, query, orderBy
-};
+    window._fb = {
+      auth: authInstance,
+      db: dbInstance,
+      doc, setDoc, collection, getDocs, deleteDoc, getDoc
+    };
 
-onAuthStateChanged(auth, async (user) => {
-  document.getElementById('app-loading').classList.add('hidden');
+    bootstrapApplication();
+  </script>
 
-  // If landing from an email verification link, intercept before showing app
-  if (!user && isSignInWithEmailLink(auth, window.location.href)) {
-    const savedEmail = localStorage.getItem('nsl_signup_email') || '';
-    window._pendingEmailLink = window.location.href;
-    window._pendingLinkEmail = savedEmail;
-    // Clean URL so link can't be reused from address bar
-    window.history.replaceState({}, document.title, window.location.pathname);
-    // Show signup panel in step-complete mode
-    document.getElementById('auth-overlay').style.display = 'flex';
-    document.getElementById('main-app').classList.remove('visible');
-    switchPanel('signup');
-    document.getElementById('signup-step-email').style.display    = 'none';
-    document.getElementById('signup-step-sent').style.display     = 'none';
-    document.getElementById('signup-step-complete').style.display = 'block';
-    document.getElementById('signup-err').classList.remove('show');
-    document.getElementById('signup-ok').classList.remove('show');
-    if (savedEmail) {
-      const ok = document.getElementById('signup-ok');
-      ok.textContent = 'Email verified: ' + savedEmail + '. Set your name and password below.';
-      ok.classList.add('show');
+
+  <script>
+    /* ================================================================
+       A. CORE BOOTSTRAP
+    ================================================================ */
+    function fb() { return window._fb; }
+    function auth() { return fb().auth; }
+    function db() { return fb().db; }
+
+    let profiles = [];
+    let teamProjects = [];
+    let editingProfileId = null;
+    let editingProjectId = null;
+    let viewingProfileId = null;
+    let viewingProjectId = null;
+    let engineerTechTags = [];
+    let projectNodeTags = [];
+    let selectedNodeFilter = 'ALL';
+
+    let currentUserId = null;
+    let deletedSnapshot = null;
+    let deletedType = null; 
+    let undoInterval = null;
+    let undoCountdown = 60;
+
+    function bootstrapApplication() {
+      const authModule = auth();
+      
+      // Step 1: Detect registration links
+      if (window.location.href.indexOf('apiKey=') > -1) {
+        handleEmailLinkAuthentication();
+        return;
+      }
+
+      // Step 2: Establish session status listener
+      authModule.onAuthStateChanged(async (user) => {
+        if (user) {
+          currentUserId = user.uid;
+          document.getElementById('user-name-lbl').textContent = user.displayName || user.email.split('@')[0];
+          document.getElementById('user-avatar-p').textContent = (user.displayName || 'U').substring(0,1).toUpperCase();
+          
+          document.getElementById('auth-overlay').classList.add('hidden');
+          document.getElementById('main-app').classList.add('visible');
+          
+          showToast('Session Core Connected Securely');
+          await syncDatabaseCores();
+        } else {
+          currentUserId = null;
+          document.getElementById('main-app').classList.remove('visible');
+          document.getElementById('auth-overlay').classList.remove('hidden');
+          switchPanel('login');
+        }
+      });
     }
-    return;
-  }
 
-  if (user) {
-    document.getElementById('auth-overlay').style.display = 'none';
-    document.getElementById('main-app').classList.add('visible');
-    const displayName = user.displayName || user.email;
-    const parts = displayName.split(' ');
-    const initials = parts.length >= 2
-      ? (parts[0][0] + parts[parts.length-1][0]).toUpperCase()
-      : displayName.substring(0,2).toUpperCase();
-    document.getElementById('user-av').textContent  = initials;
-    document.getElementById('user-nm').textContent  = displayName;
-    window.currentUserEmail = user.email;
-    await window.loadAllData();
-    window.renderGroupedTeamProjects();
-    window.initTagEvents('ep-b-tech', 'ep-b-tech-tags', 'ENG');
-    window.initTagEvents('proj-node-input', 'proj-node-tags', 'PROJ');
-  } else {
-    document.getElementById('main-app').classList.remove('visible');
-    document.getElementById('auth-overlay').style.display = 'flex';
-    window.currentUserEmail = null;
-  }
-});
-</script>
+    async function syncDatabaseCores() {
+      try {
+        const { collection, getDocs } = fb();
+        
+        const pSnap = await getDocs(collection(db(), "profiles"));
+        profiles = [];
+        pSnap.forEach(d => profiles.push(d.data()));
 
+        const tSnap = await getDocs(collection(db(), "teamprojects"));
+        teamProjects = [];
+        tSnap.forEach(d => teamProjects.push(d.data()));
 
-<!-- ================================================================
-     APPLICATION JAVASCRIPT
-================================================================ -->
-<script>
-/* ================================================================
-   NSL CONNECT v3 — JAVASCRIPT
-   A. AUTH SYSTEM     — Firebase Auth + email OTP verification
-   B. THEME           — dark / light toggle
-   C. NAVIGATION      — view switching
-   D. TAG INPUT       — tech node pill inputs
-   E. ALL PROJECTS    — team project CRUD + grouped collapsible display
-   F. ENGINEER DIR    — profile CRUD, filter, detail view
-   G. DOC EXPORT      — Word .doc downloads
-   H. UTILITIES       — toast, HTML escape, bullet parser
-================================================================ */
-
-/* ---------------------------------------------------------------- */
-function fb()   { return window._fb; }
-function auth() { return fb().auth; }
-function db()   { return fb().db; }
-
-/* In-memory data mirrors */
-let profiles     = [];
-let teamProjects = [];
-let editingProfileId       = null;
-let editingProjectId       = null;
-let viewingProfileId       = null;
-let viewingProjectId       = null;
-let engineerTechTags       = [];
-let projectNodeTags        = [];
-let selectedNodeFilter     = 'ALL';
-let deletedSnapshot        = null;
-let deletedType            = null; // 'profile' or 'project'
-let undoInterval           = null;
-let undoSecondsRemaining   = 60;
-let activeDeletionStagedId = null;
-
-/* Search state */
-let projectSearchQuery = '';
-
-/* Email-link signup state */
-let pendingSignupEmail = null;  // email for which the link was sent
-
-window.currentUserEmail = null;
-
-/* ----------------------------------------------------------------
-   LOAD ALL DATA
----------------------------------------------------------------- */
-window.loadAllData = async function() {
-  try {
-    const { collection, getDocs, query, orderBy } = fb();
-    const dbRef = window._fb.db;
-    const profSnap = await getDocs(query(collection(dbRef,'profiles'),   orderBy('updatedAt','asc')));
-    profiles = profSnap.docs.map(d => d.data());
-    const projSnap = await getDocs(query(collection(dbRef,'teamprojects'), orderBy('timestamp','asc')));
-    teamProjects = projSnap.docs.map(d => d.data());
-  } catch(e) {
-    console.error('Firestore load error:', e);
-    showToast('Error loading data \u2736', true);
-  }
-};
-
-
-/* ================================================================
-   A. AUTH SYSTEM
-================================================================ */
-function switchPanel(panel) {
-  document.querySelectorAll('.auth-panel').forEach(p => p.classList.remove('active'));
-  const target = document.getElementById('panel-' + panel);
-  if (target) target.classList.add('active');
-  ['login-err','signup-err','forgot-err','forgot-ok','signup-ok'].forEach(id => {
-    const el = document.getElementById(id); if (el) el.classList.remove('show');
-  });
-  // Reset signup back to step 1 when navigating away or back to it fresh
-  if (panel === 'signup') {
-    document.getElementById('signup-step-email').style.display    = 'block';
-    document.getElementById('signup-step-sent').style.display     = 'none';
-    document.getElementById('signup-step-complete').style.display = 'none';
-    const inp = document.getElementById('su-email'); if (inp) inp.value = '';
-    pendingSignupEmail = null;
-  }
-}
-
-function toggleEye(inputId, btn) {
-  const el = document.getElementById(inputId);
-  el.type = el.type === 'password' ? 'text' : 'password';
-  btn.style.opacity = el.type === 'text' ? '1' : '0.5';
-}
-
-function evalStrength(pwd) {
-  const wrap = document.getElementById('strength-wrap');
-  const fill = document.getElementById('strength-fill');
-  const lbl  = document.getElementById('strength-lbl');
-  if (!pwd) { wrap.classList.remove('show'); return; }
-  wrap.classList.add('show');
-  let sc = 0;
-  if (pwd.length >= 6)  sc++;
-  if (pwd.length >= 10) sc++;
-  if (/[A-Z]/.test(pwd)) sc++;
-  if (/[0-9]/.test(pwd)) sc++;
-  if (/[^A-Za-z0-9]/.test(pwd)) sc++;
-  const lvl = [
-    {p:'20%',c:'#f87171',t:'Very weak'},
-    {p:'40%',c:'#fb923c',t:'Weak'},
-    {p:'60%',c:'#facc15',t:'Fair'},
-    {p:'80%',c:'#34d399',t:'Strong'},
-    {p:'100%',c:'#22c55e',t:'Very strong'}
-  ][Math.max(0, Math.min(sc-1, 4))];
-  fill.style.width = lvl.p; fill.style.background = lvl.c;
-  lbl.textContent = lvl.t; lbl.style.color = lvl.c;
-}
-
-function showAuthErr(id, msg) {
-  const el = document.getElementById(id);
-  el.textContent = msg;
-  el.classList.add('show');
-}
-
-function friendlyAuthError(code) {
-  const map = {
-    'auth/invalid-email':          'Please enter a valid email address.',
-    'auth/user-not-found':         'No account found with that email address.',
-    'auth/wrong-password':         'Incorrect password. Please try again.',
-    'auth/email-already-in-use':   'An account with this email already exists.',
-    'auth/weak-password':          'Password must be at least 6 characters.',
-    'auth/too-many-requests':      'Too many attempts. Please wait a moment and try again.',
-    'auth/network-request-failed': 'Network error. Check your connection and retry.',
-    'auth/invalid-credential':     'Invalid credentials. Check your email and password.',
-  };
-  return map[code] || 'Authentication error. Please try again.';
-}
-
-/* LOGIN */
-async function doLogin() {
-  document.getElementById('login-err').classList.remove('show');
-  const email = document.getElementById('login-email').value.trim();
-  const pwd   = document.getElementById('login-pwd').value;
-  if (!email || !pwd) { showAuthErr('login-err','Please enter your email and password.'); return; }
-  if (!email.endsWith('@neural-semiconductor.com')) {
-    showAuthErr('login-err','Only @neural-semiconductor.com accounts are permitted.'); return;
-  }
-  const btn = document.getElementById('btn-login');
-  btn.disabled = true; btn.textContent = 'Signing in…';
-  try {
-    await fb().signInWithEmailAndPassword(auth(), email, pwd);
-  } catch(e) {
-    showAuthErr('login-err', friendlyAuthError(e.code));
-    btn.disabled = false; btn.textContent = 'Sign In';
-  }
-}
-
-/* SIGN-UP — Step 1: validate email & send Firebase authentication link */
-async function doSendSignupLink() {
-  document.getElementById('signup-err').classList.remove('show');
-  document.getElementById('signup-ok').classList.remove('show');
-
-  const email = document.getElementById('su-email').value.trim();
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
-    { showAuthErr('signup-err','Please enter a valid email address.'); return; }
-  if (!email.endsWith('@neural-semiconductor.com'))
-    { showAuthErr('signup-err','Only @neural-semiconductor.com email addresses are permitted.'); return; }
-
-  const btn = document.getElementById('btn-send-link');
-  btn.disabled = true; btn.textContent = 'Sending link\u2026';
-
-  // actionCodeSettings — the URL Firebase will redirect the user back to
-  const actionCodeSettings = {
-    url: 'https://ragib-yeaser.github.io/nsl-connect/',   // current page; Firebase appends the oobCode
-    handleCodeInApp: true
-  };
-
-  try {
-    await fb().sendSignInLinkToEmail(fb().auth, email, actionCodeSettings);
-    // Save email so we can retrieve it when the user comes back via the link
-    localStorage.setItem('nsl_signup_email', email);
-    pendingSignupEmail = email;
-    // Show "check inbox" step
-    document.getElementById('signup-step-email').style.display = 'none';
-    document.getElementById('signup-step-sent').style.display  = 'block';
-    document.getElementById('sent-email-display').textContent  = email;
-  } catch(e) {
-    showAuthErr('signup-err', friendlyAuthError(e.code));
-    btn.disabled = false; btn.textContent = 'Send Verification Link';
-  }
-}
-
-/* SIGN-UP — Cancel: go back to email entry step */
-function cancelSignupLink() {
-  pendingSignupEmail = null;
-  localStorage.removeItem('nsl_signup_email');
-  document.getElementById('signup-step-email').style.display = 'block';
-  document.getElementById('signup-step-sent').style.display  = 'none';
-  const inp = document.getElementById('su-email'); if (inp) inp.value = '';
-  document.getElementById('btn-send-link').disabled    = false;
-  document.getElementById('btn-send-link').textContent = 'Send Verification Link';
-  document.getElementById('signup-err').classList.remove('show');
-  document.getElementById('signup-ok').classList.remove('show');
-}
-
-/* SIGN-UP — Step 2: user returns via email link, sets name + password */
-async function doCompleteSignup() {
-  document.getElementById('signup-err').classList.remove('show');
-
-  const fn   = document.getElementById('su-fname').value.trim();
-  const ln   = document.getElementById('su-lname').value.trim();
-  const pwd  = document.getElementById('su-pwd').value;
-  const pwd2 = document.getElementById('su-pwd2').value;
-
-  if (!fn || !ln)  { showAuthErr('signup-err','Please enter your first and last name.'); return; }
-  if (pwd.length < 6) { showAuthErr('signup-err','Password must be at least 6 characters.'); return; }
-  if (pwd !== pwd2)   { showAuthErr('signup-err','Passwords do not match.'); return; }
-
-  const link  = window._pendingEmailLink;
-  const email = window._pendingLinkEmail || localStorage.getItem('nsl_signup_email') || '';
-
-  if (!link || !email) {
-    showAuthErr('signup-err','Verification link expired or missing. Please start sign-up again.');
-    return;
-  }
-
-  const btn = document.getElementById('btn-complete-signup');
-  btn.disabled = true; btn.textContent = 'Creating account\u2026';
-
-  try {
-    // Sign in with the email link to verify identity
-    const cred = await fb().signInWithEmailLink(fb().auth, email, link);
-    // Set display name
-    await fb().updateProfile(cred.user, { displayName: fn + ' ' + ln });
-    // Set password so user can also log in with email+password next time
-    await fb().updatePassword(cred.user, pwd);
-    // Clean up
-    localStorage.removeItem('nsl_signup_email');
-    window._pendingEmailLink  = null;
-    window._pendingLinkEmail  = null;
-    showToast('\u2713 Account created. Welcome to NSL Connect!');
-    // onAuthStateChanged fires automatically and loads the main app
-  } catch(e) {
-    showAuthErr('signup-err', friendlyAuthError(e.code));
-    btn.disabled = false; btn.textContent = 'Complete Registration';
-  }
-}
-
-/* LOGOUT */
-async function doLogout() {
-  await fb().signOut(auth());
-  profiles = []; teamProjects = [];
-}
-
-/* FORGOT PASSWORD */
-async function doForgotPassword() {
-  const errEl = document.getElementById('forgot-err');
-  const okEl  = document.getElementById('forgot-ok');
-  errEl.classList.remove('show'); okEl.classList.remove('show');
-  const email = document.getElementById('forgot-email').value.trim();
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
-    { showAuthErr('forgot-err','Please enter a valid email address.'); return; }
-  if (!email.endsWith('@neural-semiconductor.com'))
-    { showAuthErr('forgot-err','Only @neural-semiconductor.com accounts are permitted.'); return; }
-  const btn = document.getElementById('btn-forgot');
-  btn.disabled = true; btn.textContent = 'Sending\u2026';
-  try {
-    const { sendPasswordResetEmail } = await import('https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js');
-    await sendPasswordResetEmail(auth(), email);
-    okEl.classList.add('show');
-    document.getElementById('forgot-email').value = '';
-  } catch(e) {
-    showAuthErr('forgot-err', friendlyAuthError(e.code));
-  } finally {
-    btn.disabled = false; btn.textContent = 'Send Reset Link';
-  }
-}
-
-
-/* ================================================================
-   B. THEME
-================================================================ */
-function toggleTheme() {
-  const html = document.documentElement;
-  const dark = html.getAttribute('data-theme') === 'dark';
-  html.setAttribute('data-theme', dark ? 'light' : 'dark');
-  document.getElementById('theme-toggle-btn').textContent = dark ? '\u2600\uFE0F' : '\uD83C\uDF19';
-  localStorage.setItem('nsl_theme', dark ? 'light' : 'dark');
-}
-(function initTheme() {
-  const t = localStorage.getItem('nsl_theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', t);
-  const btn = document.getElementById('theme-toggle-btn');
-  if (btn) btn.textContent = t === 'dark' ? '\uD83C\uDF19' : '\u2600\uFE0F';
-})();
-
-
-/* ================================================================
-   C. NAVIGATION
-================================================================ */
-function navToView(viewId) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById(viewId).classList.add('active');
-  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-  window.scrollTo({ top:0, behavior:'smooth' });
-}
-
-function showProjectsHome() {
-  document.getElementById('tab-projects').classList.add('active');
-  navToView('view-projects-home');
-  renderGroupedTeamProjects();
-}
-
-function showDirectory() {
-  document.getElementById('tab-directory').classList.add('active');
-  navToView('view-directory');
-  selectedNodeFilter = 'ALL';
-  renderDirectoryProfiles();
-}
-
-
-/* ================================================================
-   D. TAG INPUT ENGINE
-================================================================ */
-window.initTagEvents = function(inputId, containerId, category) {
-  const el = document.getElementById(inputId);
-  if (!el) return;
-  const commit = () => {
-    const v = el.value.trim().replace(/,/g,'');
-    if (v) {
-      const arr = category === 'ENG' ? engineerTechTags : projectNodeTags;
-      if (!arr.includes(v)) { arr.push(v); renderTagPills(inputId, containerId, category); }
+        renderGroupedTeamProjects();
+        if (document.getElementById('view-directory').classList.contains('active')) {
+          renderDirectoryProfiles();
+        }
+      } catch(e) {
+        console.error("Database sync fault: ", e);
+        showToast("Error retrieving asset matrices from sync grid.", true);
+      }
     }
-    el.value = '';
-  };
-  el.addEventListener('keydown', e => {
-    if (e.key === ',' || e.key === ' ') { e.preventDefault(); commit(); }
-    else if (e.key === 'Backspace' && el.value === '') {
-      const arr = category === 'ENG' ? engineerTechTags : projectNodeTags;
-      arr.pop(); renderTagPills(inputId, containerId, category);
+
+
+    /* ================================================================
+       B. SECURITY ACCESS
+    =============================================================== */
+    function switchPanel(p) {
+      document.querySelectorAll('.auth-panel').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.auth-err').forEach(el => el.classList.remove('show'));
+      document.querySelectorAll('.auth-ok').forEach(el => el.classList.remove('show'));
+      
+      const target = document.getElementById('panel-' + p);
+      if (target) target.classList.add('active');
     }
-  });
-  el.addEventListener('blur', commit);
-};
 
-function renderTagPills(inputId, containerId, category) {
-  const box = document.getElementById(containerId);
-  const arr = category === 'ENG' ? engineerTechTags : projectNodeTags;
-  box.innerHTML = '';
-  arr.forEach((tag, i) => {
-    const s = document.createElement('span');
-    s.className = 'input-tag-pill';
-    s.innerHTML = escHtml(tag) +
-      ' <b onclick="removeTagPill(\'' + inputId + '\',\'' + containerId + '\',\'' + category + '\',' + i + ')">&#215;</b>';
-    box.appendChild(s);
-  });
-}
+    function toggleEye(inputId, btn) {
+      const inp = document.getElementById(inputId);
+      if (inp.type === 'password') {
+        inp.type = 'text';
+        btn.textContent = '🔒';
+      } else {
+        inp.type = 'password';
+        btn.textContent = '👁';
+      }
+    }
 
-function removeTagPill(inputId, containerId, category, idx) {
-  const arr = category === 'ENG' ? engineerTechTags : projectNodeTags;
-  arr.splice(idx, 1);
-  renderTagPills(inputId, containerId, category);
-}
+    function evalStrength(v) {
+      const wrap = document.getElementById('strength-wrap');
+      const fill = document.getElementById('strength-fill');
+      const lbl = document.getElementById('strength-lbl');
+      if (!v) { wrap.style.display = 'none'; return; }
+      wrap.style.display = 'block';
+      let score = 0;
+      if (v.length >= 6) score++;
+      if (/[A-Z]/.test(v)) score++;
+      if (/[0-9]/.test(v)) score++;
+      if (/[^A-Za-z0-9]/.test(v)) score++;
+
+      if (score <= 1) { fill.style.width = '25%'; fill.style.background = 'var(--warn)'; lbl.textContent = 'Weak Array'; }
+      else if (score === 2) { fill.style.width = '50%'; fill.style.background = '#fb923c'; lbl.textContent = 'Medium Cluster'; }
+      else if (score === 3) { fill.style.width = '75%'; fill.style.background = '#60a5fa'; lbl.textContent = 'Strong Vault'; }
+      else { fill.style.width = '100%'; fill.style.background = 'var(--accent3)'; lbl.textContent = 'Optimal Crypt'; }
+    }
+
+    function showAuthErr(id, m) {
+      const e = document.getElementById(id);
+      e.textContent = m; e.classList.add('show');
+    }
+
+    async function sendAuthLink() {
+      const email = document.getElementById('su-email').value.trim();
+      const errId = 'signup-err';
+      document.getElementById(errId).classList.remove('show');
+      
+      if (!email) { showAuthErr(errId, "Provide account email trace."); return; }
+      const matchedExt = ['@neuralasiamachinery.com', '@nsl.com', '@neuralasia.com'].some(ext => email.toLowerCase().endsWith(ext));
+      if (!matchedExt) { showAuthErr(errId, "Unauthorized enterprise domain vector rejection."); return; }
+
+      const btn = document.getElementById('btn-send-link');
+      btn.disabled = true; btn.textContent = 'Transmitting link...';
+
+      try {
+        const actionCodeSettings = {
+          url: window.location.origin + window.location.pathname,
+          handleCodeInApp: true
+        };
+        await window._fb.auth.sendSignInLinkToEmail(window._fb.auth(), email, actionCodeSettings);
+        localStorage.setItem('nsl_signup_email', email);
+        document.getElementById('signup-step-input').style.display = 'none';
+        document.getElementById('signup-step-sent').style.display = 'block';
+      } catch(e) {
+        console.error(e);
+        showAuthErr(errId, e.message || "Link dispatch failure.");
+        btn.disabled = false; btn.textContent = 'Send Verification Link';
+      }
+    }
+
+    function resetSignupStep() {
+      document.getElementById('signup-step-input').style.display = 'block';
+      document.getElementById('signup-step-sent').style.display = 'none';
+      const inp = document.getElementById('su-email');
+      if (inp) inp.value = '';
+      document.getElementById('btn-send-link').disabled = false;
+      document.getElementById('btn-send-link').textContent = 'Send Verification Link';
+      document.getElementById('signup-err').classList.remove('show');
+      document.getElementById('signup-ok').classList.remove('show');
+    }
+
+    async function handleEmailLinkAuthentication() {
+      const authM = window._fb.auth;
+      if (authM.isSignInWithEmailLink(authM(), window.location.href)) {
+        let email = localStorage.getItem('nsl_signup_email') || '';
+        if (!email) {
+          email = window.prompt('Session tracking verification confirmation needed. Please enter your email:');
+        }
+        if (email) {
+          try {
+            window._pendingEmailLink = window.location.href;
+            window._pendingLinkEmail = email;
+            document.getElementById('complete-email-lbl').textContent = email;
+            document.getElementById('auth-overlay').classList.remove('hidden');
+            document.getElementById('main-app').classList.remove('visible');
+            switchPanel('register-complete');
+          } catch(e) {
+            alert("Security link authentication error: " + e.message);
+            window.location.href = window.location.origin + window.location.pathname;
+          }
+        }
+      }
+    }
+
+    async function doCompleteSignup() {
+      document.getElementById('complete-err').classList.remove('show');
+      const fn = document.getElementById('su-fname').value.trim();
+      const ln = document.getElementById('su-lname').value.trim();
+      const pwd = document.getElementById('su-pwd').value;
+      const pwd2 = document.getElementById('su-pwd2').value;
+
+      if (!fn || !ln) { showAuthErr('complete-err', 'Please enter your first and last name.'); return; }
+      if (pwd.length < 6) { showAuthErr('complete-err', 'Password must be at least 6 characters.'); return; }
+      if (pwd !== pwd2) { showAuthErr('complete-err', 'Passwords do not match.'); return; }
+
+      const link = window._pendingEmailLink;
+      const email = window._pendingLinkEmail || localStorage.getItem('nsl_signup_email') || '';
+
+      if (!link || !email) {
+        showAuthErr('complete-err', 'Verification link expired or missing. Please start sign-up again.');
+        return;
+      }
+
+      const btn = document.getElementById('btn-complete-signup');
+      btn.disabled = true; btn.textContent = 'Creating account...';
+
+      try {
+        const authM = window._fb.auth;
+        const res = await authM.signInWithEmailLink(authM(), email, link);
+        await authM.updatePassword(res.user, pwd);
+        await authM.updateProfile(res.user, { displayName: fn + " " + ln });
+        
+        localStorage.removeItem('nsl_signup_email');
+        window.location.href = window.location.origin + window.location.pathname;
+      } catch(e) {
+        console.error(e);
+        showAuthErr('complete-err', e.message || 'Error processing confirmation validation step.');
+        btn.disabled = false; btn.textContent = 'Complete Registration';
+      }
+    }
+
+    async function doLogin() {
+      const email = document.getElementById('li-email').value.trim();
+      const pwd = document.getElementById('li-pwd').value;
+      const errId = 'login-err';
+      document.getElementById(errId).classList.remove('show');
+
+      if (!email || !pwd) { showAuthErr(errId, "Enter credentials."); return; }
+      const btn = document.getElementById('btn-login');
+      btn.disabled = true; btn.textContent = 'Authenticating...';
+
+      try {
+        const authM = window._fb.auth;
+        await authM.signInWithEmailAndPassword(authM(), email, pwd);
+      } catch(e) {
+        console.error(e);
+        showAuthErr(errId, "Authentication rejected. Check configurations.");
+        btn.disabled = false; btn.textContent = 'Authorize Vector';
+      }
+    }
+
+    async function doForgotPassword() {
+      const email = document.getElementById('forgot-email').value.trim();
+      const errId = 'forgot-err';
+      const okId = 'forgot-ok';
+      document.getElementById(errId).classList.remove('show');
+      document.getElementById(okId).classList.remove('show');
+
+      if (!email) { showAuthErr(errId, "Provide valid account mail mapping."); return; }
+      const btn = document.getElementById('btn-forgot');
+      btn.disabled = true; btn.textContent = 'Processing transmission...';
+
+      try {
+        const authM = window._fb.auth;
+        await authM.sendPasswordResetEmail(authM(), email);
+        document.getElementById(okId).classList.add('show');
+        document.getElementById('forgot-email').value = '';
+      } catch(e) {
+        console.error(e);
+        showAuthErr(errId, e.message || "Transmission pipeline blocked.");
+      } finally {
+        btn.disabled = false; btn.textContent = 'Transmit Recover Link';
+      }
+    }
+
+    async function doSignout() {
+      try {
+        const authM = window._fb.auth;
+        await authM.signOut(authM());
+        window.location.href = window.location.origin + window.location.pathname;
+      } catch(e) {
+        showToast("Signout matrix failure.", true);
+      }
+    }
 
 
-/* ================================================================
-   E. ALL PROJECTS — Firestore-backed
-================================================================ */
-function showTeamProjectForm(editId) {
-  editingProjectId = editId || null;
-  navToView('view-project-upload-form');
-  const heading = document.getElementById('project-form-heading');
+    /* ================================================================
+       C. NAVIGATION
+    ================================================================ */
+    function navToView(viewId) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.getElementById(viewId).classList.add('active');
+      document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+      window.scrollTo({ top:0, behavior:'smooth' });
+    }
 
-  if (editId) {
-    heading.textContent = 'Edit Project Specifications';
-    const p = teamProjects.find(x => x.id === editId);
-    if (p) {
-      document.getElementById('proj-team-select').value = ['Analog & Mixed Signal','GPIO','Layout','Memory','RF'].includes(p.teamName) ? p.teamName : 'Others';
-      toggleCustomTeamField();
-      if (document.getElementById('custom-team-field-block').style.display !== 'none') {
+    function showProjectsHome() {
+      document.getElementById('tab-projects').classList.add('active');
+      navToView('view-projects-home');
+      renderGroupedTeamProjects();
+    }
+
+    function showDirectory() {
+      document.getElementById('tab-directory').classList.add('active');
+      navToView('view-directory');
+      selectedNodeFilter = 'ALL';
+      renderDirectoryProfiles();
+    }
+
+
+    /* ================================================================
+       D. TAG INPUT ENGINE
+    ================================================================ */
+    window.initTagEvents = function(inputId, containerId, category) {
+      const el = document.getElementById(inputId);
+      if (!el) return;
+
+      const commit = () => {
+        const v = el.value.trim().replace(/,/g,'');
+        if (!v) return;
+        if (category === 'PROJ') {
+          if (!projectNodeTags.includes(v)) projectNodeTags.push(v);
+          renderTagPills(inputId, containerId, category);
+        } else if (category === 'ENG') {
+          if (!engineerTechTags.includes(v)) engineerTechTags.push(v);
+          renderTagPills(inputId, containerId, category);
+        }
+        el.value = '';
+      };
+
+      el.onkeydown = (e) => { if (e.key === ' ' || e.key === 'Enter' || e.key === ',') { e.preventDefault(); commit(); } };
+      el.onblur = () => { commit(); };
+    };
+
+    function renderTagPills(inputId, containerId, category) {
+      const box = document.getElementById(containerId);
+      if (!box) return;
+      box.innerHTML = '';
+      const list = (category === 'PROJ') ? projectNodeTags : engineerTechTags;
+      
+      list.forEach((t, idx) => {
+        const span = document.createElement('span');
+        span.className = 'input-tag-pill';
+        span.innerHTML = escHtml(t) + ' <b onclick="removeTagPill(' + idx + ',\'' + inputId + '\',\'' + containerId + '\',\'' + category + '\')">×</b>';
+        box.appendChild(span);
+      });
+    }
+
+    window.removeTagPill = function(idx, inputId, containerId, category) {
+      if (category === 'PROJ') projectNodeTags.splice(idx, 1);
+      else engineerTechTags.splice(idx, 1);
+      renderTagPills(inputId, containerId, category);
+    };
+
+
+    /* ================================================================
+       E. ALL PROJECTS — SPECIFICATION MANAGEMENT
+    ================================================================ */
+    function showProjectForm() {
+      editingProjectId = null;
+      document.getElementById('form-proj-eyebrow').textContent = '// core_spec_init';
+      document.getElementById('form-proj-title').textContent = 'Initialize Specification';
+      document.getElementById('btn-save-project').textContent = 'UPLOAD SPECIFICATION';
+      
+      document.getElementById('proj-team-select').value = 'Analog & Mixed Signal';
+      document.getElementById('custom-team-field-block').style.display = 'none';
+      
+      ['proj-custom-team','proj-title-input','proj-node-input','proj-goal-input','proj-achv-input']
+        .forEach(id => { const e = document.getElementById(id); if (e) e.value = ''; });
+      
+      projectNodeTags = [];
+      renderTagPills('proj-node-input','proj-node-tags','PROJ');
+      initTagEvents('proj-node-input','proj-node-tags','PROJ');
+      
+      navToView('view-project-form');
+    }
+
+    function toggleCustomTeamField() {
+      const v = document.getElementById('proj-team-select').value;
+      document.getElementById('custom-team-field-block').style.display = v === 'Others' ? 'block' : 'none';
+    }
+
+    async function saveTeamProject() {
+      const sel = document.getElementById('proj-team-select').value;
+      const team = sel === 'Others' ? document.getElementById('proj-custom-team').value.trim() : sel;
+      const title = document.getElementById('proj-title-input').value.trim();
+      const goal = document.getElementById('proj-goal-input').value.trim();
+      const achv = document.getElementById('proj-achv-input').value.trim();
+
+      if (!team || !title || !projectNodeTags.length || !goal || !achv) {
+        showToast('Complete all project parameters ✖', true);
+        return;
+      }
+
+      const btn = document.getElementById('btn-save-project');
+      btn.disabled = true; btn.textContent = 'Saving…';
+
+      const pkt = {
+        id: editingProjectId || ('proj-' + Date.now().toString(36)),
+        teamName: team,
+        projectName: title,
+        processNode: projectNodeTags.join(', '),
+        goal,
+        keyAchievements: achv,
+        ownerId: currentUserId || 'system',
+        timestamp: Date.now()
+      };
+
+      try {
+        const { doc, setDoc } = fb();
+        await setDoc(doc(db(), "teamprojects", pkt.id), pkt);
+        showToast('IP Tracking Core Entry Synchronized');
+        await syncDatabaseCores();
+        showProjectsHome();
+      } catch(e) {
+        console.error(e);
+        showToast('Sync error uploading spec block ✖', true);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'UPLOAD SPECIFICATION';
+      }
+    }
+
+    function renderGroupedTeamProjects() {
+      const container = document.getElementById('team-sections-container');
+      container.innerHTML = '';
+      if (!teamProjects.length) {
+        container.innerHTML = '<div class="empty-state">No design specifications are currently logged into the core layout network.</div>';
+        return;
+      }
+
+      const map = {};
+      teamProjects.forEach(p => {
+        if (!map[p.teamName]) map[p.teamName] = [];
+        map[p.teamName].push(p);
+      });
+
+      Object.keys(map).sort().forEach(team => {
+        const recs = map[team].sort((a,b) => b.timestamp - a.timestamp);
+        const sec = document.createElement('div');
+        sec.className = 'team-section';
+        sec.id = 'sec-' + team.replace(/\s+/g, '-');
+
+        let cardsHtml = recs.map(p => {
+          const isOwner = p.ownerId === currentUserId;
+          const ownerBtns = isOwner ? 
+            '<div class="card-actions">' +
+              '<button class="btn-ghost" onclick="event.stopPropagation();editProjectCard(\'' + p.id + '\')">EDIT</button>' +
+              '<button class="btn-ghost btn-danger" onclick="event.stopPropagation();deleteProjectCard(\'' + p.id + '\')">DELETE</button>' +
+            '</div>' : '';
+
+          return (
+            '<div class="profile-card" onclick="openProjectPopup(\'' + p.id + '\')">' +
+              '<div class="card-name" style="margin-bottom:6px;">' + escHtml(p.projectName) + '</div>' +
+              '<div class="node-tag" style="margin-bottom:8px;">' + escHtml(p.processNode) + '</div>' +
+              '<div class="card-desc"><strong>Goals:</strong> ' + bulletify(p.goal) + '</div>' +
+              '<div class="card-desc" style="margin-top:6px;"><strong>Achievements:</strong> ' + bulletify(p.keyAchievements) + '</div>' +
+              (isOwner ? '<div class="card-footer"><span class="card-updated" style="color:var(--accent3);font-size:0.58rem;">✓ Your entry</span>' + ownerBtns + '</div>' : '') +
+            '</div>' );
+        }).join('');
+
+        sec.innerHTML = 
+          '<div class="team-section-header" onclick="toggleTeamSection(\'' + sec.id + '\')">' +
+            '<div class="team-header-left">' +
+              '<div class="team-banner-title">' + escHtml(team) + '</div>' +
+              '<span class="team-count-badge">' + recs.length + ' project' + (recs.length !== 1 ? 's' : '') + '</span>' +
+            '</div>' +
+            '<div class="team-section-right">' +
+              '<button class="btn-download-sec" onclick="event.stopPropagation();dlTeamDoc(\'' + escHtml(team) + '\')">⬇ Export</button>' +
+              '<span class="team-collapse-icon">▼</span>' +
+            '</div>' +
+          '</div>' +
+          '<div class="team-section-body">' +
+            '<div class="profile-grid">' + cardsHtml + '</div>' +
+          '</div>';
+
+        container.appendChild(sec);
+      });
+    }
+
+    function toggleTeamSection(id) {
+      document.getElementById(id).classList.toggle('collapsed');
+    }
+
+    window.editProjectCard = function(id) {
+      const p = teamProjects.find(x => x.id === id);
+      if (!p) return;
+      editingProjectId = p.id;
+      
+      document.getElementById('form-proj-eyebrow').textContent = '// core_spec_mutation';
+      document.getElementById('form-proj-title').textContent = 'Modify Specification';
+      document.getElementById('btn-save-project').textContent = 'SAVE CHANGES';
+
+      const select = document.getElementById('proj-team-select');
+      const optExists = [...select.options].some(o => o.value === p.teamName);
+      
+      if (optExists) {
+        select.value = p.teamName;
+        document.getElementById('custom-team-field-block').style.display = 'none';
+      } else {
+        select.value = 'Others';
+        document.getElementById('custom-team-field-block').style.display = 'block';
         document.getElementById('proj-custom-team').value = p.teamName;
       }
-      document.getElementById('proj-title-input').value = p.projectName || '';
-      document.getElementById('proj-goal-input').value  = p.goal || '';
-      document.getElementById('proj-achv-input').value  = p.keyAchievements || '';
-      projectNodeTags = p.processNode ? p.processNode.split(', ').filter(Boolean) : [];
+
+      document.getElementById('proj-title-input').value = p.projectName;
+      document.getElementById('proj-goal-input').value = p.goal;
+      document.getElementById('proj-achv-input').value = p.keyAchievements;
+
+      projectNodeTags = p.processNode ? p.processNode.split(',').map(s=>s.trim()).filter(Boolean) : [];
       renderTagPills('proj-node-input','proj-node-tags','PROJ');
+      initTagEvents('proj-node-input','proj-node-tags','PROJ');
+
+      navToView('view-project-form');
+    };
+
+    window.deleteProjectCard = function(id) {
+      const p = teamProjects.find(x => x.id === id);
+      if (!p) return;
+      triggerDeleteModal('project', p.id, 'Delete ' + p.projectName + '?');
+    };
+
+    window.openProjectPopup = function(id) {
+      const p = teamProjects.find(x => x.id === id);
+      if (!p) return;
+      alert("--- CORE DESIGN TARGET BRIEF ---\n\n" + p.projectName.toUpperCase() + " [" + p.processNode + "]\n\nGOALS DETECTED:\n" + p.goal + "\n\nKEY MILESTONES ACHIEVED:\n" + p.keyAchievements);
+    };
+
+
+    /* ================================================================
+       F. ENGINEER DIRECTORY MODULE
+    ================================================================ */
+    function showEngineerForm() {
+      editingProfileId = null;
+      document.getElementById('form-eng-eyebrow').textContent = '// custom_eng_init';
+      document.getElementById('form-eng-title').textContent = 'Add Engineer Profile';
+      resetProfileFields();
+      
+      engineerTechTags = [];
+      renderTagPills('ep-b-tech','ep-b-tech-tags','ENG');
+      initTagEvents('ep-b-tech','ep-b-tech-tags','ENG');
+      
+      document.getElementById('dynamic-engineer-projects-box').innerHTML = '';
+      navToView('view-engineer-form');
     }
-  } else {
-    heading.textContent = 'Describe Project Specifications';
-    document.getElementById('proj-team-select').value = 'Analog & Mixed Signal';
-    document.getElementById('custom-team-field-block').style.display = 'none';
-    ['proj-custom-team','proj-title-input','proj-node-input','proj-goal-input','proj-achv-input']
-      .forEach(id => { const e = document.getElementById(id); if (e) e.value = ''; });
-    projectNodeTags = [];
-    renderTagPills('proj-node-input','proj-node-tags','PROJ');
-  }
-}
 
-function toggleCustomTeamField() {
-  const v = document.getElementById('proj-team-select').value;
-  document.getElementById('custom-team-field-block').style.display = v === 'Others' ? 'block' : 'none';
-}
-
-async function saveTeamProject() {
-  const sel   = document.getElementById('proj-team-select').value;
-  const team  = sel === 'Others' ? document.getElementById('proj-custom-team').value.trim() : sel;
-  const title = document.getElementById('proj-title-input').value.trim();
-  const goal  = document.getElementById('proj-goal-input').value.trim();
-  const achv  = document.getElementById('proj-achv-input').value.trim();
-
-  if (!team || !title || !projectNodeTags.length || !goal || !achv) {
-    showToast('Complete all project parameters \u2736', true); return;
-  }
-
-  const btn = document.getElementById('btn-save-project');
-  btn.disabled = true; btn.textContent = 'Saving…';
-
-  const pkt = {
-    id:              editingProjectId || ('proj-' + Date.now().toString(36)),
-    teamName:        team,
-    projectName:     title,
-    processNode:     projectNodeTags.join(', '),
-    goal,
-    keyAchievements: achv,
-    timestamp:       Date.now(),
-    createdBy:       window.currentUserEmail || ''
-  };
-
-  try {
-    const { doc, setDoc } = fb();
-    await setDoc(doc(db(),'teamprojects', pkt.id), pkt);
-    if (editingProjectId) {
-      const i = teamProjects.findIndex(x => x.id === editingProjectId);
-      if (i !== -1) teamProjects[i] = pkt; else teamProjects.push(pkt);
-    } else {
-      teamProjects.push(pkt);
-    }
-    showToast('\u2713 Project Specifications Captured');
-    showProjectsHome();
-  } catch(e) {
-    console.error(e);
-    showToast('Failed to save project \u2736', true);
-  } finally {
-    btn.disabled = false; btn.textContent = 'UPLOAD SPECIFICATION';
-  }
-}
-
-/* ---- RENDER: grouped, collapsible team sections ---- */
-window.renderGroupedTeamProjects = function() {
-  const c     = document.getElementById('teams-distribution-wrapper');
-  const query = projectSearchQuery.toLowerCase();
-  c.innerHTML = '';
-
-  let filtered = teamProjects;
-  if (query) {
-    filtered = teamProjects.filter(p =>
-      p.projectName.toLowerCase().includes(query) ||
-      (p.processNode && p.processNode.toLowerCase().includes(query))
-    );
-  }
-
-  if (!filtered.length) {
-    if (query) {
-      c.innerHTML = '<div class="empty-state"><h3>No projects match "' + escHtml(query) + '"</h3><p>Try a different name or process node.</p></div>';
-    } else {
-      c.innerHTML = '<div class="empty-state"><h3>No project specifications tracked</h3><p>Click + Add Project Detail to get started.</p></div>';
-    }
-    return;
-  }
-
-  // Determine category order: fixed order + any extras
-  const fixedOrder = ['Analog & Mixed Signal','GPIO','Layout','Memory','RF'];
-  const allTeams   = new Set(fixedOrder);
-  filtered.forEach(p => { if (p.teamName) allTeams.add(p.teamName); });
-
-  allTeams.forEach(team => {
-    const recs = filtered.filter(p => p.teamName === team);
-    if (!recs.length) return;
-
-    const sec = document.createElement('div');
-    sec.className = 'team-section';
-    sec.id = 'team-sec-' + team.replace(/\s+/g,'-');
-
-    const cards = recs.map(p => {
-      const isOwner = window.currentUserEmail && p.createdBy === window.currentUserEmail;
-      const ownerBtns = isOwner
-        ? '<div class="card-actions">' +
-            '<button class="btn-ghost" onclick="event.stopPropagation();editProjectFromCard(\'' + p.id + '\')">EDIT</button>' +
-            '<button class="btn-ghost btn-danger" onclick="event.stopPropagation();deleteProjectCard(\'' + p.id + '\')">DELETE</button>' +
-          '</div>'
-        : '';
-      return (
-        '<div class="profile-card" onclick="openProjectPopup(\'' + p.id + '\')">' +
-          '<div class="card-name" style="margin-bottom:6px;">' + escHtml(p.projectName) + '</div>' +
-          '<div class="node-tag" style="margin-bottom:8px;">' + escHtml(p.processNode) + '</div>' +
-          '<div class="card-desc"><strong>Goals:</strong> ' + bulletify(p.goal) + '</div>' +
-          '<div class="card-desc" style="margin-top:6px;"><strong>Achievements:</strong> ' + bulletify(p.keyAchievements) + '</div>' +
-          (isOwner ? '<div class="card-footer"><span class="card-updated" style="color:var(--accent3);font-size:0.58rem;">✓ Your entry</span>' + ownerBtns + '</div>' : '') +
-        '</div>'
-      );
-    }).join('');
-
-    sec.innerHTML =
-      '<div class="team-section-header" onclick="toggleTeamSection(\'' + sec.id + '\')">' +
-        '<div class="team-header-left">' +
-          '<div class="team-banner-title">' + escHtml(team) + '</div>' +
-          '<span class="team-count-badge">' + recs.length + ' project' + (recs.length !== 1 ? 's' : '') + '</span>' +
+    function addEngineerProjectFormBlock(data = null) {
+      const box = document.getElementById('dynamic-engineer-projects-box');
+      const uid = 'p-block-' + Math.random().toString(36).substring(2,11);
+      const div = document.createElement('div');
+      div.className = 'project-block';
+      div.id = uid;
+      div.innerHTML = 
+        '<div class="project-header">' +
+          '<span class="project-num">// DETAILED PROJECT LOG</span>' +
+          '<button class="project-remove-btn" type="button" onclick="removeProjBlock(\'' + uid + '\')">×</button>' +
         '</div>' +
-        '<div class="team-section-right">' +
-          '<button class="btn-download-sec" onclick="event.stopPropagation();dlTeamDoc(\'' + escHtml(team) + '\')">&#11015; Export</button>' +
-          '<span class="team-collapse-icon">&#9660;</span>' +
-        '</div>' +
-      '</div>' +
-      '<div class="team-section-body">' +
-        '<div class="profile-grid">' + cards + '</div>' +
-      '</div>';
-    c.appendChild(sec);
-  });
-};
-
-function toggleTeamSection(secId) {
-  const sec = document.getElementById(secId);
-  if (sec) sec.classList.toggle('collapsed');
-}
-
-function filterProjects() {
-  projectSearchQuery = document.getElementById('projects-search-input').value.trim();
-  renderGroupedTeamProjects();
-}
-
-function openProjectPopup(id) {
-  viewingProjectId = id;
-  const p = teamProjects.find(x => x.id === id);
-  if (!p) return;
-  document.getElementById('pop-project-name').textContent = p.projectName;
-  document.getElementById('pop-project-team').textContent = p.teamName;
-  document.getElementById('pop-project-node').textContent = p.processNode;
-  document.getElementById('pop-project-goal-container').innerHTML = bulletify(p.goal);
-  document.getElementById('pop-project-achv-container').innerHTML = bulletify(p.keyAchievements);
-
-  const ownerActions = document.getElementById('popup-owner-actions');
-  if (window.currentUserEmail && p.createdBy === window.currentUserEmail) {
-    ownerActions.style.display = 'flex';
-  } else {
-    ownerActions.style.display = 'none';
-  }
-  document.getElementById('project-popup-backdrop').classList.add('open');
-}
-function closeProjectPopup() {
-  document.getElementById('project-popup-backdrop').classList.remove('open');
-  viewingProjectId = null;
-}
-function editProjectFromPopup() {
-  const id = viewingProjectId;
-  closeProjectPopup();
-  if (id) showTeamProjectForm(id);
-}
-function editProjectFromCard(id) { showTeamProjectForm(id); }
-
-function deleteProjectCard(id) {
-  activeDeletionStagedId = id;
-  activeDeletionType     = 'project';
-  document.getElementById('delete-modal-title').textContent = 'Delete this project?';
-  document.getElementById('delete-modal-body').textContent  = 'This will remove the project record. You will have 60 seconds to undo.';
-  document.getElementById('modal-backdrop').classList.add('open');
-}
-function deleteProjectFromPopup() {
-  const id = viewingProjectId;
-  closeProjectPopup();
-  if (id) deleteProjectCard(id);
-}
-
-
-/* ================================================================
-   F. ENGINEER DIRECTORY & PROFILES — Firestore-backed
-================================================================ */
-function showEngineerForm(id) {
-  navToView('view-profile-form');
-  resetProfileFields();
-  editingProfileId = null;
-  if (id) {
-    editingProfileId = id;
-    const t = profiles.find(p => p.id === id);
-    if (t) populateFormFields(t);
-    document.getElementById('profile-form-heading').textContent = 'Modify Technical Profile';
-  } else {
-    document.getElementById('profile-form-heading').textContent = 'Initialize Technical Profile';
-    addEngineerProjectFormBlock();
-  }
-}
-
-function addEngineerProjectFormBlock(data) {
-  const box = document.getElementById('dynamic-engineer-projects-box');
-  const uid = data ? data.uid : 'epb-' + Math.random().toString(36).slice(2,7);
-  const div = document.createElement('div');
-  div.className = 'project-block'; div.id = uid;
-  div.innerHTML =
-    '<div class="project-header">' +
-      '<span class="project-num">// DETAILED PROJECT LOG</span>' +
-      '<button class="project-remove-btn" type="button" onclick="removeProjBlock(\'' + uid + '\')">&#215;</button>' +
-    '</div>' +
-    '<div class="project-body">' +
-      '<div class="field"><label>Project Name</label>' +
-        '<input type="text" class="field-p-name" value="' + (data ? escHtml(data.name) : '') + '"/></div>' +
-      '<div class="field"><label>Technology Nodes</label>' +
-        '<input type="text" class="field-p-tech" value="' + (data ? escHtml(data.tech) : '') + '"/></div>' +
-      '<div class="field"><label>Duration Tracking</label>' +
-        '<input type="text" class="field-p-duration" value="' + (data ? escHtml(data.duration) : '') + '"/></div>' +
-      '<div class="field" style="grid-column:1/-1"><label>Description Parameters (each line = one bullet)</label>' +
-        '<textarea class="field-p-desc" rows="4">' + (data ? escHtml(data.desc) : '') + '</textarea></div>' +
-    '</div>';
-  box.appendChild(div);
-}
-
-function removeProjBlock(id) { const e = document.getElementById(id); if (e) e.remove(); }
-
-function resetProfileFields() {
-  ['ep-name','ep-yoe','ep-uni','ep-edu','ep-keyexp','ep-t-circuit','ep-t-layout',
-   'ep-t-phys','ep-t-parasitic','ep-t-reliability','ep-t-pm','ep-b-tech','ep-b-foundry','ep-b-process']
-    .forEach(id => { const e = document.getElementById(id); if (e) e.value = ''; });
-  document.getElementById('dynamic-engineer-projects-box').innerHTML = '';
-  engineerTechTags = [];
-  renderTagPills('ep-b-tech','ep-b-tech-tags','ENG');
-}
-
-function populateFormFields(p) {
-  const s = (id, v) => { const e = document.getElementById(id); if (e) e.value = v || ''; };
-  s('ep-name',p.name); s('ep-yoe',p.yoe); s('ep-uni',p.uni); s('ep-edu',p.edu);
-  s('ep-keyexp',p.keyexp); s('ep-t-circuit',p.tools?.circuit); s('ep-t-layout',p.tools?.layout);
-  s('ep-t-phys',p.tools?.phys); s('ep-t-parasitic',p.tools?.parasitic);
-  s('ep-t-reliability',p.tools?.reliability); s('ep-t-pm',p.tools?.pm);
-  s('ep-b-foundry',p.base?.foundry); s('ep-b-process',p.base?.process);
-  engineerTechTags = p.base?.tech ? [...p.base.tech] : [];
-  renderTagPills('ep-b-tech','ep-b-tech-tags','ENG');
-  if (p.experienceLogs) p.experienceLogs.forEach(l => addEngineerProjectFormBlock(l));
-}
-
-async function saveEngineerProfile() {
-  const name   = document.getElementById('ep-name').value.trim();
-  const yoe    = document.getElementById('ep-yoe').value.trim();
-  const keyexp = document.getElementById('ep-keyexp').value.trim();
-  if (!name || !yoe || !keyexp || !engineerTechTags.length) {
-    showToast('Complete required background rows \u2736', true); return;
-  }
-  const logs = [];
-  document.querySelectorAll('#dynamic-engineer-projects-box .project-block').forEach(blk => {
-    logs.push({
-      uid:      blk.id,
-      name:     blk.querySelector('.field-p-name').value.trim(),
-      tech:     blk.querySelector('.field-p-tech').value.trim(),
-      duration: blk.querySelector('.field-p-duration').value.trim(),
-      desc:     blk.querySelector('.field-p-desc').value.trim()
-    });
-  });
-  const g = id => document.getElementById(id)?.value.trim() || '';
-  const pkt = {
-    id:        editingProfileId || ('eng-' + Math.random().toString(36).slice(2,8)),
-    name, yoe, uni: g('ep-uni'), edu: g('ep-edu'), keyexp,
-    tools:     { circuit: g('ep-t-circuit'), layout: g('ep-t-layout'), phys: g('ep-t-phys'),
-                 parasitic: g('ep-t-parasitic'), reliability: g('ep-t-reliability'), pm: g('ep-t-pm') },
-    base:      { tech: engineerTechTags, foundry: g('ep-b-foundry'), process: g('ep-b-process') },
-    experienceLogs: logs,
-    updatedAt:      Date.now(),
-    createdBy:      window.currentUserEmail || (editingProfileId ? (profiles.find(p=>p.id===editingProfileId)?.createdBy || '') : '')
-  };
-
-  const btn = document.getElementById('btn-save-profile');
-  btn.disabled = true; btn.textContent = 'Saving…';
-  try {
-    const { doc, setDoc } = fb();
-    await setDoc(doc(db(),'profiles', pkt.id), pkt);
-    if (editingProfileId) {
-      const i = profiles.findIndex(p => p.id === editingProfileId);
-      if (i !== -1) profiles[i] = pkt; else profiles.push(pkt);
-    } else {
-      profiles.push(pkt);
-    }
-    showToast('\u2713 Profile Tracked Safely');
-    showDirectory();
-  } catch(e) {
-    console.error(e);
-    showToast('Failed to save profile \u2736', true);
-  } finally {
-    btn.disabled = false; btn.textContent = 'SAVE PROFILE SYSTEM';
-  }
-}
-
-function renderDirectoryProfiles() {
-  const nodes = new Set();
-  profiles.forEach(p => { (p.base?.tech || []).forEach(n => nodes.add(n.trim())); });
-  document.getElementById('stat-nodes').textContent = nodes.size ? [...nodes].join(', ') : 'None Linked';
-  const fb2 = document.getElementById('directory-nodes-filter');
-  fb2.innerHTML = '';
-  if (profiles.length) {
-    const all = document.createElement('div');
-    all.className = 'node-filter-pill' + (selectedNodeFilter === 'ALL' ? ' active' : '');
-    all.textContent = 'ALL NODES';
-    all.onclick = () => { selectedNodeFilter = 'ALL'; filterProfiles(); };
-    fb2.appendChild(all);
-    nodes.forEach(n => {
-      const btn = document.createElement('div');
-      btn.className = 'node-filter-pill' + (selectedNodeFilter === n ? ' active' : '');
-      btn.textContent = n;
-      btn.onclick = () => { selectedNodeFilter = n; filterProfiles(); };
-      fb2.appendChild(btn);
-    });
-  }
-  filterProfiles();
-}
-
-function filterProfiles() {
-  const q = document.getElementById('search-input').value.toLowerCase();
-  let m = profiles.filter(p =>
-    p.name.toLowerCase().includes(q) ||
-    (p.keyexp && p.keyexp.toLowerCase().includes(q)) ||
-    (p.uni && p.uni.toLowerCase().includes(q))
-  );
-  if (selectedNodeFilter !== 'ALL') {
-    m = m.filter(p => p.base?.tech?.some(n => n.toLowerCase() === selectedNodeFilter.toLowerCase()));
-  }
-  document.getElementById('stat-count').textContent = m.length;
-  const grid = document.getElementById('profile-grid');
-  if (!m.length) {
-    grid.innerHTML = '<div class="empty-state"><h3>No matching structural nodes located</h3></div>'; return;
-  }
-  grid.innerHTML = m.map(p => {
-    const isOwner = window.currentUserEmail && p.createdBy === window.currentUserEmail;
-    const editBtn = isOwner
-      ? '<button class="btn-ghost" onclick="event.stopPropagation();showEngineerForm(\'' + p.id + '\')">EDIT</button>'
-      : '';
-    const delBtn  = isOwner
-      ? '<button class="btn-ghost btn-danger" onclick="event.stopPropagation();triggerProfileDeletion(\'' + p.id + '\')">DELETE</button>'
-      : '';
-    return (
-      '<div class="profile-card" onclick="viewProfileDetails(\'' + p.id + '\')">' +
-        '<div class="card-top"><div class="avatar">' + p.name.substring(0,2).toUpperCase() + '</div>' +
-          '<div><div class="card-name">' + escHtml(p.name) + '</div>' +
-          '<div class="card-desig">' + escHtml(p.keyexp) + '</div></div></div>' +
-        '<div class="nodes-wrap">' + (p.base?.tech||[]).map(n => '<span class="node-tag">' + escHtml(n) + '</span>').join(' ') + '</div>' +
-        '<div class="card-desc"><strong>Experience:</strong> ' + escHtml(p.yoe) + '</div>' +
-        '<div class="card-footer">' +
-          '<span class="card-updated">' + (isOwner ? '&#10003; Your profile' : 'Collaborator Register') + '</span>' +
-          '<div class="card-actions">' + editBtn + delBtn + '</div>' +
-        '</div>' +
-      '</div>'
-    );
-  }).join('');
-}
-
-function viewProfileDetails(id) {
-  viewingProfileId = id;
-  const p = profiles.find(x => x.id === id);
-  if (!p) return;
-  navToView('view-profile-detail');
-  const s = (id2, v) => { const e = document.getElementById(id2); if (e) e.textContent = v || '\u2014'; };
-  document.getElementById('d-avatar').textContent = p.name.substring(0,2).toUpperCase();
-  s('d-name',p.name); s('d-yoe',p.yoe); s('d-uni',p.uni); s('d-edu',p.edu); s('d-keyexp',p.keyexp);
-  s('d-t-circuit',p.tools?.circuit); s('d-t-layout',p.tools?.layout); s('d-t-phys',p.tools?.phys);
-  s('d-t-parasitic',p.tools?.parasitic); s('d-t-rel',p.tools?.reliability); s('d-t-pm',p.tools?.pm);
-  s('d-b-tech',(p.base?.tech||[]).join(', ')); s('d-b-foundry',p.base?.foundry); s('d-b-process',p.base?.process);
-  document.getElementById('d-nodes-box').innerHTML = (p.base?.tech||[]).map(n => '<span class="node-tag">' + escHtml(n) + '</span>').join(' ');
-
-  const tgt = document.getElementById('d-projects-accordion-target');
-  tgt.innerHTML = '';
-  if (!p.experienceLogs?.length) {
-    tgt.innerHTML = '<div class="card-desc">No layout verification project tracks saved.</div>';
-  } else {
-    p.experienceLogs.forEach(l => {
-      tgt.innerHTML +=
-        '<div class="proj-item">' +
-          '<div class="proj-item-header">' +
-            '<span class="node-tag">' + escHtml(l.tech) + '</span>' +
-            '<span class="proj-item-name">' + escHtml(l.name) + (l.duration ? ' (' + escHtml(l.duration) + ')' : '') + '</span>' +
-          '</div>' +
-          '<div class="proj-item-body"><div class="card-desc">' + bulletify(l.desc) + '</div></div>' +
+        '<div class="project-body">' +
+          '<div class="field"><label>Project Name</label><input type="text" class="field-p-name" value="' + (data ? escHtml(data.name) : '') + '"/></div>' +
+          '<div class="field"><label>Technology Nodes</label><input type="text" class="field-p-tech" value="' + (data ? escHtml(data.tech) : '') + '"/></div>' +
+          '<div class="field"><label>Duration Tracking</label><input type="text" class="field-p-duration" value="' + (data ? escHtml(data.duration) : '') + '"/></div>' +
+          '<div class="field" style="grid-column:1/-1"><label>Description Parameters (each line = one bullet)</label><textarea class="field-p-desc" rows="4">' + (data ? escHtml(data.desc) : '') + '</textarea></div>' +
         '</div>';
-    });
-  }
-  document.getElementById('btn-profile-docx').onclick = () => dlEngDoc(p);
-
-  // Show owner-only buttons only if this profile belongs to the current user
-  const isOwner = window.currentUserEmail && p.createdBy === window.currentUserEmail;
-  document.querySelectorAll('#view-profile-detail .owner-only').forEach(el => {
-    el.style.display = isOwner ? 'inline-block' : 'none';
-  });
-}
-
-function editProfileDirectly() { if (viewingProfileId) showEngineerForm(viewingProfileId); }
-
-/* Delete triggers */
-let activeDeletionType = 'profile';
-
-function triggerProfileDeletion(id) {
-  activeDeletionStagedId = id || viewingProfileId;
-  activeDeletionType     = 'profile';
-  document.getElementById('delete-modal-title').textContent = 'Delete this profile?';
-  document.getElementById('delete-modal-body').textContent  = 'This will remove the engineer\'s record. You will have 60 seconds to undo.';
-  document.getElementById('modal-backdrop').classList.add('open');
-}
-function closeModal() { document.getElementById('modal-backdrop').classList.remove('open'); activeDeletionStagedId = null; }
-
-async function confirmDelete() {
-  if (!activeDeletionStagedId) return;
-  const target = activeDeletionStagedId;
-  const type   = activeDeletionType;
-  closeModal();
-
-  if (type === 'profile') {
-    deletedSnapshot = JSON.parse(JSON.stringify(profiles.find(x => x.id === target)));
-    deletedType     = 'profile';
-    profiles = profiles.filter(x => x.id !== target);
-    try {
-      const { doc, deleteDoc } = fb();
-      await deleteDoc(doc(db(),'profiles', target));
-    } catch(e) {
-      console.error('Delete error:', e);
-      showToast('Delete failed \u2736', true);
-      profiles.push(deletedSnapshot); deletedSnapshot = null; return;
+      box.appendChild(div);
     }
-    if (viewingProfileId === target) showDirectory(); else renderDirectoryProfiles();
-  } else {
-    deletedSnapshot = JSON.parse(JSON.stringify(teamProjects.find(x => x.id === target)));
-    deletedType     = 'project';
-    teamProjects = teamProjects.filter(x => x.id !== target);
-    try {
-      const { doc, deleteDoc } = fb();
-      await deleteDoc(doc(db(),'teamprojects', target));
-    } catch(e) {
-      console.error('Delete error:', e);
-      showToast('Delete failed \u2736', true);
-      teamProjects.push(deletedSnapshot); deletedSnapshot = null; return;
+
+    function removeProjBlock(id) {
+      const e = document.getElementById(id);
+      if (e) e.remove();
     }
-    renderGroupedTeamProjects();
-  }
-  document.getElementById('undo-label').textContent = type === 'profile' ? 'Profile extracted.' : 'Project deleted.';
-  startUndo();
-}
 
-function startUndo() {
-  if (undoInterval) clearInterval(undoInterval);
-  undoSecondsRemaining = 60;
-  document.getElementById('undo-timer').textContent = '60s';
-  document.getElementById('undo-bar').classList.add('show');
-  undoInterval = setInterval(() => {
-    undoSecondsRemaining--;
-    document.getElementById('undo-timer').textContent = undoSecondsRemaining + 's';
-    if (undoSecondsRemaining <= 0) {
-      clearInterval(undoInterval);
-      document.getElementById('undo-bar').classList.remove('show');
-      deletedSnapshot = null;
+    function resetProfileFields() {
+      ['ep-name','ep-yoe','ep-uni','ep-edu','ep-keyexp','ep-t-circuit','ep-t-layout',
+       'ep-t-phys','ep-t-parasitic','ep-t-reliability','ep-t-pm','ep-b-foundry','ep-b-process']
+        .forEach(id => { const e = document.getElementById(id); if (e) e.value = ''; });
     }
-  }, 1000);
-}
 
-async function undoDelete() {
-  if (!deletedSnapshot) return;
-  const snap = deletedSnapshot;
-  const type = deletedType;
-  try {
-    const { doc, setDoc } = fb();
-    const colName = type === 'profile' ? 'profiles' : 'teamprojects';
-    await setDoc(doc(db(), colName, snap.id), snap);
-    if (type === 'profile') profiles.push(snap);
-    else teamProjects.push(snap);
-    deletedSnapshot = null;
-    clearInterval(undoInterval);
-    document.getElementById('undo-bar').classList.remove('show');
-    showToast('\u2713 ' + (type === 'profile' ? 'Profile' : 'Project') + ' State Vectors Restored');
-    if (type === 'profile') renderDirectoryProfiles();
-    else renderGroupedTeamProjects();
-  } catch(e) {
-    console.error('Undo error:', e);
-    showToast('Undo failed \u2736', true);
-  }
-}
+    async function saveEngineerProfile() {
+      const name = document.getElementById('ep-name').value.trim();
+      const yoe = document.getElementById('ep-yoe').value.trim();
+      const uni = document.getElementById('ep-uni').value.trim();
+      const edu = document.getElementById('ep-edu').value.trim();
+      const keyexp = document.getElementById('ep-keyexp').value.trim();
 
+      if (!name || !yoe || !uni || !edu || !keyexp || !engineerTechTags.length) {
+        showToast('Complete core metadata requirements ✖', true);
+        return;
+      }
 
-/* ================================================================
-   G. DOC EXPORT
-================================================================ */
+      const btn = document.getElementById('btn-save-profile');
+      btn.disabled = true; btn.textContent = 'Synchronizing Array…';
 
-/* ---- Team portfolio export (unchanged .doc approach) ---- */
-function docWrap(body) {
-  return '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">' +
-    '<head><meta charset="utf-8"><title>Export</title>' +
-    '<style>body{font-family:Arial,sans-serif;font-size:11pt;line-height:1.4;color:#000;background:#fff;padding:20px;}' +
-    'h1{font-size:16pt;font-weight:bold;text-align:center;margin-bottom:18pt;}h2{font-size:13pt;font-weight:bold;margin-top:20pt;}' +
-    'table{width:100%;border-collapse:collapse;margin:12pt 0;}th,td{border:1px solid #000;padding:10px;text-align:left;vertical-align:top;font-size:10.5pt;}' +
-    'th{font-weight:bold;text-align:center;}</style></head><body>' + body + '</body></html>';
-}
-function triggerDlDoc(filename, html) {
-  const b = new Blob([html], { type:'application/msword;charset=utf-8' });
-  const u = URL.createObjectURL(b);
-  const a = document.createElement('a'); a.href = u; a.download = filename;
-  document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(u);
-}
-function bulletsDoc(text) {
-  if (!text) return '\u2014';
-  const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
-  return '<ul style="margin:0;padding-left:20px;font-size:11pt;">' + lines.map(l => '<li>' + escHtml(l) + '</li>').join('') + '</ul>';
-}
-function dlTeamDoc(team) {
-  const list = teamProjects.filter(p => p.teamName.toLowerCase() === team.toLowerCase());
-  if (!list.length) { showToast('No data for this team.', true); return; }
-  let rows = '<tr><th style="width:20%">Project</th><th style="width:35%">Goal</th><th style="width:15%">Technology</th><th style="width:30%">Achievement</th></tr>';
-  list.forEach(p => {
-    rows += '<tr><td><strong>' + escHtml(p.projectName) + '</strong></td><td>' + bulletsDoc(p.goal) + '</td><td style="text-align:center">' + escHtml(p.processNode) + '</td><td>' + bulletsDoc(p.keyAchievements) + '</td></tr>';
-  });
-  triggerDlDoc('Portfolio_' + team.replace(/\s+/g,'_') + '.doc', docWrap('<h1>PORTFOLIO (' + escHtml(team.toUpperCase()) + ')</h1><table>' + rows + '</table>'));
-  showToast('\u2713 Team specifications extracted');
-}
-
-/* ---- Engineer profile export — proper .docx matching the NSL template ---- */
-
-/* Lazy-load the docx IIFE library from CDN the first time it is needed */
-let _docxLibPromise = null;
-function loadDocxLib() {
-  if (_docxLibPromise) return _docxLibPromise;
-  _docxLibPromise = new Promise((resolve, reject) => {
-    if (window.docx) { resolve(window.docx); return; }
-    const s = document.createElement('script');
-    s.src = 'https://unpkg.com/docx@9.6.1/dist/index.iife.js';
-    s.onload  = () => resolve(window.docx);
-    s.onerror = () => reject(new Error('Failed to load docx library'));
-    document.head.appendChild(s);
-  });
-  return _docxLibPromise;
-}
-
-async function dlEngDoc(p) {
-  showToast('Preparing document\u2026');
-  let docxLib;
-  try {
-    docxLib = await loadDocxLib();
-  } catch(e) {
-    showToast('Cannot load docx library. Check your connection. \u2736', true);
-    return;
-  }
-
-  const {
-    Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell,
-    AlignmentType, BorderStyle, WidthType, ShadingType, VerticalAlign, LevelFormat
-  } = docxLib;
-
-  /* ── Shared constants (mirrors template: Lato 11pt) ── */
-  const FONT   = 'Lato';
-  const SZ     = 22;      /* 11 pt in half-points */
-  const NAME_SZ = 36;     /* 18 pt for the name   */
-
-  const BORDER_DEF = { style: BorderStyle.SINGLE, size: 6, color: 'auto' };
-  const ALL_BORDERS = { top: BORDER_DEF, bottom: BORDER_DEF, left: BORDER_DEF, right: BORDER_DEF };
-  const NO_BORDER   = { style: BorderStyle.NONE,   size: 0, color: 'FFFFFF' };
-  const NO_BORDERS  = { top: NO_BORDER, bottom: NO_BORDER, left: NO_BORDER, right: NO_BORDER };
-
-  /* ── Helper: plain paragraph ── */
-  function mkPara(text, { bold = false, size = SZ } = {}) {
-    return new Paragraph({
-      spacing: { after: 0, line: 240, lineRule: 'auto' },
-      children: [new TextRun({ text: text || '', font: FONT, size, bold, color: '000000' })]
-    });
-  }
-
-  /* ── Helper: bullet paragraphs from newline-separated text ── */
-  function mkBullets(text) {
-    if (!text) return [mkPara('\u2014')];
-    const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
-    if (!lines.length) return [mkPara('\u2014')];
-    return lines.map(line => new Paragraph({
-      spacing: { after: 0, line: 240, lineRule: 'auto' },
-      numbering: { reference: 'bullets', level: 0 },
-      children: [new TextRun({ text: line, font: FONT, size: SZ, color: '000000' })]
-    }));
-  }
-
-  /* ── Helper: simple single-paragraph cell ── */
-  function mkCell(text, width, { bold = false, borders = ALL_BORDERS, align = 'left', vAlign = VerticalAlign.CENTER } = {}) {
-    return new TableCell({
-      width: { size: width, type: WidthType.DXA },
-      borders,
-      margins: { top: 80, bottom: 80, left: 105, right: 105 },
-      verticalAlign: vAlign,
-      children: [new Paragraph({
-        alignment: align === 'center' ? AlignmentType.CENTER : AlignmentType.LEFT,
-        spacing: { after: 0, line: 240, lineRule: 'auto' },
-        children: [new TextRun({ text: text || '\u2014', font: FONT, size: SZ, bold, color: '000000' })]
-      })]
-    });
-  }
-
-  /* ── Helper: multi-paragraph cell (for bullet content) ── */
-  function mkCellMulti(paragraphs, width, { borders = ALL_BORDERS, vAlign = VerticalAlign.TOP } = {}) {
-    return new TableCell({
-      width: { size: width, type: WidthType.DXA },
-      borders,
-      margins: { top: 80, bottom: 80, left: 105, right: 105 },
-      verticalAlign: vAlign,
-      children: paragraphs
-    });
-  }
-
-  /* ================================================================
-     TABLE 1 — Info table (no visible borders, 2 cols)
-     Template widths: col1=2605 dxa, col2=6745 dxa  (total 9350)
-  ================================================================ */
-  const INFO_W  = 9350;
-  const INFO_C1 = 2605;
-  const INFO_C2 = 6745;
-
-  function mkInfoRow(label, value) {
-    return new TableRow({
-      children: [
-        new TableCell({
-          width: { size: INFO_C1, type: WidthType.DXA },
-          borders: NO_BORDERS,
-          margins: { top: 60, bottom: 60, left: 0, right: 120 },
-          verticalAlign: VerticalAlign.CENTER,
-          children: [new Paragraph({
-            spacing: { after: 0, line: 240, lineRule: 'auto' },
-            children: [new TextRun({ text: label, font: FONT, size: SZ, bold: true, color: '000000' })]
-          })]
-        }),
-        new TableCell({
-          width: { size: INFO_C2, type: WidthType.DXA },
-          borders: NO_BORDERS,
-          margins: { top: 60, bottom: 60, left: 120, right: 0 },
-          verticalAlign: VerticalAlign.CENTER,
-          children: [new Paragraph({
-            spacing: { after: 0, line: 240, lineRule: 'auto' },
-            children: [new TextRun({ text: value || '\u2014', font: FONT, size: SZ, color: '000000' })]
-          })]
-        })
-      ]
-    });
-  }
-
-  const infoTable = new Table({
-    width: { size: INFO_W, type: WidthType.DXA },
-    columnWidths: [INFO_C1, INFO_C2],
-    rows: [
-      mkInfoRow('Years of Experience', p.yoe || ''),
-      mkInfoRow('Education Background', p.edu || ''),
-      mkInfoRow('University',           p.uni || ''),
-      mkInfoRow('Key Expertise',        p.keyexp || '')
-    ]
-  });
-
-  /* ================================================================
-     TABLE 2 — Tool Expertise (bordered, 2 cols)
-     Template widths: col1=3045 dxa, col2=6480 dxa  (total 9525)
-  ================================================================ */
-  const TOOL_W  = 9525;
-  const TOOL_C1 = 3045;
-  const TOOL_C2 = 6480;
-  const techStr = (p.base?.tech || []).join(', ') || '\u2014';
-
-  function mkToolRow(label, value) {
-    return new TableRow({
-      height: { value: 300, rule: 'atLeast' },
-      children: [
-        mkCell(label, TOOL_C1, { bold: true }),
-        mkCell(value || '\u2014', TOOL_C2)
-      ]
-    });
-  }
-
-  const toolTable = new Table({
-    width: { size: TOOL_W, type: WidthType.DXA },
-    columnWidths: [TOOL_C1, TOOL_C2],
-    rows: [
-      mkToolRow('Circuit Design & Simulation', p.tools?.circuit  || ''),
-      mkToolRow('Layout Design',               p.tools?.layout   || ''),
-      mkToolRow('Physical Verification',       p.tools?.phys     || ''),
-      mkToolRow('Parasitic Extraction',        p.tools?.parasitic|| ''),
-      mkToolRow('Reliability Validation',      p.tools?.reliability || ''),
-      mkToolRow('Project Management',          p.tools?.pm       || ''),
-      mkToolRow('Technology',                  techStr),
-      mkToolRow('Foundry',                     p.base?.foundry   || ''),
-      mkToolRow('Process',                     p.base?.process   || '')
-    ]
-  });
-
-  /* ================================================================
-     TABLE 3 — Layout Project Experience (bordered, 4 cols)
-     Template widths: Project=2100, Tech=1500, Desc=4425, Duration=1500 (total 9525)
-  ================================================================ */
-  const PROJ_W   = 9525;
-  const PROJ_COLS = [2100, 1500, 4425, 1500]; /* Project | Technology | Description | Duration */
-
-  /* Header row with grey shading */
-  function mkProjHeaderCell(text, width) {
-    return new TableCell({
-      width: { size: width, type: WidthType.DXA },
-      borders: ALL_BORDERS,
-      margins: { top: 80, bottom: 80, left: 105, right: 105 },
-      shading: { fill: 'D9D9D9', type: ShadingType.CLEAR },
-      verticalAlign: VerticalAlign.CENTER,
-      children: [new Paragraph({
-        alignment: AlignmentType.CENTER,
-        spacing: { after: 0 },
-        children: [new TextRun({ text, font: FONT, size: SZ, bold: true, color: '000000' })]
-      })]
-    });
-  }
-
-  const projHeaderRow = new TableRow({
-    children: [
-      mkProjHeaderCell('Project',     PROJ_COLS[0]),
-      mkProjHeaderCell('Technology',  PROJ_COLS[1]),
-      mkProjHeaderCell('Description', PROJ_COLS[2]),
-      mkProjHeaderCell('Duration',    PROJ_COLS[3])
-    ]
-  });
-
-  const logs = p.experienceLogs || [];
-  const projDataRows = logs.length
-    ? logs.map(log => new TableRow({
-        children: [
-          /* Project name — bold */
-          mkCell(log.name || '\u2014', PROJ_COLS[0], { bold: true, vAlign: VerticalAlign.TOP }),
-          /* Technology */
-          mkCell(log.tech || '\u2014', PROJ_COLS[1], { vAlign: VerticalAlign.TOP }),
-          /* Description — bullet list */
-          mkCellMulti(mkBullets(log.desc), PROJ_COLS[2]),
-          /* Duration */
-          mkCell(log.duration || '\u2014', PROJ_COLS[3], { vAlign: VerticalAlign.TOP })
-        ]
-      }))
-    /* One blank row when no projects logged */
-    : [new TableRow({
-        children: PROJ_COLS.map(w => new TableCell({
-          width: { size: w, type: WidthType.DXA },
-          borders: ALL_BORDERS,
-          margins: { top: 80, bottom: 80, left: 105, right: 105 },
-          children: [new Paragraph({ children: [new TextRun({ text: '', font: FONT, size: SZ })] })]
-        }))
-      })];
-
-  const projTable = new Table({
-    width: { size: PROJ_W, type: WidthType.DXA },
-    columnWidths: PROJ_COLS,
-    rows: [projHeaderRow, ...projDataRows]
-  });
-
-  /* ================================================================
-     BUILD DOCUMENT
-  ================================================================ */
-  const doc = new Document({
-    numbering: {
-      config: [{
-        reference: 'bullets',
-        levels: [{
-          level: 0,
-          format: LevelFormat.BULLET,
-          text: '\u2022',
-          alignment: AlignmentType.LEFT,
-          style: { paragraph: { indent: { left: 360, hanging: 180 } } }
-        }]
-      }]
-    },
-    sections: [{
-      properties: {
-        page: {
-          size:   { width: 12240, height: 15840 },          /* US Letter */
-          margin: { top: 1080, right: 900, bottom: 1080, left: 900 } /* ~0.75" margins */
+      const experienceLogs = [];
+      document.querySelectorAll('#dynamic-engineer-projects-box .project-block').forEach(b => {
+        const pName = b.querySelector('.field-p-name').value.trim();
+        const pTech = b.querySelector('.field-p-tech').value.trim();
+        const pDur  = b.querySelector('.field-p-duration').value.trim();
+        const pDesc = b.querySelector('.field-p-desc').value.trim();
+        if (pName) {
+          experienceLogs.push({ name: pName, tech: pTech, duration: pDur, desc: pDesc });
         }
-      },
-      children: [
-        /* Engineer name — 18pt bold */
-        new Paragraph({
-          spacing: { after: 0, line: 240, lineRule: 'auto' },
-          children: [new TextRun({ text: p.name || '', font: FONT, size: NAME_SZ, bold: true, color: '000000' })]
-        }),
-        new Paragraph({ spacing: { after: 0 }, children: [] }),
+      });
 
-        /* Table 1 – basic info */
-        infoTable,
-        new Paragraph({ spacing: { after: 0 }, children: [] }),
+      const pkt = {
+        id: editingProfileId || ('eng-' + Date.now().toString(36)),
+        name, yoe, uni, edu, keyexp,
+        tools: {
+          circuit: document.getElementById('ep-t-circuit').value.trim(),
+          layout: document.getElementById('ep-t-layout').value.trim(),
+          phys: document.getElementById('ep-t-phys').value.trim(),
+          parasitic: document.getElementById('ep-t-parasitic').value.trim(),
+          reliability: document.getElementById('ep-t-reliability').value.trim(),
+          pm: document.getElementById('ep-t-pm').value.trim()
+        },
+        base: {
+          tech: engineerTechTags,
+          foundry: document.getElementById('ep-b-foundry').value.trim(),
+          process: document.getElementById('ep-b-process').value.trim()
+        },
+        experienceLogs,
+        ownerId: currentUserId || 'system',
+        timestamp: Date.now()
+      };
 
-        /* "Tool Expertise" heading */
-        mkPara('Tool Expertise', { bold: true }),
-        new Paragraph({ spacing: { after: 0 }, children: [] }),
+      try {
+        const { doc, setDoc } = fb();
+        await setDoc(doc(db(), "profiles", pkt.id), pkt);
+        showToast('✓ Profile Tracked Safely');
+        await syncDatabaseCores();
+        showDirectory();
+      } catch(e) {
+        console.error(e);
+        showToast('Failed to save profile ✖', true);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'SAVE PROFILE SYSTEM';
+      }
+    }
 
-        /* Table 2 – tools */
-        toolTable,
-        new Paragraph({ spacing: { after: 0 }, children: [] }),
+    function renderDirectoryProfiles() {
+      const nodes = new Set();
+      profiles.forEach(p => {
+        (p.base?.tech || []).forEach(n => nodes.add(n.trim()));
+      });
 
-        /* "Layout Project Experience" heading + note */
-        mkPara('Layout Project Experience', { bold: true }),
-        new Paragraph({
-          spacing: { after: 0, line: 240, lineRule: 'auto' },
-          children: [new TextRun({
-            text: '(If you have done one project on multiple technology nodes, mention it sequentially)',
-            font: FONT, size: SZ, color: '000000'
-          })]
-        }),
-        new Paragraph({ spacing: { after: 0 }, children: [] }),
+      document.getElementById('stat-nodes').textContent = nodes.size ? [...nodes].join(', ') : 'None Linked';
+      
+      const fb2 = document.getElementById('directory-nodes-filter');
+      fb2.innerHTML = '';
+      
+      if (profiles.length) {
+        const all = document.createElement('div');
+        all.className = 'node-filter-pill' + (selectedNodeFilter === 'ALL' ? ' active' : '');
+        all.textContent = 'ALL NODES';
+        all.onclick = () => { selectedNodeFilter = 'ALL'; filterProfiles(); };
+        fb2.appendChild(all);
 
-        /* Table 3 – projects */
-        projTable
-      ]
-    }]
-  });
+        nodes.forEach(n => {
+          const btn = document.createElement('div');
+          btn.className = 'node-filter-pill' + (selectedNodeFilter === n ? ' active' : '');
+          btn.textContent = n;
+          btn.onclick = () => { selectedNodeFilter = n; filterProfiles(); };
+          fb2.appendChild(btn);
+        });
+      }
+      filterProfiles();
+    }
 
-  try {
-    const buf  = await Packer.toBuffer(doc);
-    const blob = new Blob([buf], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
-    const url  = URL.createObjectURL(blob);
-    const a    = document.createElement('a');
-    a.href     = url;
-    a.download = 'Profile_' + (p.name || 'Engineer').replace(/\s+/g, '_') + '.docx';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    showToast('\u2713 Profile document extracted');
-  } catch(e) {
-    console.error('DOCX generation error:', e);
-    showToast('Document generation failed \u2736', true);
-  }
-}
+    function filterProfiles() {
+      const q = document.getElementById('search-input').value.toLowerCase();
+      const target = document.getElementById('directory-profiles-target');
+      target.innerHTML = '';
+
+      const matched = profiles.filter(p => {
+        if (selectedNodeFilter !== 'ALL') {
+          const tags = (p.base?.tech || []).map(t => t.trim());
+          if (!tags.includes(selectedNodeFilter)) return false;
+        }
+        if (!q) return true;
+        return p.name.toLowerCase().includes(q) || 
+               p.uni.toLowerCase().includes(q) || 
+               p.keyexp.toLowerCase().includes(q) ||
+               (p.base?.foundry || '').toLowerCase().includes(q);
+      });
+
+      document.getElementById('stat-count').textContent = matched.length;
+
+      if (!matched.length) {
+        target.innerHTML = '<div class="empty-state">No engineer tracking logs align with chosen filters.</div>';
+        return;
+      }
+
+      matched.sort((a,b) => b.timestamp - a.timestamp).forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'profile-card';
+        card.onclick = () => openProfileDetail(p.id);
+
+        const initials = p.name.split(' ').map(n => n[0]).join('').substring(0,2).toUpperCase();
+        const tagsHtml = (p.base?.tech || []).map(t => '<span class="node-tag">' + escHtml(t) + '</span>').join('');
+
+        card.innerHTML = 
+          '<div class="card-top">' +
+            '<div class="avatar">' + initials + '</div>' +
+            '<div>' +
+              '<div class="card-name">' + escHtml(p.name) + '</div>' +
+              '<div class="card-desig">' + escHtml(p.yoe) + '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="nodes-wrap">' + tagsHtml + '</div>' +
+          '<div class="card-desc"><strong>Expertise:</strong> ' + escHtml(p.keyexp) + '</div>' +
+          '<div class="card-desc" style="margin-top:4px;"><strong>Academic Background:</strong> ' + escHtml(p.uni) + '</div>' +
+          '<div class="card-footer">' +
+            '<span class="card-updated">Updated: ' + new Date(p.timestamp).toLocaleDateString() + '</span>' +
+            '<span style="color:var(--accent); font-weight:bold; font-size:0.64rem; font-family:\'Share Tech Mono\',monospace;">VIEW PROTOCOL →</span>' +
+          '</div>';
+
+        target.appendChild(card);
+      });
+    }
+
+    function openProfileDetail(id) {
+      const p = profiles.find(x => x.id === id);
+      if (!p) return;
+      viewingProfileId = p.id;
+
+      document.getElementById('d-avatar').textContent = p.name.split(' ').map(n=>n[0]).join('').substring(0,2).toUpperCase();
+      
+      const s = (id, val) => { document.getElementById(id).textContent = val || '—'; };
+      s('d-name', p.name);
+      s('d-yoe', p.yoe);
+      s('d-uni', p.uni);
+      s('d-edu', p.edu);
+      s('d-keyexp', p.keyexp);
+      
+      s('d-t-circuit', p.tools?.circuit);
+      s('d-t-layout', p.tools?.layout);
+      s('d-t-phys', p.tools?.phys);
+      s('d-t-parasitic', p.tools?.parasitic);
+      s('d-t-rel', p.tools?.reliability);
+      s('d-t-pm', p.tools?.pm);
+      
+      s('d-b-tech', (p.base?.tech || []).join(', '));
+      s('d-b-foundry', p.base?.foundry);
+      s('d-b-process', p.base?.process);
+
+      document.getElementById('d-nodes-box').innerHTML = (p.base?.tech || []).map(n => '<span class="node-tag">' + escHtml(n) + '</span>').join(' ');
+      
+      const tgt = document.getElementById('d-projects-accordion-target');
+      tgt.innerHTML = '';
+      
+      if (!p.experienceLogs?.length) {
+        tgt.innerHTML = '<div class="card-desc">No layout verification project tracks saved.</div>';
+      } else {
+        p.experienceLogs.forEach(l => {
+          tgt.innerHTML += 
+            '<div class="proj-item">' +
+              '<div class="proj-item-header">' +
+                '<span class="node-tag">' + escHtml(l.tech) + '</span>' +
+                '<span class="proj-item-name">' + escHtml(l.name) + (l.duration ? ' (' + escHtml(l.duration) + ')' : '') + '</span>' +
+              '_</div>' +
+              '<div class="proj-item-body"><div class="card-desc">' + bulletify(l.desc) + '</div></div>' +
+            '</div>';
+        });
+      }
+
+      const isOwner = p.ownerId === currentUserId;
+      document.getElementById('d-owner-actions').style.display = isOwner ? 'block' : 'none';
+
+      navToView('view-profile-detail');
+    }
+
+    window.editProfileInline = function() {
+      const p = profiles.find(x => x.id === viewingProfileId);
+      if (!p) return;
+      editingProfileId = p.id;
+
+      document.getElementById('form-eng-eyebrow').textContent = '// profile_matrix_mutation';
+      document.getElementById('form-eng-title').textContent = 'Modify Engineer Track';
+
+      document.getElementById('ep-name').value = p.name;
+      document.getElementById('ep-yoe').value = p.yoe;
+      document.getElementById('ep-uni').value = p.uni;
+      document.getElementById('ep-edu').value = p.edu;
+      document.getElementById('ep-keyexp').value = p.keyexp;
+
+      document.getElementById('ep-t-circuit').value = p.tools?.circuit || '';
+      document.getElementById('ep-t-layout').value = p.tools?.layout || '';
+      document.getElementById('ep-t-phys').value = p.tools?.phys || '';
+      document.getElementById('ep-t-parasitic').value = p.tools?.parasitic || '';
+      document.getElementById('ep-t-reliability').value = p.tools?.reliability || '';
+      document.getElementById('ep-t-pm').value = p.tools?.pm || '';
+
+      document.getElementById('ep-b-foundry').value = p.base?.foundry || '';
+      document.getElementById('ep-b-process').value = p.base?.process || '';
+
+      engineerTechTags = p.base?.tech ? [...p.base.tech] : [];
+      renderTagPills('ep-b-tech','ep-b-tech-tags','ENG');
+      initTagEvents('ep-b-tech','ep-b-tech-tags','ENG');
+
+      const box = document.getElementById('dynamic-engineer-projects-box');
+      box.innerHTML = '';
+      if (p.experienceLogs) {
+        p.experienceLogs.forEach(l => addEngineerProjectFormBlock(l));
+      }
+
+      navToView('view-engineer-form');
+    };
+
+    window.deleteProfileInline = function() {
+      const p = profiles.find(x => x.id === viewingProfileId);
+      if (!p) return;
+      triggerDeleteModal('profile', p.id, 'Purge structural profile tracking for ' + p.name + '?');
+    };
 
 
-/* ================================================================
-   H. UTILITIES
-================================================================ */
+    /* ================================================================
+       G. DOC EXPORT ENGINE (REWRITTEN FOR NATIVE TABLE STRUCTURE)
+    ================================================================ */
+    function docWrap(innerHtml) {
+      return 'xmlns:w="urn:schemas-microsoft-com:office:word" ' +
+             'xmlns="http://www.w3.org/TR/REC-html40">' +
+             '<head><title>Profile Document</title>' +
+             '' +
+             '<style>' +
+             'body { font-family:"Lato", "Arial", sans-serif; font-size:11.0pt; line-height:1.25; color:#000000; } ' +
+             'table { border-collapse:collapse; width:100%; margin-bottom:15pt; } ' +
+             'td, th { border:1px solid #000000; padding:6pt 8pt; font-family:"Lato", "Arial", sans-serif; font-size:11.0pt; vertical-align:top; } ' +
+             'th { background-color:#F2F2F2; text-align:left; font-weight:bold; } ' +
+             '.heading-title { font-size:18.0pt; font-weight:bold; margin-bottom:12pt; text-transform:none; } ' +
+             '.section-header { font-size:14.0pt; font-weight:bold; margin-top:20pt; margin-bottom:8pt; border-bottom:2px solid #000000; padding-bottom:2pt; } ' +
+             'ul { margin:0 0 0 14pt; padding:0; } ' +
+             'li { font-size:11.0pt; margin-bottom:2pt; } ' +
+             '</style></head>' +
+             '<body>' + innerHtml + '</body></html>';
+    }
 
-/**
- * bulletify — ALWAYS renders as a bullet list, even for a single line.
- */
-function bulletify(text) {
-  if (!text) return '\u2014';
-  const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
-  if (!lines.length) return '\u2014';
-  return '<ul class="bullet-container-list">' + lines.map(l => '<li>' + escHtml(l) + '</li>').join('') + '</ul>';
-}
+    function triggerDl(filename, bodyString) {
+      const blob = new Blob(['<html ' + bodyString], { type: 'application/msword' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = filename;
+      document.body.appendChild(a); a.click();
+      document.body.removeChild(a); URL.revokeObjectURL(url);
+    }
 
-function showToast(msg, isErr) {
-  const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.style.borderColor = isErr ? 'var(--warn)' : 'var(--accent3)';
-  el.style.color       = isErr ? 'var(--warn)' : 'var(--accent3)';
-  el.classList.add('show');
-  setTimeout(() => el.classList.remove('show'), 3000);
-}
+    function bulletsDoc(text) {
+      if (!text) return '—';
+      const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+      if (!lines.length) return '—';
+      return '<ul>' + lines.map(l => '<li>' + escHtml(l) + '</li>').join('') + '</ul>';
+    }
 
-function escHtml(s) {
-  if (!s) return '';
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-</script>
+    function dlProfileDoc() {
+      const p = profiles.find(x => x.id === viewingProfileId);
+      if (!p) return;
+
+      // Construct native horizontal table structure exactly mimicking the provided .docx asset format
+      let inner = '<div class="heading-title">' + escHtml(p.name) + '</div>';
+      
+      // Part 1: Core Parameters Table Block
+      inner += '<table>' +
+        '<tr><td style="width:25%; font-weight:bold; background-color:#F2F2F2;">Years of Experience</td><td>' + escHtml(p.yoe || '—') + '</td></tr>' +
+        '<tr><td style="font-weight:bold; background-color:#F2F2F2;">Education Background</td><td>' + escHtml(p.edu || '—') + '</td></tr>' +
+        '<tr><td style="font-weight:bold; background-color:#F2F2F2;">University</td><td>' + escHtml(p.uni || '—') + '</td></tr>' +
+        '<tr><td style="font-weight:bold; background-color:#F2F2F2;">Key Expertise</td><td>' + escHtml(p.keyexp || '—') + '</td></tr>' +
+      '</table>';
+
+      // Part 2: Tool Expertise Table Block
+      inner += '<div class="section-header">Tool Expertise</div>';
+      inner += '<table>' +
+        '<tr><td style="width:35%; font-weight:bold; background-color:#F2F2F2;">Circuit Design & Simulation</td><td>' + escHtml(p.tools?.circuit || '—') + '</td></tr>' +
+        '<tr><td style="font-weight:bold; background-color:#F2F2F2;">Layout Design</td><td>' + escHtml(p.tools?.layout || '—') + '</td></tr>' +
+        '<tr><td style="font-weight:bold; background-color:#F2F2F2;">Physical Verification</td><td>' + escHtml(p.tools?.phys || '—') + '</td></tr>' +
+        '<tr><td style="font-weight:bold; background-color:#F2F2F2;">Parasitic Extraction</td><td>' + escHtml(p.tools?.parasitic || '—') + '</td></tr>' +
+        '<tr><td style="font-weight:bold; background-color:#F2F2F2;">Reliability Validation</td><td>' + escHtml(p.tools?.reliability || '—') + '</td></tr>' +
+        '<tr><td style="font-weight:bold; background-color:#F2F2F2;">Project Management</td><td>' + escHtml(p.tools?.pm || '—') + '</td></tr>' +
+        '<tr><td style="font-weight:bold; background-color:#F2F2F2;">Technology</td><td>' + escHtml((p.base?.tech || []).join(', ') || '—') + '</td></tr>' +
+        '<tr><td style="font-weight:bold; background-color:#F2F2F2;">Foundry</td><td>' + escHtml(p.base?.foundry || '—') + '</td></tr>' +
+        '<tr><td style="font-weight:bold; background-color:#F2F2F2;">Process</td><td>' + escHtml(p.base?.process || '—') + '</td></tr>' +
+      '</table>';
+
+      // Part 3: Layout Project Experience Block Table Structure
+      inner += '<div class="section-header">Layout Project Experience</div>';
+      inner += '<p style="font-size:9.0pt; color:#555555; margin-bottom:6pt; font-style:italic;">(If you have done one project on multiple technology nodes, mention it sequentially)</p>';
+      
+      if (!p.experienceLogs || !p.experienceLogs.length) {
+        inner += '<p>No log records attached.</p>';
+      } else {
+        let rows = '<tr>' +
+          '<th style="width:25%; background-color:#E6E6E6;">Project</th>' +
+          '<th style="width:15%; background-color:#E6E6E6;">Technology</th>' +
+          '<th style="width:45%; background-color:#E6E6E6;">Description</th>' +
+          '<th style="width:15%; background-color:#E6E6E6;">Duration</th>' +
+        '</tr>';
+        
+        p.experienceLogs.forEach(l => {
+          rows += '<tr>' +
+            '<td><strong>' + escHtml(l.name) + '</strong></td>' +
+            '<td>' + escHtml(l.tech) + '</td>' +
+            '<td>' + bulletsDoc(l.desc) + '</td>' +
+            '<td>' + escHtml(l.duration) + '</td>' +
+          '</tr>';
+        });
+        inner += '<table>' + rows + '</table>';
+      }
+
+      triggerDl('Profile_' + p.name.replace(/\s+/g, '_') + '.doc', docWrap(inner));
+      showToast('✓ Profile document extracted');
+    }
+
+    function dlTeamDoc(teamName) {
+      const recs = teamProjects.filter(x => x.teamName === teamName);
+      if (!recs.length) return;
+
+      let inner = '<div class="heading-title">Team Export: ' + escHtml(teamName) + '</div>';
+      recs.forEach(p => {
+        inner += '<div style="margin-bottom:20px; border:1px solid #ccc; padding:10px;">' +
+                   '<h3 style="margin:0 0 8px 0; color:#0284c7;">' + escHtml(p.projectName) + ' (' + escHtml(p.processNode) + ')</h3>' +
+                   '<p><strong>Goals:</strong></p>' + bulletify(p.goal) +
+                   '<p><strong>Achievements:</strong></p>' + bulletify(p.keyAchievements) +
+                 '</div><hr/>';
+      });
+
+      triggerDl('Team_' + teamName.replace(/\s+/g,'_') + '_Specs.doc', docWrap(inner));
+      showToast('✓ Team specifications exported');
+    }
+
+
+    /* ================================================================
+       H. UTILITIES
+    ================================================================ */
+    function bulletify(text) {
+      if (!text) return '—';
+      const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+      if (!lines.length) return '—';
+      return '<ul class="bullet-container-list">' + lines.map(l => '<li>' + escHtml(l) + '</li>').join('') + '</ul>';
+    }
+
+    function showToast(msg, isErr) {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.style.borderColor = isErr ? 'var(--warn)' : 'var(--accent3)';
+      el.classList.add('show');
+      setTimeout(() => el.classList.remove('show'), 4000);
+    }
+
+    function escHtml(str) {
+      if (!str) return '';
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      document.getElementById('theme-toggle-btn').textContent = next === 'dark' ? '🌙' : '☀️';
+      localStorage.setItem('nsl_theme', next);
+    }
+
+    (function initTheme() {
+      const t = localStorage.getItem('nsl_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+      const btn = document.getElementById('theme-toggle-btn');
+      if (btn) btn.textContent = t === 'dark' ? '🌙' : '☀️';
+    })();
+
+    function triggerDeleteModal(type, id, titleText) {
+      deletedType = type;
+      deletedSnapshot = type === 'profile' ? profiles.find(x=>x.id===id) : teamProjects.find(x=>x.id===id);
+      
+      document.getElementById('delete-modal-title').textContent = titleText;
+      document.getElementById('modal-backdrop').classList.add('show');
+    }
+
+    function closeModal() {
+      document.getElementById('modal-backdrop').classList.remove('show');
+    }
+
+    async function confirmDelete() {
+      closeModal();
+      if (!deletedSnapshot) return;
+      
+      const snap = deletedSnapshot;
+      const type = deletedType;
+      
+      try {
+        const { doc, deleteDoc } = fb();
+        const colName = type === 'profile' ? 'profiles' : 'teamprojects';
+        
+        await deleteDoc(doc(db(), colName, snap.id));
+        
+        if (type === 'profile') {
+          profiles = profiles.filter(x => x.id !== snap.id);
+          showDirectory();
+        } else {
+          teamProjects = teamProjects.filter(x => x.id !== snap.id);
+          showProjectsHome();
+        }
+
+        document.getElementById('undo-label').textContent = type === 'profile' ? 'Profile array wiped.' : 'Specification record purged.';
+        undoCountdown = 60;
+        document.getElementById('undo-timer').textContent = undoCountdown + 's';
+        document.getElementById('undo-bar').classList.add('show');
+        
+        clearInterval(undoInterval);
+        undoInterval = setInterval(() => {
+          undoCountdown--;
+          document.getElementById('undo-timer').textContent = undoCountdown + 's';
+          if (undoCountdown <= 0) {
+            clearInterval(undoInterval);
+            document.getElementById('undo-bar').classList.remove('show');
+            deletedSnapshot = null;
+          }
+        }, 1000);
+
+      } catch(e) {
+        console.error(e);
+        showToast('Error removing logging block from system network ✖', true);
+      }
+    }
+
+    async function undoDelete() {
+      if (!deletedSnapshot) return;
+      const snap = deletedSnapshot;
+      const type = deletedType;
+
+      try {
+        const { doc, setDoc } = fb();
+        const colName = type === 'profile' ? 'profiles' : 'teamprojects';
+        
+        await setDoc(doc(db(), colName, snap.id), snap);
+        
+        if (type === 'profile') profiles.push(snap);
+        else teamProjects.push(snap);
+        
+        deletedSnapshot = null;
+        clearInterval(undoInterval);
+        document.getElementById('undo-bar').classList.remove('show');
+        showToast('✓ State vectors restored safely');
+        
+        if (type === 'profile') renderDirectoryProfiles();
+        else renderGroupedTeamProjects();
+      } catch(e) {
+        console.error('Undo error:', e);
+        showToast('Undo pipeline recovery failure ✖', true);
+      }
+    }
+  </script>
 </body>
 </html>
