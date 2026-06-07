@@ -830,7 +830,7 @@
             <div class="field">
               <label>Select Originating Team <span class="req">*</span></label>
               <select id="proj-team-select" onchange="toggleCustomTeamField()">
-                <option value="Analog & Mixed Signal">Analog & Mixed Signal</option>
+                <option value="Analog Mixed Signal">Analog Mixed Signal</option>
                 <option value="GPIO">GPIO</option>
                 <option value="Layout">Layout</option>
                 <option value="Memory">Memory</option>
@@ -1569,7 +1569,7 @@ function showTeamProjectForm(editId) {
     heading.textContent = 'Edit Project Specifications';
     const p = teamProjects.find(x => x.id === editId);
     if (p) {
-      document.getElementById('proj-team-select').value = ['Analog & Mixed Signal','GPIO','Layout','Memory','RF'].includes(p.teamName) ? p.teamName : 'Others';
+      document.getElementById('proj-team-select').value = ['Analog Mixed Signal','GPIO','Layout','Memory','RF'].includes(p.teamName) ? p.teamName : 'Others';
       toggleCustomTeamField();
       if (document.getElementById('custom-team-field-block').style.display !== 'none') {
         document.getElementById('proj-custom-team').value = p.teamName;
@@ -1582,7 +1582,7 @@ function showTeamProjectForm(editId) {
     }
   } else {
     heading.textContent = 'Describe Project Specifications';
-    document.getElementById('proj-team-select').value = 'Analog & Mixed Signal';
+    document.getElementById('proj-team-select').value = 'Analog Mixed Signal';
     document.getElementById('custom-team-field-block').style.display = 'none';
     ['proj-custom-team','proj-title-input','proj-node-input','proj-goal-input','proj-achv-input']
       .forEach(id => { const e = document.getElementById(id); if (e) e.value = ''; });
@@ -1664,7 +1664,7 @@ window.renderGroupedTeamProjects = function() {
   }
 
   // Determine category order: fixed order + any extras
-  const fixedOrder = ['Analog & Mixed Signal','GPIO','Layout','Memory','RF'];
+  const fixedOrder = ['Analog Mixed Signal','GPIO','Layout','Memory','RF'];
   const allTeams   = new Set(fixedOrder);
   filtered.forEach(p => { if (p.teamName) allTeams.add(p.teamName); });
 
