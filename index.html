@@ -8,9 +8,6 @@
   <style>
     /* ============================================================
        SECTION 1 — CSS CUSTOM PROPERTIES (THEME VARIABLES)
-       Edit these to retheme the entire app.
-       [data-theme="dark"]  = dark mode
-       [data-theme="light"] = light mode
     ============================================================ */
     [data-theme="dark"] {
       --bg:        #0b111e;
@@ -79,10 +76,6 @@
 
     /* ============================================================
        SECTION 3 — AUTH OVERLAY
-       Fullscreen gate shown before the user is authenticated.
-       Contains two panels: #panel-login and #panel-signup.
-       Both live inside a single .auth-card; only the .active one
-       is visible at any time.
     ============================================================ */
     #auth-overlay {
       position:fixed; inset:0; z-index:9999;
@@ -91,8 +84,6 @@
       transition:opacity 0.4s ease;
     }
     #auth-overlay.hidden { opacity:0; pointer-events:none; }
-
-    /* Same grid texture on the auth background */
     #auth-overlay::before {
       content:''; position:absolute; inset:0;
       background-image:
@@ -100,8 +91,6 @@
         linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);
       background-size:40px 40px; pointer-events:none;
     }
-
-    /* The white/dark card that holds login + signup panels */
     .auth-card {
       position:relative; z-index:1;
       background:var(--panel); border:1px solid var(--border2);
@@ -114,8 +103,6 @@
       from { opacity:0; transform:translateY(24px) scale(0.97); }
       to   { opacity:1; transform:translateY(0) scale(1); }
     }
-
-    /* Logo inside the auth card */
     .auth-logo {
       display:flex; align-items:center; justify-content:center;
       gap:12px; margin-bottom:1.8rem;
@@ -132,11 +119,8 @@
       font-family:'Share Tech Mono',monospace; font-size:0.58rem;
       color:var(--text3); letter-spacing:0.15em; text-transform:uppercase; margin-top:2px;
     }
-
-    /* Each auth panel is hidden by default; .active shows it */
     .auth-panel { display:none; }
     .auth-panel.active { display:block; }
-
     .auth-eyebrow {
       font-family:'Share Tech Mono',monospace; font-size:0.62rem;
       letter-spacing:0.2em; text-transform:uppercase; color:var(--accent); margin-bottom:4px;
@@ -145,8 +129,6 @@
       font-family:'Barlow Condensed',sans-serif; font-size:1.5rem;
       font-weight:700; color:var(--text); margin-bottom:1.4rem;
     }
-
-    /* Auth form fields */
     .auth-field { margin-bottom:1rem; }
     .auth-field label {
       display:block; font-family:'Share Tech Mono',monospace;
@@ -165,12 +147,8 @@
       box-shadow:0 0 0 3px rgba(56,189,248,0.08);
     }
     .auth-field input::placeholder { color:var(--text3); }
-
-    /* Two-column grid row (first name / last name) */
     .auth-row { display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; }
     @media(max-width:400px) { .auth-row { grid-template-columns:1fr; } }
-
-    /* Password field with show/hide toggle */
     .pwd-wrap { position:relative; }
     .pwd-wrap input { padding-right:2.8rem; }
     .pwd-eye {
@@ -179,15 +157,11 @@
       font-size:0.95rem; padding:0; line-height:1; transition:color 0.15s;
     }
     .pwd-eye:hover { color:var(--accent); }
-
-    /* Password strength bar — visible only when typing on signup */
     .strength-wrap { margin-top:6px; display:none; }
     .strength-wrap.show { display:block; }
     .strength-bar { height:3px; background:var(--border); border-radius:2px; overflow:hidden; margin-bottom:4px; }
     .strength-fill { height:100%; width:0%; border-radius:2px; transition:width 0.3s,background 0.3s; }
     .strength-lbl { font-family:'Share Tech Mono',monospace; font-size:0.56rem; color:var(--text3); }
-
-    /* Inline error message inside the auth card */
     .auth-err {
       background:rgba(248,113,113,0.08); border:1px solid rgba(248,113,113,0.3);
       border-radius:4px; padding:0.6rem 0.9rem;
@@ -195,8 +169,6 @@
       color:var(--warn); margin-bottom:1rem; display:none;
     }
     .auth-err.show { display:block; }
-
-    /* Primary auth submit button */
     .btn-auth {
       width:100%; font-family:'Barlow Condensed',sans-serif;
       font-weight:700; font-size:1rem; letter-spacing:0.1em; text-transform:uppercase;
@@ -204,16 +176,13 @@
       border:none; border-radius:4px; cursor:pointer; transition:all 0.2s; margin-top:0.4rem;
     }
     .btn-auth:hover { filter:brightness(1.1); box-shadow:var(--glow); }
-
-    /* Divider between button and switch link */
+    .btn-auth:disabled { opacity:0.6; cursor:not-allowed; filter:none; }
     .auth-divider { display:flex; align-items:center; gap:0.75rem; margin:1.2rem 0; }
     .auth-divider hr { flex:1; border:none; border-top:1px solid var(--border); }
     .auth-divider span {
       font-family:'Share Tech Mono',monospace; font-size:0.56rem;
       color:var(--text3); white-space:nowrap;
     }
-
-    /* "Switch to signup / login" link */
     .auth-switch { text-align:center; font-size:0.8rem; color:var(--text2); }
     .auth-switch button {
       background:none; border:none; color:var(--accent); cursor:pointer;
@@ -222,8 +191,7 @@
     }
 
     /* ============================================================
-       SECTION 4 — USER PILL (header, shown when logged in)
-       Displays the current user's initials + name + logout button.
+       SECTION 4 — USER PILL
     ============================================================ */
     .user-pill {
       display:flex; align-items:center; gap:8px;
@@ -246,14 +214,11 @@
       padding:2px 8px; border-radius:2px; cursor:pointer; margin-left:4px; transition:all 0.15s;
     }
     .btn-signout:hover { border-color:var(--warn); color:var(--warn); }
-
-    /* Main app hidden until authenticated */
     #main-app { display:none; }
     #main-app.visible { display:block; }
 
     /* ============================================================
        SECTION 5 — HEADER & NAVIGATION
-       Preserved exactly from original design.
     ============================================================ */
     header {
       position:sticky; top:0; z-index:100;
@@ -318,44 +283,6 @@
     /* ============================================================
        SECTION 7 — TEAM SECTIONS & PROJECT CARDS
     ============================================================ */
-    /* SUB-NAVIGATION SYSTEM (TEAM MATRIX CONTROLS) */
-    .matrix-tabs-container {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 8px;
-      overflow-x: auto;
-    }
-    .matrix-tab-btn {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.75rem;
-      padding: 6px 14px;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      color: var(--text2);
-      border-radius: 4px;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.2s ease;
-      text-transform: uppercase;
-    }
-    .matrix-tab-btn:hover {
-      border-color: var(--accent);
-      color: var(--text);
-    }
-    .matrix-tab-btn.active {
-      background: rgba(56, 189, 248, 0.1);
-      border-color: var(--accent);
-      color: var(--accent);
-      box-shadow: var(--glow);
-    }
-    .matrix-tab-btn span {
-      font-size: 0.65rem;
-      opacity: 0.6;
-      margin-left: 4px;
-    }
-
     .team-section { margin-bottom:2.5rem; }
     .team-header-container {
       display:flex; align-items:center; justify-content:space-between;
@@ -516,9 +443,10 @@
       font-family:'Barlow Condensed',sans-serif; padding:0.6rem 1.4rem;
       background:var(--accent3); color:#000; border:none; cursor:pointer;
     }
+    .btn-save:disabled { opacity:0.6; cursor:not-allowed; }
 
     /* ============================================================
-       SECTION 9 — DETAIL / READ-ONLY PANELS
+       SECTION 9 — PROFILE DETAIL VIEW
     ============================================================ */
     .detail-header {
       display:flex; align-items:flex-start; gap:1.5rem;
@@ -581,6 +509,24 @@
     .undo-bar.show { transform:translateX(-50%) translateY(0); opacity:1; }
     .btn-undo { font-family:'Barlow Condensed',sans-serif; padding:4px 14px; background:var(--warn); color:#fff; border:none; cursor:pointer; }
 
+    /* Loading spinner overlay */
+    #app-loading {
+      position:fixed; inset:0; z-index:9998;
+      background:var(--bg);
+      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem;
+    }
+    #app-loading.hidden { display:none; }
+    .spinner {
+      width:36px; height:36px; border:3px solid var(--border);
+      border-top-color:var(--accent); border-radius:50%;
+      animation:spin 0.75s linear infinite;
+    }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    .loading-label {
+      font-family:'Share Tech Mono',monospace; font-size:0.7rem;
+      color:var(--text3); letter-spacing:0.15em; text-transform:uppercase;
+    }
+
     /* ============================================================
        SECTION 11 — RESPONSIVE OVERRIDES
     ============================================================ */
@@ -609,16 +555,18 @@
 </head>
 <body>
 
+<!-- App loading screen (shown while Firebase initializes) -->
+<div id="app-loading">
+  <div class="spinner"></div>
+  <div class="loading-label">Initializing secure connection...</div>
+</div>
+
 <!-- ================================================================
      AUTH OVERLAY
-     Fullscreen gate. Shown until the user logs in.
-     #panel-login  — shown by default
-     #panel-signup — shown when user clicks "Create account"
 ================================================================ -->
-<div id="auth-overlay">
+<div id="auth-overlay" style="display:none;">
   <div class="auth-card">
 
-    <!-- Logo inside auth card -->
     <div class="auth-logo">
       <div class="auth-logo-chip">
         <img src="image_8afb22.png" alt="NSL Connect Logo" />
@@ -629,12 +577,10 @@
       </div>
     </div>
 
-    <!-- ── LOGIN PANEL ── -->
+    <!-- LOGIN PANEL -->
     <div class="auth-panel active" id="panel-login">
       <div class="auth-eyebrow">// secure_access</div>
       <div class="auth-heading">Sign In</div>
-
-      <!-- Error message shown on bad credentials -->
       <div class="auth-err" id="login-err"></div>
 
       <div class="auth-field">
@@ -642,18 +588,16 @@
         <input type="email" id="login-email" placeholder="you@company.com"
                onkeydown="if(event.key==='Enter') doLogin()" autocomplete="email"/>
       </div>
-
       <div class="auth-field">
         <label>Password</label>
         <div class="pwd-wrap">
           <input type="password" id="login-pwd" placeholder="Enter your password"
                  onkeydown="if(event.key==='Enter') doLogin()" autocomplete="current-password"/>
-          <button class="pwd-eye" type="button" onclick="toggleEye('login-pwd',this)"
-                  title="Show / hide password">&#128065;</button>
+          <button class="pwd-eye" type="button" onclick="toggleEye('login-pwd',this)" title="Show / hide password">&#128065;</button>
         </div>
       </div>
 
-      <button class="btn-auth" onclick="doLogin()">Sign In</button>
+      <button class="btn-auth" id="btn-login" onclick="doLogin()">Sign In</button>
 
       <div class="auth-divider">
         <hr/><span>NEW TO NSL CONNECT?</span><hr/>
@@ -664,12 +608,10 @@
       </div>
     </div>
 
-    <!-- ── SIGN-UP PANEL ── -->
+    <!-- SIGN-UP PANEL -->
     <div class="auth-panel" id="panel-signup">
       <div class="auth-eyebrow">// register_account</div>
       <div class="auth-heading">Create Account</div>
-
-      <!-- Error message shown on bad signup input -->
       <div class="auth-err" id="signup-err"></div>
 
       <div class="auth-row">
@@ -684,42 +626,34 @@
                  onkeydown="if(event.key==='Enter') doSignup()" autocomplete="family-name"/>
         </div>
       </div>
-
       <div class="auth-field">
         <label>Email Address</label>
         <input type="email" id="su-email" placeholder="you@company.com"
                onkeydown="if(event.key==='Enter') doSignup()" autocomplete="email"/>
       </div>
-
       <div class="auth-field">
         <label>Password</label>
         <div class="pwd-wrap">
           <input type="password" id="su-pwd" placeholder="Min. 6 characters"
                  oninput="evalStrength(this.value)"
                  onkeydown="if(event.key==='Enter') doSignup()" autocomplete="new-password"/>
-          <button class="pwd-eye" type="button" onclick="toggleEye('su-pwd',this)"
-                  title="Show / hide password">&#128065;</button>
+          <button class="pwd-eye" type="button" onclick="toggleEye('su-pwd',this)" title="Show / hide password">&#128065;</button>
         </div>
-        <!-- Strength bar (hidden until user starts typing) -->
         <div class="strength-wrap" id="strength-wrap">
-          <div class="strength-bar">
-            <div class="strength-fill" id="strength-fill"></div>
-          </div>
+          <div class="strength-bar"><div class="strength-fill" id="strength-fill"></div></div>
           <div class="strength-lbl" id="strength-lbl">Weak</div>
         </div>
       </div>
-
       <div class="auth-field">
         <label>Confirm Password</label>
         <div class="pwd-wrap">
           <input type="password" id="su-pwd2" placeholder="Re-enter your password"
                  onkeydown="if(event.key==='Enter') doSignup()" autocomplete="new-password"/>
-          <button class="pwd-eye" type="button" onclick="toggleEye('su-pwd2',this)"
-                  title="Show / hide password">&#128065;</button>
+          <button class="pwd-eye" type="button" onclick="toggleEye('su-pwd2',this)" title="Show / hide password">&#128065;</button>
         </div>
       </div>
 
-      <button class="btn-auth" onclick="doSignup()">Create Account</button>
+      <button class="btn-auth" id="btn-signup" onclick="doSignup()">Create Account</button>
 
       <div class="auth-divider">
         <hr/><span>ALREADY REGISTERED?</span><hr/>
@@ -730,18 +664,16 @@
       </div>
     </div>
 
-  </div><!-- /.auth-card -->
-</div><!-- /#auth-overlay -->
+  </div>
+</div>
 
 
 <!-- ================================================================
      MAIN APPLICATION
-     Hidden until the user authenticates. Revealed by unlockApp().
 ================================================================ -->
 <div id="main-app">
 
   <header>
-    <!-- Logo click goes to All Projects home -->
     <div class="logo" onclick="showProjectsHome()">
       <div class="logo-icon">
         <img src="image_8afb22.png" alt="NSL Connect Logo" />
@@ -753,20 +685,17 @@
     </div>
 
     <div class="nav-tabs">
-      <button class="nav-item active" id="tab-projects"   onclick="showProjectsHome()">All Projects</button>
-      <button class="nav-item"        id="tab-directory"  onclick="showDirectory()">Engineers Directory</button>
+      <button class="nav-item active" id="tab-projects"  onclick="showProjectsHome()">All Projects</button>
+      <button class="nav-item"        id="tab-directory" onclick="showDirectory()">Engineers Directory</button>
     </div>
 
     <div class="header-right">
       <div class="header-status"><div class="status-dot"></div>SYSTEM ONLINE</div>
-
-      <!-- User pill — shown when logged in -->
       <div class="user-pill" id="user-pill">
         <div class="user-av" id="user-av">??</div>
         <span class="user-nm" id="user-nm">User</span>
         <button class="btn-signout" onclick="doLogout()">Sign Out</button>
       </div>
-
       <button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()">&#127769;</button>
     </div>
   </header>
@@ -844,7 +773,7 @@
         </div>
         <div class="form-actions">
           <button class="btn-cancel" onclick="showProjectsHome()">Cancel</button>
-          <button class="btn-save"   onclick="saveTeamProject()">UPLOAD SPECIFICATION</button>
+          <button class="btn-save" id="btn-save-project" onclick="saveTeamProject()">UPLOAD SPECIFICATION</button>
         </div>
       </div>
     </div>
@@ -947,7 +876,7 @@
         </div>
         <div class="form-actions">
           <button class="btn-cancel" onclick="showDirectory()">Cancel</button>
-          <button class="btn-save"   onclick="saveEngineerProfile()">SAVE PROFILE SYSTEM</button>
+          <button class="btn-save" id="btn-save-profile" onclick="saveEngineerProfile()">SAVE PROFILE SYSTEM</button>
         </div>
       </div>
     </div>
@@ -1003,8 +932,8 @@
       </div>
     </div>
 
-  </div><!-- /.app -->
-</div><!-- /#main-app -->
+  </div>
+</div>
 
 
 <!-- Project detail popup modal -->
@@ -1049,11 +978,85 @@
 </div>
 
 
+<!-- ================================================================
+     FIREBASE SDK (ES Module)
+================================================================ -->
+<script type="module">
+import { initializeApp }                                    from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+import { getAnalytics }                                     from "https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  updateProfile
+} from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+import {
+  getFirestore,
+  collection,
+  doc,
+  getDocs,
+  setDoc,
+  deleteDoc,
+  query,
+  orderBy
+} from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
+
+/* ── Firebase config ───────────────────────────────────────────── */
+const firebaseConfig = {
+  apiKey:            "AIzaSyARxZGva553rx7MltS39-YKm003LY7LxnQ",
+  authDomain:        "nsl-connect-b3ae9.firebaseapp.com",
+  projectId:         "nsl-connect-b3ae9",
+  storageBucket:     "nsl-connect-b3ae9.firebasestorage.app",
+  messagingSenderId: "681420689807",
+  appId:             "1:681420689807:web:a32b973e09cac0b51cfbfa",
+  measurementId:     "G-5F7DS373JP"
+};
+
+const app       = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const auth      = getAuth(app);
+const db        = getFirestore(app);
+
+/* ── Expose helpers to window so non-module <script> can call them ── */
+window._fb = { auth, db, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+               signOut, updateProfile, collection, doc, getDocs, setDoc, deleteDoc, query, orderBy };
+
+/* ── Auth state listener ──────────────────────────────────────── */
+onAuthStateChanged(auth, async (user) => {
+  document.getElementById('app-loading').classList.add('hidden');
+  if (user) {
+    // User is signed in — boot the app
+    document.getElementById('auth-overlay').style.display = 'none';
+    document.getElementById('main-app').classList.add('visible');
+    const displayName = user.displayName || user.email;
+    const parts = displayName.split(' ');
+    const initials = parts.length >= 2
+      ? (parts[0][0] + parts[parts.length-1][0]).toUpperCase()
+      : displayName.substring(0,2).toUpperCase();
+    document.getElementById('user-av').textContent = initials;
+    document.getElementById('user-nm').textContent = displayName;
+    await window.loadAllData();
+    window.renderGroupedTeamProjects();
+    window.initTagEvents('ep-b-tech', 'ep-b-tech-tags', 'ENG');
+    window.initTagEvents('proj-node-input', 'proj-node-tags', 'PROJ');
+  } else {
+    // Not signed in — show auth overlay
+    document.getElementById('main-app').classList.remove('visible');
+    document.getElementById('auth-overlay').style.display = 'flex';
+  }
+});
+</script>
+
+
+<!-- ================================================================
+     APPLICATION JAVASCRIPT
+================================================================ -->
 <script>
 /* ================================================================
    NSL CONNECT — JAVASCRIPT
-   ----------------------------------------------------------------
-   A. AUTH SYSTEM     — sign-up, login, session, logout
+   A. AUTH SYSTEM     — Firebase Auth sign-up, login, logout
    B. THEME           — dark / light toggle with persistence
    C. NAVIGATION      — view switching
    D. TAG INPUT       — tech node pill inputs
@@ -1065,42 +1068,64 @@
 
 
 /* ----------------------------------------------------------------
-   A. AUTH SYSTEM
-   Accounts stored in localStorage key 'nsl_accounts'
-   as an array of { email, hash, firstName, lastName }.
-   Session stored in localStorage key 'nsl_session' as email string.
-   On every page load, checkSession() auto-logs in if valid session exists.
+   HELPERS to access Firebase from non-module context
+---------------------------------------------------------------- */
+function fb()  { return window._fb; }
+function auth(){ return fb().auth; }
+function db()  { return fb().db; }
+
+
+/* ----------------------------------------------------------------
+   DATA — in-memory mirrors of Firestore collections
+   Loaded once on login via loadAllData()
+---------------------------------------------------------------- */
+let profiles     = [];
+let teamProjects = [];
+
+let editingProfileId       = null;
+let viewingProfileId       = null;
+let engineerTechTags       = [];
+let projectNodeTags        = [];
+let selectedNodeFilter     = 'ALL';
+let deletedProfileSnapshot = null;
+let undoInterval           = null;
+let undoSecondsRemaining   = 60;
+let activeDeletionStagedId = null;
+
+/* Load all data from Firestore into memory */
+window.loadAllData = async function() {
+  try {
+    const { collection, getDocs, query, orderBy } = fb();
+    const db = window._fb.db;
+
+    const profSnap = await getDocs(query(collection(db, 'profiles'), orderBy('updatedAt', 'asc')));
+    profiles = profSnap.docs.map(d => d.data());
+
+    const projSnap = await getDocs(query(collection(db, 'teamprojects'), orderBy('timestamp', 'asc')));
+    teamProjects = projSnap.docs.map(d => d.data());
+  } catch(e) {
+    console.error('Firestore load error:', e);
+    showToast('Error loading data from cloud \u2736', true);
+  }
+};
+
+
+/* ----------------------------------------------------------------
+   A. AUTH SYSTEM — Firebase Auth
 ---------------------------------------------------------------- */
 
-/* Load all registered accounts */
-let accounts = JSON.parse(localStorage.getItem('nsl_accounts') || '[]');
-
-/* Currently active session email (null = not logged in) */
-let sessionEmail = localStorage.getItem('nsl_session') || null;
-
-/* Simple deterministic hash — adequate for internal org tool */
-function hashStr(s) {
-  let h = 5381;
-  for (let i = 0; i < s.length; i++) h = (Math.imul(33, h) ^ s.charCodeAt(i)) >>> 0;
-  return h.toString(16);
-}
-
-/* Switch which auth panel is visible */
 function switchPanel(panel) {
   document.getElementById('panel-login').classList.toggle('active', panel === 'login');
   document.getElementById('panel-signup').classList.toggle('active', panel === 'signup');
-  /* Clear errors when switching */
   ['login-err','signup-err'].forEach(id => document.getElementById(id).classList.remove('show'));
 }
 
-/* Show / hide password characters */
 function toggleEye(inputId, btn) {
   const el = document.getElementById(inputId);
   el.type = el.type === 'password' ? 'text' : 'password';
   btn.style.opacity = el.type === 'text' ? '1' : '0.5';
 }
 
-/* Password strength meter on signup */
 function evalStrength(pwd) {
   const wrap = document.getElementById('strength-wrap');
   const fill = document.getElementById('strength-fill');
@@ -1124,81 +1149,77 @@ function evalStrength(pwd) {
   lbl.textContent = lvl.t; lbl.style.color = lvl.c;
 }
 
-/* Show an error message inside the specified auth panel */
 function showAuthErr(id, msg) {
   const el = document.getElementById(id);
   el.textContent = msg;
   el.classList.add('show');
 }
 
+/* Map Firebase error codes to friendly messages */
+function friendlyAuthError(code) {
+  const map = {
+    'auth/invalid-email':           'Please enter a valid email address.',
+    'auth/user-not-found':          'No account found with that email address.',
+    'auth/wrong-password':          'Incorrect password. Please try again.',
+    'auth/email-already-in-use':    'An account with this email already exists.',
+    'auth/weak-password':           'Password must be at least 6 characters.',
+    'auth/too-many-requests':       'Too many attempts. Please wait a moment and try again.',
+    'auth/network-request-failed':  'Network error. Check your connection and retry.',
+    'auth/invalid-credential':      'Invalid credentials. Check your email and password.',
+  };
+  return map[code] || 'Authentication error. Please try again.';
+}
+
 /* LOGIN */
-function doLogin() {
+async function doLogin() {
   document.getElementById('login-err').classList.remove('show');
-  const email = document.getElementById('login-email').value.trim().toLowerCase();
+  const email = document.getElementById('login-email').value.trim();
   const pwd   = document.getElementById('login-pwd').value;
   if (!email || !pwd) { showAuthErr('login-err', 'Please enter your email and password.'); return; }
-  const acc = accounts.find(a => a.email === email);
-  if (!acc) { showAuthErr('login-err', 'No account found with that email address.'); return; }
-  if (acc.hash !== hashStr(pwd)) { showAuthErr('login-err', 'Incorrect password. Please try again.'); return; }
-  /* Success */
-  sessionEmail = email;
-  localStorage.setItem('nsl_session', email);
-  unlockApp(acc);
+
+  const btn = document.getElementById('btn-login');
+  btn.disabled = true; btn.textContent = 'Signing in…';
+  try {
+    await fb().signInWithEmailAndPassword(auth(), email, pwd);
+    // onAuthStateChanged handles the rest
+  } catch(e) {
+    showAuthErr('login-err', friendlyAuthError(e.code));
+    btn.disabled = false; btn.textContent = 'Sign In';
+  }
 }
 
 /* SIGN-UP */
-function doSignup() {
+async function doSignup() {
   document.getElementById('signup-err').classList.remove('show');
   const fn    = document.getElementById('su-fname').value.trim();
   const ln    = document.getElementById('su-lname').value.trim();
-  const email = document.getElementById('su-email').value.trim().toLowerCase();
+  const email = document.getElementById('su-email').value.trim();
   const pwd   = document.getElementById('su-pwd').value;
   const pwd2  = document.getElementById('su-pwd2').value;
+
   if (!fn || !ln) { showAuthErr('signup-err', 'Please enter your first and last name.'); return; }
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showAuthErr('signup-err', 'Please enter a valid email address.'); return; }
-  if (accounts.find(a => a.email === email)) { showAuthErr('signup-err', 'An account with this email already exists.'); return; }
   if (pwd.length < 6) { showAuthErr('signup-err', 'Password must be at least 6 characters.'); return; }
   if (pwd !== pwd2)   { showAuthErr('signup-err', 'Passwords do not match.'); return; }
-  /* Create account */
-  const acc = { email, hash: hashStr(pwd), firstName: fn, lastName: ln };
-  accounts.push(acc);
-  localStorage.setItem('nsl_accounts', JSON.stringify(accounts));
-  sessionEmail = email;
-  localStorage.setItem('nsl_session', email);
-  unlockApp(acc);
+
+  const btn = document.getElementById('btn-signup');
+  btn.disabled = true; btn.textContent = 'Creating account…';
+  try {
+    const cred = await fb().createUserWithEmailAndPassword(auth(), email, pwd);
+    await fb().updateProfile(cred.user, { displayName: fn + ' ' + ln });
+    // onAuthStateChanged triggers unlock automatically
+  } catch(e) {
+    showAuthErr('signup-err', friendlyAuthError(e.code));
+    btn.disabled = false; btn.textContent = 'Create Account';
+  }
 }
 
-/* Reveal main app, dismiss auth overlay */
-function unlockApp(acc) {
-  const overlay = document.getElementById('auth-overlay');
-  overlay.classList.add('hidden');
-  setTimeout(() => { overlay.style.display = 'none'; }, 450);
-  document.getElementById('main-app').classList.add('visible');
-  /* Populate user pill */
-  const initials = (acc.firstName[0] + acc.lastName[0]).toUpperCase();
-  document.getElementById('user-av').textContent = initials;
-  document.getElementById('user-nm').textContent = acc.firstName + ' ' + acc.lastName;
-  /* Boot the app */
-  renderGroupedTeamProjects();
-  initTagEvents('ep-b-tech', 'ep-b-tech-tags', 'ENG');
-  initTagEvents('proj-node-input', 'proj-node-tags', 'PROJ');
+/* LOGOUT */
+async function doLogout() {
+  await fb().signOut(auth());
+  // onAuthStateChanged re-shows the auth overlay automatically
+  profiles = []; teamProjects = [];
 }
-
-/* LOGOUT — clear session, reload page */
-function doLogout() {
-  localStorage.removeItem('nsl_session');
-  window.location.reload();
-}
-
-/* On page load: check for an existing valid session */
-(function checkSession() {
-  if (!sessionEmail) return;
-  const acc = accounts.find(a => a.email === sessionEmail);
-  if (!acc) { localStorage.removeItem('nsl_session'); return; }
-  /* Valid — skip straight to app */
-  document.getElementById('auth-overlay').style.display = 'none';
-  unlockApp(acc);
-})();
 
 
 /* ----------------------------------------------------------------
@@ -1214,31 +1235,19 @@ function toggleTheme() {
 (function initTheme() {
   const t = localStorage.getItem('nsl_theme') || 'dark';
   document.documentElement.setAttribute('data-theme', t);
-  document.getElementById('theme-toggle-btn').textContent = t === 'dark' ? '\uD83C\uDF19' : '\u2600\uFE0F';
+  const btn = document.getElementById('theme-toggle-btn');
+  if (btn) btn.textContent = t === 'dark' ? '\uD83C\uDF19' : '\u2600\uFE0F';
 })();
 
 
 /* ----------------------------------------------------------------
    C. NAVIGATION
 ---------------------------------------------------------------- */
-let profiles     = JSON.parse(localStorage.getItem('nsl_profiles_v3')      || '[]');
-let teamProjects = JSON.parse(localStorage.getItem('nsl_team_projects_v3') || '[]');
-
-let editingProfileId       = null;
-let viewingProfileId       = null;
-let engineerTechTags       = [];
-let projectNodeTags        = [];
-let selectedNodeFilter     = 'ALL';
-let deletedProfileSnapshot = null;
-let undoInterval           = null;
-let undoSecondsRemaining   = 60;
-let activeDeletionStagedId = null;
-
 function navToView(viewId) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById(viewId).classList.add('active');
   document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ top:0, behavior:'smooth' });
 }
 
 function showProjectsHome() {
@@ -1257,8 +1266,6 @@ function showDirectory() {
 
 /* ----------------------------------------------------------------
    D. TAG INPUT ENGINE
-   Handles tech-node pill inputs in both the engineer and project forms.
-   category: 'ENG' | 'PROJ'
 ---------------------------------------------------------------- */
 function initTagEvents(inputId, containerId, category) {
   const el = document.getElementById(inputId);
@@ -1302,7 +1309,7 @@ function removeTagPill(inputId, containerId, category, idx) {
 
 
 /* ----------------------------------------------------------------
-   E. ALL PROJECTS
+   E. ALL PROJECTS — Firestore-backed
 ---------------------------------------------------------------- */
 function showTeamProjectForm() {
   navToView('view-project-upload-form');
@@ -1319,79 +1326,55 @@ function toggleCustomTeamField() {
   document.getElementById('custom-team-field-block').style.display = v === 'Others' ? 'block' : 'none';
 }
 
-function saveTeamProject() {
-  const sel  = document.getElementById('proj-team-select').value;
-  const team = sel === 'Others' ? document.getElementById('proj-custom-team').value.trim() : sel;
+async function saveTeamProject() {
+  const sel   = document.getElementById('proj-team-select').value;
+  const team  = sel === 'Others' ? document.getElementById('proj-custom-team').value.trim() : sel;
   const title = document.getElementById('proj-title-input').value.trim();
   const goal  = document.getElementById('proj-goal-input').value.trim();
   const achv  = document.getElementById('proj-achv-input').value.trim();
   if (!team || !title || !projectNodeTags.length || !goal || !achv) {
     showToast('Complete all project parameters \u2736', true); return;
   }
-  teamProjects.push({
+
+  const btn = document.getElementById('btn-save-project');
+  btn.disabled = true; btn.textContent = 'Saving…';
+
+  const pkt = {
     id: 'proj-' + Date.now().toString(36),
     teamName: team, projectName: title,
     processNode: projectNodeTags.join(', '),
     goal, keyAchievements: achv,
     timestamp: Date.now()
-  });
-  localStorage.setItem('nsl_team_projects_v3', JSON.stringify(teamProjects));
-  showToast('\u2713 Project Specifications Captured');
-  showProjectsHome();
+  };
+
+  try {
+    const { doc, setDoc, collection } = fb();
+    await setDoc(doc(db(), 'teamprojects', pkt.id), pkt);
+    teamProjects.push(pkt);
+    showToast('\u2713 Project Specifications Captured');
+    showProjectsHome();
+  } catch(e) {
+    console.error(e);
+    showToast('Failed to save project \u2736', true);
+  } finally {
+    btn.disabled = false; btn.textContent = 'UPLOAD SPECIFICATION';
+  }
 }
 
-let activeTeamMatrixTab = 'ALL';
-
-function renderGroupedTeamProjects() {
-  const wrapper = document.getElementById('teams-distribution-wrapper');
-  wrapper.innerHTML = '';
-  
+window.renderGroupedTeamProjects = function renderGroupedTeamProjects() {
+  const c = document.getElementById('teams-distribution-wrapper');
+  c.innerHTML = '';
   if (!teamProjects.length) {
-    wrapper.innerHTML = '<div class="empty-state"><h3>No project specifications tracked</h3><p>Click + Add Project Detail to get started.</p></div>';
+    c.innerHTML = '<div class="empty-state"><h3>No project specifications tracked</h3><p>Click + Add Project Detail to get started.</p></div>';
     return;
   }
-
-  // 1. Gather all core teams dynamically
-  const defaultCats = ['Analog Mixed Signal', 'Layout', 'RF', 'Memory', 'GPIO'];
-  const catsSet = new Set(defaultCats);
-  teamProjects.forEach(p => { if (p.teamName) catsSet.add(p.teamName); });
-  const finalTeamsList = Array.from(catsSet);
-
-  // 2. Build the Matrix Control Tab Row
-  const tabsContainer = document.createElement('div');
-  tabsContainer.className = 'matrix-tabs-container';
-  
-  // "Show All" Control
-  const allBtn = document.createElement('button');
-  allBtn.className = 'matrix-tab-btn' + (activeTeamMatrixTab === 'ALL' ? ' active' : '');
-  allBtn.innerHTML = 'ALL DOMAINS <span>(' + teamProjects.length + ')</span>';
-  allBtn.onclick = () => { activeTeamMatrixTab = 'ALL'; renderGroupedTeamProjects(); };
-  tabsContainer.appendChild(allBtn);
-
-  // Individual Team Controls
-  finalTeamsList.forEach(team => {
-    const count = teamProjects.filter(p => p.teamName === team).length;
-    if (count === 0 && !defaultCats.includes(team)) return; // skip custom empty teams
-    
-    const btn = document.createElement('button');
-    btn.className = 'matrix-tab-btn' + (activeTeamMatrixTab === team ? ' active' : '');
-    btn.innerHTML = escHtml(team) + ' <span>(' + count + ')</span>';
-    btn.onclick = () => { activeTeamMatrixTab = team; renderGroupedTeamProjects(); };
-    tabsContainer.appendChild(btn);
-  });
-  
-  wrapper.appendChild(tabsContainer);
-
-  // 3. Render Sections based on active layout filter selection
-  finalTeamsList.forEach(team => {
-    if (activeTeamMatrixTab !== 'ALL' && activeTeamMatrixTab !== team) return;
-    
+  const cats = new Set(['Analog Mixed Signal','Layout','RF','Memory','GPIO']);
+  teamProjects.forEach(p => { if (p.teamName) cats.add(p.teamName); });
+  cats.forEach(team => {
     const recs = teamProjects.filter(p => p.teamName === team);
-    if (!recs.length) return; // don't show empty sections
-
+    if (!recs.length) return;
     const sec = document.createElement('div');
     sec.className = 'team-section';
-    
     let cards = recs.map(p =>
       '<div class="profile-card" onclick="openProjectPopup(\'' + p.id + '\')">' +
         '<div class="card-name" style="margin-bottom:6px;">' + escHtml(p.projectName) + '</div>' +
@@ -1400,17 +1383,15 @@ function renderGroupedTeamProjects() {
         '<div class="card-desc" style="margin-top:6px;"><strong>Achievements:</strong> ' + bulletify(p.keyAchievements) + '</div>' +
       '</div>'
     ).join('');
-
     sec.innerHTML =
       '<div class="team-header-container">' +
         '<div class="team-banner-title">' + escHtml(team) + '</div>' +
         '<button class="btn-download-sec" onclick="event.stopPropagation();dlTeamDoc(\'' + escHtml(team) + '\')">&#11015; Download ' + escHtml(team) + ' data</button>' +
       '</div>' +
       '<div class="profile-grid">' + cards + '</div>';
-      
-    wrapper.appendChild(sec);
+    c.appendChild(sec);
   });
-}
+};
 
 function openProjectPopup(id) {
   const p = teamProjects.find(x => x.id === id);
@@ -1426,7 +1407,7 @@ function closeProjectPopup() { document.getElementById('project-popup-backdrop')
 
 
 /* ----------------------------------------------------------------
-   F. ENGINEER DIRECTORY & PROFILES
+   F. ENGINEER DIRECTORY & PROFILES — Firestore-backed
 ---------------------------------------------------------------- */
 function showEngineerForm(id) {
   navToView('view-profile-form');
@@ -1489,7 +1470,7 @@ function populateFormFields(p) {
   if (p.experienceLogs) p.experienceLogs.forEach(l => addEngineerProjectFormBlock(l));
 }
 
-function saveEngineerProfile() {
+async function saveEngineerProfile() {
   const name   = document.getElementById('ep-name').value.trim();
   const yoe    = document.getElementById('ep-yoe').value.trim();
   const keyexp = document.getElementById('ep-keyexp').value.trim();
@@ -1515,33 +1496,47 @@ function saveEngineerProfile() {
     base:  { tech: engineerTechTags, foundry: g('ep-b-foundry'), process: g('ep-b-process') },
     experienceLogs: logs, updatedAt: Date.now()
   };
-  if (editingProfileId) {
-    const i = profiles.findIndex(p => p.id === editingProfileId);
-    if (i !== -1) profiles[i] = pkt;
-  } else { profiles.push(pkt); }
-  localStorage.setItem('nsl_profiles_v3', JSON.stringify(profiles));
-  showToast('\u2713 Profile Tracked Safely');
-  showDirectory();
+
+  const btn = document.getElementById('btn-save-profile');
+  btn.disabled = true; btn.textContent = 'Saving…';
+
+  try {
+    const { doc, setDoc, collection } = fb();
+    await setDoc(doc(db(), 'profiles', pkt.id), pkt);
+    if (editingProfileId) {
+      const i = profiles.findIndex(p => p.id === editingProfileId);
+      if (i !== -1) profiles[i] = pkt; else profiles.push(pkt);
+    } else {
+      profiles.push(pkt);
+    }
+    showToast('\u2713 Profile Tracked Safely');
+    showDirectory();
+  } catch(e) {
+    console.error(e);
+    showToast('Failed to save profile \u2736', true);
+  } finally {
+    btn.disabled = false; btn.textContent = 'SAVE PROFILE SYSTEM';
+  }
 }
 
 function renderDirectoryProfiles() {
   const nodes = new Set();
   profiles.forEach(p => { (p.base?.tech || []).forEach(n => nodes.add(n.trim())); });
   document.getElementById('stat-nodes').textContent = nodes.size ? [...nodes].join(', ') : 'None Linked';
-  const fb = document.getElementById('directory-nodes-filter');
-  fb.innerHTML = '';
+  const fb2 = document.getElementById('directory-nodes-filter');
+  fb2.innerHTML = '';
   if (profiles.length) {
     const all = document.createElement('div');
     all.className = 'node-filter-pill' + (selectedNodeFilter === 'ALL' ? ' active' : '');
     all.textContent = 'ALL NODES';
     all.onclick = () => { selectedNodeFilter = 'ALL'; filterProfiles(); };
-    fb.appendChild(all);
+    fb2.appendChild(all);
     nodes.forEach(n => {
       const btn = document.createElement('div');
       btn.className = 'node-filter-pill' + (selectedNodeFilter === n ? ' active' : '');
       btn.textContent = n;
       btn.onclick = () => { selectedNodeFilter = n; filterProfiles(); };
-      fb.appendChild(btn);
+      fb2.appendChild(btn);
     });
   }
   filterProfiles();
@@ -1612,16 +1607,30 @@ function triggerProfileDeletion(id) {
   document.getElementById('modal-backdrop').classList.add('open');
 }
 function closeModal() { document.getElementById('modal-backdrop').classList.remove('open'); activeDeletionStagedId = null; }
-function confirmDelete() {
+
+async function confirmDelete() {
   if (!activeDeletionStagedId) return;
   const target = activeDeletionStagedId;
   closeModal();
   deletedProfileSnapshot = JSON.parse(JSON.stringify(profiles.find(x => x.id === target)));
   profiles = profiles.filter(x => x.id !== target);
-  localStorage.setItem('nsl_profiles_v3', JSON.stringify(profiles));
+
+  try {
+    const { doc, deleteDoc } = fb();
+    await deleteDoc(doc(db(), 'profiles', target));
+  } catch(e) {
+    console.error('Delete error:', e);
+    showToast('Delete failed \u2736', true);
+    // Restore in memory
+    profiles.push(deletedProfileSnapshot);
+    deletedProfileSnapshot = null;
+    return;
+  }
+
   if (viewingProfileId === target) showDirectory(); else renderDirectoryProfiles();
   startUndo();
 }
+
 function startUndo() {
   if (undoInterval) clearInterval(undoInterval);
   undoSecondsRemaining = 60;
@@ -1637,14 +1646,23 @@ function startUndo() {
     }
   }, 1000);
 }
-function undoDelete() {
+
+async function undoDelete() {
   if (!deletedProfileSnapshot) return;
-  profiles.push(deletedProfileSnapshot);
-  localStorage.setItem('nsl_profiles_v3', JSON.stringify(profiles));
-  deletedProfileSnapshot = null; clearInterval(undoInterval);
-  document.getElementById('undo-bar').classList.remove('show');
-  showToast('\u2713 Profile State Vectors Restored');
-  renderDirectoryProfiles();
+  const snap = deletedProfileSnapshot;
+  try {
+    const { doc, setDoc } = fb();
+    await setDoc(doc(db(), 'profiles', snap.id), snap);
+    profiles.push(snap);
+    deletedProfileSnapshot = null;
+    clearInterval(undoInterval);
+    document.getElementById('undo-bar').classList.remove('show');
+    showToast('\u2713 Profile State Vectors Restored');
+    renderDirectoryProfiles();
+  } catch(e) {
+    console.error('Undo error:', e);
+    showToast('Undo failed \u2736', true);
+  }
 }
 
 
@@ -1699,7 +1717,6 @@ function dlEngDoc(p) {
 /* ----------------------------------------------------------------
    H. UTILITIES
 ---------------------------------------------------------------- */
-/* Convert newline-separated text to bullet list HTML */
 function bulletify(text) {
   if (!text) return '\u2014';
   const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
@@ -1707,7 +1724,6 @@ function bulletify(text) {
   return '<ul class="bullet-container-list">' + lines.map(l => '<li>' + escHtml(l) + '</li>').join('') + '</ul>';
 }
 
-/* Show a brief toast notification. isErr = true = orange/red styling */
 function showToast(msg, isErr) {
   const el = document.getElementById('toast');
   el.textContent = msg;
@@ -1717,7 +1733,6 @@ function showToast(msg, isErr) {
   setTimeout(() => el.classList.remove('show'), 3000);
 }
 
-/* Prevent XSS when injecting user content into innerHTML */
 function escHtml(s) {
   if (!s) return '';
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
