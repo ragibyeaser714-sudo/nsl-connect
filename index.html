@@ -201,22 +201,19 @@
       text-decoration:underline; padding:0; margin-left:4px;
     }
 
-    /* OTP input row */
-    .otp-row { display:flex; gap:8px; justify-content:center; margin:1rem 0; }
-    .otp-row input {
-      width:44px; height:52px; text-align:center;
-      font-family:'Share Tech Mono',monospace; font-size:1.3rem; font-weight:700;
-      background:var(--bg3); border:1px solid var(--border); color:var(--text);
-      border-radius:6px; outline:none; transition:border-color 0.2s, box-shadow 0.2s;
+    /* Email link verification panel */
+    .verify-info-box {
+      background:rgba(56,189,248,0.06); border:1px solid rgba(56,189,248,0.25);
+      border-radius:6px; padding:1rem 1.1rem; margin-bottom:1rem;
+      font-family:'Share Tech Mono',monospace; font-size:0.67rem; color:var(--text2);
+      line-height:1.7; text-align:center;
     }
-    .otp-row input:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(56,189,248,0.1); }
-    .otp-timer { text-align:center; font-family:'Share Tech Mono',monospace; font-size:0.62rem; color:var(--text3); margin-top:6px; }
-    .btn-resend {
-      background:none; border:none; color:var(--accent); cursor:pointer;
-      font-family:'Share Tech Mono',monospace; font-size:0.62rem;
-      text-decoration:underline; padding:0;
+    .verify-info-box strong { color:var(--accent); display:block; font-size:0.78rem; margin-bottom:6px; }
+    .verify-email-chip {
+      display:inline-block; background:var(--bg3); border:1px solid var(--border2);
+      border-radius:3px; padding:3px 10px; color:var(--accent); font-size:0.72rem;
+      letter-spacing:0.04em; margin-top:4px;
     }
-    .btn-resend:disabled { color:var(--text3); cursor:not-allowed; text-decoration:none; }
 
     /* ============================================================
        SECTION 4 — USER PILL
@@ -660,13 +657,48 @@
       <div class="auth-switch">Don't have an account? <button onclick="switchPanel('signup')">Create one here</button></div>
     </div>
 
-    <!-- SIGN-UP PANEL -->
+    <!-- SIGN-UP PANEL — Step 1: provide email, receive verification link -->
     <div class="auth-panel" id="panel-signup">
       <div class="auth-eyebrow">// register_account</div>
       <div class="auth-heading">Create Account</div>
       <div class="auth-err" id="signup-err"></div>
       <div class="auth-ok"  id="signup-ok"></div>
-      <div id="signup-form-fields">
+
+      <!-- Step 1: Email entry -->
+      <div id="signup-step-email">
+        <p style="font-size:0.8rem;color:var(--text2);line-height:1.6;margin-bottom:1.1rem;">
+          Enter your NSL email address. A secure sign-up link will be sent to your inbox.
+          You must click it before you can set your name and password.
+        </p>
+        <div class="auth-field">
+          <label>Email Address <span style="color:var(--accent);font-size:0.55rem;">(@neural-semiconductor.com only)</span></label>
+          <input type="email" id="su-email" placeholder="you@neural-semiconductor.com"
+                 autocomplete="email" onkeydown="if(event.key==='Enter') doSendSignupLink()"/>
+        </div>
+        <button class="btn-auth" id="btn-send-link" onclick="doSendSignupLink()">Send Verification Link</button>
+      </div>
+
+      <!-- Step 1 success: tell user to check inbox (hidden until link sent) -->
+      <div id="signup-step-sent" style="display:none;">
+        <div class="verify-info-box">
+          <strong>&#9993; Verification link sent!</strong>
+          Check your inbox at:
+          <span class="verify-email-chip" id="sent-email-display"></span>
+          <br/><br/>
+          Click the link in that email. Once verified, you will be brought back here to complete your registration.
+        </div>
+        <div style="text-align:center;margin-top:0.75rem;">
+          <button onclick="cancelSignupLink()"
+            style="background:none;border:none;color:var(--text3);font-family:'Share Tech Mono',monospace;
+                   font-size:0.62rem;cursor:pointer;text-decoration:underline;">&#8592; Use a different email</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Complete registration (shown only after email link is confirmed) -->
+      <div id="signup-step-complete" style="display:none;">
+        <p style="font-size:0.8rem;color:var(--text2);line-height:1.6;margin-bottom:1rem;">
+          &#10003; Email verified. Now set your name and password to finish creating your account.
+        </p>
         <div class="auth-row">
           <div class="auth-field">
             <label>First Name</label>
@@ -676,10 +708,6 @@
             <label>Last Name</label>
             <input type="text" id="su-lname" placeholder="e.g. Rahman" autocomplete="family-name"/>
           </div>
-        </div>
-        <div class="auth-field">
-          <label>Email Address <span style="color:var(--accent);font-size:0.55rem;">(@neural-semiconductor.com only)</span></label>
-          <input type="email" id="su-email" placeholder="you@neural-semiconductor.com" autocomplete="email"/>
         </div>
         <div class="auth-field">
           <label>Password</label>
@@ -700,31 +728,7 @@
             <button class="pwd-eye" type="button" onclick="toggleEye('su-pwd2',this)">&#128065;</button>
           </div>
         </div>
-        <button class="btn-auth" id="btn-signup" onclick="doSignup()">Send Verification Code</button>
-      </div>
-
-      <!-- OTP verification block (hidden initially) -->
-      <div id="otp-verify-block" style="display:none;">
-        <p style="font-size:0.82rem;color:var(--text2);line-height:1.6;margin-bottom:1rem;">
-          A 6-digit verification code has been sent to <strong id="otp-display-email" style="color:var(--accent)"></strong>.
-          Enter it below to verify your email.
-        </p>
-        <div class="otp-row" id="otp-inputs">
-          <input type="text" maxlength="1" class="otp-digit" oninput="otpInput(this,0)" onkeydown="otpKey(event,0)"/>
-          <input type="text" maxlength="1" class="otp-digit" oninput="otpInput(this,1)" onkeydown="otpKey(event,1)"/>
-          <input type="text" maxlength="1" class="otp-digit" oninput="otpInput(this,2)" onkeydown="otpKey(event,2)"/>
-          <input type="text" maxlength="1" class="otp-digit" oninput="otpInput(this,3)" onkeydown="otpKey(event,3)"/>
-          <input type="text" maxlength="1" class="otp-digit" oninput="otpInput(this,4)" onkeydown="otpKey(event,4)"/>
-          <input type="text" maxlength="1" class="otp-digit" oninput="otpInput(this,5)" onkeydown="otpKey(event,5)"/>
-        </div>
-        <div class="otp-timer" id="otp-timer-display">Code expires in <span id="otp-countdown">10:00</span></div>
-        <div style="text-align:center;margin-top:8px;">
-          <button class="btn-resend" id="btn-resend-otp" onclick="resendOtp()" disabled>Resend Code</button>
-        </div>
-        <button class="btn-auth" id="btn-verify-otp" onclick="verifyOtp()" style="margin-top:1rem;">Verify &amp; Create Account</button>
-        <div style="text-align:center;margin-top:0.75rem;">
-          <button onclick="cancelOtp()" style="background:none;border:none;color:var(--text3);font-family:'Share Tech Mono',monospace;font-size:0.62rem;cursor:pointer;text-decoration:underline;">← Back to Sign Up</button>
-        </div>
+        <button class="btn-auth" id="btn-complete-signup" onclick="doCompleteSignup()">Complete Registration</button>
       </div>
 
       <div class="auth-divider"><hr/><span>ALREADY REGISTERED?</span><hr/></div>
@@ -1084,7 +1088,9 @@ import { initializeApp }  from "https://www.gstatic.com/firebasejs/12.14.0/fireb
 import { getAnalytics }   from "https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js";
 import {
   getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
-  signOut, onAuthStateChanged, updateProfile, sendEmailVerification
+  signOut, onAuthStateChanged, updateProfile,
+  sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink,
+  updatePassword
 } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
 import {
   getFirestore, collection, doc, getDocs, setDoc, deleteDoc, query, orderBy
@@ -1108,12 +1114,38 @@ const db        = getFirestore(app);
 window._fb = {
   auth, db,
   createUserWithEmailAndPassword, signInWithEmailAndPassword,
-  signOut, updateProfile, sendEmailVerification,
+  signOut, updateProfile, updatePassword,
+  sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink,
   collection, doc, getDocs, setDoc, deleteDoc, query, orderBy
 };
 
 onAuthStateChanged(auth, async (user) => {
   document.getElementById('app-loading').classList.add('hidden');
+
+  // If landing from an email verification link, intercept before showing app
+  if (!user && isSignInWithEmailLink(auth, window.location.href)) {
+    const savedEmail = localStorage.getItem('nsl_signup_email') || '';
+    window._pendingEmailLink = window.location.href;
+    window._pendingLinkEmail = savedEmail;
+    // Clean URL so link can't be reused from address bar
+    window.history.replaceState({}, document.title, window.location.pathname);
+    // Show signup panel in step-complete mode
+    document.getElementById('auth-overlay').style.display = 'flex';
+    document.getElementById('main-app').classList.remove('visible');
+    switchPanel('signup');
+    document.getElementById('signup-step-email').style.display    = 'none';
+    document.getElementById('signup-step-sent').style.display     = 'none';
+    document.getElementById('signup-step-complete').style.display = 'block';
+    document.getElementById('signup-err').classList.remove('show');
+    document.getElementById('signup-ok').classList.remove('show');
+    if (savedEmail) {
+      const ok = document.getElementById('signup-ok');
+      ok.textContent = 'Email verified: ' + savedEmail + '. Set your name and password below.';
+      ok.classList.add('show');
+    }
+    return;
+  }
+
   if (user) {
     document.getElementById('auth-overlay').style.display = 'none';
     document.getElementById('main-app').classList.add('visible');
@@ -1178,11 +1210,8 @@ let activeDeletionStagedId = null;
 /* Search state */
 let projectSearchQuery = '';
 
-/* OTP state */
-let pendingOtpCode    = null;
-let otpExpiry         = null;
-let otpCountdownTimer = null;
-let pendingSignupData = null;
+/* Email-link signup state */
+let pendingSignupEmail = null;  // email for which the link was sent
 
 window.currentUserEmail = null;
 
@@ -1214,11 +1243,13 @@ function switchPanel(panel) {
   ['login-err','signup-err','forgot-err','forgot-ok','signup-ok'].forEach(id => {
     const el = document.getElementById(id); if (el) el.classList.remove('show');
   });
-  // Reset signup to form view if switching away
-  if (panel !== 'signup') {
-    document.getElementById('signup-form-fields').style.display = 'block';
-    document.getElementById('otp-verify-block').style.display   = 'none';
-    stopOtpCountdown();
+  // Reset signup back to step 1 when navigating away or back to it fresh
+  if (panel === 'signup') {
+    document.getElementById('signup-step-email').style.display    = 'block';
+    document.getElementById('signup-step-sent').style.display     = 'none';
+    document.getElementById('signup-step-complete').style.display = 'none';
+    const inp = document.getElementById('su-email'); if (inp) inp.value = '';
+    pendingSignupEmail = null;
   }
 }
 
@@ -1290,154 +1321,95 @@ async function doLogin() {
   }
 }
 
-/* SIGN-UP — step 1: validate & send OTP */
-async function doSignup() {
+/* SIGN-UP — Step 1: validate email & send Firebase authentication link */
+async function doSendSignupLink() {
   document.getElementById('signup-err').classList.remove('show');
   document.getElementById('signup-ok').classList.remove('show');
 
-  const fn    = document.getElementById('su-fname').value.trim();
-  const ln    = document.getElementById('su-lname').value.trim();
   const email = document.getElementById('su-email').value.trim();
-  const pwd   = document.getElementById('su-pwd').value;
-  const pwd2  = document.getElementById('su-pwd2').value;
-
-  if (!fn || !ln)        { showAuthErr('signup-err','Please enter your first and last name.'); return; }
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
-                          { showAuthErr('signup-err','Please enter a valid email address.'); return; }
+    { showAuthErr('signup-err','Please enter a valid email address.'); return; }
   if (!email.endsWith('@neural-semiconductor.com'))
-                          { showAuthErr('signup-err','Only @neural-semiconductor.com email addresses are permitted.'); return; }
-  if (pwd.length < 6)    { showAuthErr('signup-err','Password must be at least 6 characters.'); return; }
-  if (pwd !== pwd2)       { showAuthErr('signup-err','Passwords do not match.'); return; }
+    { showAuthErr('signup-err','Only @neural-semiconductor.com email addresses are permitted.'); return; }
 
-  const btn = document.getElementById('btn-signup');
-  btn.disabled = true; btn.textContent = 'Sending code…';
+  const btn = document.getElementById('btn-send-link');
+  btn.disabled = true; btn.textContent = 'Sending link\u2026';
 
-  // Generate a 6-digit OTP and store it with an expiry
-  pendingOtpCode    = String(Math.floor(100000 + Math.random() * 900000));
-  otpExpiry         = Date.now() + 10 * 60 * 1000; // 10 minutes
-  pendingSignupData = { fn, ln, email, pwd };
+  // actionCodeSettings — the URL Firebase will redirect the user back to
+  const actionCodeSettings = {
+    url:             window.location.href,   // current page; Firebase appends the oobCode
+    handleCodeInApp: true
+  };
 
-  // Send via Firebase Callable Function — but since we don't have one deployed,
-  // we use a EmailJS-style approach OR just simulate it using Firebase Auth's
-  // built-in sendEmailVerification after a temporary account creation.
-  // Here we create the user, send the verification email, and store OTP in sessionStorage as well.
   try {
-    const cred = await fb().createUserWithEmailAndPassword(auth(), email, pwd);
-    await fb().updateProfile(cred.user, { displayName: fn + ' ' + ln });
-    await fb().sendEmailVerification(cred.user);
-
-    // Also embed OTP into sessionStorage so verifyOtp() can check it
-    // In production, OTP sending would go through a backend Cloud Function
-    sessionStorage.setItem('nsl_otp', pendingOtpCode);
-    sessionStorage.setItem('nsl_otp_expiry', otpExpiry);
-
-    // Switch to OTP view
-    document.getElementById('signup-form-fields').style.display = 'none';
-    document.getElementById('otp-verify-block').style.display   = 'block';
-    document.getElementById('otp-display-email').textContent    = email;
-    startOtpCountdown();
-
-    // Show informational note
-    document.getElementById('signup-ok').textContent =
-      'A verification email has been sent. For this demo, your OTP is: ' + pendingOtpCode;
-    document.getElementById('signup-ok').classList.add('show');
-
+    await fb().sendSignInLinkToEmail(fb().auth, email, actionCodeSettings);
+    // Save email so we can retrieve it when the user comes back via the link
+    localStorage.setItem('nsl_signup_email', email);
+    pendingSignupEmail = email;
+    // Show "check inbox" step
+    document.getElementById('signup-step-email').style.display = 'none';
+    document.getElementById('signup-step-sent').style.display  = 'block';
+    document.getElementById('sent-email-display').textContent  = email;
   } catch(e) {
     showAuthErr('signup-err', friendlyAuthError(e.code));
-  } finally {
-    btn.disabled = false; btn.textContent = 'Send Verification Code';
+    btn.disabled = false; btn.textContent = 'Send Verification Link';
   }
 }
 
-/* OTP: start countdown */
-function startOtpCountdown() {
-  stopOtpCountdown();
-  let remaining = Math.floor((otpExpiry - Date.now()) / 1000);
-  document.getElementById('btn-resend-otp').disabled = true;
-  function tick() {
-    remaining--;
-    const m = Math.floor(remaining / 60);
-    const s = remaining % 60;
-    const cd = document.getElementById('otp-countdown');
-    if (cd) cd.textContent = m + ':' + String(s).padStart(2,'0');
-    if (remaining <= 0) {
-      stopOtpCountdown();
-      const btn = document.getElementById('btn-resend-otp');
-      if (btn) btn.disabled = false;
-    }
-  }
-  otpCountdownTimer = setInterval(tick, 1000);
-}
-function stopOtpCountdown() {
-  if (otpCountdownTimer) { clearInterval(otpCountdownTimer); otpCountdownTimer = null; }
+/* SIGN-UP — Cancel: go back to email entry step */
+function cancelSignupLink() {
+  pendingSignupEmail = null;
+  localStorage.removeItem('nsl_signup_email');
+  document.getElementById('signup-step-email').style.display = 'block';
+  document.getElementById('signup-step-sent').style.display  = 'none';
+  const inp = document.getElementById('su-email'); if (inp) inp.value = '';
+  document.getElementById('btn-send-link').disabled    = false;
+  document.getElementById('btn-send-link').textContent = 'Send Verification Link';
+  document.getElementById('signup-err').classList.remove('show');
+  document.getElementById('signup-ok').classList.remove('show');
 }
 
-/* OTP: digit input helpers */
-function otpInput(el, idx) {
-  el.value = el.value.replace(/\D/g,'').slice(-1);
-  const inputs = document.querySelectorAll('.otp-digit');
-  if (el.value && idx < inputs.length - 1) inputs[idx+1].focus();
-}
-function otpKey(event, idx) {
-  const inputs = document.querySelectorAll('.otp-digit');
-  if (event.key === 'Backspace' && !inputs[idx].value && idx > 0) inputs[idx-1].focus();
-  if (event.key === 'Enter') verifyOtp();
-}
+/* SIGN-UP — Step 2: user returns via email link, sets name + password */
+async function doCompleteSignup() {
+  document.getElementById('signup-err').classList.remove('show');
 
-/* OTP: verify */
-async function verifyOtp() {
-  const inputs  = document.querySelectorAll('.otp-digit');
-  const entered = Array.from(inputs).map(i => i.value).join('');
-  if (entered.length < 6) { showAuthErr('signup-err','Please enter all 6 digits.'); document.getElementById('signup-err').classList.add('show'); return; }
+  const fn   = document.getElementById('su-fname').value.trim();
+  const ln   = document.getElementById('su-lname').value.trim();
+  const pwd  = document.getElementById('su-pwd').value;
+  const pwd2 = document.getElementById('su-pwd2').value;
 
-  const storedOtp    = sessionStorage.getItem('nsl_otp');
-  const storedExpiry = parseInt(sessionStorage.getItem('nsl_otp_expiry') || '0');
+  if (!fn || !ln)  { showAuthErr('signup-err','Please enter your first and last name.'); return; }
+  if (pwd.length < 6) { showAuthErr('signup-err','Password must be at least 6 characters.'); return; }
+  if (pwd !== pwd2)   { showAuthErr('signup-err','Passwords do not match.'); return; }
 
-  if (Date.now() > storedExpiry) {
-    showAuthErr('signup-err','Your code has expired. Please resend.');
-    document.getElementById('signup-err').classList.add('show');
-    return;
-  }
-  if (entered !== storedOtp) {
-    showAuthErr('signup-err','Incorrect code. Please try again.');
-    document.getElementById('signup-err').classList.add('show');
+  const link  = window._pendingEmailLink;
+  const email = window._pendingLinkEmail || localStorage.getItem('nsl_signup_email') || '';
+
+  if (!link || !email) {
+    showAuthErr('signup-err','Verification link expired or missing. Please start sign-up again.');
     return;
   }
 
-  // OTP correct — user was already created in doSignup; just clean up and log in
-  sessionStorage.removeItem('nsl_otp');
-  sessionStorage.removeItem('nsl_otp_expiry');
-  stopOtpCountdown();
-  showToast('✓ Email verified! Welcome to NSL Connect.');
-  // onAuthStateChanged fires automatically since user is already signed in
-}
+  const btn = document.getElementById('btn-complete-signup');
+  btn.disabled = true; btn.textContent = 'Creating account\u2026';
 
-/* OTP: resend */
-async function resendOtp() {
-  if (!fb().auth.currentUser) return;
-  pendingOtpCode = String(Math.floor(100000 + Math.random() * 900000));
-  otpExpiry      = Date.now() + 10 * 60 * 1000;
-  sessionStorage.setItem('nsl_otp', pendingOtpCode);
-  sessionStorage.setItem('nsl_otp_expiry', otpExpiry);
-  await fb().sendEmailVerification(fb().auth.currentUser);
-  document.getElementById('signup-ok').textContent =
-    'New code sent! For this demo, your OTP is: ' + pendingOtpCode;
-  document.getElementById('signup-ok').classList.add('show');
-  startOtpCountdown();
-  // Clear digit inputs
-  document.querySelectorAll('.otp-digit').forEach(i => i.value = '');
-}
-
-/* OTP: cancel */
-async function cancelOtp() {
-  // Delete the partially created user
-  try { if (fb().auth.currentUser) await fb().auth.currentUser.delete(); } catch(_) {}
-  sessionStorage.removeItem('nsl_otp');
-  sessionStorage.removeItem('nsl_otp_expiry');
-  stopOtpCountdown();
-  document.getElementById('signup-form-fields').style.display = 'block';
-  document.getElementById('otp-verify-block').style.display   = 'none';
-  document.querySelectorAll('.otp-digit').forEach(i => i.value = '');
+  try {
+    // Sign in with the email link to verify identity
+    const cred = await fb().signInWithEmailLink(fb().auth, email, link);
+    // Set display name
+    await fb().updateProfile(cred.user, { displayName: fn + ' ' + ln });
+    // Set password so user can also log in with email+password next time
+    await fb().updatePassword(cred.user, pwd);
+    // Clean up
+    localStorage.removeItem('nsl_signup_email');
+    window._pendingEmailLink  = null;
+    window._pendingLinkEmail  = null;
+    showToast('\u2713 Account created. Welcome to NSL Connect!');
+    // onAuthStateChanged fires automatically and loads the main app
+  } catch(e) {
+    showAuthErr('signup-err', friendlyAuthError(e.code));
+    btn.disabled = false; btn.textContent = 'Complete Registration';
+  }
 }
 
 /* LOGOUT */
