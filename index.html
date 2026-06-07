@@ -309,91 +309,67 @@
     }
 
     /* ============================================================
-       SECTION 7 — TEAM SECTIONS & PROJECT CARDS (Tile Design)
+       SECTION 7 — TEAM SECTIONS & PROJECT CARDS (Collapsible Accordion)
     ============================================================ */
 
-    /* ---- Team Overview Tiles Row ---- */
-    .team-tiles-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));
-      gap:0.85rem; margin-bottom:2rem;
-    }
-    .team-tile {
+    /* ---- Collapsible Team Box ---- */
+    .team-accordion {
       background:var(--panel); border:1px solid var(--border);
-      border-radius:8px; padding:1.1rem 1rem 0.9rem;
-      cursor:pointer; transition:all 0.22s; user-select:none;
-      position:relative; overflow:hidden;
+      border-radius:8px; margin-bottom:1rem; overflow:hidden;
+      transition:box-shadow 0.22s;
     }
-    .team-tile::before {
-      content:''; position:absolute; top:0; left:0; right:0; height:3px;
-      background:var(--accent); opacity:0;
-      transition:opacity 0.22s;
-    }
-    .team-tile:hover, .team-tile.active {
-      border-color:var(--border2); background:var(--panel2);
-      transform:translateY(-2px); box-shadow:var(--glow);
-    }
-    .team-tile:hover::before, .team-tile.active::before { opacity:1; }
-    .team-tile.active { border-color:var(--accent); }
-    .team-tile-count {
-      font-family:'Share Tech Mono',monospace; font-size:1.7rem;
-      font-weight:700; color:var(--accent); line-height:1; margin-bottom:6px;
-    }
-    .team-tile-name {
-      font-family:'Barlow Condensed',sans-serif; font-size:0.85rem;
-      font-weight:700; color:var(--text); letter-spacing:0.04em;
-      text-transform:uppercase; line-height:1.2;
-    }
-    .team-tile-label {
-      font-family:'Share Tech Mono',monospace; font-size:0.55rem;
-      color:var(--text3); letter-spacing:0.1em; text-transform:uppercase;
-      margin-top:3px;
-    }
-    .team-tile-arrow {
-      position:absolute; bottom:0.75rem; right:0.9rem;
-      font-size:0.8rem; color:var(--text3); transition:all 0.22s;
-    }
-    .team-tile.active .team-tile-arrow { color:var(--accent); transform:rotate(90deg); }
-
-    /* ---- Expanded Team Panel ---- */
-    .team-panel-expanded {
-      background:var(--panel); border:1px solid var(--border);
-      border-radius:8px; margin-bottom:2rem; overflow:hidden;
-      animation:teamPanelIn 0.22s ease both;
-    }
-    @keyframes teamPanelIn {
-      from { opacity:0; transform:translateY(-8px); }
-      to   { opacity:1; transform:translateY(0); }
-    }
-    .team-panel-header {
+    .team-accordion.open { border-color:var(--border2); box-shadow:var(--glow); }
+    .team-accordion-header {
       display:flex; align-items:center; justify-content:space-between;
-      padding:0.85rem 1.2rem; background:var(--panel2);
-      border-bottom:1px solid var(--border);
+      padding:0.9rem 1.2rem; background:var(--panel2);
+      cursor:pointer; user-select:none; transition:background 0.2s;
+      position:relative;
     }
-    .team-panel-title {
+    .team-accordion-header::before {
+      content:''; position:absolute; top:0; left:0; bottom:0; width:3px;
+      background:var(--accent); opacity:0; transition:opacity 0.2s;
+    }
+    .team-accordion.open .team-accordion-header::before { opacity:1; }
+    .team-accordion-header:hover { background:var(--panel); }
+    .team-accordion-left { display:flex; flex-direction:column; gap:3px; }
+    .team-accordion-name {
       font-family:'Barlow Condensed',sans-serif; font-size:1.15rem;
-      font-weight:700; color:var(--accent); letter-spacing:0.06em; text-transform:uppercase;
+      font-weight:700; color:var(--accent); letter-spacing:0.08em; text-transform:uppercase;
+      line-height:1.1;
     }
-    .team-panel-meta {
-      font-family:'Share Tech Mono',monospace; font-size:0.6rem;
-      color:var(--text3); margin-top:2px;
+    .team-accordion-count {
+      font-family:'Share Tech Mono',monospace; font-size:0.62rem;
+      color:var(--text3); letter-spacing:0.1em;
     }
-    .team-panel-actions { display:flex; align-items:center; gap:0.6rem; }
+    .team-accordion-right { display:flex; align-items:center; gap:0.6rem; }
     .btn-download-sec {
       font-family:'Share Tech Mono',monospace; font-size:0.7rem;
       background:var(--panel); border:1px solid var(--border);
-      color:var(--text2); padding:4px 10px; border-radius:4px; cursor:pointer; transition:all 0.2s;
+      color:var(--text2); padding:4px 10px; border-radius:4px; cursor:pointer;
+      transition:all 0.2s; white-space:nowrap;
     }
     .btn-download-sec:hover { border-color:var(--accent3); color:var(--accent3); }
-    .btn-close-panel {
-      font-family:'Share Tech Mono',monospace; font-size:0.7rem;
-      background:none; border:1px solid var(--border);
-      color:var(--text3); padding:4px 10px; border-radius:4px; cursor:pointer; transition:all 0.2s;
+    .team-accordion-arrow {
+      font-size:0.75rem; color:var(--text3);
+      transition:transform 0.25s ease, color 0.2s;
+      width:20px; text-align:center;
     }
-    .btn-close-panel:hover { border-color:var(--warn); color:var(--warn); }
-    .team-panel-body { padding:1rem; }
+    .team-accordion.open .team-accordion-arrow { transform:rotate(90deg); color:var(--accent); }
+    .team-accordion-body {
+      display:none; padding:1rem;
+      border-top:1px solid var(--border);
+      animation:accordionIn 0.22s ease both;
+    }
+    .team-accordion.open .team-accordion-body { display:block; }
+    @keyframes accordionIn {
+      from { opacity:0; transform:translateY(-6px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
 
     /* legacy – keep for backward-compat in other places */
+    .team-section { margin-bottom:2rem; border:1px solid var(--border); border-radius:8px; overflow:hidden; }
+
+    /* legacy */
     .team-section { margin-bottom:2rem; border:1px solid var(--border); border-radius:8px; overflow:hidden; }
     .team-count-badge {
       font-family:'Share Tech Mono',monospace; font-size:0.62rem;
@@ -1376,11 +1352,14 @@ async function doSignup() {
   // Send via Firebase Callable Function — but since we don't have one deployed,
   // we use a EmailJS-style approach OR just simulate it using Firebase Auth's
   // built-in sendEmailVerification after a temporary account creation.
-  // Here we create the user, send the verification email, and store OTP in sessionStorage as well.
+  // Here we create the user, send the verification email, immediately sign them out
+  // so they cannot access the app, then show the OTP flow.
   try {
     const cred = await fb().createUserWithEmailAndPassword(auth(), email, pwd);
     await fb().updateProfile(cred.user, { displayName: fn + ' ' + ln });
     await fb().sendEmailVerification(cred.user);
+    // Sign out immediately — the user must verify email first and then log in
+    await fb().signOut(auth());
 
     // Also embed OTP into sessionStorage so verifyOtp() can check it
     // In production, OTP sending would go through a backend Cloud Function
@@ -1460,37 +1439,59 @@ async function verifyOtp() {
     return;
   }
 
-  // OTP correct — user was already created in doSignup; just clean up and log in
+  // OTP correct — account already created & signed out in doSignup
+  // Clean up and redirect user to login panel
   sessionStorage.removeItem('nsl_otp');
   sessionStorage.removeItem('nsl_otp_expiry');
   stopOtpCountdown();
-  showToast('✓ Email verified! Welcome to NSL Connect.');
-  // onAuthStateChanged fires automatically since user is already signed in
+  pendingSignupData = null;
+  pendingOtpCode    = null;
+
+  // Reset OTP inputs
+  document.querySelectorAll('.otp-digit').forEach(i => i.value = '');
+  // Hide OTP block, show signup form fields (reset state)
+  document.getElementById('otp-verify-block').style.display   = 'none';
+  document.getElementById('signup-form-fields').style.display = 'block';
+
+  // Switch to login panel with a success message
+  switchPanel('login');
+  // Show success toast
+  showToast('✓ Account verified! Please sign in to continue.');
+  // onAuthStateChanged does NOT fire (user was signed out in doSignup)
 }
 
 /* OTP: resend */
 async function resendOtp() {
-  if (!fb().auth.currentUser) return;
-  pendingOtpCode = String(Math.floor(100000 + Math.random() * 900000));
-  otpExpiry      = Date.now() + 10 * 60 * 1000;
-  sessionStorage.setItem('nsl_otp', pendingOtpCode);
-  sessionStorage.setItem('nsl_otp_expiry', otpExpiry);
-  await fb().sendEmailVerification(fb().auth.currentUser);
-  document.getElementById('signup-ok').textContent =
-    'New code sent! For this demo, your OTP is: ' + pendingOtpCode;
-  document.getElementById('signup-ok').classList.add('show');
-  startOtpCountdown();
-  // Clear digit inputs
-  document.querySelectorAll('.otp-digit').forEach(i => i.value = '');
+  if (!pendingSignupData) return;
+  // Re-sign in temporarily to resend verification email, then sign out again
+  try {
+    const cred = await fb().signInWithEmailAndPassword(auth(), pendingSignupData.email, pendingSignupData.pwd);
+    pendingOtpCode = String(Math.floor(100000 + Math.random() * 900000));
+    otpExpiry      = Date.now() + 10 * 60 * 1000;
+    sessionStorage.setItem('nsl_otp', pendingOtpCode);
+    sessionStorage.setItem('nsl_otp_expiry', otpExpiry);
+    await fb().sendEmailVerification(cred.user);
+    await fb().signOut(auth()); // sign out again immediately
+    document.getElementById('signup-ok').textContent =
+      'New code sent! For this demo, your OTP is: ' + pendingOtpCode;
+    document.getElementById('signup-ok').classList.add('show');
+    startOtpCountdown();
+    document.querySelectorAll('.otp-digit').forEach(i => i.value = '');
+  } catch(e) {
+    showAuthErr('signup-err', friendlyAuthError(e.code));
+    document.getElementById('signup-err').classList.add('show');
+  }
 }
 
 /* OTP: cancel */
 async function cancelOtp() {
-  // Delete the partially created user
-  try { if (fb().auth.currentUser) await fb().auth.currentUser.delete(); } catch(_) {}
+  // User is already signed out (we signed out in doSignup).
+  // Just clear OTP state and go back to the signup form.
   sessionStorage.removeItem('nsl_otp');
   sessionStorage.removeItem('nsl_otp_expiry');
   stopOtpCountdown();
+  pendingSignupData = null;
+  pendingOtpCode    = null;
   document.getElementById('signup-form-fields').style.display = 'block';
   document.getElementById('otp-verify-block').style.display   = 'none';
   document.querySelectorAll('.otp-digit').forEach(i => i.value = '');
@@ -1696,8 +1697,9 @@ async function saveTeamProject() {
   }
 }
 
-/* ---- RENDER: Tile-based team overview + expandable panel ---- */
-let activeTeamPanel = null; // currently open team name
+/* ---- RENDER: Collapsible accordion team boxes ---- */
+// Track which teams are open
+let openTeams = new Set();
 
 window.renderGroupedTeamProjects = function() {
   const c     = document.getElementById('teams-distribution-wrapper');
@@ -1726,111 +1728,71 @@ window.renderGroupedTeamProjects = function() {
   const allTeams   = new Set(fixedOrder);
   filtered.forEach(p => { if (p.teamName) allTeams.add(p.teamName); });
 
-  // Build per-team data
-  const teamData = [];
   allTeams.forEach(team => {
     const recs = filtered.filter(p => p.teamName === team);
-    if (recs.length) teamData.push({ team, recs });
+    if (!recs.length) return;
+
+    const isOpen = openTeams.has(team);
+
+    const box = document.createElement('div');
+    box.className = 'team-accordion' + (isOpen ? ' open' : '');
+    box.id = 'accordion-' + team.replace(/\W+/g, '-');
+
+    // Header
+    const header = document.createElement('div');
+    header.className = 'team-accordion-header';
+    header.innerHTML =
+      '<div class="team-accordion-left">' +
+        '<div class="team-accordion-name">' + escHtml(team) + '</div>' +
+        '<div class="team-accordion-count">' + recs.length + ' ' + (recs.length === 1 ? 'project' : 'projects') + '</div>' +
+      '</div>' +
+      '<div class="team-accordion-right">' +
+        '<button class="btn-download-sec" onclick="event.stopPropagation();dlTeamDoc(\'' + escHtml(team) + '\')">&#11015; Export</button>' +
+        '<span class="team-accordion-arrow">&#9654;</span>' +
+      '</div>';
+    header.addEventListener('click', () => toggleAccordion(team, box));
+
+    // Body
+    const body = document.createElement('div');
+    body.className = 'team-accordion-body';
+
+    const cards = recs.map(p => {
+      const isOwner = window.currentUserEmail && p.createdBy === window.currentUserEmail;
+      const ownerBtns = isOwner
+        ? '<div class="card-actions">' +
+            '<button class="btn-ghost" onclick="event.stopPropagation();editProjectFromCard(\'' + p.id + '\')">EDIT</button>' +
+            '<button class="btn-ghost btn-danger" onclick="event.stopPropagation();deleteProjectCard(\'' + p.id + '\')">DELETE</button>' +
+          '</div>'
+        : '';
+      return (
+        '<div class="profile-card" onclick="openProjectPopup(\'' + p.id + '\')">' +
+          '<div class="card-name" style="margin-bottom:6px;">' + escHtml(p.projectName) + '</div>' +
+          '<div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px;">' +
+            p.processNode.split(',').map(n => '<span class="node-tag">' + escHtml(n.trim()) + '</span>').join('') +
+          '</div>' +
+          '<div class="card-desc"><strong>Goals:</strong> ' + bulletify(p.goal) + '</div>' +
+          '<div class="card-desc" style="margin-top:6px;"><strong>Achievements:</strong> ' + bulletify(p.keyAchievements) + '</div>' +
+          (isOwner ? '<div class="card-footer"><span class="card-updated" style="color:var(--accent3);font-size:0.58rem;">\u2713 Your entry</span>' + ownerBtns + '</div>' : '') +
+        '</div>'
+      );
+    }).join('');
+
+    body.innerHTML = '<div class="profile-grid">' + cards + '</div>';
+
+    box.appendChild(header);
+    box.appendChild(body);
+    c.appendChild(box);
   });
-
-  if (!teamData.length) {
-    c.innerHTML = '<div class="empty-state"><h3>No matching teams</h3></div>';
-    return;
-  }
-
-  // ---- Tile row ----
-  const tilesRow = document.createElement('div');
-  tilesRow.className = 'team-tiles-grid';
-  tilesRow.id = 'team-tiles-row';
-
-  teamData.forEach(({ team, recs }) => {
-    const tile = document.createElement('div');
-    tile.className = 'team-tile' + (activeTeamPanel === team ? ' active' : '');
-    tile.id = 'tile-' + team.replace(/\W+/g,'-');
-    tile.innerHTML =
-      '<div class="team-tile-count">' + recs.length + '</div>' +
-      '<div class="team-tile-name">' + escHtml(team) + '</div>' +
-      '<div class="team-tile-label">' + (recs.length === 1 ? 'project' : 'projects') + '</div>' +
-      '<span class="team-tile-arrow">&#9654;</span>';
-    tile.onclick = () => toggleTeamPanel(team, teamData);
-    tilesRow.appendChild(tile);
-  });
-
-  c.appendChild(tilesRow);
-
-  // ---- Expanded panel placeholder ----
-  const panelSlot = document.createElement('div');
-  panelSlot.id = 'team-panel-slot';
-  c.appendChild(panelSlot);
-
-  // If a team was previously open and still exists, re-render its panel
-  if (activeTeamPanel) {
-    const found = teamData.find(d => d.team === activeTeamPanel);
-    if (found) renderTeamPanel(found.team, found.recs);
-    else activeTeamPanel = null;
-  }
 };
 
-function toggleTeamPanel(team, teamData) {
-  if (activeTeamPanel === team) {
-    // Close
-    activeTeamPanel = null;
-    const slot = document.getElementById('team-panel-slot');
-    if (slot) slot.innerHTML = '';
-    // deactivate tile
-    document.querySelectorAll('.team-tile').forEach(t => t.classList.remove('active'));
+function toggleAccordion(team, boxEl) {
+  if (openTeams.has(team)) {
+    openTeams.delete(team);
+    boxEl.classList.remove('open');
   } else {
-    activeTeamPanel = team;
-    document.querySelectorAll('.team-tile').forEach(t => {
-      t.classList.toggle('active', t.id === 'tile-' + team.replace(/\W+/g,'-'));
-    });
-    const found = teamData ? teamData.find(d => d.team === team) : null;
-    const recs  = found ? found.recs : teamProjects.filter(p => p.teamName === team);
-    renderTeamPanel(team, recs);
+    openTeams.add(team);
+    boxEl.classList.add('open');
   }
-}
-
-function renderTeamPanel(team, recs) {
-  const slot = document.getElementById('team-panel-slot');
-  if (!slot) return;
-
-  const cards = recs.map(p => {
-    const isOwner = window.currentUserEmail && p.createdBy === window.currentUserEmail;
-    const ownerBtns = isOwner
-      ? '<div class="card-actions">' +
-          '<button class="btn-ghost" onclick="event.stopPropagation();editProjectFromCard(\'' + p.id + '\')">EDIT</button>' +
-          '<button class="btn-ghost btn-danger" onclick="event.stopPropagation();deleteProjectCard(\'' + p.id + '\')">DELETE</button>' +
-        '</div>'
-      : '';
-    return (
-      '<div class="profile-card" onclick="openProjectPopup(\'' + p.id + '\')">' +
-        '<div class="card-name" style="margin-bottom:6px;">' + escHtml(p.projectName) + '</div>' +
-        '<div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px;">' +
-          p.processNode.split(',').map(n => '<span class="node-tag">' + escHtml(n.trim()) + '</span>').join('') +
-        '</div>' +
-        '<div class="card-desc"><strong>Goals:</strong> ' + bulletify(p.goal) + '</div>' +
-        '<div class="card-desc" style="margin-top:6px;"><strong>Achievements:</strong> ' + bulletify(p.keyAchievements) + '</div>' +
-        (isOwner ? '<div class="card-footer"><span class="card-updated" style="color:var(--accent3);font-size:0.58rem;">\u2713 Your entry</span>' + ownerBtns + '</div>' : '') +
-      '</div>'
-    );
-  }).join('');
-
-  slot.innerHTML =
-    '<div class="team-panel-expanded">' +
-      '<div class="team-panel-header">' +
-        '<div>' +
-          '<div class="team-panel-title">' + escHtml(team) + '</div>' +
-          '<div class="team-panel-meta">' + recs.length + ' project' + (recs.length !== 1 ? 's' : '') + ' recorded</div>' +
-        '</div>' +
-        '<div class="team-panel-actions">' +
-          '<button class="btn-download-sec" onclick="dlTeamDoc(\'' + escHtml(team) + '\')">&#11015; Export</button>' +
-          '<button class="btn-close-panel" onclick="toggleTeamPanel(\'' + escHtml(team) + '\', null)">&#10005; Close</button>' +
-        '</div>' +
-      '</div>' +
-      '<div class="team-panel-body">' +
-        '<div class="profile-grid">' + cards + '</div>' +
-      '</div>' +
-    '</div>';
 }
 
 function filterProjects() {
