@@ -80,8 +80,12 @@
     #auth-overlay {
       position:fixed; inset:0; z-index:9999;
       background:var(--bg);
-      display:flex; align-items:center; justify-content:center; padding:1rem;
+      display:flex; align-items:flex-start; justify-content:center; padding:1rem;
+      overflow-y:auto;
       transition:opacity 0.4s ease;
+    }
+    @media (min-height:600px) {
+      #auth-overlay { align-items:center; }
     }
     #auth-overlay.hidden { opacity:0; pointer-events:none; }
     #auth-overlay::before {
@@ -617,7 +621,7 @@
 <div id="auth-overlay" style="display:none;">
   <div class="auth-card">
 
-    <div class="auth-logo">
+    <div class="auth-logo" onclick="switchPanel('login')" style="cursor:pointer;" title="Back to Sign In">
       <div class="auth-logo-chip">
         <img src="image_8afb22.png" alt="NSL Connect Logo" onerror="this.style.display='none'" />
       </div>
