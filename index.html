@@ -627,7 +627,7 @@
       </div>
       <div>
         <div class="auth-logo-text">NSL <em>Connect</em></div>
-        <div class="auth-logo-sub">VLSI Collaborative Hub</div>
+        <div class="auth-logo-sub">Integrated Project & Personnel Registry</div>
       </div>
     </div>
 
@@ -774,7 +774,7 @@
       </div>
       <div>
         <div class="logo-text">NSL <span>Connect</span></div>
-        <div class="logo-sub">VLSI Collaborative Hub</div>
+        <div class="logo-sub">Integrated Project & Personnel Registry</div>
       </div>
     </div>
 
@@ -1634,7 +1634,7 @@ window.renderGroupedTeamProjects = function() {
     if (query) {
       c.innerHTML = '<div class="empty-state"><h3>No projects match "' + escHtml(query) + '"</h3><p>Try a different name or process node.</p></div>';
     } else {
-      c.innerHTML = '<div class="empty-state"><h3>No project specifications tracked</h3><p>Click + Add Project Detail to get started.</p></div>';
+      c.innerHTML = '<div class="empty-state"><h3>No projects registered yet</h3><p>Click + Add Project Detail to get started.</p></div>';
     }
     return;
   }
@@ -1892,7 +1892,7 @@ function filterProfiles() {
   document.getElementById('stat-count').textContent = m.length;
   const grid = document.getElementById('profile-grid');
   if (!m.length) {
-    grid.innerHTML = '<div class="empty-state"><h3>No matching structural nodes located</h3></div>'; return;
+    grid.innerHTML = '<div class="empty-state"><h3>No engineer profiles registered yet</h3></div>'; return;
   }
   grid.innerHTML = m.map(p => {
     const isOwner = window.currentUserEmail && p.createdBy === window.currentUserEmail;
