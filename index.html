@@ -828,9 +828,7 @@
         </div>
         <div class="nda-banner">
           <div class="nda-text">
-            <strong>NDA Preservation Rule:</strong> Describe layout parameters at a high level.
-            Each line in Goal / Achievement will be shown as a bullet point automatically.
-          </div>
+            <strong>⚠ NDA Reminder:</strong> Do not disclose confidential project names, client identities, proprietary circuit details, or foundry-specific information. Use generalized descriptions and avoid any content that may violate your NDA obligations.</div>
         </div>
         <div class="form-section">
           <div class="form-section-title">Project Context &amp; Parameters</div>
@@ -865,11 +863,11 @@
             </div>
           </div>
           <div class="field">
-            <label>Goal (each line = one bullet) <span class="req">*</span></label>
+            <label>Goal<span class="req">*</span></label>
             <textarea id="proj-goal-input" rows="4" placeholder="Type each individual design target on a fresh line..."></textarea>
           </div>
           <div class="field">
-            <label>Key Achievements (each line = one bullet) <span class="req">*</span></label>
+            <label>Key Achievements<span class="req">*</span></label>
             <textarea id="proj-achv-input" rows="4" placeholder="Type each single milestone on a separate line..."></textarea>
           </div>
         </div>
@@ -1777,7 +1775,7 @@ function addEngineerProjectFormBlock(data) {
         '<input type="text" class="field-p-tech" value="' + (data ? escHtml(data.tech) : '') + '"/></div>' +
       '<div class="field"><label>Duration Tracking</label>' +
         '<input type="text" class="field-p-duration" value="' + (data ? escHtml(data.duration) : '') + '"/></div>' +
-      '<div class="field" style="grid-column:1/-1"><label>Description Parameters (each line = one bullet)</label>' +
+      '<div class="field" style="grid-column:1/-1"><label>Description Parameters(Type each point in a new line)</label>' +
         '<textarea class="field-p-desc" rows="4">' + (data ? escHtml(data.desc) : '') + '</textarea></div>' +
     '</div>';
   box.appendChild(div);
